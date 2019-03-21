@@ -2,7 +2,11 @@ A thesis
 ---
 
 <!-- Message -->
-My thesis is: model driven engineering should provide a modeling framework that encapsulates time and uncertainty as first-class concepts and that enables efficient accesses (read, write), efficient process and easy manipulation in order to abstract the knowledge, i.e., the environment, the system and, the adaption process, of an dynamically adaptive system for improving the adaption process by taking more optimal decision with better performance.
+    <!-- Context -->
+    <!-- Problem -->
+    <!-- Vision -->
+    My thesis is: a modeling framework should encapsulate time and uncertainty as first-class concepts and that enables efficient accesses (read, write), efficient process and easy manipulation.
+    in order to abstract the knowledge, i.e., the environment, the system and, the adaption process, of an dynamically adaptive system for improving the adaption process by taking more optimal decision with better performance.
 
 
 <!-- Keywords -->
@@ -10,6 +14,9 @@ My thesis is: model driven engineering should provide a modeling framework that 
 
 
 <!-- Context -->
+    <!-- Open with a concrete problem  -->
+    <!-- Generalize -->
+
 - DAS
 - MAPE-k loop / control loop
 - Knoweledge representation
@@ -21,6 +28,7 @@ My thesis is: model driven engineering should provide a modeling framework that 
 
 <!-- Use case -->
 - Creos smart grid
+    <!-- Other example that could be added: https://www.greenflex.com/en/ -->
 
 <!-- Problematic -->
 - Suboptimal decisions are taken
@@ -80,7 +88,11 @@ My thesis is: model driven engineering should provide a modeling framework that 
 
 - Performance evaluation
     - time to read/write/process data
-    - 
 
+- Validation industrial
+    - implementation of (some ?) of the contributions into an industrial use case (Creos)
+
+<!-- Perspective FW -->
+- Push the contrib. into GreyCat
 
 
