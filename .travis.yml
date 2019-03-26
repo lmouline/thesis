@@ -23,7 +23,8 @@ script:
 - mkdir build
 - ./build.sh
 - cd build
-- rm main.aux main.log main.out main.spl main.bbl	main.blg
+- shopt -s extglob
+- rm !(main.pdf)
 
 
 deploy:
