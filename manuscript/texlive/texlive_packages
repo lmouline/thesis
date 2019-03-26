@@ -2,6 +2,7 @@ color
 fancyhdr
 lineno
 geometry
+ifmtarg
 setspace
 showframe
 xifthen
