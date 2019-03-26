@@ -1,0 +1,9 @@
+# Texpad files
+main.pdf
+.texpadtmp
+
+# MacOS files
+.DS_Store
+
+# Others
+phdthesis.cls
