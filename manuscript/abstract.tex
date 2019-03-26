@@ -3,29 +3,33 @@
 \boxed{Vision defended}
 {
 	%% Context & Problem
-    Due to the lack of efficient temporal structures which also abstract uncertainty, adaptation processes for dynamically adaptive systems make sub-optimal decisions.
+%    Due to the lack of efficient temporal structures which also abstract uncertainty, adaptation processes for dynamically adaptive systems make sub-optimal decisions.
+	As state of the art techniques fail at efficiently modeling the dynamic and the uncertainty existing in dynamically adaptive systems, the adaptation process make suboptimal decision.
 	%% Vision
-	To tackle this challenge, modeling frameworks should encapsulate time and uncertainty as first-class concepts with efficient accesses (read, write), efficient process and easy manipulation.
+	To tackle this challenge, modeling frameworks should encapsulate time and uncertainty as first-class concepts with efficient accesses (read, write), efficient process and effortless manipulation.
 }
 
 %% Context
-Smart grid approach introduces information and communication technologies into traditional power grid in order to cope with new challenges of resource distribution.
-One example is the increasing number of electrical vehicles that, in combination with the 7pm consumption peak, will lead to grid overloading, according to the current estimation.
-The Luxembourgish grid manager estimates that the grid will be overloaded with 20$\sim$30\% of electrical vehicle during the peak hour.
+Advances in software systems go to ...... dynamically adaptive systems (DAS).
+As an example, smart grid systems are .....
+Smart grid approach introduces information and communication technologies into traditional power grid in order to cope with new challenges of electricity distribution.
+One example of these challenges is the increasing number of electrical vehicles that, combined with the 7pm consumption peak, will lead to grid overloading, according to the current estimations.
+The Luxembourgish grid manager estimates that the grid will be overloaded with 20$\sim$30\% of vehicle are electric and charging during the peak hour.
 
 One investigated approach to tackle these challenges is to define the smart grid as a dynamically adaptive systems (DAS).
 By analyzing its context, an adaptation process detects any suboptimal state.
 For the grid manager, a suboptimal state is a state with at least one overloading cable.
 This process then triggers a reconfiguration following specifications (requirements and constraints) in order to optimize the state.
-For example, by modifying the path taken by the power, the grid manager can avoid an overloading cable in some places.
+For example, the grid manage can modify the path taken by the power, also referred to as topology, to avoid overloading cables.
 
-However, reconfiguring the low voltage (cables that are directly connected to the end users) grid is still a task made by a human: a technician should take a car, go the re-configuration point and modify manually the state.
-Several minutes have passed between the moment where the incident is detected and the moment where the grid is reconfigured whereas an incident should be detected in real-time (for the grid, real-time means in the minute).
+However, reconfiguring the low voltage (cables that are directly connected to the end users) grid is still a task made by humans: technicians take their car, go the re-configuration point and modify manually the grid through fuses.
+Several minutes have then passed between the moment where the incident is detected and the moment where the grid is reconfigured whereas an incident should be detected in real-time (for the grid, real-time means in the minute).
+In this thesis, I call these kind of actions \textit{delayed actions}.
 Moreover, loads on the grid is not known with absolute confidence.
-Loads are approximated from the measured consumption and the grid topology, \ie path taken by the power.
+They are approximated from the measured consumption and the grid topology.
 This topology is inferred  from fuse states, which are set by technicians after their intervention on the grid.
-The topology is thus not known with absolute confidence.
-This uncertainty is propagated to the load.
+As human are not error-free, the topology is therefore not known with absolute confidence.
+This uncertainty on data is propagated to the load through the computation made.
 
 %% Problematic 
 \bigskip
@@ -53,8 +57,8 @@ In order to respect the real-time constraint of DAS, the read, write and process
 
 %% Vision 
 \bigskip
-This thesis defend the need of a unified modeling framework which includes, despite all traditional elements, temporal and uncertainty as first-class concepts.
-Therefore, a developer will be able to easily abstract information related to the adaptation process, the environment as wells as the system itself.
+This thesis defends the need of a unified modeling framework which includes, despite all traditional elements, temporal and uncertainty as first-class concepts.
+Therefore, a developer will be able to easily abstract information related to the adaptation process, the environment as well as the system itself.
 This frameworks should enable efficient read and write operations and should provide data structures efficient to process in order to enable a real-time reasoning.
 
 Concerning the adaption process, the framework should enable easy abstraction of the actions with their context and impact as well as the specification of this process (requirements and constraints).
@@ -65,14 +69,13 @@ Finally, the framework should represent the structure, behavior and specificatio
 \bigskip
 Towards this vision, two contributions have been proposed: a temporal context model and a language for uncertain data.
 
-On one hand, this thesis presents a temporal context model.
-This model allows to abstract past, on going and future actions with their impacts and context.
+The temporal context model allows to abstract past, on going and future actions with their impacts and context.
 First, a developer can use this model to know what are the ongoing actions with their expect future impacts on the system.
 Second, she/he can navigate through past decisions to understand why the system has taken some decisions which lead to a sub-optimal state.
 
-On the other hand, this thesis presents a language which integrates data uncertainty as a first-class concept, named \textit{Ain'tea}.
-This languages allow developers to attach data with a probability distribution which represents the uncertainty.
-Then, it mapped all arithmetic and boolean operators to uncertainty propagation operation. 
+The language, named \langName, integrates data uncertainty as a first-class concept.
+It allows developers to attach data with a probability distribution which represents their uncertainty.
+Plus, it mapped all arithmetic and boolean operators to uncertainty propagation operation. 
 And so, developers will automatically propagate the uncertainty of data without additional effort, compared to an algorithm which manipulates certain data.
 
 %% Validation
