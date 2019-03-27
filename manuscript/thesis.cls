@@ -2,9 +2,6 @@
 \ProvidesClass{thesis}[2019/03/22 v0.0 PhD Thesis]
 \LoadClass[12pt, twoside]{book}
 
-\RequirePackage{color}
-\RequirePackage{xifthen}
-
 %%% Class options %%%%%
 %
 % review, publish
@@ -49,14 +46,21 @@
 \fi
 
 \ifIFpublish
-	\RequirePackage[modulo]{lineno}
+	\RequirePackage[pagewise, modulo]{lineno}
 	\linenumbers
 \fi
 
 \ifIFdebug
 	\RequirePackage{showframe}
+	\overfullrule=5pt
 \fi
 
+
+%%% Package dependencies %%%%%
+\RequirePackage{color}
+\RequirePackage{xifthen}
+\RequirePackage{csquotes}
+\RequirePackage{hyperref}
 
 
 %%% Definition of the page layout %%%%%
@@ -77,6 +81,14 @@
 %%% Customized commands %%%%%
 % boxed
 %		add a black box around the text
+%		1st param (optional): title of the box. It will be put in bold at the beginning of the text followed by colon and the text (2nd parameter)
+%		2nd param: text to insert into the box 
+%
+% paragraphit
+%		simulate the \paragraph command but with an italic header
+%
+% todo
+%		add a red text starting with TODO
 %%%%%%%%%%%%%%%%
 %\newenvironment{boxed}[0]
 %{\parbox{0.969\textwidth}{}
@@ -93,6 +105,8 @@
 		}
 	}	
 }
+
+\newcommand{\paragraphit}[1]{\noindent\textit{#1}~~}
 
 \newcommand{\todo}[1]
 {

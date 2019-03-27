@@ -1,63 +1,72 @@
 \chapter*{Abstract}
 
-\boxed{Vision defended}
+\boxed{Vision}
 {
 	%% Context & Problem
-%    Due to the lack of efficient temporal structures which also abstract uncertainty, adaptation processes for dynamically adaptive systems make sub-optimal decisions.
-	As state of the art techniques fail at efficiently modeling the dynamic and the uncertainty existing in dynamically adaptive systems, the adaptation process make suboptimal decision.
+	As state-of-the-art techniques fail to model efficiently the evolution and the uncertainty existing in dynamically adaptive systems, the adaptation process makes suboptimal decisions.
 	%% Vision
-	To tackle this challenge, modeling frameworks should encapsulate time and uncertainty as first-class concepts with efficient accesses (read, write), efficient process and effortless manipulation.
+	To tackle this challenge, modern modeling frameworks should efficiently encapsulate time and uncertainty as first-class concepts.
 }
+\bigskip
 
 %% Context
-Advances in software systems go to ...... dynamically adaptive systems (DAS).
-As an example, smart grid systems are .....
-Smart grid approach introduces information and communication technologies into traditional power grid in order to cope with new challenges of electricity distribution.
-One example of these challenges is the increasing number of electrical vehicles that, combined with the 7pm consumption peak, will lead to grid overloading, according to the current estimations.
-The Luxembourgish grid manager estimates that the grid will be overloaded with 20$\sim$30\% of vehicle are electric and charging during the peak hour.
+\paragraphit{Context}
+Smart grid approach introduces information and communication technologies into traditional power grid to cope with new challenges of electricity distribution.
+Among them, one challenge is the resiliency of the grid: how to automatically recover from any incident such as overload?
+These systems therefore need a deep understanding of the ongoing situation which enables reasoning tasks for healing operations.
+\textbf{Abstraction} is a key technique that provided an illuminating description of systems, their behaviors, and/or their environments alleviating their complexity.
+\textbf{Adaptation} is a cornerstone feature that enables reconfiguration at runtime for optimizing software to the current and/or future situation.
 
-One investigated approach to tackle these challenges is to define the smart grid as a dynamically adaptive systems (DAS).
-By analyzing its context, an adaptation process detects any suboptimal state.
-For the grid manager, a suboptimal state is a state with at least one overloading cable.
-This process then triggers a reconfiguration following specifications (requirements and constraints) in order to optimize the state.
-For example, the grid manage can modify the path taken by the power, also referred to as topology, to avoid overloading cables.
-
-However, reconfiguring the low voltage (cables that are directly connected to the end users) grid is still a task made by humans: technicians take their car, go the re-configuration point and modify manually the grid through fuses.
-Several minutes have then passed between the moment where the incident is detected and the moment where the grid is reconfigured whereas an incident should be detected in real-time (for the grid, real-time means in the minute).
-In this thesis, I call these kind of actions \textit{delayed actions}.
-Moreover, loads on the grid is not known with absolute confidence.
+Abstraction technique is pushed to its paramountcy by the model-driven engineering (MDE) methodology.
+However, information concerning the grid, such as loads, is not always known with absolute confidence.
+Through the thesis, this lack of confidence about data is referred to as \textbf{data uncertainty}.
 They are approximated from the measured consumption and the grid topology.
-This topology is inferred  from fuse states, which are set by technicians after their intervention on the grid.
-As human are not error-free, the topology is therefore not known with absolute confidence.
-This uncertainty on data is propagated to the load through the computation made.
+This topology is inferred from fuse states, which are set by technicians after their services on the grid.
+As humans are not error-free, the topology is therefore not known with absolute confidence.
+This data uncertainty is propagated to the load through the computation made.
+If it is neither present in the model nor not considered by the adaptation process, then the adaptation process may make suboptimal reconfiguration decision.
+
+The literature refers to systems which provide adaptation capabilities as dynamically adaptive systems (DAS).
+One challenge in the grid is the phase difference between the monitoring frequency and the time for actions to have measurable effects.
+Action with no immediate measurable effects are named \textbf{delayed action}.
+On the one hand, an incident should be detected in the next minutes.
+On the other hand, a reconfiguration action can take up to several hours.
+For example, when a tree falls on a cable and cuts it during a storm, the grid manager should be noticed in real time.
+The reconfiguration of the grid, to reconnect as many people as possible before replacing the cable, is done by technicians who need to use their cars to go on the reconfiguration places.
+In a fully autonomous adaptive system, the reasoning process should be considered the ongoing actions to avoid repeating decisions.
 
 %% Problematic 
 \bigskip
-Data uncertainty and delayed actions are not a specificity of smart grids.
+\paragraphit{Problematic}
+\textbf{Data uncertainty and delayed actions are not specific to smart grids.}
 
-Data are, almost by definition, uncertain and developers work with estimates.
+First, data are, almost by definition, uncertain and developers always work with estimates.
 Hardware sensors have by construction a precision that can vary according to the current environment in which they are deployed.
-A simple example is the temperature sensor which provides a temperature with a precision of one Celsius degree.
-Software sensors approximates also values from these physical sensors and accentuate and have their uncertainty.
+A simple example is the temperature sensor which provides a temperature with precision of one Celsius degree.
+Software sensors approximate also values from these physical sensors and accentuate and have their uncertainty.
 For example, CPU usage is computed counting the cycle used by a program.
 As stated by Intel, this counter is not error-free~\footnote{https://software.intel.com/en-us/itc-user-and-reference-guide-cpu-cycle-counter}.
 
-It always exist a delay between the moment where a suboptimal state is detected by the adaptation process and the moment where the effect of decision taken are measured.
+Second, it always exists a delay between the moment where a suboptimal state is detected by the adaptation process and the moment where the effects of decisions taken are measured.
 This delayed is due to the time needed by a computer to process a send and, eventually, to send orders or data through networks.
 For example, migrating a virtual machine from a server to another one can take several minutes.
 
-Through this thesis, I argue that this uncertainty and this delay cannot be ignored for all dynamic adaptive systems.
-In addition to the smart grid, these characteristics are also important for cloud or cyber-physical systems.
+\textbf{Through this thesis, I argue that this data uncertainty and this delay cannot be ignored for all dynamic adaptive systems.}
+To know if the data uncertainty should be considered, stakeholders should wonder \textbf{if this data uncertainty affects the result of their reasoning process, like adaptation}.
+Regarding delayed action, they should verify \textbf{if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
+These characteristics are common to smart grids, cloud infrastructure or cyber-physical systems in general.
 
 %% Challenge
 \bigskip
+\paragraphit{Challenge}
 These problematics come with different challenges concerning the representation of the knowledge for DAS.
 Solutions should be bring to developers to ease their definition and manipulation of uncertain and temporal data.
 In order to respect the real-time constraint of DAS, the read, write and process of this knowledge should be efficient in term of resources (memory, CPU) used and execution time.
 
 %% Vision 
 \bigskip
-This thesis defends the need of a unified modeling framework which includes, despite all traditional elements, temporal and uncertainty as first-class concepts.
+\paragraphit{Vision}
+\textbf{This thesis defends the need of a unified modeling framework which includes, despite all traditional elements, temporal and uncertainty as first-class concepts.}
 Therefore, a developer will be able to easily abstract information related to the adaptation process, the environment as well as the system itself.
 This frameworks should enable efficient read and write operations and should provide data structures efficient to process in order to enable a real-time reasoning.
 
@@ -67,6 +76,7 @@ Finally, the framework should represent the structure, behavior and specificatio
 
 %% Contributions which support the vision
 \bigskip
+\paragraphit{Contributions}
 Towards this vision, two contributions have been proposed: a temporal context model and a language for uncertain data.
 
 The temporal context model allows to abstract past, on going and future actions with their impacts and context.
@@ -80,6 +90,7 @@ And so, developers will automatically propagate the uncertainty of data without 
 
 %% Validation
 \bigskip
+\paragraphit{Validation}
 Each contribution have been evaluated separately. 
 The language has been evaluated through two axis: its ability to detect errors at development time and its expressiveness.
 Ain'tea can detect [...] and it is as expressive as any state of the art solution.
@@ -91,6 +102,8 @@ I show that it can be used to [....]
 
 %% Perspective FW
 %- Push the contrib. into GreyCat
+\bigskip
+\bigskip
 \bigskip
 \boxed{Keywords}{dynamically adaptive systems, knowledge representation, model-driven engineering, uncertainty modeling, time modeling}
 
