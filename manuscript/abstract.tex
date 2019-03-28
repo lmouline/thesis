@@ -42,13 +42,13 @@ In a fully autonomous adaptive system, the reasoning process should be considere
 
 First, data are, almost by definition, uncertain and developers always work with estimates.
 Hardware sensors have by construction a precision that can vary according to the current environment in which they are deployed.
-A simple example is the temperature sensor which provides a temperature with precision of one Celsius degree.
-Software sensors approximate also values from these physical sensors and accentuate and have their uncertainty.
+A simple example is the temperature sensor that provides a temperature with precision to the nearest degree.
+Software sensors approximate also values from these physical sensors, which increases the uncertainty.
 For example, CPU usage is computed counting the cycle used by a program.
-As stated by Intel, this counter is not error-free~\footnote{https://software.intel.com/en-us/itc-user-and-reference-guide-cpu-cycle-counter}.
+As stated by Intel, this counter is not error-prone\footnote{https://software.intel.com/en-us/itc-user-and-reference-guide-cpu-cycle-counter}.
 
 Second, it always exists a delay between the moment where a suboptimal state is detected by the adaptation process and the moment where the effects of decisions taken are measured.
-This delayed is due to the time needed by a computer to process a send and, eventually, to send orders or data through networks.
+This delayed is due to the time needed by a computer to process data and, eventually, to send orders or data through networks.
 For example, migrating a virtual machine from a server to another one can take several minutes.
 
 \textbf{Through this thesis, I argue that this data uncertainty and this delay cannot be ignored for all dynamic adaptive systems.}
@@ -60,48 +60,38 @@ These characteristics are common to smart grids, cloud infrastructure or cyber-p
 \bigskip
 \paragraphit{Challenge}
 These problematics come with different challenges concerning the representation of the knowledge for DAS.
-Solutions should be bring to developers to ease their definition and manipulation of uncertain and temporal data.
-In order to respect the real-time constraint of DAS, the read, write and process of this knowledge should be efficient in term of resources (memory, CPU) used and execution time.
+The global challenge address by this thesis is: \textbf{how to represent the uncertain knowledge allowing to efficiently query it and to represent ongoing actions in order to improve adaptation processes?}
 
 %% Vision 
 \bigskip
 \paragraphit{Vision}
-\textbf{This thesis defends the need of a unified modeling framework which includes, despite all traditional elements, temporal and uncertainty as first-class concepts.}
-Therefore, a developer will be able to easily abstract information related to the adaptation process, the environment as well as the system itself.
-This frameworks should enable efficient read and write operations and should provide data structures efficient to process in order to enable a real-time reasoning.
+\textbf{This thesis defends the need for a unified modeling framework which includes, despite all traditional elements, temporal and uncertainty as first-class concepts.}
+Therefore, a developer will be able to abstract information related to the adaptation process, the environment as well as the system itself.
 
-Concerning the adaption process, the framework should enable easy abstraction of the actions with their context and impact as well as the specification of this process (requirements and constraints).
-Concerning the environment of the system, the framework should enable easy abstraction of its behavior and its structure.
+Concerning the adaptation process, the framework should enable abstraction of the actions, their context, their impact, and the specification of this process (requirements and constraints).
+It should also enable the abstraction of the system environment and its behavior.
 Finally, the framework should represent the structure, behavior and specification of the system itself as well as the actuators and sensors.
+All these representations should integrate the data uncertainty existing.
 
 %% Contributions which support the vision
 \bigskip
 \paragraphit{Contributions}
-Towards this vision, two contributions have been proposed: a temporal context model and a language for uncertain data.
-
-The temporal context model allows to abstract past, on going and future actions with their impacts and context.
-First, a developer can use this model to know what are the ongoing actions with their expect future impacts on the system.
-Second, she/he can navigate through past decisions to understand why the system has taken some decisions which lead to a sub-optimal state.
-
-The language, named \langName, integrates data uncertainty as a first-class concept.
-It allows developers to attach data with a probability distribution which represents their uncertainty.
-Plus, it mapped all arithmetic and boolean operators to uncertainty propagation operation. 
-And so, developers will automatically propagate the uncertainty of data without additional effort, compared to an algorithm which manipulates certain data.
+Towards this vision, this document presents two approaches: a temporal context model and a language for uncertain data.The temporal context model allows abstracting past, ongoing and future actions with their impacts and context.First, a developer can use this model to know what the ongoing actions, with their expect future impacts on the system, are.Second, she/he can navigate through past decisions to understand why they have been made when they have led to a sub-optimal state.The language, named \langName, integrates data uncertainty as a first-class concept.It allows developers to attach data with a probability distribution which represents their uncertainty.Plus, it mapped all arithmetic and boolean operators to uncertainty propagation operations. And so, developers will automatically propagate the uncertainty of data without additional effort, compared to an algorithm which manipulates certain data.
 
 %% Validation
 \bigskip
 \paragraphit{Validation}
-Each contribution have been evaluated separately. 
-The language has been evaluated through two axis: its ability to detect errors at development time and its expressiveness.
-Ain'tea can detect [...] and it is as expressive as any state of the art solution.
-Moreover, we use this language to implement the load approximation of a smart grid furnished by an industrial partner, Creos SA.
+Each contribution has been evaluated separately. 
+The language has been evaluated through two axes: its ability to detect errors at development time and its expressiveness.
+Ain'tea can detect errors in the combination of uncertain data earlier than state-of-the-art approaches.
+The language is also as expressive as current approaches found in the literature.
+Moreover, we use this language to implement the load approximation of a smart grid furnished by an industrial partner, Creos S.A.\footnote{Creos S.A. is the power grid manager of Luxembourg. \url{https://www.creos-net.lu}}.
 
-The context model, has been evaluated through the performance access.
-I show that it can be used to [....]
+The context model has been evaluated through the performance axis.
+The dissertation shows that it can be used to represent the Luxembourg smart grid.
+The model also provides an API which enables the execution of query for diagnosis purpose.
+In order to show the feasibility of the solution, it has also been applied to the use case provided by the industrial partner.
 
-
-%% Perspective FW
-%- Push the contrib. into GreyCat
 \bigskip
 \bigskip
 \bigskip
