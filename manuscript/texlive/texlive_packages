@@ -9,5 +9,6 @@ lineno
 mfirstuc
 setspace
 showframe
+textcase
 xifthen
 xkeyval
