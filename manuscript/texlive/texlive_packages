@@ -2,9 +2,10 @@ color
 csquotes
 etoolbox
 fancyhdr
-lineno
 geometry
+glossaries
 ifmtarg
+lineno
 setspace
 showframe
 xifthen
