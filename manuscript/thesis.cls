@@ -60,7 +60,8 @@
 \RequirePackage{color}
 \RequirePackage{xifthen}
 \RequirePackage{csquotes}
-\RequirePackage{hyperref}
+\RequirePackage[colorlinks]{hyperref}
+\RequirePackage{glossaries}
 
 
 %%% Definition of the page layout %%%%%
@@ -79,13 +80,22 @@
 
 
 %%% Customized commands %%%%%
-% boxed
+% backmatter
+%		extends the backmatter of the book class with the following feature: add a clear double page, set page numbering to roman and print the glossary if any.
+%
+% highlightbox
 %		add a black box around the text
 %		1st param (optional): title of the box. It will be put in bold at the beginning of the text followed by colon and the text (2nd parameter)
 %		2nd param: text to insert into the box 
 %
+% ie
+%		aliast to write 'i.e.,' with italic font
+%
 % paragraphit
 %		simulate the \paragraph command but with an italic header
+%
+% setGloassary
+% 	initialize the glossary by setting the file that contains the entries and calling the "makeglossary" command
 %
 % todo
 %		add a red text starting with TODO
@@ -93,6 +103,21 @@
 %\newenvironment{boxed}[0]
 %{\parbox{0.969\textwidth}{}
 %{}
+\newif\ifIFglossary
+\IFglossaryfalse
+
+\let\OLDbackmatter\backmatter
+\renewcommand{\backmatter}[0]
+{
+	\OLDbackmatter
+	\cleardoublepage
+	\pagenumbering{roman}
+	
+	\ifIFglossary
+		\printglossaries
+	\fi
+ 	
+}
 
 \newcommand{\highlightbox}[2]
 {
@@ -106,12 +131,21 @@
 	}	
 }
 
+\newcommand{\ie}[0]{\textit{i.e., }}
+
 \newcommand{\paragraphit}[1]{\noindent\textit{#1}~~}
+
+\newcommand{\setGloassary}[1]
+{
+	\makeglossaries
+	\input{#1}
+	\IFglossarytrue
+}
 
 \newcommand{\todo}[1]
 {
 	\textcolor{red}{{\em TODO}: \bf #1}
 }
-\newcommand{\ie}[0]{\textit{i.e., }}
+
 
 

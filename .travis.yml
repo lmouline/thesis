@@ -22,13 +22,9 @@ before_script:
 
 script:
   - ./build.sh
-
-after_script:
   - cd build
   - shopt -s extglob
   - rm !(main.pdf)
-
-
 
 deploy:
   provider: pages
