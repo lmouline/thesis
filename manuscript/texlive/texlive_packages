@@ -6,6 +6,7 @@ geometry
 glossaries
 ifmtarg
 lineno
+mfirstuc
 setspace
 showframe
 xifthen
