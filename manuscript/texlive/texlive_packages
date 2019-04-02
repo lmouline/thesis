@@ -3,6 +3,7 @@ csquotes
 datatool
 etoolbox
 fancyhdr
+fp
 geometry
 glossaries
 ifmtarg
