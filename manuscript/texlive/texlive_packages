@@ -9,6 +9,7 @@ ifmtarg
 lineno
 mfirstuc
 setspace
+substr
 showframe
 textcase
 xifthen
