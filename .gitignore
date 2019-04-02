@@ -1,6 +1,7 @@
 # Texpad files
 main.pdf
 .texpadtmp
+manuscript/build
 
 # MacOS files
 .DS_Store

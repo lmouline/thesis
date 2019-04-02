@@ -94,7 +94,7 @@
 %{\parbox{0.969\textwidth}{}
 %{}
 
-\newcommand{\boxed}[2]
+\newcommand{\highlightbox}[2]
 {
 	\noindent\fbox{
 		\parbox{0.969\textwidth}

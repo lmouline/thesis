@@ -18,13 +18,16 @@ cache:
 before_script: 
   - cd $TRAVIS_BUILD_DIR/manuscript
   - chmod +x build.sh
+  - mkdir build
 
 script:
-- mkdir build
-- ./build.sh
-- cd build
-- shopt -s extglob
-- rm !(main.pdf)
+  - ./build.sh
+
+after_script:
+  - cd build
+  - shopt -s extglob
+  - rm !(main.pdf)
+
 
 
 deploy:

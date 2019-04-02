@@ -1,15 +1,40 @@
 \documentclass[review]{thesis}
 
+\usepackage{glossaries}
+
 \newcommand{\langName}[0]{Ain'tea}
 
 \title{A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Systems}
 \author{Ludovic Mouline}
+
+\makeglossaries
+
+\newglossaryentry{latex}
+{
+	name=latex,
+    description={Is a mark up language specially suited 
+    for scientific documents}
+}
+
+\newglossaryentry{maths}
+{
+    name=mathematics,
+    description={Mathematics is what mathematicians do}
+}
 
 
 \begin{document}
 	\maketitle
 	
 	\frontmatter
-	\input{abstract}		
+	\input{abstract}	
+	
+	\chapter{Introduction}
+	
+	The \gls{latex} typesetting markup language is specially suitable 
+for documents that include \gls{maths}.
+
+	\clearpage
+ 	\printglossaries	
 	
 \end{document}
