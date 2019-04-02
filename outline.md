@@ -180,18 +180,31 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 - [cons.1] definition of concerns is not really defined. I consider that for DAS they are part of the concern
 
 # A context model to represent actions, their contexts and their impacts
-**Goal:** 
-**Link with the previous chapter:** 
-**Link with the next chapter:** 
+**Goal:** Present the first contribution: temporal Context model
+**Link with the previous chapter:** This contribution support the vision defended in the previous section
+**Link with the next chapter:** No direct link with the next section. Used for sota + conclusion 
+**Abstrat:** The evolving complexity of adaptive systems impairs our ability to deliver anomaly-free solutions. Fixing these systems require a deep understanding on the reasons behind decisions which led to faulty or suboptimal system states. Developers thus need diagnosis support that trace system states to the previous circumstances –targeted requirements, input context– that had resulted in these decisions. However, the lack of efficient temporal representation limits the tracing ability of current approaches. To tackle this problem, we first propose a knowledge formalism to define the concept of a decision. Second, we describe a novel temporal data model to represent, store and query decisions as well as their relationship with the knowledge (context, require- ments, and actions). We validate our approach through a use case based on the smart grid at Luxembourg. We also demonstrate its scalability both in terms of execution time and consumed memory
+**Contents:** (ctrl-p/ctrl-v from rejected long ICAC paper)
+## Context
+## Background
+## Motivation
+## Knowledge formalization
+## Temporal context model
+## Validation
 
 
 
 
 # Ain'tea: a language to manipulate uncertain data
-**Goal:** 
-**Link with the previous chapter:** 
-**Link with the next chapter:** 
-
+**Goal:** Present the second contribution: Ain'tea
+**Link with the previous chapter:** No direct link with the previous chapte. Will be combined with it in the conslusion chapter + used also in SOTA chapter.
+**Link with the next chapter:** Contribution that will be compared with SOTA
+**Abstrat:** Due to the unreliability of information sources, data received and managed by a monitoring system, like a smart grid system, are uncertain. Neglecting this uncertainty results in a misinterpretation of the reality,\ie system state. This remains true for other domains in computer science, \eg Informations Systems, and Cyber-Physical Systems. Managing data uncertainty requires a solid knowledge of probability theory and its implementation is a complex task. In particular, due to a lack of solutions for abstracting data uncertainty, this concept is mainly ignored by developers despite its significance. \ob{the term element is unclear} In this paper, we argue that data uncertainty should be a first-class concern of lots of programming languages to benefit from a specific semantics and specific typing rules. After a key identification of the concepts associated with data uncertainty concerns, this papers presents UMiniJava, a language that integrates them directly into the grammar, type system and semantics part. To validate our approach, we apply our approach to a smart-grid scenario, compare it to a classic approach, not taking uncertainty into consideration and show the implementation effort.
+**Contents:** (ctrl-p/ctrl-v from submitted journal paper)
+## Context
+## Background
+## Maping uncertainty to data types and language operators
+## Validation
 
 
 
@@ -199,14 +212,26 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Present the current state of the art approaches and compare my vision and the two contributions with them 
 **Link with the previous chapter:** After detailling the vision and the 2 contributions, I present the related work 
 **Link with the next chapter:** This comparaison will help to conclude the thesis
+**Abstrat:** 
+**Contents:**
+<!-- Modeling -->
+## Temporal modeling
+## Probabilistic programing
+## Uncertainty programing
 
-
+<!-- DAS -->
+## Action representation
+## Knowledge representation
+## Knowledge formalization
 
 # Conclusion & Perspectives
 **Goal:** Sum-up the vision and the two contributions and present the perspectives
 **Link with the previous chapter:** summerize previous chapters
 **Link with the next chapter:**  None (end of the thesis)
-
+**Abstract:** 
+**Content:**
+## Conclusion
+## Perspectives
 
 
 
@@ -214,7 +239,8 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Present a listing of the different figures with a short description of it
 **Link with the previous chapter:** None (standalone chapter)
 **Link with the next chapter:**  None (standalone chapter)
-
+**Abstract:** None
+**Content:**
 
 
 
@@ -222,7 +248,8 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Present a listing of the different code snippets with a short description of it
 **Link with the previous chapter:** None (standalone chapter)
 **Link with the next chapter:**  None (standalone chapter)
-
+**Abstract:** None
+**Content:**
 
 
 
@@ -262,3 +289,5 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Say thank you
 **Link with the previous chapter:** None (standalone chapter)
 **Link with the next chapter:**  None (standalone chapter)
+**Abstract:** Thank you everyone.
+**Content:**
