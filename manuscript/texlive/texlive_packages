@@ -6,9 +6,9 @@ geometry
 glossaries
 ifmtarg
 lineno
+textcase
 mfirstuc
 setspace
 showframe
-textcase
 xifthen
 xkeyval
