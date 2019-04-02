@@ -1,15 +1,16 @@
 color
 csquotes
+datatool-base
 etoolbox
 fancyhdr
 geometry
 glossaries
 ifmtarg
 lineno
-textcase
 mfirstuc
 setspace
 showframe
+textcase
 xifthen
 xkeyval
 xfor
