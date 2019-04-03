@@ -26,7 +26,7 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Introduce the general concept (DAS, MDE) and scope the thesis
 **Link with previous section:** None (first section)
 **Link with next section:** Should introduce necessary concepts to introduce the use case, problematic, and challenges
-**Abstract:** Adaptation allow a system to be reconfigured at runtime in order to optimize user defined characteristics. For example, a cloud infrastructure will modify the number of running servers to optimize power needed to work. This mechanism, also called adaptation process, can be split in four stages, following the MAPE-k loop theory: monitoring, analysing, planning and excutiong. These four stages require an efficient knowledge repesentation of the system, its environment and the specifications. This representation can be given following the model-driven enginnering. In this section, I detail these two mechanisms as well as the terminology used in the document and the assumptions made on them.
+**Introduction:** Adaptation allow a system to be reconfigured at runtime in order to optimize user defined characteristics. For example, a cloud infrastructure will modify the number of running servers to optimize power needed to work. This mechanism, also called adaptation process, can be split in four stages, following the MAPE-k loop theory: monitoring, analysing, planning and excutiong. These four stages require an efficient knowledge repesentation of the system, its environment and the specifications. This representation can be given following the model-driven enginnering. In this section, I detail these two mechanisms as well as the terminology used in the document and the assumptions made on them.
 **Contents:**
 <!-- Terminology -->
 - reasoning process
@@ -52,7 +52,7 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Present the creos use case
 **Link with previous section:** necessary concepts to understand this use case should have been introduced
 **Link with next section:** use case used to exemplify the problematic and the challenges as well as the vision and the contributions
-**Abstrat:** 
+**Introduction:** Smart grid is a novel approach which add ICT into power grid in order to cope with challenges of power distribution. They will thus win the ability to heal automatically from ongoing indients, like overloads, with less and less human intervention. In order to reach this future, an abstraction of the grid state with the past, ongoing and future events is needed to enable the adapation process. They are thus a good use case for my thesis. I will thus explain the Luxembourg smart grid example, provided by the industrial partner, Creos S.A., implied in my thesis. 
 **Contents:**
 <!-- introduce smart grids -->
 - Smart grid: ICT into power grid
@@ -77,7 +77,7 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Present and argue the problematic addressed by the thesis
 **Link with previous section:** present the problemeatic which exist in the previously described context and exemplify it with the given example 
 **Link with next section:** introduce the SE challenges that come with these problematics
-**Abstrat:** 
+**Introduction:** Adaptation and abstraction requires data to either reason over them or build the representation. However, these data are always uncertain. If this uncertainty can significantly impact the adaption process, first it should be present in the abstraction layer and second considered by the adaptation process. Moreover, adaptation create actions which need time have measurable effects. If this delay is superior to the frequency of the reasoning process, then actions with their effects should be part to the abstraction layer in order to be considered by the adaption process. In this section, I detailed these two problematics characteristics of adaptive systems and I exemplify them on the Luxembourg smart grid use case. 
 **Contents:**
 - data are uncertain and action have delayed
 
@@ -100,7 +100,7 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** present the challenges adressed by the thesis + those tackled by the contributions
 **Link with previous section:** challenge that due to the previously described problematic
 **Link with next section:** None (last section of this chapter)
-**Abstrat:** 
+**Abstrat:** The two problematics described in the previous section come with challenges that should be, and that are, addressed by the software engineering research commmunity. Among them, I focus on the modeling one which I describe in this section. In order to face it, this challenge should be split in smaller ones. Among them, I describe in this section the two that are directly tackled by the contributions proposed in this thesis. First, I will describe the challenge of the representation of actions with their future effects and their contexts. Second, I will present the challenge of manipulating uncertain data during the adaptation process.
 **Contents:**
 <!-- Global challenge -->
 - how to represent the uncertain knowledge allowing to efficiently query it and to represent ongoing actions in order to improve adaptation processes?
