@@ -119,14 +119,13 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Present and argue for the the unified modeling framework. Present also arguments against this vision and mitigate them.
 **Link with the previous chapter:** Address the challenge presented in the previous chapter
 **Link with the next chapter:** Now that I have presented the vision, I will describe two contributions which support it.
-**Abstrat:**
+**Abstrat:** As argued in the introduction section, adaptation combined with abstraction comes with a novel challenge: the representation of uncertain data and delayed action. In this chapter, I present my vision concerning a modeling framework, named XXX, that should consider uncertainty and time as first-class concepts. I will first argue towards this vision. Before detailing the synthesis of this vision, I show arguments against this vision. To do so, I answered with pros and cons to three questions: why do we need a modeling framework? why time and uncertainty should be put as first-class concepts? why should time and uncertainty combined in the same structure?
 **Contents:**
-
 ## Towards a unified modeling framework
 **Goal:** Present and argue for the the unified modeling framework
 **Link with the previous section:** None (first section)
 **Link with the next section:** Here I present pros whereas in the next section I present cons
-**Abstrat:**
+**Introduction:** In this section, I present the pros of the vision. I will first present the benefits of a modeling framework. Second, I will explain that time and uncertainty are cross-domain concepts. Finally, I will detail the existing link between uncertainty and temporal data, such as delayed action.
 **Contents:**
 <!-- why a modeling framework? -->
 - benefits of abstraction
@@ -150,7 +149,7 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Present arguments against this vision.
 **Link with the previous section:** Here I present cons whereas in the prev. section I present pros
 **Link with the next section:** Synthesis the arguments described in and in the prev. sect.
-**Abstrat:**
+**Introduction:** In this section, I present the cons of the vision. I will first present the limits of a modeling framework. Second, I will explain that time and uncertainty could be considered as normal attributes, without modifying the model definition itself. Finally, I will detail the separation of concerns principle that may be broken by my vision.
 **Contents:**
 <!-- why a modeling framework? -->
 - limitation of abstraction mechanism
@@ -171,7 +170,7 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Balance the pros with the cons and mitigate the cons
 **Link with the previous section:** use the pros and cos to conclude
 **Link with the next section:** None (last section of the chapter)
-**Abstrat:**
+**Introduction:** In this section, I mitigate the cons with the pros. I will first explain that it is all about the tradeoff between the benefice of a modeling approach an approach using modeling methodology. Second, I will explain that if a structure has not been thought to manage time and uncertainty, then it will be less efficient. Finally, I will explain that the definition of concern is blurring and that for DAS, I consider time and uncertainty as the same concern. 
 **Contents:**
 <!-- why a modeling framework? -->
 - [cons.1] strong statements not always true
