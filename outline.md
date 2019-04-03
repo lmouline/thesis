@@ -235,7 +235,7 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Sum-up the vision and the two contributions and present the perspectives
 **Link with the previous chapter:** summerize previous chapters
 **Link with the next chapter:**  None (end of the thesis)
-**Abstract:** 
+**Abstract:** After concluding the thesis defended in this chapter, I present the different perspectives of the thesis.
 **Content:**
 ## Conclusion
 ## Perspectives
