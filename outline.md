@@ -219,7 +219,7 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Present the current state of the art approaches and compare my vision and the two contributions with them 
 **Link with the previous chapter:** After detailling the vision and the 2 contributions, I present the related work 
 **Link with the next chapter:** This comparaison will help to conclude the thesis
-**Abstrat:** 
+**Abstrat:** In this chapter, the thesis and the contribution presented in this document are compared to the current state of the art. First I analyze studies made for temporal and uncertainty modeling and probabilistic programming. I also analyze the state-of-art approaches to represent actions and the knowledge of adaptive systems.                                                                  
 **Contents:**
 <!-- Modeling -->
 ## Temporal modeling
