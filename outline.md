@@ -197,13 +197,9 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Link with the previous chapter:** This contribution support the vision defended in the previous section
 **Link with the next chapter:** No direct link with the next section. Used for sota + conclusion 
 **Abstrat:** The evolving complexity of adaptive systems impairs our ability to deliver anomaly-free solutions. Fixing these systems require a deep understanding on the reasons behind decisions which led to faulty or suboptimal system states. Developers thus need diagnosis support that trace system states to the previous circumstances –targeted requirements, input context– that had resulted in these decisions. However, the lack of efficient temporal representation limits the tracing ability of current approaches. To tackle this problem, we first propose a knowledge formalism to define the concept of a decision. Second, we describe a novel temporal data model to represent, store and query decisions as well as their relationship with the knowledge (context, require- ments, and actions). We validate our approach through a use case based on the smart grid at Luxembourg. We also demonstrate its scalability both in terms of execution time and consumed memory
-**Contents:** (ctrl-p/ctrl-v from rejected long ICAC paper)
-## Context
-## Background
-## Motivation
-## Knowledge formalization
-## Temporal context model
-## Validation
+**Contents:** 
+- (ctrl-p/ctrl-v from rejected long ICAC paper)
+
 
 
 
@@ -213,11 +209,9 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Link with the previous chapter:** No direct link with the previous chapte. Will be combined with it in the conslusion chapter + used also in SOTA chapter.
 **Link with the next chapter:** Contribution that will be compared with SOTA
 **Abstrat:** Due to the unreliability of information sources, data received and managed by a monitoring system, like a smart grid system, are uncertain. Neglecting this uncertainty results in a misinterpretation of the reality,\ie system state. This remains true for other domains in computer science, \eg Informations Systems, and Cyber-Physical Systems. Managing data uncertainty requires a solid knowledge of probability theory and its implementation is a complex task. In particular, due to a lack of solutions for abstracting data uncertainty, this concept is mainly ignored by developers despite its significance. \ob{the term element is unclear} In this paper, we argue that data uncertainty should be a first-class concern of lots of programming languages to benefit from a specific semantics and specific typing rules. After a key identification of the concepts associated with data uncertainty concerns, this papers presents UMiniJava, a language that integrates them directly into the grammar, type system and semantics part. To validate our approach, we apply our approach to a smart-grid scenario, compare it to a classic approach, not taking uncertainty into consideration and show the implementation effort.
-**Contents:** (ctrl-p/ctrl-v from submitted journal paper)
-## Context
-## Background
-## Maping uncertainty to data types and language operators
-## Validation
+**Contents:** 
+- (ctrl-p/ctrl-v from submitted journal paper)
+
 
 
 
