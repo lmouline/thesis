@@ -6,8 +6,6 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
     - ##: section
 
 
-
-
 # Abstract
 **Goal:** Present the context, the vision defended and the contributions
 **Link with previous chapter:** None (standalone chapter)
@@ -22,18 +20,33 @@ A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Syst
 **Goal:** Scope the thesis to specific systems, present the problematic and the challenge(s), show the structure of the thesis
 **Link with previous chapter:** None (begining of the thesis)
 **Link with next chapter:** Next chapter is the vision that should address the challenge described in this section
-**Abstrat:** 
+**Abstrat:** Model-driven engineering methodology and dynamically adaptive systems approach are combined to tackle new challenges brings by systems nowadays. After introducing these two softare engineering approaches, I give one example of such systems: the Luxembourg smart grid. I will also use this example to highlight two of the problematics: uncertainty of data and delays in actions. Amongs the different challenges which are implied by them, I present the global one addressed by the vision defended in this thesis: modeling of temporal and uncertain data. This global challenge can be addressed by splitting up in several ones. I present two of them, which are directled tackled by the two contributions. 
 **Contents:**
-
 ## Adaptation and abstaction in a nutshell
 **Goal:** Introduce the general concept (DAS, MDE) and scope the thesis
 **Link with previous section:** None (first section)
 **Link with next section:** Should introduce necessary concepts to introduce the use case, problematic, and challenges
-**Abstrat:** 
+**Abstract:** Adaptation allow a system to be reconfigured at runtime in order to optimize user defined characteristics. For example, a cloud infrastructure will modify the number of running servers to optimize power needed to work. This mechanism, also called adaptation process, can be split in four stages, following the MAPE-k loop theory: monitoring, analysing, planning and excutiong. These four stages require an efficient knowledge repesentation of the system, its environment and the specifications. This representation can be given following the model-driven enginnering. In this section, I detail these two mechanisms as well as the terminology used in the document and the assumptions made on them.
 **Contents:**
-<!-- Introduce adaptation an DAS -->
+<!-- Terminology -->
+- reasoning process
+- adaptation process is an example of reasoning process
+- model: an abstraction of a problem, a solution, a system, a behavior. The model should respect a definition, named meta-model.
+- meta-model: a definition of models.
 
-<!-- Introduce MDE -->
+<!-- DAS -->
+- system which allow adaptation process
+- follow the MAPE-k loop principle
+
+<!-- MDE -->
+- methodolofy to define a model which should conform to a meta-model
+
+<!-- Assumption / consideration made -->
+- we considered the MAPE-k loop as centralized to simplify the reasoning
+    - the fact that is centralized or not do not impact the thesis defended
+- the system can or cannot be self-*
+    - this fact do not impact the thesis defended
+
 
 ## Use case: Luxembourg smart grid
 **Goal:** Present the creos use case
