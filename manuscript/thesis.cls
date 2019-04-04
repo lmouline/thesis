@@ -114,13 +114,11 @@
 % 	initialize the glossary by setting the file that contains the entries and calling the "makeglossary" command
 %
 % chapterPage
-%		setup the first page of a chapter with an abstract and a mini table of contents.
+%		setup the first page of a chapter with an abstract and a mini table of contents
 %
 % todo
 %		add a red text starting with TODO
 %%%%%%%%%%%%%%%%
-\RequirePackage{suffix}
-
 \newif\ifIFglossary
 \IFglossaryfalse
 
