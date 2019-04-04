@@ -1,4 +1,4 @@
-color
+anyfontsize
 csquotes
 datatool
 etoolbox
@@ -8,11 +8,14 @@ geometry
 glossaries
 ifmtarg
 lineno
+minitoc
 mfirstuc
 setspace
 substr
 showframe
 textcase
+titlesec
+xcolor
 xifthen
 xkeyval
 xfor

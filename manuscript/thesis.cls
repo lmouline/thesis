@@ -57,17 +57,17 @@
 
 
 %%% Package dependencies %%%%%
-\RequirePackage{color}
+\RequirePackage{xcolor}
 \RequirePackage{xifthen}
 \RequirePackage{csquotes}
 \RequirePackage[colorlinks]{hyperref}
 \RequirePackage{glossaries}
 
-
 %%% Definition of the page layout %%%%%
 \RequirePackage[left=3cm, right=3cm, headheight=15pt]{geometry} %with page borders size
 \RequirePackage{fancyhdr} 
 \pagestyle{fancy}
+\fancyhf{} %remove all rules
 \renewcommand{\headrulewidth}{0pt} % remove decorative line
 
 \fancyfoot[C]{}
@@ -77,6 +77,22 @@
 	\fancyhf{} %remove all rules
 	\fancyfoot[RO, LE]{\thepage}
 }
+
+%%% Definition of chapter header %%%%%
+\RequirePackage{titlesec}
+\RequirePackage{anyfontsize}
+\RequirePackage[nohints]{minitoc}
+
+\titleformat{\chapter}[display]
+	{\bfseries\Large}
+	{\filleft\fontsize{90}{0}\selectfont\textcolor{gray}{\thechapter}}
+	{4ex}
+	{\titlerule
+	  \vspace{2ex}%
+	  \filright}
+	  [\vspace{2ex}%
+	  \titlerule]
+
 
 
 %%% Customized commands %%%%%
@@ -100,9 +116,6 @@
 % todo
 %		add a red text starting with TODO
 %%%%%%%%%%%%%%%%
-%\newenvironment{boxed}[0]
-%{\parbox{0.969\textwidth}{}
-%{}
 \newif\ifIFglossary
 \IFglossaryfalse
 
@@ -116,7 +129,21 @@
 	\ifIFglossary
 		\printglossaries
 	\fi
- 	
+}
+
+\renewcommand{\contentsname}{Table of Contents}
+
+\newcommand{\thchapter}[2]
+{
+	\cleardoublepage
+	\chapter{#1}
+	\setcounter{minitocdepth}{1}
+	\minitoc
+	\bigskip
+	\bigskip
+	\bigskip
+	\textbf{Abstract:}\textit{#2}
+	\newpage
 }
 
 \newcommand{\highlightbox}[2]
@@ -135,11 +162,17 @@
 
 \newcommand{\paragraphit}[1]{\noindent\textit{#1}~~}
 
-\newcommand{\setGloassary}[1]
+\newcommand{\enableGloassary}[0]
 {
 	\makeglossaries
-	\input{#1}
 	\IFglossarytrue
+}
+
+\let\OLDtableofcontents\tableofcontents
+\renewcommand{\tableofcontents}[0]
+{
+	\dominitoc
+	\OLDtableofcontents
 }
 
 \newcommand{\todo}[1]
