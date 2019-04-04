@@ -85,7 +85,7 @@
 
 \titleformat{\chapter}[display]
 	{\bfseries\Large}
-	{\filleft\fontsize{90}{0}\selectfont\textcolor{gray}{\thechapter}}
+	{\filleft\fontsize{90}{0}\fontfamily{phv}\selectfont\textcolor{gray}{\thechapter}}
 	{4ex}
 	{\titlerule
 	  \vspace{2ex}%
@@ -116,6 +116,8 @@
 % todo
 %		add a red text starting with TODO
 %%%%%%%%%%%%%%%%
+\RequirePackage{suffix}
+
 \newif\ifIFglossary
 \IFglossaryfalse
 
@@ -133,27 +135,37 @@
 
 \renewcommand{\contentsname}{Table of Contents}
 
-\newcommand{\thchapter}[2]
+\newcommand{\thchapter}[3][]
 {
 	\cleardoublepage
-	\chapter{#1}
+	\ifthenelse{\isempty{#1}}
+	{
+		\chapter{#2}	
+	}
+	{
+		\chapter[#1]{#2}
+	}
+	
 	\setcounter{minitocdepth}{1}
 	\minitoc
 	\bigskip
 	\bigskip
 	\bigskip
-	\textbf{Abstract:}\textit{#2}
+	\textbf{Abstract:}\textit{#3}
 	\newpage
 }
 
-\newcommand{\highlightbox}[2]
+\WithSuffix\newcommand\thchapter*[1]{\chapter{#1}}
+
+\newcommand{\highlightbox}[2][]
 {
 	\noindent\fbox{
 		\parbox{0.969\textwidth}
 		{
-			\ifthenelse{\isempty{#2}}
-			{#1}
-			{\textbf{#1:} #2}
+			\ifthenelse{\isempty{#1}}
+			{}
+			{\textbf{#1:}}
+			#2
 		}
 	}	
 }
