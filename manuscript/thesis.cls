@@ -113,6 +113,9 @@
 % setGloassary
 % 	initialize the glossary by setting the file that contains the entries and calling the "makeglossary" command
 %
+% chapterPage
+%		setup the first page of a chapter with an abstract and a mini table of contents.
+%
 % todo
 %		add a red text starting with TODO
 %%%%%%%%%%%%%%%%
@@ -135,27 +138,15 @@
 
 \renewcommand{\contentsname}{Table of Contents}
 
-\newcommand{\thchapter}[3][]
-{
-	\cleardoublepage
-	\ifthenelse{\isempty{#1}}
-	{
-		\chapter{#2}	
-	}
-	{
-		\chapter[#1]{#2}
-	}
-	
+\newcommand{\chapterPage}[1]{
 	\setcounter{minitocdepth}{1}
 	\minitoc
 	\bigskip
 	\bigskip
 	\bigskip
-	\textbf{Abstract:}\textit{#3}
+	\textbf{Abstract:}\textit{#1}
 	\newpage
 }
-
-\WithSuffix\newcommand\thchapter*[1]{\chapter{#1}}
 
 \newcommand{\highlightbox}[2][]
 {
