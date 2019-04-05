@@ -60,8 +60,10 @@
 \RequirePackage{xcolor}
 \RequirePackage{xifthen}
 \RequirePackage{csquotes}
-\RequirePackage[colorlinks]{hyperref}
-\RequirePackage{glossaries}
+\RequirePackage[colorlinks, backref=page]{hyperref}
+\RequirePackage[toc, style=treenoname, subentrycounter]{glossaries}
+\RequirePackage{indentfirst}
+\RequirePackage{doi}
 
 %%% Definition of the page layout %%%%%
 \RequirePackage[left=3cm, right=3cm, headheight=15pt]{geometry} %with page borders size
@@ -79,13 +81,13 @@
 }
 
 %%% Definition of chapter header %%%%%
-\RequirePackage{titlesec}
+\RequirePackage[compact]{titlesec}
 \RequirePackage{anyfontsize}
 \RequirePackage[nohints]{minitoc}
 
 \titleformat{\chapter}[display]
 	{\bfseries\Large}
-	{\filleft\fontsize{90}{0}\fontfamily{phv}\selectfont\textcolor{gray}{\thechapter}}
+	{\vspace{-2cm}\filleft\fontsize{90}{0}\fontfamily{phv}\selectfont\textcolor{gray}{\thechapter}}
 	{4ex}
 	{\titlerule
 	  \vspace{2ex}%
@@ -127,11 +129,16 @@
 {
 	\OLDbackmatter
 	\cleardoublepage
+	
 	\pagenumbering{roman}
 	
 	\ifIFglossary
 		\printglossaries
 	\fi
+	
+	\bibliography{bib}
+    \bibliographystyle{alphaurl}
+    \addcontentsline{toc}{chapter}{Bibliography}
 }
 
 \renewcommand{\contentsname}{Table of Contents}
@@ -180,6 +187,14 @@
 {
 	\textcolor{red}{{\em TODO}: \bf #1}
 }
+
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{{\footnotesize [%
+    \ifcase #1 Not cited.%
+    \or Cited on page~#2%
+    \else Cited on pages #2%
+    \fi%
+]}}
 
 
 
