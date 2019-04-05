@@ -3,9 +3,9 @@ amsmath
 amssymb
 anyfontsize
 csquotes
+dsfont
 datatool
 doi
-dsfont
 etoolbox
 fancyhdr
 fp
