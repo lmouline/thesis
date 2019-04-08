@@ -15,86 +15,125 @@ should define: decision, action, context, knowledge
  
  \section{Knowledge formalization}
  
- \subsection{Formalism}
- 
- As discussed previously, I consider \gls{knowledge} to be the association of \gls{context} information, \glspl{requirement}, and \gls{action} information, all in one global and unified model.
+  As discussed previously, I consider \gls{knowledge} to be the association of \gls{context} information, \glspl{requirement}, and \gls{action} information, all in one global and unified model.
  While \gls{context} information captures the state of the system environment and its surroundings, the system \glspl{requirement} define the constraints that the system should satisfy along the way. 
  The \glspl{action}, on the other hand, are means to reach the goals of the system.
-
-In this section, I provide a formalization of the \gls{knowledge} used by adaptation processes based on a temporal graph. 
+  
+ In this section, I provide a formalization of the \gls{knowledge} used by adaptation processes based on a temporal graph. 
 Indeed, due to the complexity and interconnectivity of system entities, graph data representation seems to be an appropriate way to represent the \gls{knowledge}. 
 Augmented with a temporal dimension, temporal graphs are then able to symbolize the evolution of system entities and states over time. 
 We benefit from the well-defined graph manipulation operations, namely temporal graph pattern matching and temporal graph relations to represent the traceability links between the \glspl{decision} made and their \glspl{circumstance}.
 
-Let $K$ be an adaptive process over a system \gls{knowledge}. 
-$K$ is defined by the tuple \textbf{$(C, R, A, D)$}, where:
+Before describing this formalism, I describe the semantic used for the temporal axis.
+Then, I exemplify the knowledge formalism using the Luxembourg smart grid use case.
+
+\subsection{Formalization of the temporal axis}
+\label{sec:tkm:timeDef}
+
+\begin{figure}
+   \centering
+	\includegraphics[width=\textwidth]{img/chapt-tkm/formalismeTime}
+	\caption{Time definition used for the knowledge formalism}
+	\label{fig:tkm:formalismeTime}
+\end{figure}
+
+The formalism describe below has been made with two goals in mind.
+First, the definition of the time space should allow the distinction between past and future. 
+Doing this distinction enable the differentiation between measured data and estimated (or predicted data).
+Second, it should permit the definition of the life cycle of an element of the \gls{knowledge}, which can be seen as a succession of states with a validity period that should not overlap each other.
+
+Time space $T$ is considered as an ordered discrete set of time points non-uniformly distributed. 
+As depicted in Figure~\ref{fig:tkm:formalismeTime}, this set can be divided into 3 different subsets $T = T_{past} \cup \{t\} \cup T_{future}$, where:  
 \begin{itemize}
 	\vspace{-0.5em}
 	\setlength\itemsep{-0.3em}
-	\item $C$ is a \textbf{directed temporal attributed graph} representing \textbf{\gls{context} information},
-	\item $R$ is a set of \textbf{temporal queries or invariants} over $C$ specifying the \textbf{system \glspl{requirement}},
-	\item $A$ is a set of \textbf{temporal queries} determining \glspl{action},
-	\item $D$ is a set of \textbf{temporal relations} representing \glspl{decision}, \ie \textbf{tracing the execution of actions and their impact},
-\end{itemize}
-
-While the source of relations in $D$ represents the state before the execution of an action, the target shows its impact on the \gls{context}. 
-Its intent is \textbf{to trace back impacts of actions execution to the decisions they originated from}.    
-
-%% HERE %%
-We consider $T$ an ordered discrete time domain where time points are non-uniformly distributed. This time domain can be divided into 3 different sub-domains $T = T_{past} \cup \{t\} \cup T_{future}$, where:  
-\begin{itemize}
-\item $T_{past}$ is the sub-domain \{$t_{0}$;$t_{1}$;\ldots;$t_{current-1}$\}  representing graph data history starting from $t_0$, the oldest point, until current time, t, excluded.
-\item \{t\} is a singleton representing the current time 
+	\item $T_{past}$ is the sub-domain \{$t_{0}$;$t_{1}$;\ldots;$t_{current-1}$\}  representing graph data history starting from $t_0$, the oldest point, until current time, t, excluded.
+	\item \{t\} is a singleton representing the current time 
 point
-\item $T_{future}$ is sub-domain \{$t_{current+1};\ldots;t_{\infty}$\} representing future time points 
-\item the three domains depend completely on the current time \{t\} as these domains slide as time passes. At any point in time, these domains never overlap: $T_{past} \cap \{t\} = \emptyset$, $T_{future} \cap \{t\} =  \emptyset$, and $T_{past} \cap T_{future} = \emptyset$
-\end{itemize} 
-
-We also define right-opened time interval $I \in T \times T$ as $(t_1, t_2)$ where $t_2 - t_1 > 0$. 
-We denote by $start(i)$ the lower bound of a time interval $i$ and $end(i)$ its upper bound.
-
-Context information $\mathcal{C}=(\mathcal{N},\mathcal{E},\mathcal{V}^T, \mathcal{Z}^T, \mathcal{P})$ is represented by a temporal nodes set $\mathcal{N}$,  and a temporal relationships set $\mathcal{E}$. Nodes have a set of attribute values. An attribute value has a type (numerical, boolean, \ldots). Every temporal relationship $r \in \mathcal{E}$ can be considered as a couple of nodes $(n_s, n_t) \in \mathcal{N} \times \mathcal{N}$, where $n_s$ is the source node and $n_t$ is the target node. 
-Every node or relationship has a defined validity time interval $\mathcal{V}^T$ in which it exists. 
-In order to track the evolution of the temporal graph elements in time, we refer to the relation $\mathcal{Z}^T$. Finally, $\mathcal{P}$ is a function that returns the values of a node attribute. 
-In the remainder of the paper, relationship and edge are used interchangeably.\looseness=-1
-
-The validity relation $\mathcal{V}$ has a very important role, which is augmenting the graph with the temporal dimension. A node is considered invalid either when it is removed or when one of its attributes value changes. In the latter case, a new node with the updated value is created. Whilst, a relationship is considered invalid if either its source node or target node is invalid, or when the relationship itself is removed. The temporal validity relation is defined as $\mathcal{V}^T: \mathcal{N} \cup \mathcal{E} \rightarrow I$. It takes as a parameter a node or a relationship ($e \in\mathcal{N}\cup \mathcal{E}$) and returns a time interval $i$ during which the graph element is valid.
- 
-Furthermore, the temporal graph has the capacity to keep track of data history thanks to the $\mathcal{Z}^T$ relation. It serves to trace the progress\footnote{The set of nodes resulting from the update of a given node} of a node $n \in \mathcal{N}$ at any point in time. This relation can also be seen as a temporal identity function which takes as parameters a given node $n$ and a specific time point $t$, and returns the corresponding node at that point. 
-Formally, $\mathcal{Z}^T: \mathcal{N} \times \mathcal{T} \rightarrow \mathcal{N}$. 
-
- The set of attributes values of a node $n \in \mathcal{N}$  is denoted as $\mathcal{P}(n)=\{(a_1(n), c_1),\ldots,(a_j(n),c_j)\}$. Every couple represents the value of a given attribute ($(a_1$) and its corresponding confidence, in percentage. The confidence value corresponds to the accuracy value introduced in the previous section. 
- 
-Historical data is extracted using a simple projection over the temporal graph $\mathcal{C}(T_{past})$. The current state of the graph is referred to as $\mathcal{C}(t)$. Finally, the future states of the graph are designated by the $\mathcal{C}(T_{future})$. The later set of states includes only graph data that can be predicted or planned, using, for instance, statistical models, machine learning, or computed based on some prior knowledge provided by the users.
-
-We define a temporal graph pattern as a temporal subgraph of $\mathcal{C}$, but with a time limiting constraint coming in the form of a time interval $i$. The time interval can be either fixed (absolute) or sliding (relative). In what follows, we denote by $\mathds{P}_{[t_j,t_k]}(\mathcal{C})$ a temporal graph pattern, where $t_j$ and $t_k$ are the lower and upper bound of the time interval respectively.
-
-We define the system requirements $\mathcal{R}$ as a set patterns $\mathds{P}_{[t_j,t_k]}(\mathcal{C})$ and queries over these patterns. Temporal graph queries consist commonly of two parts: (i) path description to traverse the graph nodes, at both structural and temporal dimensions; (ii) arithmetic expressions on nodes, edges, and attribute values.    
-These queries can be expressed, for instance, using existing temporal graph algebra~\todo{readd citation}%~\cite{Moffitt2017TGA}. 
-
-A decision present in $\mathcal{D}$ is defined as a set of executed actions, \ie a subset of $\mathcal{A}$.
-Formally, $\mathcal{D} = \{\ \mathcal{A_D} | \mathcal{A_D}  \subseteq \mathcal{A}\}$.
-We assume that each action should result from one decision: $\forall a \in \mathcal{A}, \forall d1, d2 \in \mathcal{D} | a \in d1 \wedge a \in d2 \rightarrow d1 = d2$.
-
-Actions $\mathcal{A}$ can be regarded as  a set of relations or isomorphisms mapping a source temporal graph pattern $\mathds{P}_{[t_j,t_k]}^{C}$ to a target one $\mathds{P}_{[t_l,t_m]}^{C}(\mathcal{C})$,  $\mathcal{A}_x : (\mathcal{C}) \times I_s \rightarrow (\mathcal{C}) \times I_t$, wherein:
-
-\begin{itemize}
-\item $\forall (t_j, t_k) \in I_s$, $\forall (t_l, t_m) \in I_t \rightarrow t_j \leq t_k \leq t_l \leq t_m$
-\item $\forall e \in \mathds{P}_{[t_j,t_k[}, \exists (i,c) \subset \mathcal{V}^T (e) | i \cap [t_j,t_k[ \neq \emptyset$  
-\item $\forall e \in \mathds{P}_{[t_l,t_m[}, \exists (i,c) \subset \mathcal{V}^T (e) |i \cap [t_l,t_m[ \neq \emptyset$
+	\item $T_{future}$ is sub-domain \{$t_{current+1};\ldots;t_{\infty}$\} representing future time points 
 \end{itemize}
+The three domains depend completely on the current time \{t\} as these subsets slide as time passes. 
+At any point in time, these domains never overlap: $T_{past} \cap \{t\} = \emptyset$, $T_{future} \cap \{t\} =  \emptyset$, and $T_{past} \cap T_{future} = \emptyset$.
+The definition of these three subsets reachs the first goal.
 
-The LHS of the relation depicts the temporal graph elements over which an action is applied. The side effects of these actions are represented by the RHS. Every relation may have a set of application conditions. They describe the circumstances under which an action should take place. These application conditions are either positive, should hold, or negative, should not hold. Application conditions come in the form of temporal graph  invariants. 
+In addition, there is a right-opened time interval $I \in T \times T$ as $[t_s, t_e)$ where $t_e - t_s > 0$.
+In English words, it means that the interval cannot represent a single time point and should follow the time order. 
+For any $i \in I$, $start(i)$ denotes its lower bound and $end(i)$ its upper bound.
+As detailed in Section~\ref{sec:tkm:formalism}, these intervals are used to define the validity period for each node of the graph. 
 
-Finally, we associate to $\mathcal{A}$ a temporal function $\mathcal{X}$ to determine the time interval at which  an action has been executed. Formally, $\mathcal{X}: (\mathcal{A} \cup \mathcal{D}) \rightarrow I$. As for decisions, we assume that once created they are always valid.  Their start time can be derived from the set of actions belonging to them. More precisely,  it corresponds to the creation time of the least recently created action. Whilst, their end time is equal to positive infinity.   Formally, $\forall d \in \mathcal{D} \rightarrow \mathcal{V}(d) = [l,t_\infty[$, where $l = \displaystyle \min_{a \in \mathcal{A}_d} \{\mathcal{V}(a)[start]\}$.
+Figure~\ref{fig:tkm:formalismeTime} displays an example of a time space $T_1 = \{t_0, t_1, t_2, t_3, t_4, t_5, t_6, t_7\}$.
+Here, the current time is $t = t_4$.
+According to the definition of the past subset ($T_{past}$) and the future one ($T_{future}$), there is: $T_{past1} =  \{t_0, t_1, t_2, t_3\}$ and $T_{future1} = \{t_5, t_6, t_7\}$.
+Two intervals have been defined on $T_1$, namely $I_1$ and $I_2$.
+The first one starts at $t_2$ and ends at $t_5$ and the last one is defined from $t_6$ to $t_7$.
+As shown with $I_1$, an interval could be defined on different subsets, here it is on all of them ($T_{past}$, $t$, and $T_{future}$).
 
-\subsection{Formalism applied on the use case}
+\subsection{Formalism}
+\label{sec:tkm:formalism}
+ 
+ \paragraph{1. Graph definition}
+First, let $K$ be an adaptive process over a system \gls{knowledge} represented by a graph such as $K = (N, E)$, comprising a set of nodes $N$ and a set of edges $E$.
+Nodes represent any element of the knowledge (context, actions, \etc) and edges represent their relationships (temporal dimension, decisions, \etc).
+Nodes have a set of attribute values.
+An attribute value has a type (numerical, boolean, \ldots). 
+Every relationship $e \in E$ can be considered as a couple of nodes $(n_s, n_t) \in N \times N$, where $n_s$ is the source node and $n_t$ is the target node.
 
-Through this section, we will formalize the use case defined in
+\paragraph{2. Adding the temporal dimension}
+
+\begin{figure}
+   \centering
+	\includegraphics{img/chapt-tkm/validityExample}
+	\caption{Evolution of a temporal graph over time}
+	\label{fig:tkm:validityEx}
+\end{figure}
+
+In order to augment the graph with a temporal dimension, the relation $V^T$ is added.
+So now the knowledge $K$ is defined as a temporal graph such as $K = (N, E, V^T)$.
+
+A node is considered valid either until it is removed or until one of its attributes value changes. 
+In the latter case, a new node with the updated value is created.
+Whilst, an edge is considered valid until either its source node and target node is valid, or until the edge itself is removed.
+Otherwise, nodes and edges are considered invalid.
+The temporal validity relation is defined as $V^T: N \cup E \rightarrow I$.
+It takes as a parameter a node or an edge ($k \in N \cup E$) and returns a time interval ($i \in I$,\cf Section~\ref{sec:tkm:timeDef}) during which the graph element is valid.
+
+Figure~\ref{fig:tkm:validityEx} shows an example of a temporal graph $K_1$ with three nodes ($n_1$, $n_2$, and $n_3$) and two edges ($e_1$ and $e_2$) over a lifecycle from $t_1$ to $t_3$.
+In this way, $K_1$ equals to $(\{n_1, n_2, n_3\}, \{e_1, e_2\}, V^{T}_1)$.
+Let's assume that the graph is created at $t_1$.
+As $n_1$ is modified at $t_2$, its validity period starts at $t_1$ and ends at $t_2$: $V^{T}_1(n_1) = [t_1, t_2)$.
+$n_2$ and $n_3$ are not modified; their validity period thus starts at $t_1$ and ends at $t_\infty$: $V^{T}_1(n_2) = V^{T}_1(n_3) = [t_1, t_\infty)$.
+Regarding the edges, the first one, $e_1$, is between $n_1$ and $n_2$ and the second one, $e_2$ from $n_2$ to $n_3$.
+Both are created at $t_1$.
+As $n_1$ is being modified at $t_2$, its validity period goes from $t_1$ to $t_2$:  $V^{T}_1(e_1) = [t_1, t_2)$.
+$e_2$ is deleted at $t_3$.
+Its validity period is thus equal to: $V^{T}_1(e_2) = [t_1, t_3)$.
 
 
 
-According to the formalism, $K_{SG}$ represents the adaptive process such as $K_{SG}=(\mathcal{C_{SG}},\mathcal{R_{SG}},\mathcal{A_{SG}}, \mathcal{D_{SG}})$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Application on the use case}
+
+%Through this section, I will apply the formalism on the use case defined in Section~\ref{sec:intro:use-case}.
+%$K_{SG}$ represents the adaptive process such as $K_{SG}=(\mathcal{C_{SG}},\mathcal{R_{SG}},\mathcal{A_{SG}}, \mathcal{D_{SG}})$.
+
+
+
 
 
 
