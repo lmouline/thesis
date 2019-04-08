@@ -64,6 +64,7 @@
 \RequirePackage[toc, style=treenoname, subentrycounter]{glossaries}
 \RequirePackage{indentfirst}
 \RequirePackage{doi}
+\RequirePackage{graphicx}
 
 %%% Definition of the page layout %%%%%
 \RequirePackage[left=3cm, right=3cm, headheight=15pt]{geometry} %with page borders size
@@ -167,6 +168,8 @@
 }
 
 \newcommand{\ie}[0]{\textit{i.e., }}
+\newcommand{\etc}[0]{\textit{etc.}}
+\newcommand{\cf}[0]{\textit{cf. }}
 
 \newcommand{\paragraphit}[1]{\noindent\textit{#1}~~}
 
