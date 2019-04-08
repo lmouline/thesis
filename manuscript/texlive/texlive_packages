@@ -1,9 +1,5 @@
-amsfonts
-amsmath
-amssymb
 anyfontsize
 csquotes
-doublestroke
 datatool
 doi
 etoolbox
@@ -11,6 +7,7 @@ fancyhdr
 fp
 geometry
 glossaries
+graphicx
 ifmtarg
 indentfirst
 lineno
