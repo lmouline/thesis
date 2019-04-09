@@ -71,14 +71,14 @@ As shown with $I_1$, an interval could be defined on different subsets, here it 
 \subsection{Formalism}
 \label{sec:tkm:formalism}
  
- \paragraph{1. Graph definition}
+ \paragraph{Graph definition}
 First, let $K$ be an adaptive process over a system \gls{knowledge} represented by a graph such as $K = (N, E)$, comprising a set of nodes $N$ and a set of edges $E$.
-Nodes represent any element of the knowledge (context, actions, \etc) and edges represent their relationships (temporal dimension, decisions, \etc).
+Nodes represent any element of the knowledge (context, actions, \etc) and edges represent their relationships.
 Nodes have a set of attribute values.
 An attribute value has a type (numerical, boolean, \ldots). 
 Every relationship $e \in E$ can be considered as a couple of nodes $(n_s, n_t) \in N \times N$, where $n_s$ is the source node and $n_t$ is the target node.
 
-\paragraph{2. Adding the temporal dimension}
+\paragraph{Adding the temporal dimension}
 
 \begin{figure}
    \centering
@@ -95,7 +95,7 @@ In the latter case, a new node with the updated value is created.
 Whilst, an edge is considered valid until either its source node and target node is valid, or until the edge itself is removed.
 Otherwise, nodes and edges are considered invalid.
 The temporal validity relation is defined as $V^T: N \cup E \rightarrow I$.
-It takes as a parameter a node or an edge ($k \in N \cup E$) and returns a time interval ($i \in I$,\cf Section~\ref{sec:tkm:timeDef}) during which the graph element is valid.
+It takes as a parameter a node or an edge ($k \in N \cup E$) and returns a time interval ($i \in I$, \cf Section~\ref{sec:tkm:timeDef}) during which the graph element is valid.
 
 Figure~\ref{fig:tkm:validityEx} shows an example of a temporal graph $K_1$ with three nodes ($n_1$, $n_2$, and $n_3$) and two edges ($e_1$ and $e_2$) over a lifecycle from $t_1$ to $t_3$.
 In this way, $K_1$ equals to $(\{n_1, n_2, n_3\}, \{e_1, e_2\}, V^{T}_1)$.
@@ -107,6 +107,23 @@ Both are created at $t_1$.
 As $n_1$ is being modified at $t_2$, its validity period goes from $t_1$ to $t_2$:  $V^{T}_1(e_1) = [t_1, t_2)$.
 $e_2$ is deleted at $t_3$.
 Its validity period is thus equal to: $V^{T}_1(e_2) = [t_1, t_3)$.
+
+\paragraph{From knowledge elements to graph nodes}
+One node represent represents the state of one knowledge element during a period, the validity period.
+With a temporal feature, one wants to navigate over the history of a knowledge element.
+Using the temporal graph formalism, it means to access to a set of nodes.
+
+As the validity period is defined on a right-opened interval (\cf Section~\ref{sec:tkm:timeDef}) and a new node is created as soon as the value of an existing one is modifyed, or deleted, at a time point different than the start point, then the life cycle is consistent, \ie there is no overlap between two nodes that represent the same knowledge element.
+
+\paragraph{Lifecycle of knowledge elements}
+
+\paragraph{Graph nodes for context}
+\paragraph{Graph nodes for actions}
+
+\paragraph{Temporal queries for requirements}
+\paragraph{Temporal relations for decisions}
+
+
 
 
 

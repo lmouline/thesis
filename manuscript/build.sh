@@ -1,7 +1,7 @@
 #!/bin/bash
 
-pdflatex -output-directory build ./main.tex
-bibtex ./build/main
-makeindex  -s "./build/main.ist" -t "./build/main.glg" -o "./build/main.gls" "./build/main.glo"
-pdflatex -output-directory build ./main.tex
-pdflatex -output-directory build ./main.tex
+pdflatex -output-directory build ./Main.tex
+bibtex ./build/Main
+makeindex  -s "./build/Main.ist" -t "./build/Main.glg" -o "./build/Main.gls" "./build/Main.glo"
+pdflatex -output-directory build ./Main.tex
+pdflatex -output-directory build ./Main.tex
