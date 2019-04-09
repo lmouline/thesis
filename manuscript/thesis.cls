@@ -2,6 +2,15 @@
 \ProvidesClass{thesis}[2019/03/22 v0.0 PhD Thesis]
 \LoadClass[12pt, twoside]{book}
 
+%%% Package dependencies %%%%%
+\RequirePackage{xcolor}
+\RequirePackage{xifthen}
+\RequirePackage[colorlinks, backref=page]{hyperref}
+\RequirePackage{indentfirst}
+\RequirePackage{doi}
+\RequirePackage{graphicx}
+
+
 %%% Class options %%%%%
 %
 % review, publish
@@ -16,10 +25,12 @@
 \newif\ifIFreview
 \newif\ifIFpublish
 \newif\ifIFdebug
+\newif\ifIFglossary
 
 \IFreviewfalse
 \IFpublishtrue
 \IFdebugfalse
+\IFglossaryfalse
 
 \DeclareOption{review}{
 	\IFreviewtrue
@@ -32,6 +43,10 @@
 
 \DeclareOption{debug}{
 	\IFdebugtrue
+}
+
+\DeclareOption{glossary}{	
+	\IFglossarytrue
 }
 
 \ProcessOptions\relax
@@ -55,16 +70,13 @@
 	\overfullrule=5pt
 \fi
 
+\ifIFglossary
+	\RequirePackage[toc, style=treenoname, subentrycounter]{glossaries}
+	\makeglossaries
+\fi
 
-%%% Package dependencies %%%%%
-\RequirePackage{xcolor}
-\RequirePackage{xifthen}
+%%% Package dependencies 2 %%%%%
 \RequirePackage{csquotes}
-\RequirePackage[colorlinks, backref=page]{hyperref}
-\RequirePackage[toc, style=treenoname, subentrycounter]{glossaries}
-\RequirePackage{indentfirst}
-\RequirePackage{doi}
-\RequirePackage{graphicx}
 
 %%% Definition of the page layout %%%%%
 \RequirePackage[left=3cm, right=3cm, headheight=15pt]{geometry} %with page borders size
@@ -122,9 +134,6 @@
 % todo
 %		add a red text starting with TODO
 %%%%%%%%%%%%%%%%
-\newif\ifIFglossary
-\IFglossaryfalse
-
 \let\OLDbackmatter\backmatter
 \renewcommand{\backmatter}[0]
 {
@@ -172,12 +181,6 @@
 \newcommand{\cf}[0]{\textit{cf. }}
 
 \newcommand{\paragraphit}[1]{\noindent\textit{#1}~~}
-
-\newcommand{\enableGloassary}[0]
-{
-	\makeglossaries
-	\IFglossarytrue
-}
 
 \let\OLDtableofcontents\tableofcontents
 \renewcommand{\tableofcontents}[0]
