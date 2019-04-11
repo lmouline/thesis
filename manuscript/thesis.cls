@@ -179,6 +179,7 @@
 \newcommand{\ie}[0]{\textit{i.e., }}
 \newcommand{\etc}[0]{\textit{etc.}}
 \newcommand{\cf}[0]{\textit{cf. }}
+\newcommand{\eg}[0]{\textit{e.g., }}
 
 \newcommand{\paragraphit}[1]{\noindent\textit{#1}~~}
 
@@ -201,6 +202,14 @@
     \else Cited on pages #2%
     \fi%
 ]}}
+
+\newenvironment{condItemize}[0]
+	{
+		\begin{itemize}
+		\vspace{-0.5em}
+		\setlength\itemsep{-0.3em}
+	}
+	{\end{itemize}}
 
 
 

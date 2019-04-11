@@ -44,14 +44,12 @@ Second, it should permit the definition of the life cycle of an element of the \
 
 Time space $T$ is considered as an ordered discrete set of time points non-uniformly distributed. 
 As depicted in Figure~\ref{fig:tkm:formalismeTime}, this set can be divided into 3 different subsets $T = T_{past} \cup \{t\} \cup T_{future}$, where:  
-\begin{itemize}
-	\vspace{-0.5em}
-	\setlength\itemsep{-0.3em}
+\begin{condItemize}
 	\item $T_{past}$ is the sub-domain \{$t_{0}$;$t_{1}$;\ldots;$t_{current-1}$\}  representing graph data history starting from $t_0$, the oldest point, until current time, t, excluded.
 	\item \{t\} is a singleton representing the current time 
 point
 	\item $T_{future}$ is sub-domain \{$t_{current+1};\ldots;t_{\infty}$\} representing future time points 
-\end{itemize}
+\end{condItemize}
 The three domains depend completely on the current time \{t\} as these subsets slide as time passes. 
 At any point in time, these domains never overlap: $T_{past} \cap \{t\} = \emptyset$, $T_{future} \cap \{t\} =  \emptyset$, and $T_{past} \cap T_{future} = \emptyset$.
 The definition of these three subsets reachs the first goal.
@@ -122,49 +120,195 @@ Formally, $Z^T: N \times T \rightarrow N$.
 In order to consider this new relation in the example presented in Figure~\ref{fig:tkm:validityEx}, the definition of $K_1$ is modified to $K_1 = (\{n_1, n_2, n_3, n_4, n_5\}, \{e_1, e_2, e_3\}, V^{T}_1, Z^{T}_1)$
 In Figure~\ref{fig:tkm:validityEx}, let's imagine that $n_1$, $n_4$, and $n_5$ represent the same knowledge element $k_e$.
 The lifecycle of $k_e$ is thus:
-\begin{itemize}
-	\vspace{-0.5em}
-	\setlength\itemsep{-0.3em}
+\begin{condItemize}
 	\item $n_1$ for period $[t_1, t_2)$,
 	\item $n_4$ for period $[t_2, t_3)$,
 	\item $n_5$ for period $[t_3, t_\infty)$.
-\end{itemize}
+\end{condItemize}
+
 Let $t_1'$ be a timepoint between $t_1$ and $t_2$.
 When one wants to resolve the node representing the knowledge element at $t_1'$, she or he gets $n_1$ node, no matter of the node input ($n_1$, $n_4$, or $n_5$): $Z^{T}_1(n_4, t_1) = n_1$.
 On the other hand, applying the same relation with another node ($n_2$ or $n_3$) returns another node.
-For example, if $n_2$ and $n_3$ do not belongs to the same knowledge element, then it will return the node given as input: $Z^{T}_1(n_2, t_1) = n_2$.
+For example, if $n_2$ and $n_3$ do not belongs to the same knowledge element, then it will return the node given as input, for example $Z^{T}_1(n_2, t_1) = n_2$.
 
-\paragraph{Graph nodes for context}
-\paragraph{Graph nodes for actions}
+\paragraph{Knowledge elements stored in nodes}
+Nodes are used to store the different knowledge elements: context, requirements and actions.
+The set of nodes $N$ is thus split in three subset: $N = C \cup R \cup A$ where $C$ is the set of nodes which store context information, $R$ a set of nodes for requirement information and $A$ the set of nodes for actions information.
+
+Actions define a process that indirectly impact the context: they will change the behavior of the system, which will be reflected on the context information.
+Requirements are also processes that are continuously run over the system in order to check the specifications.
+Here, the purpose of the $A$ and $R$ subset is not to store these processes but to list them.
+It can be thought as a catalogue of actions and requirements, with their history.
+
+Using a high level overview, these processes can the depicted as: taking the knowledge as input, perform task, and modify this knowledge as output.
+As detailed in the next two paragraphs, they can be formalized by relations.
+
 
 \paragraph{Temporal queries for requirements}
+At the current state, the formalism of the knowledge $K$ do not contain any information regarding the requirement processes.
+To overcome this, system requirements processes $R_P$ are added such as $K = (N, E, V^T, Z^T, R_P)$.
+$R_P$ is a set of patterns $P_{[t_j,t_k]}(K)$ and queries $Q$ over these patterns: $R_P = {P \cup Q}$. 
+
+$P_{[t_j, t_k]}$ denotes a temporal graph pattern, where $t_j$ and $t_k$ are the lower and upper bound of the time interval respectively.
+The time interval can be either fixed (absolute) or sliding (relative).
+Each element of the pattern should be valid for at least one time point: $\forall~p \in P_{[t_j,t_k)}, V^T(e) \cap [t_j,t_k) \neq \emptyset$.
+Patterns can be seen as temporal subgraph of $K$, with a time limiting constraint coming in the form of a time interval.
+Temporal graph queries $Q$ consist commonly of two parts: (i) path description to traverse the graph nodes, at both structural and temporal dimensions; (ii) arithmetic expressions on nodes, edges, and attribute values.    
+
+\paragraph{Temporal relations for actions}
+Like for $R_P$, the knowledge $K$ needs to be augmented with the action processes $A_P$: $K = (N, E, V^T, Z^T, R_P, A_P)$.
+Actions processes $A_P$ can be regarded as  a set of relations or isomorphisms mapping a source temporal graph pattern $P_{[t_j, t_k]}$ to a target one $P_{[t_l, t_m]}$,  $A_P : K \times I \rightarrow K \times I$.
+
+The left-hand side of the relation depicts the temporal graph elements over which an action is applied.
+Every relation may have a set of application conditions. 
+They describe the circumstances under which an action should take place. 
+These application conditions are either positive, should hold, or negative, should not hold. 
+Application conditions come in the form of temporal graph  invariants.  
+The side effects of these actions are represented by the right-hand side. 
+
+Finally, we associate to $A_P$ a temporal function $E_{A_P}$ to determine the time interval at which an action has been executed. 
+Formally, $X: A \rightarrow I$.
+
 \paragraph{Temporal relations for decisions}
+Finally, the knowledge formalism needs to include the last, but not the least, element: decisions made by the adaptation, $K = (N, E, V^T, Z^T, R_P, A_P, D)$
+While the source of relations in $D$ represents the state before the execution of an action, the target shows its impact on the \gls{context}. 
+Its intent is \textbf{to trace back impacts of actions execution to the decisions they originated from}.  
 
+A decision present in ${D}$ is defined as a set of executed actions, \ie a subset of ${A_P}$.
+Formally, ${D} = \{\ {A_D}~|~{A_D}  \subseteq A\}$.
+We assume that each action should result from one decision: $\forall a \in {A}, \forall d1, d2 \in {D}~|~a \in d1 \wedge a \in d2 \rightarrow d1 = d2$.
 
+The temporal function $E_{A_P}$ is extended to decision in order to represent the execution time: $E_{A_P}: (A \cup D) \rightarrow I$.
+For decision, the lower bound of the interval correspond to the lowest bound of the action execution intervals.
+Following the same principle, the upper bound of the interval correspond to the uppermost bound of the action execution intervals.
+Formally, $\forall d \in D \rightarrow E_{A_P}(d) = [l,u)$, where $l = \displaystyle \min_{a \in A_d} \{E_{A_P}(a)[start]\}$ and $u = \displaystyle \max_{a \in A_d} \{E_{A_P}(a)[end]\}$.
 
+\paragraph{Sum up}
+Knowledge of an adaptive system can be formalism with a temporal graph such as $K = (N, E, V^T, Z^T, R_P, A_P)$, wherein:
+\begin{condItemize}
+	\item $N$ is a set of nodes to represent the different information (context, actions and requirements)
+	\item $E$ is a set of edges with connect the different nodes,
+	\item $V^T$ is a temporal relation which defines the temporal validity of each elements,
+	\item $Z^T$ is a relation to track the history of each knowledge elements,
+	\item $R_P$ is a relation that define the different requirements processes,
+	\item $A_P$ is a relation that define the different action processes.
+\end{condItemize}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+In the next section, we exemplify this formalism over our case study.
 
 
 \subsection{Application on the use case}
 
-%Through this section, I will apply the formalism on the use case defined in Section~\ref{sec:intro:use-case}.
-%$K_{SG}$ represents the adaptive process such as $K_{SG}=(\mathcal{C_{SG}},\mathcal{R_{SG}},\mathcal{A_{SG}}, \mathcal{D_{SG}})$.
+The example presented in Section~\ref{sec:intro:use-case} contain too much detail to provide a readable and understandable example of the formalism.
+Below, an excerpt of it is thus presented in order to overcome this problem.
+
+The context contains only one kind of element: smart meters.
+Among the different requirements of a smart grid, one is to minimize the number of disconnected customers (smart meters).
+To do so, only two actions are considered: open and close fuses.
+
+Let $K_{SG}$ be the temporal graph that represents this knowledge: $K_{SG} = (N_{SG}, E_{SG}, V^T_{SG}, Z^T_{SG}, R_{P_{SG}}, A_{P_{SG}})$.
+
+\paragraph{Exemplification of $N_{SG}$}
+
+
+
+ 
+ 
+ 
+% \section{Modeling the knowledge}
+% 
+% In order to simplify the diagnosis of adaptive systems, this thesis proposes a novel metamodel that combines, what I call, design elements and runtime elements.
+%Design elements abstract the different elements involved in knowledge information to assist the specification of the adaptation process.
+%Runtime elements instead, represent the data collected by the adaptation process during its execution.
+%In order to maintain the consistency between previous design elements and newly created ones, instances of design elements (\eg actions) can be either added or removed.
+%Modifying these elements would consist in removing existing elements and creating new ones.
+%Combining design elements and runtime elements in the same model helps not only to acquire the evolution of system but also the evolution of its structure and specification (e.g. evolution of the requirements of the system).
+%Design time elements are depicted in gray in the Figures~\ref{fig:knowledge-mm}--~\ref{fig:action-mm}. Note that, in this paper, we do not address how runtime information is collected.
+%
+%For the sake of modularity, the metamodel has been split into four packages.
+%First, we describe the Knowledge (core) package. 
+%Then, we introduce in more details the other three packages used by the knowledge package: Context, Requirement, and Action. 
+%We assume that all the classes in the different packages extend a \textit{TimedElement} class. 
+%This class contains three methods: \textit{startTime}, \textit{endTime} and \textit{modificationsTime}.
+%The first two methods allow accessing the validity interval bounds defined by the previously discussed $\mathcal{V}^T$ relation.
+%The last method resolves all the timestamps at which an element has been modified: its history. 
+%This method is the implementation of the relation $\mathcal{Z}^T$ described in our formalism (cf. Section~\ref{sec:tkm:formalism}).
+%
+%\subsection{Knowledge metamodel}
+%
+%\begin{figure*}[t]
+%	\begin{center}
+%%	\includegraphics[width=.8\linewidth]{img/knowledge-mm}
+%	\caption{Excerpt of the knowledge metamodel}
+%	\label{fig:knowledge-mm}
+%	\end{center} 
+%\end{figure*}
+%
+%In order to enable interactive diagnosis of adaptive systems, we claim that traceability links between the decisions made and their circumstances should be organized in a well-structured representation.  In what follows, we introduce the knowledge metamodel. It describes how decisions are linked to the goals and the context (input and impact). Figure~\ref{fig:knowledge-mm} depicts this metamodel. We use "\textit{Package::Class}" notation to refer to the provenance of a class, in case it belongs to another package.\looseness=-1 
+%
+%Knowledge is composed of a \textit{context}, a set of \textit{requirements}, a set of \textit{strategies}, and a set of \textit{decisions}.  A decision can be seen as the output of the Analyze and Plan steps in the MAPE-k loop. Decisions comprise target \textit{goals} and trigger the execution of one \textit{tactic} or more.  A decision has an \textit{input} context and an \textit{impacted} context.  The context impacted by a decision  (\textit{Decision.impacted}) is a derived relationship computed by aggregating the impacts of all actions belonging to a decision (see Fig.~\ref{fig:action-mm}).  Likewise, the \textit{input} relationship is derived and can be computed similarly. In the smart grid example, a decision can be formulated (in plain English) as follows: since the district D is almost overloaded (\textit{input context}), we reduce the amps limit of greedy consumers using the ``\textit{reduce amps limit}" \textit{action} in order to reduce the load on the cable of the district (\textit{impact}) and satisfy the ``\textit{no overload}" policy (\textit{requirement}).
+%
+%As all the elements inherit from the \textit{TimedElement}, we can capture the time at which a given decision and its subsequent actions were executed, and when their impact materialized, \ie measured. Thanks to this metamodel representation, we can apprehend the possible causes behind malicious behavior by navigating from the context values to the decisions that have impacted its value (\textit{Property.expected.impact}) and the goals it was trying to reach (\textit{Decision.goals}). In Section~\ref{subsec:tuto}, we present an example of interactive diagnosis queries applied to the smart grid use case.
+%
+%\subsection{Context metamodel}
+%\begin{figure*}
+%  \begin{center}
+%%      \includegraphics[width=.65\linewidth]{img/contextModel}
+%      \caption{Excerpt of the context metamodel}
+%      \label{fig:context-model}
+%  \end{center}	
+%\end{figure*}
+%
+%Context models structure context information acquired at runtime. 
+%For example, in a smart-grid system, the context model would contain information about smart-grid users (address, names, etc.) resource consumption, etc..
+%
+%An excerpt of the context model is depicted in Figure~\ref{fig:context-model}. We propose to represent the context as a set of structures (\textit{Context.structures}) and global attributes (\textit{Context.globals}). A structure can be viewed as a C-structure with a set of properties (\textit{Property}): attributes (\textit{Attribute}) or relationships (\textit{Relation}).  A structure may contain other nested structures (Structure.inner).  
+%Structures and properties have values. They correspond to the nodes described in the formalization section (\cf Section~\ref{sec:formalism}). The connection feature described in Section~\ref{sec:adaptation-req} is represented thanks to three recursive relationships on the Property class: \textit{consistentWith}, \textit{computedUsing} and \textit{influence}. Additionally, each property has a source (\textit{Source}) and an uncertainty (\textit{Uncertainty}). It is up to the stakeholder to extend data with the appropriate source: measured, computed, provided by a user, or by another system (\eg weather information coming from a public API).
+%Similarly, the uncertainty class can be extended to represent the different kinds of uncertainties. Finally, a property can be either historic or static.
+%
+%\subsection{Requirement metamodel}
+%
+%\begin{figure}
+%	\centering
+%%	\includegraphics[width=\linewidth]{img/requirementModel}
+%	\caption{Requirement metamodel}
+%	\label{fig:requirement-model}
+%\end{figure}
+%
+%As different solutions to model system requirements exist (\eg KAOS~\cite{dardenne1993goal}, i*~\cite{yu2011modelling} or Tropos~\cite{DBLP:journals/aamas/BrescianiPGGM04}), in this metamodel, we abstract their shared concepts.
+%Our requirement model, depicted in Figure~\ref{fig:requirement-model}, represents the \textit{requirement} as a set of \textit{goals}.
+%Each goal has a \textit{nature} and a textual specification.
+%The nature of the goals adheres to the four categories of requirements presented in Section~\ref{sec:adaptation-req}.
+%We may use one of the existing requirements modeling languages (\eg RELAX) to define the semantics of the requirements. Since the requirement model is composed solely of design elements, we may rely on static analysis techniques to infer the requirement model from existing specifications. The work of Egyed~\cite{egyed01} is one solution among others. This work is out of the scope of the paper and envisaged for future work. 
+%
+%In our guidance example, the requirement model may contain a \textbf{balanced resource distribution} requirement. It can be split into different goals: (i) \textit{no overload}, (ii) \textit{no production lack}, (iii) \textit{no production loss}.
+%
+%\subsection{Action metamodel}
+%\label{sec:action-mm}
+%
+%\begin{figure}
+%	\centering
+%%	\includegraphics[width=\linewidth]{img/actionModel}
+%	\caption{Excerpt of the action metamodel}
+%	\label{fig:action-mm}
+%\end{figure}
+%
+%Similar to the requirements metamodel, the actions metamodel also abstracts main concepts shared among existing solutions to describe adaptation processes and how they are linked to the context. Figure~\ref{fig:action-mm} depicts an excerpt of the action metamodel.
+%We define a strategy as a set of tactics (\textit{Strategy}).
+%A tactic contains a set of actions (\textit{Action}).
+%A tactic is executed under a precondition represented as a temporal query (\textit{TemporalQuery}) and uses different data from the context as input. In future work, we will investigate the use of preconditions to schedule the executions order of the actions, similarly to existing formalisms such as Stitch~\cite{DBLP:journals/jss/ChengG12}.
+%The query can be as complex as needed and can navigate through the whole knowledge model.
+%Actions have impacts on certain properties, represented by the \textit{impacted} reference. 
+%
+%The different executions are represented thanks to the \textit{Execution} class. Each execution has a status to track its progress and links to the impacted context values(\textit{Execution.impactedValues}).
+%Similarly, input values are represented thanks to the \textit{Execution.inputValues} relationship.
+%An execution has \textit{start} and \textit{end} time. Not to confuse with the \textit{startTime} and \textit{endTime} of the validity relation $\mathcal{V}^T$. Whilst the former corresponds to the time range in which a value is valid, the \textit{start} and \textit{stop} time in the class execution correspond to the time range in which an action or a tactic was being executed. The start and stop attributes correspond to the relation $\mathcal{X}$ (see Section~\ref{sec:formalism}). These values can be derived based on the validity relation. They correspond to the time range in which the status of the execution is "\textit{RUNNING}".  Formally, for every execution node $e$, $\mathcal{X}(e)~=~(\mathcal{V}(e)~|~e.status~=~$"RUNNING"$)$.
+%
+%
+%Similarly to requirement models, it is possible to automatically infer design elements of action models by statically analyzing actions specification.
+%Since acquiring information about tactics and actions executions happens at runtime, one way to achieve this is by intercepting calls to actions executions and updating the appropriate action model elements accordingly. This is out of the scope of this paper and planned for future work.
+ 
+ 
 
 
 

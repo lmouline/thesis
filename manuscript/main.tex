@@ -5,7 +5,18 @@
 \title{A Unified Modeling Framework to Abstract Knowledge of Dynamically Adaptive Systems}
 \author{Ludovic Mouline}
 
-%\enableGloassary
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+  \ifmmode%
+    \old@comma\discretionary{}{}{}%
+  \else%
+    \old@comma%
+  \fi%
+}
+\makeatother
+
 \input{glossary}
 
 \begin{document}
