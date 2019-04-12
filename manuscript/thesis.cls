@@ -9,6 +9,8 @@
 \RequirePackage{indentfirst}
 \RequirePackage{doi}
 \RequirePackage{graphicx}
+\RequirePackage{amssymb}
+\RequirePackage[caption=false,font=footnotesize]{subfig}
 
 
 %%% Class options %%%%%

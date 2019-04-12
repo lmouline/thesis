@@ -201,7 +201,13 @@ In the next section, we exemplify this formalism over our case study.
 \subsection{Application on the use case}
 \begin{figure}
 	\centering
-	\caption{TODO: add caption}
+	\includegraphics[width=0.5\linewidth]{img/chapt-tkm/excerptSG}
+	\caption{Simplified version of a smart grid}
+	\label{fig:tkm:excerptSG}
+\end{figure}
+
+\begin{figure}
+	\caption{Representation of the smart grid context depicted in Figure~\ref{fig:tkm:excerptSG}}
 	\label{fig:tkm:contextFormExample}
 \end{figure}
 
@@ -211,71 +217,167 @@ Below, an excerpt of it is thus presented in order to overcome this problem.
 
 
 \paragraph{Excerpt of a smart grid}
-\begin{figure}
-	\caption{Excerpt of the smart grid }
-\end{figure}
-
-Figure
-The smart grid is composed of one data concentrator and three smart meters.
-These meters regularly send consumption data at the same time.
-They are connected to 
+Figure~\ref{fig:tkm:excerptSG} shows a simplified version of a smart grid with one substation, one cable, three smart meters and one dead-end cabinet.
+Both the substation and the cabinet have a fuse.
+The meters regularly send consumption data at the same time.
 One requirement is considered for this example: minimizing the number of overloads.
+To achieve so, among the different actions, two actions are taken into account in this example: decreasing or increasing the amps limits of smart meters.
 
-
-
-
-The context contains only one kind of element: smart meters.
-Among the different requirements of a smart grid, one is to minimize the number of disconnected customers (smart meters).
-To do so, only two actions are considered: open and close fuses.
-
-Let $K_{SG}$ be the temporal graph that represents this knowledge: $K_{SG} = (N_{SG}, E_{SG}, V^T_{SG}, Z^T_{SG}, R_{P_{SG}}, A_{P_{SG}}. D_{SG})$.
+Let $K_{SG}$ be the temporal graph that represents the knowledge of this adaptive system: $K_{SG} = (N_{SG}, E_{SG}, V^T_{SG}, Z^T_{SG}, R_{P_{SG}}, A_{P_{SG}}, D_{SG})$.
+Figure~\ref{fig:tkm:contextFormExample} shows the nodes and edges of this knowledge.
 
 \paragraph{Scenario}
-The system starts at $t_0$ with the actions and the requirements.
+The system starts at $t_0$ with the actions, the requirements and the context, which also include initial value for the consumption values.
+Meters send their values at $t_2$ and $t_3$.
+Based on these data, the load on cables and substation is computed.
+On $t_2$, an overload is detected on the cable, which break the requirement.
+At the same time point, the system decides to reduce the load of all smart meters.
+The impact of these actions will be measured at $t_4$, \ie the cable will not be overloaded from $t_4$.
 
 \paragraph{Description of \pmb{$N_{SG}$}}
 
 $N_{SG}$ is divided into three subset: $C_{SG}$, $R_{SG}$ and $A_{SG}$.
-$R_{SG}$ contains one node, $R_1$ in Figure~\ref{fig:tkm:contextFormExample}, $A_{SG}$ two nodes, $A_1$ and $A_2$ in Figure~\ref{fig:tkm:contextFormExample}.
-Regarding the context, there is three nodes to represent the three smart meters ($M_1$, $M_2$, and $M_3$) and the data concentrator ($D_1$).
-All these nodes are created at $t_0$ and never modified.
-Thus, their validity period starts at $t_0$ and never ends: $\forall n \in A_{SG} \cup R_{SG} \cup \{M_1, M_2, M_3, D_1\}, V^T_{SG}(n) = [t_0, t_\infty)$.
-In addition, there is a node for each consumption measurement perform by the meters: $V_i$, $i \in [1..9]$ in Figure~\ref{fig:tkm:contextFormExample}.
-As the values at $t_1$ and $t_2$ replaced the values previously , we have the following  
+$R_{SG}$ contains one node, $R_1$ in Figure~\ref{fig:tkm:contextFormExample}, which represents the requirement of this example: $R_{SG} = \{R_1\}$
+Two nodes, $A_1$ and $A_2$, belong to $A_{SG}$: $A_{SG} = \{ A_1, A_2\}$.
+They represent represent the two actions of this example, respectively decreasing and increasing amps limits.
+Regarding the context $C_{SG}$, there is three nodes to represent the three smart meters ($M_1$, $M_2$, and $M_3$), one for the substation ($S_1$), two for the fuses ($F_1$ and $F_2$), one for the dead-end cabinet ($D_{C_1}$) and one node per consumption value received ($V_i$): $C_{SG} = \{M_1, M_2, M_3, S_1, F_1, F_2, D_{C_1}\} \cup \{ V_i | i \in [1..9]\}$.
 
-$C_{SG} = \{M_1, M_2, M_3, D_1, V_1, V_2, V_3, V_4, V_5, V_6, V_7, V_8, V_9\}$\\
-$A_{SG} = \{A_1, A_2\}$\\
-$R_{SG} = \{R_1\}$
-
+According to the scenario, all nodes are created at $t_0$ and are never modified, except for nodes to store consumption values.
+Therefore, their validity period starts at $t_0$ and never ends: $\forall n \in A_{SG} \cup R_{SG} \cup \{M_1, M_2, M_3, S_1, F_1, F_2, D_{C_1}\}, V^T_{SG}(n) = [t_0, t_\infty)$.
+Considering the consumption values, all the nodes represent the history of the values for the three smart meters.
+In other words, there is three knowledge element: the consumption measured for each meter.
+Let $C_i$ notes the consumption measured by the smart meter $M_i$.
+As shown in Figure~\ref{fig:tkm:contextFormExample}, there is:
 \begin{condItemize}
-	\item $\forall i \in [1..3], V^T_{SG}(V_i) = [t_0, t_1)$,
-	\item $\forall i \in [4..6], V^T_{SG}(V_i) = [t_1, t_2)$,
-	\item $\forall i \in [7..9], V^T_{SG}(V_i) = [t_2, t_\infty)$,
+	\item $C_1$ of $M_1$ is represented by $\{V_1, V_4, V_7\}$,
+	\item $C_2$ of $M_2$ is represented by $\{V_2, V_5, V_8\}$,
+	\item $C_3$ of $M_3$ is represented by $\{V_3, V_5, V_9\}$.
+\end{condItemize}
+Taking $C_2$ as example, $V_2$ is the initial consumption value, replaced by $V_5$ at $t_1$, itself replaced by $V_8$ at $t_2$. 
+Applying the $V_{SG}^T$ on these different values, results are thus:
+\begin{condItemize}
+	\item $V_{SG}^T(V_2) = [t_0, t_1)$,
+	\item $V_{SG}^T(V_5) = [t_1, t_2)$,
+	\item $V_{SG}^T(V_8) = [t_2, t_\infty)$.
+\end{condItemize}
+These validity periods are shown in Figure~\ref{fig:tkm:validityC2}.
+As meters send the new consumption values at the same time, this example can be also applied to $C_1$ and $C_3$.
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.5\linewidth]{img/chapt-tkm/validitySchemaC2}
+%	\caption{Validity periods of the consumption values of one smart meters}
+%	\label{fig:tkm:validityC2}
+%\end{figure}
+
+\begin{figure}
+	\centering
+	\subfloat[Consumption values] {
+		\includegraphics[width=0.4\linewidth]{img/chapt-tkm/validitySchemaC2}
+		\label{fig:tkm:validityC2}
+	}
+	\hfil
+	\subfloat[Edges]{
+		\includegraphics[width=0.4\linewidth]{img/chapt-tkm/validitySchemaC2Edges}
+		\label{fig:tkm:validityC2Edges}
+	}
+	\caption{Validity periods of the consumptions values and their edges to the smart meter $M_2$}
+\end{figure}
+
+%More generally, the $V_{SG}^T$ returns:
+%\begin{condItemize}
+%	\item $\forall i \in [1..3], V^T_{SG}(V_i) = [t_0, t_1)$,
+%	\item $\forall i \in [4..6], V^T_{SG}(V_i) = [t_1, t_2)$,
+%	\item $\forall i \in [7..9], V^T_{SG}(V_i) = [t_2, t_\infty)$.
+%\end{condItemize}
+From these validity period, the $Z^T_{SG}$ can be used to navigate to the different values over time.
+Let's continue with the same example, $C_2$.
+In order to get the evolution of the consumption value $C_2$, given the initial one, one will use the $Z^T_{SG}$ relation:
+\begin{condItemize}
+	\item $Z^T_{SG}(V_2, t_{s1}) = V_2$, where $0 \leqslant t_{s1} < t_1$
+	\item $Z^T_{SG}(V_2, t_{s2}) = V_5$, where $t_1 \leqslant t_{s2} < t_2$
+	\item $Z^T_{SG}(V_2, t_{s3}) = V_8$, where $t_2 \leqslant t_{s3} < t_\infty$.
+\end{condItemize}
+%More generally, the $Z^T_{SG}$ returns:
+%\begin{condItemize}
+%	\item for $0 \leqslant t_s < t_1$:
+%		\begin{condItemize}
+%			\vspace{-0.5em}
+%			\item $\forall i \in \{1, 4, 7\}, Z^T_{SG}(V_i, t_s) = V_1$,
+%			\item $\forall i \in \{2, 5, 8\}, Z^T_{SG}(V_i, t_s) = V_2$,
+%			\item $\forall i \in \{3, 6, 9\}, Z^T_{SG}(V_i, t_s) = V_3$.
+%		\end{condItemize}
+%	\vspace{-0.5em}
+%	\item for $t_1 \leqslant t_s < t_2$:
+%		\begin{condItemize}
+%			\vspace{-0.5em}
+%			\item $\forall i \in \{1, 4, 7\}, Z^T_{SG}(V_i, t_s) = V_4$,
+%			\item $\forall i \in \{2, 5, 8\}, Z^T_{SG}(V_i, t_s) = V_5$,
+%			\item $\forall i \in \{3, 6, 9\}, Z^T_{SG}(V_i, t_s) = V_6$.
+%		\end{condItemize}
+%	\vspace{-0.5em}
+%	\item for $t_2 \leqslant t_s < t_\infty$:
+%		\begin{condItemize}
+%			\vspace{-0.5em}
+%			\item $\forall i \in \{1, 4, 7\}, Z^T_{SG}(V_i, t_s) = V_7$,
+%			\item $\forall i \in \{2, 5, 8\}, Z^T_{SG}(V_i, t_s) = V_8$,
+%			\item $\forall i \in \{3, 6, 9\}, Z^T_{SG}(V_i, t_s) = V_9$.
+%		\end{condItemize}
+%\end{condItemize}
+
+
+
+\paragraph{Description of \pmb{$E_{SG}$}}
+
+In this example, edges are used to store the relationships between the different context elements.
+For example, the edge between the substation $S_1$ and the fuse $F_1$ allow to represent the fact that the fuse is physically inside the substation.
+Another example, edges between the cable $C_1$ and the meters $M_1$, $M_2$ and $M_3$ represent the fact that these meters are connected to the smart grid through this cable.
+
+One may consider that relations (validity, $Z^T$, decisions, action processes and requirements processes) will be stored as edges.
+But, this decision is let to the implementation part of this formalism.
+
+In our model, only consumption values ($V_i$ nodes) are modified.
+Plus, since the scenario do not imply other edges modifications, only those between meters and values are modified.
+The edge set contains thus sixteen edges: $E_{SG} = \{E_i \mid i \in [1..16] \}$.
+
+By definition, the unmodified edges have a validity period starting from $t_0$ and never ends: $\forall i \in [1..7], V^T_{SG}(E_i) = [t_0, t\infty)$.
+The history of the three knowledge elements that represent consumption values do not only impact the nodes which represent the values but also the edges between those nodes and the meters ones:
+\begin{condItemize}
+	\item $C_1$ impacts edges between $M_1$ and $V_1$, $V_4$, and $V_7$, \ie $\{E_8, E_{11}, E_{14}\}$,
+	\item $C_2$ impacts edges between $M_2$ and $V_2$, $V_5$, and $V_8$, \ie $\{E_9, E_{12}, E_{15}\}$,
+	\item $C_3$ impacts edges between $M_3$ and $V_3$, $V_6$, and $V_9$, \ie $\{E_{10}, E_{13}, E_{16}\}$.
 \end{condItemize}
 
+Continuing with $C_2$ as example, the initial edge value is $E_8$ from $t_0$, which is replaced by $E_{11}$ from $t_1$, itself replaced by $E_{14}$ from $t_2$.
+The validity relation, applied on these edges, thus returns:
 \begin{condItemize}
-	\item $\forall i \in {1, 4, 7}, Z^T_{SG}(V_i, t_2) = V_7$,
-	\item $\forall i \in {2, 5, 8}, Z^T_{SG}(V_i, t_1) = V_5$,
-	\item $\forall i \in {3, 6, 9}, Z^T_{SG}(V_i, t_0) = V_3$,
+	\item $V^T_{SG}(E_8) = [t_0, t_1) = V^T_{SG}(V_2)$,
+	\item $V^T_{SG}(E_{11}) = [t_1, t_2) = V^T_{SG}(V_5)$,
+	\item $V^T_{SG}(E_{14}) = [t_2, t_\infty) = V^T_{SG}(V_8)$,
 \end{condItemize}
+These validity periods are depicted in Figure~\ref{fig:tkm:validityC2Edges}.
 
-\paragraph{Description of \pmb{$E_{SG}$} }
 
-$E_{SG} = \{ E_1, E_2, E_3, E_4, E_5, E_6, E_7, E_8, E_9, E_10, E_11, E_12\}$
 
-\begin{condItemize}
-	\item $\forall i \in [1..3], V^T_{SG}(E_i) = [t_0, t_\infty)$,
-	\item $\forall i \in [4..6], V^T_{SG}(E_i) = [t_0, t_1)$,
-	\item $\forall i \in [7..9], V^T_{SG}(E_i) = [t_1, t_2)$,
-	\item \item $\forall i \in [9..12], V^T_{SG}(E_i) = [t_2, t_\infty)$
-\end{condItemize}
 
-\begin{condItemize}
-	\item $\forall i \in {1, 2, 3}, Z^T_{SG}(E_i, t_2) = E_i$,
-	\item $\forall i \in {4, 7, 10}, Z^T_{SG}(E_i, t_2) = E_10$,
-	\item $\forall i \in {5, 8, 11}, Z^T_{SG}(E_i, t_1) = E_8$,
-	\item $\forall i \in {6, 9, 12}, Z^T_{SG}(E_i, t_0) = E_6$,
-\end{condItemize}
+
+
+
+
+
+%\begin{condItemize}
+%	\item $\forall i \in [1..3], V^T_{SG}(E_i) = [t_0, t_\infty)$,
+%	\item $\forall i \in [4..6], V^T_{SG}(E_i) = [t_0, t_1)$,
+%	\item $\forall i \in [7..9], V^T_{SG}(E_i) = [t_1, t_2)$,
+%	\item $\forall i \in [9..12], V^T_{SG}(E_i) = [t_2, t_\infty)$
+%\end{condItemize}
+%
+%\begin{condItemize}
+%	\item $\forall i \in {1, 2, 3}, Z^T_{SG}(E_i, t_2) = E_i$,
+%	\item $\forall i \in {4, 7, 10}, Z^T_{SG}(E_i, t_2) = E_10$,
+%	\item $\forall i \in {5, 8, 11}, Z^T_{SG}(E_i, t_1) = E_8$,
+%	\item $\forall i \in {6, 9, 12}, Z^T_{SG}(E_i, t_0) = E_6$,
+%\end{condItemize}
 
 \paragraph{Description of \pmb{$R_{P_{SG}}$}}
 
