@@ -210,6 +210,24 @@
 		\setlength\itemsep{-0.3em}
 	}
 	{\end{itemize}}
+	
+	
+	
+	
+	
+	
+	
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+  \ifmmode%
+    \old@comma\discretionary{}{}{}%
+  \else%
+    \old@comma%
+  \fi%
+}
+\makeatother
 
 
 

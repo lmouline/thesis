@@ -184,20 +184,27 @@ Following the same principle, the upper bound of the interval correspond to the 
 Formally, $\forall d \in D \rightarrow E_{A_P}(d) = [l,u)$, where $l = \displaystyle \min_{a \in A_d} \{E_{A_P}(a)[start]\}$ and $u = \displaystyle \max_{a \in A_d} \{E_{A_P}(a)[end]\}$.
 
 \paragraph{Sum up}
-Knowledge of an adaptive system can be formalism with a temporal graph such as $K = (N, E, V^T, Z^T, R_P, A_P)$, wherein:
+Knowledge of an adaptive system can be formalism with a temporal graph such as $K = (N, E, V^T, Z^T, R_P, A_P, D)$, wherein:
 \begin{condItemize}
 	\item $N$ is a set of nodes to represent the different information (context, actions and requirements)
 	\item $E$ is a set of edges with connect the different nodes,
 	\item $V^T$ is a temporal relation which defines the temporal validity of each elements,
 	\item $Z^T$ is a relation to track the history of each knowledge elements,
 	\item $R_P$ is a relation that define the different requirements processes,
-	\item $A_P$ is a relation that define the different action processes.
+	\item $A_P$ is a relation that define the different action processes,
+	\item $D$ is a set of action processes that result from a same decision.
 \end{condItemize}
 
 In the next section, we exemplify this formalism over our case study.
 
 
 \subsection{Application on the use case}
+\begin{figure}
+	\centering
+	\caption{TODO: add caption}
+	\label{fig:tkm:contextFormExample}
+\end{figure}
+
 
 The example presented in Section~\ref{sec:intro:use-case} contain too much detail to provide a readable and understandable example of the formalism.
 Below, an excerpt of it is thus presented in order to overcome this problem.
@@ -206,9 +213,60 @@ The context contains only one kind of element: smart meters.
 Among the different requirements of a smart grid, one is to minimize the number of disconnected customers (smart meters).
 To do so, only two actions are considered: open and close fuses.
 
-Let $K_{SG}$ be the temporal graph that represents this knowledge: $K_{SG} = (N_{SG}, E_{SG}, V^T_{SG}, Z^T_{SG}, R_{P_{SG}}, A_{P_{SG}})$.
+Let $K_{SG}$ be the temporal graph that represents this knowledge: $K_{SG} = (N_{SG}, E_{SG}, V^T_{SG}, Z^T_{SG}, R_{P_{SG}}, A_{P_{SG}}. D_{SG})$.
 
-\paragraph{Exemplification of $N_{SG}$}
+\paragraph{Scenario}
+The system starts at $t_0$ with the actions and the requirements.
+
+\paragraph{Description of \pmb{$N_{SG}$}}
+
+$N_{SG}$ is divided into three subset: $C_{SG}$, $R_{SG}$ and $A_{SG}$.
+$R_{SG}$ contains one node, $R_1$ in Figure~\ref{fig:tkm:contextFormExample}, $A_{SG}$ two nodes, $A_1$ and $A_2$ in Figure~\ref{fig:tkm:contextFormExample}.
+Regarding the context, there is three nodes to represent the three smart meters ($M_1$, $M_2$, and $M_3$) and the data concentrator ($D_1$).
+All these nodes are created at $t_0$ and never modified.
+Thus, their validity period starts at $t_0$ and never ends: $\forall n \in A_{SG} \cup R_{SG} \cup \{M_1, M_2, M_3, D_1\}, V^T_{SG}(n) = [t_0, t_\infty)$.
+In addition, there is a node for each consumption measurement perform by the meters: $V_i$, $i \in [1..9]$ in Figure~\ref{fig:tkm:contextFormExample}.
+As the values at $t_1$ and $t_2$ replaced the values previously , we have the following  
+
+$C_{SG} = \{M_1, M_2, M_3, D_1, V_1, V_2, V_3, V_4, V_5, V_6, V_7, V_8, V_9\}$\\
+$A_{SG} = \{A_1, A_2\}$\\
+$R_{SG} = \{R_1\}$
+
+\begin{condItemize}
+	\item $\forall i \in [1..3], V^T_{SG}(V_i) = [t_0, t_1)$,
+	\item $\forall i \in [4..6], V^T_{SG}(V_i) = [t_1, t_2)$,
+	\item $\forall i \in [7..9], V^T_{SG}(V_i) = [t_2, t_\infty)$,
+\end{condItemize}
+
+\begin{condItemize}
+	\item $\forall i \in {1, 4, 7}, Z^T_{SG}(V_i, t_2) = V_7$,
+	\item $\forall i \in {2, 5, 8}, Z^T_{SG}(V_i, t_1) = V_5$,
+	\item $\forall i \in {3, 6, 9}, Z^T_{SG}(V_i, t_0) = V_3$,
+\end{condItemize}
+
+\paragraph{Description of \pmb{$E_{SG}$} }
+
+$E_{SG} = \{ E_1, E_2, E_3, E_4, E_5, E_6, E_7, E_8, E_9, E_10, E_11, E_12\}$
+
+\begin{condItemize}
+	\item $\forall i \in [1..3], V^T_{SG}(E_i) = [t_0, t_\infty)$,
+	\item $\forall i \in [4..6], V^T_{SG}(E_i) = [t_0, t_1)$,
+	\item $\forall i \in [7..9], V^T_{SG}(E_i) = [t_1, t_2)$,
+	\item \item $\forall i \in [9..12], V^T_{SG}(E_i) = [t_2, t_\infty)$
+\end{condItemize}
+
+\begin{condItemize}
+	\item $\forall i \in {1, 2, 3}, Z^T_{SG}(E_i, t_2) = E_i$,
+	\item $\forall i \in {4, 7, 10}, Z^T_{SG}(E_i, t_2) = E_10$,
+	\item $\forall i \in {5, 8, 11}, Z^T_{SG}(E_i, t_1) = E_8$,
+	\item $\forall i \in {6, 9, 12}, Z^T_{SG}(E_i, t_0) = E_6$,
+\end{condItemize}
+
+\paragraph{Description of \pmb{$R_{P_{SG}}$}}
+
+\paragraph{Description of \pmb{$A_{P_{SG}}$}}
+
+\paragraph{Description of \pmb{$D_{SG}$}}
 
 
 
