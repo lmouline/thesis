@@ -437,7 +437,7 @@ This method is the implementation of the relation $\mathcal{Z}^T$ described in o
 
 \begin{figure*}[t]
 	\begin{center}
-	\includegraphics[width=.8\linewidth]{img/chapt-tkm/mm/knowledge-mm}
+	\includegraphics[width=.9\linewidth]{img/chapt-tkm/mm/knowledge-mm}
 	\caption{Excerpt of the knowledge metamodel}
 	\label{fig:knowledge-mm}
 	\end{center} 
@@ -452,7 +452,7 @@ As all the elements inherit from the \textit{TimedElement}, we can capture the t
 \subsection{Context metamodel}
 \begin{figure*}
   \begin{center}
-      \includegraphics[width=.65\linewidth]{img/chapt-tkm/mm/contextModel}
+      \includegraphics[width=.8\linewidth]{img/chapt-tkm/mm/contextModel}
       \caption{Excerpt of the context metamodel}
       \label{fig:context-model}
   \end{center}	
@@ -469,7 +469,7 @@ Similarly, the uncertainty class can be extended to represent the different kind
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{img/chapt-tkm/mm/requirementModel}
+	\includegraphics[width=0.7\linewidth]{img/chapt-tkm/mm/requirementModel}
 	\caption{Requirement metamodel}
 	\label{fig:requirement-model}
 \end{figure}
@@ -485,13 +485,6 @@ In our guidance example, the requirement model may contain a \textbf{balanced re
 \subsection{Action metamodel}
 \label{sec:action-mm}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{img/chapt-tkm/mm/actionModel}
-	\caption{Excerpt of the action metamodel}
-	\label{fig:action-mm}
-\end{figure}
-
 Similar to the requirements metamodel, the actions metamodel also abstracts main concepts shared among existing solutions to describe adaptation processes and how they are linked to the context. Figure~\ref{fig:action-mm} depicts an excerpt of the action metamodel.
 We define a strategy as a set of tactics (\textit{Strategy}).
 A tactic contains a set of actions (\textit{Action}).
@@ -506,6 +499,13 @@ An execution has \textit{start} and \textit{end} time. Not to confuse with the \
 
 Similarly to requirement models, it is possible to automatically infer design elements of action models by statically analyzing actions specification.
 Since acquiring information about tactics and actions executions happens at runtime, one way to achieve this is by intercepting calls to actions executions and updating the appropriate action model elements accordingly. This is out of the scope of this paper and planned for future work.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{img/chapt-tkm/mm/actionModel}
+	\caption{Excerpt of the action metamodel}
+	\label{fig:action-mm}
+\end{figure}
  
  
 
