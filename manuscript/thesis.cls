@@ -145,7 +145,7 @@
 	\pagenumbering{roman}
 	
 	\ifIFglossary
-		\printglossary[type=\acronymtype]
+		\printglossary[type=\acronymtype, title={Abbreviations}]
 		\cleardoublepage
 		\printglossary[type=main]
 	\fi
