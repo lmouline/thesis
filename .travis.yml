@@ -6,19 +6,9 @@ branches:
   only:
   - master
 
-# before_install:
-# #  - sudo apt-get install python-pygments
-#   - sudo apt-get install texlive-full
-
 install:
-#  - source ./manuscript/texlive/texlive_install.sh
-  - sudo apt-get install texlive-full
+  - sudo apt-get install texlive
  
-# cache:
-#   directories:
-#     - /tmp/texlive
-#     - $HOME/.texlive
-
 before_script: 
   - cd $TRAVIS_BUILD_DIR/manuscript
   - chmod +x build.sh
@@ -27,7 +17,7 @@ before_script:
 script:
   - ./build.sh
   - cd build
-  - shopt -s extglob
+  - shopt -s extglob #used to allow the ! expression/command
   - rm !(main.pdf)
 
 deploy:
