@@ -73,7 +73,7 @@
 \fi
 
 \ifIFglossary
-	\RequirePackage[toc, style=treenoname, subentrycounter]{glossaries}
+	\RequirePackage[toc, style=treenoname, subentrycounter, acronym]{glossaries}
 	\makeglossaries
 \fi
 
@@ -145,7 +145,9 @@
 	\pagenumbering{roman}
 	
 	\ifIFglossary
-		\printglossaries
+		\printglossary[type=\acronymtype]
+		\cleardoublepage
+		\printglossary[type=main]
 	\fi
 	
 	\bibliography{bib}

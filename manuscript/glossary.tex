@@ -34,6 +34,35 @@
 	description={A set of \glspl{action} taken after comparing the state of the \gls{knowledge} with the \gls{requirement}}
 }
 
+\newglossaryentry{metamodel}
+{
+	name={metamodel},
+	description={
+% todo: check :
+% https://www.sciencedirect.com/science/article/pii/S1477842415000408
+% http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.106.9720&rep=rep1&type=pdf
+% https://www.cs.kent.ac.uk/projects/kmf/Documents/ifm02paper.pdf
+% https://www.researchgate.net/profile/Ed_Seidewitz/publication/3248044_What_models_mean/links/06187482fdd792dc482d00f7/What-models-mean.pdf
+Through this thesis, I use the definition of Seidewitz: \textquote{A metamodel is a specification model for a class of [system  under  study] where each [system  under  study] in the class is it-self a valid model expressed in a certain modeling  language.}~\cite{DBLP:journals/software/Seidewitz03}
+	}
+}
+
+\newglossaryentry{mapekg}
+{
+	name={MAPE-k},
+    description={A theoretical model of the adaptation process proposed by Kephart and Chess~\cite{DBLP:journals/computer/KephartC03}. It divides the process in four stages: monitoring, analysing, planning and executing. These four stages share a \gls{knowledge}}
+}
+
+%%% define the acronym and use the see= option
+\newglossaryentry{mapek}
+{
+	type=\acronymtype, 
+	name={MAPE-k}, 
+	description={Monitor, Analyze, Plan, and Execute over knowledge}, 
+	first={Monitor, Analyze, Plan, and Execute over knowledge (MAPE-k)\glsadd{mapekg}}, 
+	see=[Glossary:]{mapekg}
+}
+
 
 
 

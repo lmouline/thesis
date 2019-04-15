@@ -12,8 +12,8 @@ We validate our approach through a use case based on the smart grid at Luxembour
  \section{Introduction}
  
 should define: decision, action, context, knowledge
- 
- \section{Knowledge formalization}
+
+\section{Knowledge formalization}
  
   As discussed previously, I consider \gls{knowledge} to be the association of \gls{context} information, \glspl{requirement}, and \gls{action} information, all in one global and unified model.
  While \gls{context} information captures the state of the system environment and its surroundings, the system \glspl{requirement} define the constraints that the system should satisfy along the way. 
@@ -413,25 +413,31 @@ As the decision contains information about the circumstances and the impact, one
 
  
  
- 
  \section{Modeling the knowledge}
  
- In order to simplify the diagnosis of adaptive systems, this thesis proposes a novel metamodel that combines, what I call, design elements and runtime elements.
-Design elements abstract the different elements involved in knowledge information to assist the specification of the adaptation process.
+ In order to simplify the diagnosis of adaptive systems, this thesis proposes a novel \gls{metamodel} that combines, what I call, design elements and runtime elements.
+Design elements abstract the different elements involved in \gls{knowledge} information to assist the specification of the adaptation process.
 Runtime elements instead, represent the data collected by the adaptation process during its execution.
 In order to maintain the consistency between previous design elements and newly created ones, instances of design elements (\eg actions) can be either added or removed.
 Modifying these elements would consist in removing existing elements and creating new ones.
 Combining design elements and runtime elements in the same model helps not only to acquire the evolution of system but also the evolution of its structure and specification (e.g. evolution of the requirements of the system).
-Design time elements are depicted in gray in the Figures~\ref{fig:knowledge-mm}--~\ref{fig:action-mm}. Note that, in this paper, we do not address how runtime information is collected.
+Design time elements are depicted in gray in the Figures~\ref{fig:knowledge-mm}--~\ref{fig:action-mm}.
+Note that, this thesis does not address how runtime information is collected.
 
-For the sake of modularity, the metamodel has been split into four packages.
-First, we describe the Knowledge (core) package. 
-Then, we introduce in more details the other three packages used by the knowledge package: Context, Requirement, and Action. 
-We assume that all the classes in the different packages extend a \textit{TimedElement} class. 
-This class contains three methods: \textit{startTime}, \textit{endTime} and \textit{modificationsTime}.
-The first two methods allow accessing the validity interval bounds defined by the previously discussed $\mathcal{V}^T$ relation.
+For the sake of modularity, the \gls{metamodel} has been split into four packages: Knowledge, Context, Requirement and Action.
+All the classes of these packages have a common parent class that adds the temporality dimention: \textit{TimedElement} class.
+Before describing the Knowledge (core) package, I detail this element.
+Then, I introduce in more details the other three packages used by the Knowledge package: Context, Requirement, and Action. 
+In below sections, I use "\textit{Package::Class}" notation to refer to the provenance of a class.
+If the package is omitted, then the provenance package is this one described by the figure or text.
+
+\subsection{Parent element: \textit{TimedElement} class}
+I assume that all the classes in the different packages extend a \textit{TimedElement} class. 
+This class contains three methods: \textit{startTime}, \textit{endTime}, and \textit{modificationsTime}.
+The first two methods allow accessing the validity interval bounds defined by the previously discussed $V^T$ relation.
 The last method resolves all the timestamps at which an element has been modified: its history. 
-This method is the implementation of the relation $\mathcal{Z}^T$ described in our formalism (cf. Section~\ref{sec:tkm:formalism}).
+This method is the implementation of the relation $Z^T$ described in our formalism (cf. Section~\ref{sec:tkm:formalism}).
+
 
 \subsection{Knowledge metamodel}
 
@@ -443,9 +449,20 @@ This method is the implementation of the relation $\mathcal{Z}^T$ described in o
 	\end{center} 
 \end{figure*}
 
-In order to enable interactive diagnosis of adaptive systems, we claim that traceability links between the decisions made and their circumstances should be organized in a well-structured representation.  In what follows, we introduce the knowledge metamodel. It describes how decisions are linked to the goals and the context (input and impact). Figure~\ref{fig:knowledge-mm} depicts this metamodel. We use "\textit{Package::Class}" notation to refer to the provenance of a class, in case it belongs to another package.\looseness=-1 
+In order to enable interactive diagnosis of adaptive systems, traceability links between the decisions made and their circumstances should be organized in a well-structured representation. % todo still correct according to the global blabla
+In what follows, I introduce how the knowledge \gls{metamodel} helps to describe decisions, which are linked to their  goals and their context (input and impact). 
+Figure~\ref{fig:knowledge-mm} depicts this \gls{metamodel}.
 
-Knowledge is composed of a \textit{context}, a set of \textit{requirements}, a set of \textit{strategies}, and a set of \textit{decisions}.  A decision can be seen as the output of the Analyze and Plan steps in the MAPE-k loop. Decisions comprise target \textit{goals} and trigger the execution of one \textit{tactic} or more.  A decision has an \textit{input} context and an \textit{impacted} context.  The context impacted by a decision  (\textit{Decision.impacted}) is a derived relationship computed by aggregating the impacts of all actions belonging to a decision (see Fig.~\ref{fig:action-mm}).  Likewise, the \textit{input} relationship is derived and can be computed similarly. In the smart grid example, a decision can be formulated (in plain English) as follows: since the district D is almost overloaded (\textit{input context}), we reduce the amps limit of greedy consumers using the ``\textit{reduce amps limit}" \textit{action} in order to reduce the load on the cable of the district (\textit{impact}) and satisfy the ``\textit{no overload}" policy (\textit{requirement}).
+Knowledge package is composed of a \textit{\gls{context}}, a set of \textit{\glspl{requirement}}, a set of \textit{strategies}, and a set of \textit{\glspl{decision}}.
+A decision can be seen as the output of the Analyze and Plan steps in the \gls{mapek} loop.
+
+\gls{mapek} is fun!
+
+Decisions comprise target \textit{goals} and trigger the execution of one \textit{tactic} or more.  
+A decision has an \textit{input} context and an \textit{impacted} context.
+The context impacted by a decision  (\textit{Decision.impacted}) is a derived relationship computed by aggregating the impacts of all actions belonging to a decision (see Fig.~\ref{fig:action-mm}).
+Likewise, the \textit{input} relationship is derived and can be computed similarly. 
+In the smart grid example, a decision can be formulated (in plain English) as follows: since the district D is almost overloaded (\textit{input context}), we reduce the amps limit of greedy consumers using the ``\textit{reduce amps limit}" \textit{action} in order to reduce the load on the cable of the district (\textit{impact}) and satisfy the ``\textit{no overload}" policy (\textit{requirement}).
 
 As all the elements inherit from the \textit{TimedElement}, we can capture the time at which a given decision and its subsequent actions were executed, and when their impact materialized, \ie measured. Thanks to this metamodel representation, we can apprehend the possible causes behind malicious behavior by navigating from the context values to the decisions that have impacted its value (\textit{Property.expected.impact}) and the goals it was trying to reach (\textit{Decision.goals}). In Section~\ref{subsec:tuto}, we present an example of interactive diagnosis queries applied to the smart grid use case.
 
