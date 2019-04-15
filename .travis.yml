@@ -10,10 +10,10 @@ before_install:
 install:
  - source ./manuscript/texlive/texlive_install.sh
  
-cache:
-  directories:
-    - /tmp/texlive
-    - $HOME/.texlive
+# cache:
+#   directories:
+#     - /tmp/texlive
+#     - $HOME/.texlive
 
 before_script: 
   - cd $TRAVIS_BUILD_DIR/manuscript
