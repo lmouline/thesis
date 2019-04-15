@@ -175,7 +175,7 @@ While the source of relations in $D$ represents the state before the execution o
 Its intent is \textbf{to trace back impacts of actions execution to the decisions they originated from}.  
 
 A decision present in ${D}$ is defined as a set of executed actions, \ie a subset of ${A_P}$.
-Formally, ${D} = \{\ {A_D}~|~{A_D}  \subseteq A\}$.
+Formally, ${D} = \{\ {A_D \cup R_D}~|~{A_D}  \subseteq A_P, R_D \subseteq R_P\}$.
 We assume that each action should result from one decision: $\forall a \in {A}, \forall d1, d2 \in {D}~|~a \in d1 \wedge a \in d2 \rightarrow d1 = d2$.
 
 The temporal function $E_{A_P}$ is extended to decision in order to represent the execution time: $E_{A_P}: (A \cup D) \rightarrow I$.
@@ -294,7 +294,7 @@ From these validity period, the $Z^T_{SG}$ can be used to navigate to the differ
 Let's continue with the same example, $C_2$.
 In order to get the evolution of the consumption value $C_2$, given the initial one, one will use the $Z^T_{SG}$ relation:
 \begin{condItemize}
-	\item $Z^T_{SG}(V_2, t_{s1}) = V_2$, where $0 \leqslant t_{s1} < t_1$
+	\item $Z^T_{SG}(V_2, t_{s1}) = V_2$, where $t_0 \leqslant t_{s1} < t_1$
 	\item $Z^T_{SG}(V_2, t_{s2}) = V_5$, where $t_1 \leqslant t_{s2} < t_2$
 	\item $Z^T_{SG}(V_2, t_{s3}) = V_8$, where $t_2 \leqslant t_{s3} < t_\infty$.
 \end{condItemize}
@@ -355,37 +355,61 @@ The validity relation, applied on these edges, thus returns:
 	\item $V^T_{SG}(E_{11}) = [t_1, t_2) = V^T_{SG}(V_5)$,
 	\item $V^T_{SG}(E_{14}) = [t_2, t_\infty) = V^T_{SG}(V_8)$,
 \end{condItemize}
+
 These validity periods are depicted in Figure~\ref{fig:tkm:validityC2Edges}.
+As they are driven by those of consumption values ($V_2$, $V_5$, and $V_8$), they are equals.
 
+As for nodes, the $Z^T_{SG}$ relation can navigate over time through these values.
+For example, to get the history of the edges between the consumption value $C_2$ and the meter represented by $M_2$, one can apply the $Z^T_{SG}$ relation as following:
+\begin{condItemize}
+	\item $Z^T_{SG}(E_8, t_{s1}) = E_8$, where $t_0 \leqslant t_{s1} < t_1$,
+	\item $Z^T_{SG}(E_8, t_{s2}) = E_8$, where $t_1 \leqslant t_{s1} < t_2$,
+	\item $Z^T_{SG}(E_8, t_{s3}) = E_8$, where $t_2 \leqslant t_{s1} < t_\infty$.
+\end{condItemize}
 
-
-
-
-
-
-
-
-%\begin{condItemize}
-%	\item $\forall i \in [1..3], V^T_{SG}(E_i) = [t_0, t_\infty)$,
-%	\item $\forall i \in [4..6], V^T_{SG}(E_i) = [t_0, t_1)$,
-%	\item $\forall i \in [7..9], V^T_{SG}(E_i) = [t_1, t_2)$,
-%	\item $\forall i \in [9..12], V^T_{SG}(E_i) = [t_2, t_\infty)$
-%\end{condItemize}
-%
-%\begin{condItemize}
-%	\item $\forall i \in {1, 2, 3}, Z^T_{SG}(E_i, t_2) = E_i$,
-%	\item $\forall i \in {4, 7, 10}, Z^T_{SG}(E_i, t_2) = E_10$,
-%	\item $\forall i \in {5, 8, 11}, Z^T_{SG}(E_i, t_1) = E_8$,
-%	\item $\forall i \in {6, 9, 12}, Z^T_{SG}(E_i, t_0) = E_6$,
-%\end{condItemize}
 
 \paragraph{Description of \pmb{$R_{P_{SG}}$}}
+The requirement calls for minimizing overloads.
+It means that when the system detects at least one overload, for example in cables, it will take counter actions.
+As the system has prediction capabilities, it will not only check is there is one at the current time $t$ but also if one will come in the next hour.
+The pattern will be defined as follow: $P_{[t, t+15min]}$.
+To determine if there is an overload, the system needs to know: the current and future consumption, the current and future topology.
+The last one is used to compute the loads from the consumption (cf. Section~\ref{sec:intro:use-case}).
+
+Let's consider that time points are regular and there is one every 15 minutes and that current time is $t_0$.
+The pattern, $P_{[t_0, t_1]}$, will thus contain all nodes that are valid between $t_0$ and $t_1$ (included):
+\begin{condItemize}
+	\item all topology nodes between: $\{S_1, C_1, F_1, F_2, D_{C_1}, M_1, M_2, M_3\}$
+	\item all consumption values between: $\{V_i \mid i \in [1..6]\}$,
+	\item all edges that connected these nodes: $\{E_i \mid i \in [1..13]\}$
+\end{condItemize}
+
+From these values, the loads is computed and the system checks that none will exceed the capacity of the infrastructure (cables, substations, cabinets).
 
 \paragraph{Description of \pmb{$A_{P_{SG}}$}}
+Now, let us assume that the execution of $R_{P_{SG}}$ detects an overload on the cable ($C_1$) at $t_0$.
+The system decides to reduce the amps limits, and thus the load, on the three meters.
+The action $A_1$ (decreasing amps limits) is thus executed three times: one time per meter.
+For each of these action, the input context will correspond to the pattern used by the requirement relation: $P_{[t_0, t_1]}$.
+The output context will contain the predicted values after the actions have been executed.
+Here, the actions are executed in parallel and their execution time is in seconds.
+So the impact will be visible from $t_1$.
+So the output pattern contain the three values at $t_1$:  $P_{[t_1, t_1]}$.
+In summary:
+\begin{condItemize}
+	\item Action 1: $A_{P_1}: P_{[t_0, t_1]} \rightarrow P_{[t_1, t_1]}$,
+	\item Action 1: $A_{P_2}: P_{[t_0, t_1]} \rightarrow P_{[t_1, t_1]}$,
+	\item Action 1: $A_{P_3}: P_{[t_0, t_1]} \rightarrow P_{[t_1, t_1]}$.
+\end{condItemize}
+
 
 \paragraph{Description of \pmb{$D_{SG}$}}
+Following the scenario, there is one decision, $D_{SG_1}$, which try to achieve the requirement $R_1$ by executing the actions $A_1$: $A_{P_1}$, $A_{P_2}$, and $A_{P_3}$.
+Then, here the decision is equals to: $D_{SG_1} = \{R_1, A_{P_1}, A_{P_2}, A_{P_3}\}$.
 
-
+\paragraph{Summrarize}
+Through this section, I explifyed how the formalism can be used to define an adaptation decision on a smart grid system.
+As the decision contains information about the circumstances and the impact, one may use it to debug the process and/or try to explain the behavior of such systems.
 
  
  
