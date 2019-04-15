@@ -1,14 +1,18 @@
+dist: xenial
+
 language: generic
 
 branches:
   only:
   - master
 
-before_install:
- - sudo apt-get install python-pygments
+# before_install:
+# #  - sudo apt-get install python-pygments
+#   - sudo apt-get install texlive-full
 
 install:
- - source ./manuscript/texlive/texlive_install.sh
+#  - source ./manuscript/texlive/texlive_install.sh
+  - sudo apt-get install texlive-full
  
 # cache:
 #   directories:
