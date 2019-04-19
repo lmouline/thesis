@@ -184,6 +184,7 @@
 \newcommand{\etc}[0]{\textit{etc.}}
 \newcommand{\cf}[0]{\textit{cf. }}
 \newcommand{\eg}[0]{\textit{e.g., }}
+\newcommand{\etal}[0]{\textit{et al., }}
 
 \newcommand{\paragraphit}[1]{\noindent\textit{#1}~~}
 
