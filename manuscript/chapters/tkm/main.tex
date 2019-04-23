@@ -1,27 +1,12 @@
 \chapter[TKM: a temporal knowledge model]{TKM: a temporal knowledge model to represent actions, their contexts and their impacts}
 \chapterPage{
-%% SAC
-%Distributed adaptive systems are composed of federated entities offering remote inspection and reconfiguration abilities. 
-%This is often realized using a MAPE-K loop, which constantly evaluates system and environmental parameters and derives corrective actions if necessary. 
-%The OpenStack Watcher project uses such a loop to implement resource optimization services for multi-tenant clouds.
-%To ensure a timely reaction in the event of failures, the MAPE-K loop is executed with a high frequency.
-%A major drawback of such reactivity is that many actions, e.g., the migration of containers in the cloud, take more time to be effective and their effects to be measurable than the MAPE-k loop execution frequency. 
-%Unfinished actions as well as their expected effects over time are not taken into consideration in MAPE-K loop processes, leading upcoming analysis phases potentially take sub-optimal actions. 
-%In this paper, we propose an extended context representation for MAPE-K loop that integrates the history of planned actions as well as their expected effects over time into the context representations.
-%This information can then be used during the upcoming analysis and planning phases to compare measured and expected context metrics. We demonstrate on a cloud elasticity manager case study that such temporal action-aware context leads to improved reasoners while still be highly scalable.
-%% ICAC
-%The evolving complexity of adaptive systems impairs our ability to deliver anomaly-free solutions. 
-%Fixing these systems require a deep understanding on the reasons behind decisions which led to faulty or suboptimal system states. 
-%Developers thus need diagnosis support that trace system states to the previous circumstances –targeted requirements, input context– that had resulted in these decisions. 
-%However, the lack of efficient temporal representation limits the tracing ability of current approaches. 
-%To tackle this problem, we first propose a knowledge formalism to define the concept of a decision. 
-%Second, we describe a novel temporal data model to represent, store and query decisions as well as their relationship with the knowledge (context, require- ments, and actions). 
-%We validate our approach through a use case based on the smart grid at Luxembourg. We also demonstrate its scalability both in terms of execution time and consumed memory.
-%
-%
-% Context
-% Challenge
-% COntribution
+Adaptation processes are executed with a high frequency to react to any incidents whereas the execution of their decisions is constrained by the executions of delayed actions.
+We identified two problems that result from these different paces.
+First, unfinished actions, together with their expected effects, over time are not considered, leading upcoming analysis phases potentially make suboptimal decisions.
+Second, explanation of the adaptation process remains challenging due to the lack of tracing ability of current approaches.
+To tackle this problem, we first propose a knowledge formalism to define the concept of a decision. 
+Second, we describe a novel temporal knowledge model to represent, store and query decisions as well as their relationship with the knowledge (context, requirements, and actions).
+We validate our approach through a use case based on the smart grid at Luxembourg. We also demonstrate its scalability both in terms of execution time and consumed memory.
  }
  
  \input{chapters/tkm/introduction}
