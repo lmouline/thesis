@@ -11,7 +11,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{amssymb}
 \RequirePackage[caption=false,font=footnotesize]{subfig}
-
+\RequirePackage{enumitem}
 
 %%% Class options %%%%%
 %
@@ -109,7 +109,9 @@
 	  \filright}
 	  [\vspace{2ex}%
 	  \titlerule]
-
+	  
+%%% Remove spaces for item list %%%%%
+\setlist[itemize]{noitemsep, nolistsep}
 
 
 %%% Customized commands %%%%%
@@ -208,17 +210,7 @@
     \fi%
 ]}}
 
-\newenvironment{condItemize}[0]
-	{
-		\begin{itemize}
-		\vspace{-0.5em}
-		\setlength\itemsep{-0.3em}
-	}
-	{\end{itemize}}
-	
-	
-	
-	
+
 	
 	
 	
