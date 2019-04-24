@@ -28,22 +28,19 @@ We conclude this chapter in Section~\ref{sec:tkm:conclusion}.
 
 \subsection{Motivation}
 
-\subsection{Delayed action}
+\subsubsection{Delayed action}
 
 In this section we will motivate the need to reason over delayed actions.
-To do so, we will first give four examples of these actions in Section~\ref{sec:tkm:intro:motivation:dact:examples}.
-Section~\ref{sec:tkm:intro:motivation:dact:consider-effects} detail why the effects of actions should be considered.
-In Section~\ref{sec:tkm:intro:motivation:dact:conclu} we summarise and motivate the need for incorporating actions and their effect in the knowledge. 
+To do so, we will first give four examples of these actions in.
+Then we detail why the effects of actions should be considered.
+Finally, we summarize and motivate the need for incorporating actions and their effect in the knowledge. 
 
-\subsubsection{Delayed action examples}
-\label{sec:tkm:intro:motivation:dact:examples}
-
-%% Show the existence of delayed actions
+\paragraph{Delayed action examples}
 Until here, we claim that adaptation process should handle delayed actions.
 In order to show their existence, we will give four different examples: two from our use case, one from cloud infrastructures and one from smart homes.
 From our understanding, three phenomena can explain this delay: the time to execute the action (\cf Example 1), the time for the system to handle the new configuration (\cf Example 3) and the inertia of the measured element (\cf Example 2 and 4).
 
-\paragraph{Example 1: Modification of fuse states in smart grids}
+\subparagraph{Example 1: Modification of fuse states in smart grids}
 Even if the Luxembourg power grid is moving to an autonomous one, not all the elements can be remotely controlled.
 One example is the fuses, they still need to me open or close by a human.
 In this document, open and close actions in the smart grid imply technicians who are contacted, drive to fuses places and manually change fuse states.
@@ -54,7 +51,7 @@ Before the incident will be marked as resolved, $15min * 3 = 45min$.
 The incidents will be seen as resolved by the adaptation process at 4:45p.m.
 In summary, the delay of the action is due to the execution time that is not immediate.
 
-\paragraph[Example 2: Reduction of amps limits in smart grids]{Example 2: Reduction of amps limit in smart grids\footnote{This example is based on randomly generated data. As this action is not yet available on the Luxembourg smart grid, we miss real data. However, it reflects an hypothesis shared with our partner.}}
+\subparagraph[Example 2: Reduction of amps limits in smart grids]{Example 2: Reduction of amps limit in smart grids\footnote{This example is based on randomly generated data. As this action is not yet available on the Luxembourg smart grid, we miss real data. However, it reflects an hypothesis shared with our partner.}}
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{img/chapt-tkm/intro/long-action-amps-limit}
@@ -86,7 +83,7 @@ It should wait around 30min ($t_{45} - t_{15}$) for this.
 
 In summary, the delay of this action can be explained by the inertia in the consumption measurement.
 
-\paragraph{Example 3: Switching off a machine from a load balancer}
+\subparagraph{Example 3: Switching off a machine from a load balancer}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{img/chapt-tkm/intro/load-balencer}
@@ -107,7 +104,7 @@ This explain why the throughout is progressively decreasing to 0 and there is a 
 
 This example shows a delayed action due to the time required by the system to handle the new configuration.
 
-\paragraph{Example 4: Modifying home temperature through a smart home system}
+\subparagraph{Example 4: Modifying home temperature through a smart home system}
 Smart home systems have been implemented in order to remotely manage a house or to automatically perform routines.
 For example, it allows users to close or open blinds from their smartphones from anyplace, even outside the house.
 The temperature can be automatically manage by such systems, for example given targeted temperature at precise time.
@@ -120,9 +117,7 @@ Through these four examples, we show that delayed actions can be found in differ
 However, not only knowing that an action is running is important but also knowing its expecting effect.
 We detail this point in the next section.
 
-\subsubsection{The need to consider effects}
-\label{sec:tkm:intro:motivation:dact:consider-effects}
-
+\paragraph{The need to consider effects}
 In the previous section we show the existence of delayed actions.
 One may argue that action status is already integrated in the knowledge.
 For example, the OpenStack Watcher framework stores them in a data base~\footnote{\url{https://docs.openstack.org/watcher/latest/glossary.html\#watcher-database-definition}}, accessible through an API.
@@ -143,9 +138,7 @@ With these informations, the system can either wait the end of the resolution of
 Applying the first strategy may make the resolution of the second incident late, whereas the second one may generate suboptimal sequence of actions.
 For example, the second modifications may undo what have been done before or both actions may be conflicting.
 
-\subsubsection{Conclusion}
-\label{sec:tkm:intro:motivation:dact:conslusion}
-
+\paragraph{Conclusion}
 Actions, like fuse modification in a smart grid or removing a server from a load balancer, generated during by adaptation proecess could take time upon completion. 
 Moreover, the expected effects resulting from such action is reflected in the context representation only after a certain delay. 
 One used workaround is the selection, often empirically, of an optimistic time interval between two iterations of the MAPE-K loop such that this interval is bigger than the longest action execution time.
