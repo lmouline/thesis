@@ -5,7 +5,8 @@
 %%% Package dependencies %%%%%
 \RequirePackage{xcolor}
 \RequirePackage{xifthen}
-\RequirePackage[colorlinks, backref=page]{hyperref}
+\RequirePackage[backref=true, style=trad-alpha]{biblatex}
+\RequirePackage[colorlinks]{hyperref}
 \RequirePackage{indentfirst}
 \RequirePackage{doi}
 \RequirePackage{graphicx}
@@ -152,9 +153,10 @@
 		\printglossary[type=main]
 	\fi
 	
-	\bibliography{bib}
-    \bibliographystyle{alphaurl}
-    \addcontentsline{toc}{chapter}{Bibliography}
+%  \bibliography{bib}
+%  \bibliographystyle{alphaurl}
+%  \addcontentsline{toc}{chapter}{Bibliography}
+	\printbibliography
 }
 
 \renewcommand{\contentsname}{Table of Contents}
@@ -202,13 +204,13 @@
 	\textcolor{red}{{\em TODO}: \bf #1}
 }
 
-\renewcommand*{\backref}[1]{}
-\renewcommand*{\backrefalt}[4]{{\footnotesize [%
-    \ifcase #1 Not cited.%
-    \or Cited on page~#2%
-    \else Cited on pages #2%
-    \fi%
-]}}
+%\renewcommand*{\backref}[1]{}
+%\renewcommand*{\backrefalt}[4]{{\footnotesize [%
+%    \ifcase #1 Not cited.%
+%    \or Cited on page~#2%
+%    \else Cited on pages #2%
+%    \fi%
+%]}}
 
 
 	

@@ -156,45 +156,105 @@ Our current approach is limited to the representation of measurable effects of a
 
 \subsubsection{Diagnosis support}
 
-%Faced with growingly complex and large-scale software systems (e.g. smart grid systems), we can all agree that the presence of residual defects becomes unavoidable~\cite{DBLP:conf/icse/BarbosaLMJ17}. %~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}. 
-%Even with a meticulous verification or validation process, it is very likely to run into an unexpected behavior that was not foreseen at design time. Alone, existing formal modeling and verification approaches may not be sufficient to anticipate these failures~\cite{DBLP:conf/icse/TaharaOH17}. 
-%As such, complementary techniques need to be proposed to locate the anomalous behavior and its origin in order to handle it in a safe way.
-%
-%As there might be many probable causes behind an abnormal behavior, developers usually perform a set of diagnosis routines to narrow down the scope or origin of the failure. One way to do so is by investigating the satisfaction of its requirements and the decisions that led to this system state, as well as their timing~\cite{DBLP:conf/iceccs/BencomoWSW12}.  
-%In this perspective, developers may set up a set of systematic questions that would help them understand why and how the system is behaving in such a way.
-%%These questions may comprise: (i) what goal(s) the system was trying to reach by executing a tactic $a$?, (ii) what were the circumstances used by a decision $d$ and its expected impact on the context?, (iii) what decision(s) influenced the system's context at a time $t$?
-%%\begin{itemize}
-%%   \item what goal(s) the system was trying to reach by executing a tactic $a$? 
-%%   \item what were the circumstances used by a decision $d$ and its expected impact on the context?
-%%   \item what decision(s) influenced the system's context at a time $t$? 
-%%\end{itemize}
-%
-%Bencomo~\etal~\cite{DBLP:conf/iceccs/BencomoWSW12} argue that comprehensive explanation about the system behavior contributes drastically to the quality of the diagnosis, and eases the task of troubleshooting the system behavior. To enable this, we believe that adaptive software systems should be equipped with traceability management facilities to link the decisions made to their \textbf{(i) circumstances, that is to say, the history of the system states and the targeted requirements, and (ii) the performed actions with their impact(s) on the system}.
-%In particular, an \textbf{adaptive system should keep a trace of the relevant historical events}.
-%Additionally, it should be able to \textbf{trace the goals intended to be achieved by the system to the adaptations and the decisions that have been made, and vice versa}. 
-%Finally, in order to enable developers to interact with the system in a clear and understandable way, appropriate abstraction to \textbf{enable the navigation of the traces and their history should also be provided}. %Unfortunately, suitable solutions to support these features are under-investigated. 
-%
-%Existing approaches~\cite{hassel13,heinrich14,ehlers11,DBLP:conf/icse/MendoncaAR14,DBLP:conf/icse/CasanovaGSA14,DBLP:conf/icse/IftikharW14a} are accompanied by built-in monitoring rules and do not allow to interact with the underlying system in a simple way. 
-%Moreover, they do not keep track of historical changes as well as causal relationships linking requirements to their corresponding adaptations. Only flat execution logs are stored. 
-%
-%In this paper, we propose a framework to structure and store the state and behavior of a running adaptive system, together with a high-level API to efficiently perform diagnosis routines. 
-%Our framework relies on a temporal model-based solution that efficiently abstracts decisions and their corresponding circumstances.
-%Specifically, based on existing approaches for modeling and monitoring adaptation processes, we identify a set of properties that characterize context, requirements, and actions in self-adaptive systems.    
-%Then, we formalize the common core concepts implied in adaptation processes, also referred to as knowledge, by means of temporal graphs and a set of relations that trace decisions impact to circumstances. Finally, thanks to exposing common interfaces in adaptive processes, existing approaches in requirements and goal modeling engineering can be easily integrated into our framework. 
-%
-%%\begin{itemize}
-%%   \item Based on existing approaches for modeling a monitoring adaptation process, we identify a set of properties that characterize context, requirements, and action in self-adaptive systems.    
-%%  \item Based on these properties, we formalize the common core concepts implied in adaptation processes, also referred to as knowledge, by means of temporal graphs and a set of relations that trace decisions impact to circumstances.
-%%   \item Based on the properties and the formalism, we propose a data model to design and store the knowledge, and a high-level API specify and perform diagnosis algorithms.
-%%Thanks to exposing common interfaces in adaptive processes, existing approaches in requirements and goal modeling engineering can be easily integrated into our framework. 
-%%\end{itemize}
-%
-%%We demonstrate the applicability of our approach by applying it to a smart-grid case study and showing how developers can design algorithms to answer the above diagnosis questions. 
-%%We demonstrate the applicability of our approach by showing how developers can design algorithms to answer the above diagnosis questions.
-%%We validate the scalability of our implementation by running it on a randomly generated temporal graph with increasing size. 
-%%The evaluation results show that we can perform complex queries traversing more than 100,000 in less than 2.5 seconds, with an acceptable memory footprint.
-%
+Faced with growingly complex and large-scale software systems (e.g. smart grid systems), we can all agree that the presence of residual defects becomes unavoidable~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}. 
+Even with a meticulous verification or validation process, it is very likely to run into an unexpected behavior that was not foreseen at design time. Alone, existing formal modeling and verification approaches may not be sufficient to anticipate these failures~\cite{DBLP:conf/icse/TaharaOH17}. 
+As such, complementary techniques need to be proposed to locate the anomalous behavior and its origin in order to handle it in a safe way.
+
+As there might be many probable causes behind an abnormal behavior, developers usually perform a set of diagnosis routines to narrow down the scope or origin of the failure. One way to do so is by investigating the satisfaction of its requirements and the decisions that led to this system state, as well as their timing~\cite{DBLP:conf/iceccs/BencomoWSW12}.  
+In this perspective, developers may set up a set of systematic questions that would help them understand why and how the system is behaving in such a way.
+These questions may comprise: 
+\begin{itemize}
+   \item what goal(s) the system was trying to reach by executing a tactic $a$? 
+   \item what were the circumstances used by a decision $d$ and its expected impact on the context?
+   \item what decision(s) influenced the system's context at a time $t$? 
+\end{itemize}
+
+Bencomo~\etal~\cite{DBLP:conf/iceccs/BencomoWSW12} argue that comprehensive explanation about the system behavior contributes drastically to the quality of the diagnosis, and eases the task of troubleshooting the system behavior.
+To enable this, we believe that adaptive software systems should be equipped with traceability management facilities to link the decisions made to their \textbf{(i) circumstances, that is to say, the history of the system states and the targeted requirements, and (ii) the performed actions with their impact(s) on the system}.
+In particular, an \textbf{adaptive system should keep a trace of the relevant historical events}.
+Additionally, it should be able to \textbf{trace the goals intended to be achieved by the system to the adaptations and the decisions that have been made, and vice versa}. 
+Finally, in order to enable developers to interact with the system in a clear and understandable way, appropriate abstraction to \textbf{enable the navigation of the traces and their history should also be provided}.
+Unfortunately, suitable solutions to support these features are under-investigated. 
+
+Existing approaches~\cite{hassel13,heinrich14,ehlers11,DBLP:conf/icse/MendoncaAR14,DBLP:conf/icse/CasanovaGSA14,DBLP:conf/icse/IftikharW14a} are accompanied by built-in monitoring rules and do not allow to interact with the underlying system in a simple way. 
+Moreover, they do not keep track of historical changes as well as causal relationships linking requirements to their corresponding adaptations. Only flat execution logs are stored. 
+
+In this document, we propose a framework to structure and store the state and behavior of a running adaptive system, together with a high-level API to efficiently perform diagnosis routines. 
+Our framework relies on a temporal model-based solution that efficiently abstracts decisions and their corresponding circumstances.
+Specifically, based on existing approaches for modeling and monitoring adaptation processes, we identify a set of properties that characterize context, requirements, and actions in self-adaptive systems.    
+Then, we formalize the common core concepts implied in adaptation processes, also referred to as knowledge, by means of temporal graphs and a set of relations that trace decisions impact to circumstances.
+Finally, thanks to exposing common interfaces in adaptive processes, existing approaches in requirements and goal modeling engineering can be easily integrated into our framework. 
 
 \subsection{Background}
+Before formalizing and modeling decisions and their circumstances, we abstract common concepts implied in an adaptation process. We refer to these concepts as the knowledge.
+
+\subsubsection{General concepts of adaptation process}
+
+Similar to the definition provided by Kephart~\cite{DBLP:journals/computer/KephartC03}, IBM  defines adaptive systems as ``a computing environment with the ability to manage itself and \textbf{dynamically adapt} to change in accordance with \textbf{business policies and objectives}. [These systems] can perform such activities based on \textbf{situations they observe or sense in the IT environment} [...]"~\cite{computing2006architectural}.
+
+Based on this definition, we can identify three principal concepts involved in adaptation processes.
+The first concept is  \textit{actions}. They are executed in order to perform a dynamic adaptation through actuators.
+The second concept is \textbf{business policies and objectives}, which is also referred to as the \textbf{system requirements} in the domain of (self-)adaptive systems.
+The last concept is the observed or sensed \textbf{situation}, also known as the \textbf{context}.
+The following subsections provide more details about these concepts.
+
+\subsubsection{Context}
+
+In this thesis, we use the widely accepted definition of context provided by Dey~\cite{DBLP:journals/puc/Dey01}: \textquote{Context is \textbf{any information that can be used to characterize} the situation of an entity. An entity is a person, place, or object that is considered relevant to the interaction between a user and [the system], including the user and [the system] themselves}.
+In this section, we list the characteristics of this information based on several works found in the literature~\cite{DBLP:conf/pervasive/HenricksenIR02, chong2007context, DBLP:conf/seke/0001FNMKT14, bettini2010survey, DBLP:journals/comsur/PereraZCG14}.
+We use them to drive our design choices of our Knowledge meta-model (cf. Section~\todo{Add ref}).
+
+\paragraph{Volatility}
+Data can be either \textbf{static} or \textbf{dynamic}.
+Static data, also called frozen, are data that will not be modified, over time, after their creation~\cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/comsur/MakrisSS13, bettini2010survey, chong2007context}.
+For example, the location of a machine, the first name or birth date of a user can be identified as static data. 
+Dynamic data, also referred to as volatile data, are data that will be modified over time.
+
+\paragraph{Temporality}
+In dynamic data, sometimes we may be interested not only in storing the latest value, but also the previous ones~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/pervasive/HenricksenIR02, chong2007context}. 
+We refer to these data as \textbf{historical} data.
+Temporal data is not only about past values, but also future ones. 
+Two kinds of future values can be identified, \textbf{predicted} and \textbf{planned}.  
+Thanks to machine learning or statistical methods, dynamic data values can be \textbf{predicted}. 
+\textbf{Planned} data are set by a system or a human to specify planned modification on the data.
+
+\paragraph{Uncertainty}
+One of the recurrent problems facing context-aware applications is the data uncertainty~\cite{DBLP:conf/dagstuhl/LemosGMSALSTVVWBBBBCDDEGGGGIKKLMMMMMNPPSSSSTWW10, DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/comsur/MakrisSS13, bettini2010survey}.
+Uncertain data are not likely to represent the reality. They contain a noise that makes it deviate from its original value.
+This noise is mainly due to the inaccuracy and imprecision of sensors.
+Another source of uncertainty is the behavior of the environment, which can be unpredictable.
+All the computations that use uncertain data are also uncertain by propagation.
+
+\paragraph{Source}
+According to the literature, data sources are grouped into two main categories, either sensed (measured) data or computed (derived) data~\cite{DBLP:journals/comsur/PereraZCG14, chong2007context}.
+%We refine this with an additional category called profiled.
+%Profiled data may be set either by a user (\textbf{profiled by a human}) or by an external system (\textbf{profiled by an external}).
+
+\paragraph{Connection}
+Context data entities are usually linked using three kinds of connections: conceptual, computational, and consistency~\cite{DBLP:conf/pervasive/HenricksenIR02, bettini2010survey}.
+The conceptual connection relates to  (direct) relationships between entities in the real world (e.g. smart meter and concentrator).
+The computational connection is set up when the state of an entity can be linked to another one by a computation process (derived, predicted). 
+Finally, the consistency connection relates entities that should have consistent values. For instance, temperature sensors belonging to the same geographical area.
+
+\subsubsection{Requirement}
+\label{sec:adaptation-req}
+
+Adaptation processes aim at modifying the system state to reach an optimal one.
+All along this process, the system should respect the \textbf{system requirements} established ahead. 
+Through this paper, we use the definition provided by IEEE~\cite{iso2017systems}: ``(1) Statement that translates or expresses a need and its associated \textbf{constraints} and \textbf{conditions}, (2) \textbf{Condition or capability that must be met or possessed} by a system [...] to satisfy an agreement, standard, specification, or other formally imposed documents".\looseness=-1
+
+Although in the literature, requirements are categorized as functional or non-functional, in this paper we use a more elaborate taxonomy introduced by Glinz~\cite{DBLP:conf/re/Glinz07}.
+It classifies requirements in four categories: functional, performance, specific quality, and constraint.
+All these categories share a common feature: they are all temporal.
+During the life-cycle of an adaptive system, the developer can update, add or remove some requirements~\cite{DBLP:conf/icse/ChengA07, pandey2010effective}.
+
+\subsubsection{Action}
+In the IEEE Standards~\cite{iso2017systems}, an action is defined as: \textquote{\textbf{process of transformation} that \textbf{operates upon data} or other types of inputs to create data, produce outputs, or \textbf{change the state} or condition of the subject software}.
+
+Back to adaptive systems, we can define an action as a process that, given the context and requirements as input, adjusts the system behavior.
+This modification will then create new data that correspond to an output context. In the remainder of this paper, we refer to output context as impacted context, or simply impact(s).
+Whereas requirements are used to add preconditions to the actions, context information is used to drive the modifications.
+Actions execution have a start time and a finish time. They can either succeed, fail, or be canceled by an internal or external actor.
+
 
 \subsection{Use case scenario}
