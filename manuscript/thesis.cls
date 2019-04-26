@@ -13,6 +13,7 @@
 \RequirePackage{amssymb}
 \RequirePackage[caption=false,font=footnotesize]{subfig}
 \RequirePackage{enumitem}
+\RequirePackage{listings}
 
 %%% Class options %%%%%
 %
