@@ -104,7 +104,7 @@
 
 \titleformat{\chapter}[display]
 	{\bfseries\Large}
-	{\vspace{-2cm}\filleft\fontsize{90}{0}\fontfamily{phv}\selectfont\textcolor{gray}{\thechapter}}
+	{\vspace{-3cm}\filleft\fontsize{90}{0}\fontfamily{phv}\selectfont\textcolor{gray}{\thechapter}}
 	{4ex}
 	{\titlerule
 	  \vspace{2ex}%
@@ -166,9 +166,7 @@
 	\setcounter{minitocdepth}{1}
 	\minitoc
 	\bigskip
-	\bigskip
-	\bigskip
-	\textbf{Abstract:}\textit{#1}
+	\textit{#1}
 	\newpage
 }
 

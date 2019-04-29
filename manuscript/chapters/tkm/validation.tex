@@ -1,12 +1,137 @@
 \section{Validation}
 \label{sec:tkm:validation}
 
+\subsection{Validation of action consideration}
+
+In this paper, we argue that by adding action information directly within context representations the reasoning phase (\ie the \textit{Analyse and Plan} of the MAPE-k loop) is improved.
+We validate the proposal using our case study example, the cloud management scenario.
+We demonstrate the scalability of our approach could by applying it to large-scale adaptive systems.
+
+To implement our approach and build this experimentation we used the GreyCat framework\footnote{http://greycat.ai/, Last visited: 21 September 2017}.
+It is a models@run.time framework with time as a built-in concept\cite{DBLP:phd/basesearch/Hartmann16}.
+The code for this experimentation is open source and publicly accessible\footnote{https://bitbucket.org/ludovicpapers/sac-eval}.
+
+\subsubsection{Validation}
+\label{sec:evaluation_setup}
+
+In our experimentation, we simulate a cluster that executes a unique service on several containers.
+The adaptation process allocates or deallocates resources in/from the cluster infrastructure by relying on the measured workload of resource usage.
+The objective function is to minimize the number of used resources while reducing the difference between $W_S$ and $W_P$.
+The targeted state is $W_S = W_P$.
+
+We use the fastStorage\footnote{http://gwa.ewi.tudelft.nl/datasets/gwa-t-12-bitbrains, Last visited: 22 September 2017} dataset\cite{DBLP:conf/ccgrid/ShenBI15} to simulate the service workload  $W_S$.
+To reproduce a service workload, we sum up the CPU usage in the dataset.
+Then, the workload of the containers $W_C$ is computed by dividing $W_S$ by the number of available containers $N_C$.
+A maximum of 8,600\footnote{Average of allocated CPUs in MHz in the dataset} is set up to represent the allocated CPU of containers.
+Due to this maximum constraint, the sum of the container workloads ($W_P = \sum_{i=0}^{N_C} <= W_S$), also referred to as the provided workload of the service $W_P$, could be inferior to the workload of the service.
+In addition, the maximum value of the provided workload $W_{Pmax}$ is equal to the sum of the maximum of the container: $W_{Pmax} = N_C * 8600$.
+
+We compare the output results of similar adaptation processes but different sets of rules.
+The first set uses a traditional rule-based decision-making process~\cite{aamodt1994case,anicic2010rule} while the second one replicates the rules and takes into consideration the expected effects of actions.
+
+We identify two rules:
+\begin{itemize}
+	\item \textbf{Rule 1} if $W_P < W_S$  then start as many containers as needed
+	\item \textbf{Rule 2} if $W_{Pmax} > W_S$ then stop as many containers as needed
+\end{itemize}
+
+The equivalent rules in a temporal-aware context are depicted below:
+
+\begin{itemize}
+	\item \textbf{Rule 1} if $W_P(now) < W_S(now)~and~W_E(now+3min) < W_S(now)$  then start $(W_S(now) - W_E(now+3min) / 8600$ containers
+	\item \textbf{Rule 2} if $W_{Pmax}(now) > W_S(now)~and~W_Pmax(now+3min) > W_S(now)$ then stop $(W_{Pmax}(now+3min) - W_S(now)) / 8600$ containers
+\end{itemize}
+
+$W_E(t)$ represents the expected workload of a service at a time t, which is also the sum of the expected workload ($W_{CE}(t)$) of all the containers at the time t.
+We formalize it as: $W_E(t) = \sum_{i=0}^{N_C}W_{CE_i}(t)$.
+
+The adaptation process is executed every 1 minute, for 100 times, in order to simulate the reactivity of the clusters. 
+We show that rules that ignore the expected effects of actions perform poorly.
+We compute the number of start actions and the number of stop actions against the two sets of rules. 
+Using the first set of rules, we reach a total of 433 start actions and 515 stop actions whereas using our approach 168 start actions and 235 stop actions. 
+Thus, the second set of rules reduces the number of start and stop actions by a factor of $\sim$2.6 and $\sim$2.2 respectively. 
+The difference between the provided workload and the service workload remains similar in the two usages.
+
+\subsubsection{Evaluation of reasoning latency}
+\label{sec:evaluation_latency}
+
+In this section, we evaluate the efficiency of our context representation for enhancing a reasoner implementing the previously defined rules (2nd set of rules).
+All the experimentations have been executed in a MacBook Pro with an Intel Core i7 processor (2.8GHz, 4 cores, 16GB main memory (RAM), macOS Sierra version 10.12.4) using Oracle JDK 1.8.0\_65.
+Our proposed temporal context representation introduces inescapably an overhead compared to a simple vector of metrics, as it is commonly used in cloud management implementations.
+Using an experimental evaluation, we answer this question by varying the size of the context model in order to simulate various sizes of clusters.
+%Then, we evaluate the latency to detect a problem in this context, resulting in triggering a rule that in turn should trigger an action.
+Then, we evaluate during this experiment the latency of our cloud model-based reasoner to trigger corrective actions.
+The results are presented in Figure~\ref{fig:eval_latency}.
+The depicted results have been obtained by computing the average execution time over ten (10) runs.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{img/chapt-tkm/validation/latency-eval.png}
+	\caption{Latency to detect faults within temporal contexts given different sizes of cloud clusters}
+	\label{fig:eval_latency}
+\end{figure}
+
+Experimentally, we obtained a very good latency \textit{(less than 200ms}, which is comparable to a single Remote Procedure Call~\cite{mulligan2009comparison}) for a cloud cluster with fewer than 1000 containers. 
+For larger clusters, the latency remains acceptable \textit{(less than 1s}) until reaching 85,000 elements. 
+%Finally, we evaluated a very large-scale cluster \textit{(more than 100.000 containers}). 
+Finally, we evaluated a very large-scale cluster \textit{(1,200,000 containers}), where we obtained a latency of less than 12s.
+In the later case, we obtained a throughput of 100,000 rules/second.
+The performance of our approach can be considered as very good as cloud clusters rarely go beyond few thousands of elements~\cite{DBLP:conf/ccgrid/ShenBI15}.
+
+\subsubsection{Evaluation of our reasoning element}
+
+In the last experimentation, we evaluate the four reasoning capacities presented in Section~\ref{sec:contribution}.
+Figure~\ref{fig:eval-reasoning} depicts the average results of this experimentation of ten (10) executions.
+The first three reasoning operations, answering change requests, immediate supervision, and future supervision, give very good execution time.
+These operations can be evaluated these three operations over 1 million of elements in less than 10 seconds.
+As shown in Table~\ref{table:persistenMemory}, it results in a throughput of more than 100,000 operations per second.
+However, our results are less good for the meta-supervision.
+We can execute more than 20,000 of operations per second.
+This is due to the computational complexity of this supervision.
+Contrary to the previous reasoning that are executed at a precise time, the meta supervision is executed over a time range.
+But, the meta supervision operations should not be used with the same frequency as the three other ones.
+It could be used with less frequency as it analyses the data over bigger time range.
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{img/chapt-tkm/validation/eval}
+	\caption{Execution time of the new reasoning abilities}
+	\label{fig:eval-reasoning}
+\end{figure}
+
+\begin{table}
+
+\caption{Reasoning operation throughput} 
+\label{table:persistenMemory} 
+
+\centering
+\begin{tabular}{|c|c|}
+
+\hline
+Reasoning operation & Throughput (op/s)\\
+\hline
+Answering change requests & 110,702.74	 \\
+\hline
+Immediate Supervision & 157,748.61	 \\
+\hline
+Future supervision & 102,409.70	\\
+\hline
+Meta supervision & 20,345.88	 \\
+\hline
+
+\end{tabular}
+
+\end{table}
+
+
+\subsection{Validation for the temporal graph}
+
 %In this paper, we propose a framework to structure and store the log of a running adaptive system in order to provide an high level API to efficiently perform diagnosis routines. 
 %In this paper, we provide a novel solution to represent, manipulate, and store adaptation decisions and to trace their system states, goals, and constraints. 
 This section briefly presents the implementation of our approach on top of an existing framework to store temporal graphs.
 We validate our approach by first describing how one can implement graph manipulation operations involved in diagnosis algorithms. Later, we evaluate the performance of our implementation..
 
-\subsection{Application on the smart grid example}
+\subsubsection{Application on the smart grid example}
 \label{subsec:tuto}
 %\subsection{Implementation using GreyCat}
 %\label{subsec:implementation}
@@ -204,7 +329,7 @@ Tuple<Value[], Goal[]> getCircumstance(Decision d) {
 %The algorithm will start on a node that instantiates the metaclass \textit{Context} that will contain the data about the situation: an overload on the network.
 %Then, by navigating through the different relationships (structures, properties, expected and impact), the algorithm can get the decisions that had planned to impact the context.
 
-\subsection{Performance evaluation}
+\subsubsection{Performance evaluation}
 GreyCat stores temporal graph elements in several key/value maps. Thus, the complexity of accessing a graph element is linear and depends on the size of the graph. 
 Note that in our experimentation we evaluate only the execution performance of diagnosis algorithms. For more information on I/O performance in GreyCat, please refer to the original work by Hartmann \etal~\cite{DBLP:conf/seke/0001FJRT17, DBLP:phd/basesearch/Hartmann16}.
 
@@ -330,7 +455,7 @@ As we can notice, the memory consumption increases in a quasi-linear way. The me
 \label{fig:exp-res}
 \end{figure}
 
-\subsection{Discussion}
+\subsubsection{Discussion}
 By linking context, actions, and requirements using decisions, data extraction for explanation or fault localization can be achieved by performing common temporal graph traversal operations.
 In the detailed example, we show how a stakeholder could use our approach to define the different elements required by such systems, to structure runtime data, finally, to diagnose the behavior of adaptation processes. 
 %In the three presented algorithms, we can see that these graph traversals allow us to navigate from action to goals, context to decisions and decisions to their circumstances and impact.
