@@ -15,8 +15,15 @@ We identified two problematics caused by this difference of paces:
 \end{itemize}
 
 To address them, we propose a temporal knowledge model which can trace decisions over time, along with their circumstances and effects.
-By storing them, the adaptation process could consider ongoing actions with their expected effects.
+By storing them, the adaptation process could consider ongoing actions with their expected effects, also called impacts.
 Plus, in case of faulty decisions, developers may trace back their effects to their circumstances.
+Our current approach is limited to the representation of measurable effects of any decision, and therefore action.
+
+The meta-model allow structuring and storing the state and behavior of a running adaptive system, together with a high-level API to efficiently perform diagnosis routines. 
+Our framework relies on a temporal model-based solution that efficiently abstracts decisions and their corresponding circumstances.
+Specifically, based on existing approaches for modeling and monitoring adaptation processes, we identify a set of properties that characterize context, requirements, and actions in self-adaptive systems.    
+Then, we formalize the common core concepts implied in adaptation processes, also referred to as knowledge, by means of temporal graphs and a set of relations that trace decisions impact to circumstances.
+Finally, thanks to exposing common interfaces in adaptive processes, existing approaches in requirements and goal modeling engineering can be easily integrated into our framework. 
 
 The rest of this chapter is structured as follows.
 In the remaining part of this section, we motivate our approach, we summarize core concepts manipulated in adaptation processes, and we present a use case scenario based on the Luxembourg Smart Grid (\cf~Chapter~\todo{add ref}).
@@ -27,8 +34,10 @@ In Section~\ref{sec:tkm:validation}, we demonstrate the applicability of our app
 We conclude this chapter in Section~\ref{sec:tkm:conclusion}.
 
 \subsection{Motivation}
+\label{sec:tkm:intro:motiv}
 
 \subsubsection{Delayed action}
+\label{sec:tkm:intro:motiv:delayed_action}
 
 In this section, we motivate the need to reason over delayed actions.
 To do so, we first give four examples of these actions.
@@ -133,9 +142,6 @@ Various techniques to represent context information have been proposed; among wh
 The models@run.time paradigm inherits model-driven engineering concepts to extend the use of models not only at design time but also at runtime. 
 This model-based representation has proven its ability to structure complex systems and synthesize its internal state as well as its surrounding environment.
 
-In this thesis, we propose therefore a meta-model of the knowledge that includes action and their effects.
-Our current approach is limited to the representation of measurable effects of any action.
-
 \subsubsection{Diagnosis support}
 
 Faced with growingly complex and large-scale software systems (e.g. smart grid systems), we can all agree that the presence of residual defects becomes unavoidable~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}. 
@@ -160,12 +166,6 @@ Unfortunately, suitable solutions to support these features are under-investigat
 
 Existing approaches~\cite{hassel13,heinrich14,ehlers11,DBLP:conf/icse/MendoncaAR14,DBLP:conf/icse/CasanovaGSA14,DBLP:conf/icse/IftikharW14a} are accompanied by built-in monitoring rules and do not allow to interact with the underlying system in a simple way. 
 Moreover, they do not keep track of historical changes as well as causal relationships linking requirements to their corresponding adaptations. Only flat execution logs are stored. 
-
-In this document, we propose a framework to structure and store the state and behavior of a running adaptive system, together with a high-level API to efficiently perform diagnosis routines. 
-Our framework relies on a temporal model-based solution that efficiently abstracts decisions and their corresponding circumstances.
-Specifically, based on existing approaches for modeling and monitoring adaptation processes, we identify a set of properties that characterize context, requirements, and actions in self-adaptive systems.    
-Then, we formalize the common core concepts implied in adaptation processes, also referred to as knowledge, by means of temporal graphs and a set of relations that trace decisions impact to circumstances.
-Finally, thanks to exposing common interfaces in adaptive processes, existing approaches in requirements and goal modeling engineering can be easily integrated into our framework. 
 
 \subsection{Background}
 Before formalizing and modeling decisions and their circumstances, we abstract common concepts implied in an adaptation process. We refer to these concepts as the knowledge.
@@ -249,30 +249,19 @@ Actions execution have a start time and a finish time. They can either succeed, 
 	\label{fig:tkm:excerptSG}
 \end{figure}
 
-\begin{figure}
-	\caption{Representation of the smart grid context depicted in Figure~\ref{fig:tkm:excerptSG}}
-	\label{fig:tkm:contextFormExample}
-\end{figure}
-
-
-The example presented in Section~\ref{sec:intro:use-case} contain too much detail to provide a readable and understandable example of the formalism.
-Below, an excerpt of it is thus presented in order to overcome this problem.
-
+In order to provide a readable and understandable example of the formalism, we give a simplified version of the use case presented in Section~\ref{sec:intro:use-case}.
 
 \paragraph{Excerpt of a smart grid}
 Figure~\ref{fig:tkm:excerptSG} shows a simplified version of a smart grid with one substation, one cable, three smart meters and one dead-end cabinet.
-Both the substation and the cabinet have a fuse.
-The meters regularly send consumption data at the same time.
-One requirement is considered for this example: minimizing the number of overloads.
+Both the substation and the cabinet have one fuse each.
+The meters regularly send consumption data at the same timestamp.
+For this example, we consider one requirement: minimizing the number of overloads.
 To achieve so, among the different actions, two actions are taken into account in this example: decreasing or increasing the amps limits of smart meters.
 
-Let $K_{SG}$ be the temporal graph that represents the knowledge of this adaptive system: $K_{SG} = (N_{SG}, E_{SG}, V^T_{SG}, Z^T_{SG}, R_{P_{SG}}, A_{P_{SG}}, D_{SG})$.
-Figure~\ref{fig:tkm:contextFormExample} shows the nodes and edges of this knowledge.
-
 \paragraph{Scenario}
-The system starts at $t_0$ with the actions, the requirements and the context, which also include initial value for the consumption values.
-Meters send their values at $t_2$ and $t_3$.
+The system starts at $t_0$ with the actions, the requirements and all element of the context that remain fixed: the grid installation.
+Meters send their values at $t_1$, $t_2$ and $t_3$.
 Based on these data, the load on cables and substation is computed.
-On $t_2$, an overload is detected on the cable, which break the requirement.
+On $t_1$, an overload is detected on the cable, which breaks the requirement.
 At the same time point, the system decides to reduce the load of all smart meters.
-The impact of these actions will be measured at $t_4$, \ie the cable will not be overloaded from $t_4$.
+The impact of these actions will be measured at $t_2$ and $t_3$, \ie the consumption will slowly reduce until the cable is no longer overloaded from $t_3$.
