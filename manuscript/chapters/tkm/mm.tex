@@ -1,7 +1,7 @@
 \section{Modeling the knowledge}
 \label{sec:tkm:mm}
  
- In order to simplify the diagnosis of adaptive systems, this thesis proposes a novel \gls{metamodel} that combines, what I call, design elements and runtime elements.
+ In order to simplify the diagnosis of adaptive systems, this thesis proposes a novel \gls{metamodel} that combines, what we call, design elements and runtime elements.
 Design elements abstract the different elements involved in \gls{knowledge} information to assist the specification of the adaptation process.
 Runtime elements instead, represent the data collected by the adaptation process during its execution.
 In order to maintain the consistency between previous design elements and newly created ones, instances of design elements (\eg actions) can be either added or removed.
@@ -12,17 +12,17 @@ Note that, this thesis does not address how runtime information is collected.
 
 For the sake of modularity, the \gls{metamodel} has been split into four packages: Knowledge, Context, Requirement and Action.
 All the classes of these packages have a common parent class that adds the temporality dimention: \textit{TimedElement} class.
-Before describing the Knowledge (core) package, I detail this element.
-Then, I introduce in more details the other three packages used by the Knowledge package: Context, Requirement, and Action. 
-In below sections, I use "\textit{Package::Class}" notation to refer to the provenance of a class.
+Before describing the Knowledge (core) package, we detail this element.
+Then, we introduce in more details the other three packages used by the Knowledge package: Context, Requirement, and Action. 
+In below sections, we use "\textit{Package::Class}" notation to refer to the provenance of a class.
 If the package is omitted, then the provenance package is this one described by the figure or text.
 
 \subsection{Parent element: \textit{TimedElement} class}
-I assume that all the classes in the different packages extend a \textit{TimedElement} class. 
+we assume that all the classes in the different packages extend a \textit{TimedElement} class. 
 This class contains three methods: \textit{startTime}, \textit{endTime}, and \textit{modificationsTime}.
 The first two methods allow accessing the validity interval bounds defined by the previously discussed $V^T$ relation.
 The last method resolves all the timestamps at which an element has been modified: its history. 
-This method is the implementation of the relation $Z^T$ described in our formalism (cf. Section~\ref{sec:tkm:formalism}).
+This method is the implementation of the relation $Z^T$ described in our formalism (cf. Section~\ref{sec:tkm:k-formalism:formalism}).
 
 
 \subsection{Knowledge metamodel}
@@ -36,7 +36,7 @@ This method is the implementation of the relation $Z^T$ described in our formali
 \end{figure*}
 
 In order to enable interactive diagnosis of adaptive systems, traceability links between the decisions made and their circumstances should be organized in a well-structured representation. % todo still correct according to the global blabla
-In what follows, I introduce how the \gls{knowledge} \gls{metamodel} helps to describe \glspl{decision}, which are linked to their  goals and their context (input and impact). 
+In what follows, we introduce how the \gls{knowledge} \gls{metamodel} helps to describe \glspl{decision}, which are linked to their  goals and their context (input and impact). 
 Figure~\ref{fig:knowledge-mm} depicts this \gls{metamodel}.
 
 Knowledge package is composed of a \textit{\gls{context}}, a set of \textit{\glspl{requirement}}, a set of \textit{strategies}, and a set of \textit{\glspl{decision}}.
@@ -65,11 +65,11 @@ Context models structure context information acquired at runtime.
 For example, in a smart-grid system, the context model would contain information about smart-grid users (address, names, etc.) resource consumption, etc.
 
 An excerpt of the context model is depicted in Figure~\ref{fig:context-model}. 
-I propose to represent the context as a set of structures (\textit{Context.structures}) and global attributes (\textit{Context.globals}).
+we propose to represent the context as a set of structures (\textit{Context.structures}) and global attributes (\textit{Context.globals}).
 A structure can be viewed as a C-structure with a set of properties (\textit{Property}): attributes (\textit{Attribute}) or relationships (\textit{Relation}).
 A structure may contain other nested structures (\textit{Structure.inner}).
 Structures and properties have values.
-They correspond to the nodes described in the formalization section (\cf Section~\ref{sec:tkm:formalism}).
+They correspond to the nodes described in the formalization section (\cf Section~\ref{sec:tkm:k-formalism:formalism}).
 The connection feature described in Section~\ref{sec:adaptation-req} is represented thanks to three recursive relationships on the Property class: \textit{consistentWith}, \textit{computedUsing} and \textit{influence}.
 Additionally, each property has a source (\textit{Source}) and an uncertainty (\textit{Uncertainty}).
 It is up to the stakeholder to extend data with the appropriate source: measured, computed, provided by a user, or by another system (\eg weather information coming from a public API).
@@ -94,7 +94,7 @@ The work of Egyed~\cite{egyed01} is one solution among others.
 This work is out of the scope of the paper and envisaged for future work. 
 
 In the guidance example, the requirement model may contain a \textbf{balanced resource distribution} requirement.
-It can be split into different goals: (i) \textit{no overload}, (ii) \textit{no production lack}, (iii) \textit{no production loss}.
+It can be split into different goals: (i) \textit{minimizing overloads}, (ii) \textit{minimizing production lack}, (iii) \textit{minimizing production loss}.
 
 \subsection{Action metamodel}
 \label{sec:action-mm}
@@ -106,17 +106,24 @@ It can be split into different goals: (i) \textit{no overload}, (ii) \textit{no 
 	\label{fig:action-mm}
 \end{figure}
 
-Similar to the requirements metamodel, the actions metamodel also abstracts main concepts shared among existing solutions to describe adaptation processes and how they are linked to the context. Figure~\ref{fig:action-mm} depicts an excerpt of the action metamodel.
-I define a strategy as a set of tactics (\textit{Strategy}).
+Similar to the requirements metamodel, the actions metamodel also abstracts main concepts shared among existing solutions to describe adaptation processes and how they are linked to the context. 
+Figure~\ref{fig:action-mm} depicts an excerpt of the action metamodel.
+we define a strategy as a set of tactics (\textit{Strategy}).
 A tactic contains a set of actions (\textit{Action}).
-A tactic is executed under a precondition represented as a temporal query (\textit{TemporalQuery}) and uses different data from the context as input. In future work, we will investigate the use of preconditions to schedule the executions order of the actions, similarly to existing formalisms such as Stitch~\cite{DBLP:journals/jss/ChengG12}.
+A tactic is executed under a precondition represented as a temporal query (\textit{TemporalQuery}) and uses different data from the context as input.
+In future work, we will investigate the use of preconditions to schedule the executions order of the actions, similarly to existing formalisms such as Stitch~\cite{DBLP:journals/jss/ChengG12}.
 The query can be as complex as needed and can navigate through the whole knowledge model.
 Actions have impacts on certain properties, represented by the \textit{impacted} reference. 
 
 The different executions are represented thanks to the \textit{Execution} class. Each execution has a status to track its progress and links to the impacted context values(\textit{Execution.impactedValues}).
 Similarly, input values are represented thanks to the \textit{Execution.inputValues} relationship.
-An execution has \textit{start} and \textit{end} time. Not to confuse with the \textit{startTime} and \textit{endTime} of the validity relation $\mathcal{V}^T$. Whilst the former corresponds to the time range in which a value is valid, the \textit{start} and \textit{stop} time in the class execution correspond to the time range in which an action or a tactic was being executed. The start and stop attributes correspond to the relation $\mathcal{X}$ (see Section~\ref{sec:formalism}). These values can be derived based on the validity relation. They correspond to the time range in which the status of the execution is "\textit{RUNNING}".  Formally, for every execution node $e$, $\mathcal{X}(e)~=~(\mathcal{V}(e)~|~e.status~=~$"RUNNING"$)$.
+An execution has \textit{start} and \textit{end} time. Not to confuse with the \textit{startTime} and \textit{endTime} of the validity relation $V^T$.
+Whilst the former corresponds to the time range in which a value is valid, the \textit{start} and \textit{stop} time in the class execution correspond to the time range in which an action or a tactic was being executed.
+The start and stop attributes correspond to the relationL $E_{A_E}$ (see Section~\ref{sec:formalism}). These values can be derived based on the validity relation.
+They correspond to the time range in which the status of the execution is "\textit{RUNNING}".
+Formally, for every execution node $e$, $E_{A_E}(e)~=~(V(e)~|~e.status~=~$"RUNNING"$)$.
 
 
 Similarly to requirement models, it is possible to automatically infer design elements of action models by statically analyzing actions specification.
-Since acquiring information about tactics and actions executions happens at runtime, one way to achieve this is by intercepting calls to actions executions and updating the appropriate action model elements accordingly. This is out of the scope of this paper and planned for future work.
+Since acquiring information about tactics and actions executions happens at runtime, one way to achieve this is by intercepting calls to actions executions and updating the appropriate action model elements accordingly.
+This is out of the scope of this paper and planned for future work.

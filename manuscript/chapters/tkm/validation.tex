@@ -1,6 +1,130 @@
 \section{Validation}
 \label{sec:tkm:validation}
 
+\subsection{Enabled reasoning} 
+
+By associating the action model to the context model, we aim at enhancing adaptation process with new abilities to reason.
+In this section, we list four kinds of reasoning that is possible thanks to our approach: (i) answering change requests (ii) immediate supervision, (iii) future supervision, (iv) meta supervision.
+We also present the necessary code to extract information during the reasoning phase.
+We use a dot notation for navigating inside our context model, \ie for accessing the properties (attributes and relationships).
+Moreover, we consider the elements as stream, \ie each context elements are contained in a stream of elements.
+For example, the metrics are contained in a stream of context elements. 
+In addition, context elements define the same operation as the ones of the Stream Java interface\footnote{https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html, Last visited: 28 September 2017}.
+The execution semantics also remains similar.
+When the operations are executed, they are executed at a precise time, \ie the current timestamp.
+When operations need to access a context element, they apply the \textit{resolve(id,time)} functions as described in Section~\ref{sec:background}.
+For readability purpose, we do not show the call to this function.
+Listed codes have been made using the context model presented in Figure~\ref{fig:example-complete}.
+
+
+\paragraph{Answering change requests}
+Thanks to change requests present in the context representation, the reasoning will create a DAG of actions to reach a desired state.
+It thus needs to extract the change requests that have not been processed and on which the time limit has not been reached. 
+If the time limit has been reached or overtaken, the reasoning process could throw errors.
+We present the code to extract the change requests from our model in Listing~\ref{code:ansewring-requests}.
+
+\begin{figure}
+\begin{lstlisting}[style=customc,caption=Generation of the DAG of actions from the change requested,label=code:ansewring-requests,basicstyle=\scriptsize]
+model.changeRequests
+     .select(ChangeRequest cr -> cr.status == "PENDING")
+     .select(ChangeRequest cr -> cr.timeLimit <= NOW})
+     .forEach(ChangeRequest cr -> createActions(cr))
+ 
+//Rise an error for unsatisfied requests
+model.changeRequests
+     .select(ChangeRequest cr -> cr.status == "PENDING")
+     .select(ChangeRequest cr -> cr.timeLimit > NOW)
+     .forEach(ChangeRequest cr -> riseError(cr))
+\end{lstlisting}
+\end{figure}
+
+
+\paragraph{Immediate Supervision}
+
+When a reasoning process plans adaptation actions, it also sets the expected effect on the metric of the context model. 
+We refer to this operation as immediate supervision. 
+However, the measured value could diverge from the expected one for different reasons: error in actions, context that has not changed as expected, or wrong effect extrapolation.
+The reasoning process needs to detect this divergence for taking counteractions.
+In other words, the reasoning process needs to analyse the difference between the expected value and the measured one.
+We present the code to achieve the extraction of the expected and the measured value of a metric in Listing~\ref{code:supervision}.
+As shown in the code, the checking should consider both the precision of the expected value and the possible temporal dephasing between the measured value and the expected effects. 
+We check if the value is in the following range:  $[effect value - precision ; effect value + precision]$ and the time of the measured value is the following range: $[time - time dephasing; time + time dephasing]$.
+
+%\begin{figure}[ht!]
+\begin{lstlisting}[style=customc,caption=Detection of difference between measured and expected values, label=code:supervision, basicstyle=\scriptsize]
+model.metrics
+     .select(Metric m -> m.name == "contWorkload")
+     .forEach(Metric m -> { 
+     	 ExpectedMetric e = m.expected;
+     	 if(m.value < e.value - e.precision || 
+     	    m.value > e.value + e.precision) {
+     	     if(time(m.id) < start(e.id) - e.timeDephasing || 
+     	        time(m.id) > start(e.id) + e.timeDephasing) {
+     	          createCorrectiveActions(m); }
+         }
+     })
+\end{lstlisting}
+%\end{figure}
+
+
+\paragraph{Future supervision}
+Actions are taken for adapting the system to the current context.
+However, they are not immediately and successfully executed and their effects are measurable with delay.
+As discussed in Section~\ref{sec:introduction2}, the reasoning frequency could be inferior to this delay.
+It results on a reasoning process that will be executed on a similar context as the last execution.
+It will thus take the same action(s) whereas the context will be adapted soon.
+To tackle this problem, using our approach, the reasoning process can also consider the future expected metrics.
+By analysing the current context for detecting any miss adaptation and the future expected one for detecting any future correction, the adaptation process will avoid repetition of actions.
+The code below show how to extract the current container workload and the future expected one.
+The code remains similar to the previous one (Listing~\ref{code:supervision}) except that we resolve the expected value at another time, here 5 min after the current time (\textit{NOW}).
+
+\begin{lstlisting}[style=customc,caption=Extraction of expected and measured value of a metric with a delta time,label=code:supervision-future,basicstyle=\scriptsize]
+model.metrics
+     .select(Metric m -> m.name == "contWorkload")
+     .forEach(Metric m -> {
+         ExpectedMetric futureE = resolve(m.expected,NOW + 5min)
+         //similar to the code presented in Listing 1
+      })
+\end{lstlisting}
+
+\paragraph{Meta supervision}
+
+Supervision allows to verify that the reasoning has been successfully executed, \ie that the expected effect really happened on the system.
+As explained in the previous paragraph, the system will also diverge from this desired state for different reasons.
+The meta supervision aims at finding extra information.
+For example, we will detect if a desired state is not reachable, or that an action often creates this divergence.
+The code presented in Listing~\ref{code:meta-supervision} allows to detect actions that did not achieve the expected effect.
+For this purpose, we check if an action did not surpass the expected percentage \textit{THRESHOLD} of miss expectations.
+
+\begin{figure}[ht!]
+\begin{lstlisting}[style=customc,caption=Extraction of expected and measured value of a metric with a delta time,label=code:meta-supervision,basicstyle=\scriptsize]
+Map<Action,Integer> error= new HashMap();
+int sum = 0;
+
+model.timeRange(NOW - 2H, NOW)
+     .metrics
+     .forEach(Metric m -> {
+        [...] //code of previous listing
+        if(...) {// if presented in the previous listing
+            Action a = m.expected.origin;
+            int count = error.get(a) + 1; 
+            error.put(a, count);
+            sum++;
+        }
+      });
+
+error.forEach((key,value) -> {
+         if(value / sum > THRESHOLD) {
+            takeActions();
+         }
+    });
+\end{lstlisting}	
+\end{figure}
+
+
+
+
+
 \subsection{Validation of action consideration}
 
 In this paper, we argue that by adding action information directly within context representations the reasoning phase (\ie the \textit{Analyse and Plan} of the MAPE-k loop) is improved.

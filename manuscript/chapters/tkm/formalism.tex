@@ -117,7 +117,7 @@ Application conditions come in the form of temporal graph invariants.
 The side effects of these actions are represented by the right-hand side. 
 
 Finally, we associate to $A_E$ a temporal function $E_{A_E}$ to determine the time interval at which an action has been executed. 
-Formally, $X: A_E \rightarrow I$.
+Formally, $E_{A_E}: A_E \rightarrow I$.
 
 \paragraph{Temporal relations for decisions}
 Finally, the knowledge formalism needs to include the last, but not the least, element: decisions made by the adaptation, $K = (N, E, V^T, Z^T, R_A, A_E, D)$
@@ -128,10 +128,10 @@ A decision present in ${D}$ is defined as a set of actions executed, \ie a subse
 Formally, ${D} = \{\ {A_D \cup R_D}~|~{A_D}  \subseteq A_E, R_A \subseteq R_P\}$.
 We assume that each action should result from only one decision: $\forall a \in {A}, \forall d1, d2 \in {D}~|~a \in d1 \wedge a \in d2 \rightarrow d1 = d2$.
 
-The temporal function $E_{A_P}$ is extended to decisions in order to represent the execution time: $E_{A_P}: (A \cup D) \rightarrow I$.
+The temporal function $E_{A_E}$ is extended to decisions in order to represent the execution time: $E_{A_E}: (A \cup D) \rightarrow I$.
 For decision, the lower bound of the interval corresponds to the lowest bound of the action execution intervals.
 Following the same principle, the upper bound of the interval corresponds to the uppermost bound of the action execution intervals.
-Formally, $\forall d \in D \rightarrow E_{A_P}(d) = [l,u)$, where $l = \displaystyle \min_{a \in A_d} \{E_{A_P}(a)[start]\}$ and $u = \displaystyle \max_{a \in A_d} \{E_{A_P}(a)[end]\}$.
+Formally, $\forall d \in D \rightarrow E_{A_E}(d) = [l,u)$, where $l = \displaystyle \min_{a \in A_d} \{E_{A_E}(a)[start]\}$ and $u = \displaystyle \max_{a \in A_d} \{E_{A_E}(a)[end]\}$.
 
 \paragraph{Sum up}
 Knowledge of an adaptive system can be formalism with a temporal graph such as $K = (N, E, V^T, Z^T, R_A, A_E, D)$, wherein:
