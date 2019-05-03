@@ -258,10 +258,24 @@ The meters regularly send consumption data at the same timestamp.
 For this example, we consider one requirement: minimizing the number of overloads.
 To achieve so, among the different actions, two actions are taken into account in this example: decreasing or increasing the amps limits of smart meters.
 
-\paragraph{Scenario}
+\paragraph{Adaptation scenario}
 The system starts at $t_0$ with the actions, the requirements and all element of the context that remain fixed: the grid installation.
 Meters send their values at $t_1$, $t_2$ and $t_3$.
 Based on these data, the load on cables and substation is computed.
 On $t_1$, an overload is detected on the cable, which breaks the requirement.
 At the same time point, the system decides to reduce the load of all smart meters.
 The impact of these actions will be measured at $t_2$ and $t_3$, \ie the consumption will slowly reduce until the cable is no longer overloaded from $t_3$.
+
+\paragraph{Diagnosis scenario}
+As all adaptive systems, smart grids are prone to failures~\cite{DBLP:conf/smartgridsec/0001FKNT14}.
+Using our approach, an engineer could diagnose the system, and determine the adaptation process responsible for this failure. 
+For instance, considering some reports about regular power cuts during the last couple of days, in a particular area, a stakeholder may want to interrogate the system and determine what past decision(s) have led to this suboptimal state.
+More concretely, he will ask: did the system make any decisions that could have impacted the customer consumption? 
+If so, what goal(s) the system was trying to reach and what were the values used at the time the decision(s) was(were) made?
+
+
+
+
+
+
+

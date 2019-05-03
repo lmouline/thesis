@@ -52,10 +52,10 @@ The first action successfully ends at $t_{s+3}$ while the second ends at $t_{s+4
 
 \paragraph{Interactive diagnosis query}
 After receiving incident reports concerning regular power cuts, and based on the aforementioned knowledge model, Morgan would be able to query the system's states and investigate why such incidents have occurred.
-As described in Section~\ref{sec:example}, she/he will interactively diagnose the system by interrogating the context, the decisions made, and their circumstances.
+As described in Section~\ref{sec:tkm:intro:uc}, she/he will interactively diagnose the system by interrogating the context, the decisions made, and their circumstances.
 
 The first function, depicted in Listing~\ref{code:actions-to-goals}, allows  to navigate from the currently measured values (\textit{vcur1}) to the decision(s) made. The for-loop and the if-condition are responsible for resolving the measured data for the past two days. 
-Past elements are accessed using the \textit{resolve} function that implements the $\mathcal{Z}^T$ relation (\cf Section~\ref{sec:formalism}).
+Past elements are accessed using the \textit{resolve} function that implements the $Z^T$ relation (\cf Section~\ref{sec:tkm:k-formalism:formalism}).
 After extracting the decisions leading to power cuts, Morgan carries on with the diagnosis by accessing the circumstances of this decision. The code to perform this task is depicted in Listing~\ref{code:actions-to-goals}, the second function (getCircumstances).
 Note that the relationship \textit{Decision.input} is the aggregation of \textit{Decision.excecute.inputValues}.
 

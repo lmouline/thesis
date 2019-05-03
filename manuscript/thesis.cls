@@ -30,6 +30,7 @@
 \newif\ifIFpublish
 \newif\ifIFdebug
 \newif\ifIFglossary
+\newif\ifIFwriting
 
 \IFreviewfalse
 \IFpublishtrue
@@ -51,6 +52,10 @@
 
 \DeclareOption{glossary}{	
 	\IFglossarytrue
+}
+
+\DeclareOption{writing}{
+	\IFwritingtrue
 }
 
 \ProcessOptions\relax
@@ -77,6 +82,13 @@
 \ifIFglossary
 	\RequirePackage[toc, style=treenoname, subentrycounter, acronym]{glossaries}
 	\makeglossaries
+\fi
+
+\ifIFwriting
+	\RequirePackage[notref, notcite]{showkeys}
+	\RequirePackage{warning}
+	\RequirePackage{refcheck}
+	\overfullrule=2cm
 \fi
 
 %%% Package dependencies 2 %%%%%
@@ -164,7 +176,9 @@
 
 \newcommand{\chapterPage}[1]{
 	\setcounter{minitocdepth}{1}
+	\begin{samepage}
 	\minitoc
+	\end{samepage}
 	\bigskip
 	\textit{#1}
 	\newpage
@@ -212,9 +226,6 @@
 %]}}
 
 
-	
-	
-	
 \makeatletter
 \def\old@comma{,}
 \catcode`\,=13
