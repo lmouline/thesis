@@ -5,20 +5,20 @@ To validate and evaluate our approach, we implemented a prototype publicly avail
 This implementation leverages the GreyCat framework\footnote{https://github.com/datathings/greycat}, more precisely the modeling plugin, which allows designing a metamodel using a textual syntax.
 Based on this specification, GreyCat generates a Java and a JavaScript API to create and manipulate models that conform to the predefined metamodel.
 The GreyCat framework handles time as a built-in concept.
-Additionally, it has a native support of a lazy loading mechanism and an advanced garbage collection.
+Additionally, it has native support of a lazy loading mechanism and an advanced garbage collection.
 This is achieved by dynamically loading and unloading model elements from the main memory when necessary.
 
 The validation of our approach has been driven by the two research questions formulated in the introduction section:
 \begin{itemize}
-	\item How to diagnose the self-adaptation process?
-	\item How to enable reasoning over unfinished actions and their expected effects?
+    \item How to diagnose the self-adaptation process?
+    \item How to enable reasoning over unfinished actions and their expected effects?
 \end{itemize}
 
-To address the first one, we describe how one can use our approach to represent the knowledge an adaptation process for a smart grid system.
+To address the first one, we describe how one can use our approach to represent the knowledge of an adaptation process for a smart grid system.
 Then, we present a code to extract the circumstances and the goals of a decision.
 For the second one, we present a scenario where a developer can use our approach to reason over unfinished actions and their expected effects.
 The presented code shows how information can be extracted from our model to enable any reasoning algorithm.
-Finally, we present performance evaluation to show the scalability of our approach.
+Finally, we present a performance evaluation to show the scalability of our approach.
 
 \subsection{Diagnostic: implementation of the use case}
 In what follows, we explain how a stakeholder, Morgan, can apply our approach to a smart grid system in order to, first, abstract adaptive system concepts, then, structure runtime data, and finally, query the model for diagnosis purpose.
@@ -78,25 +78,25 @@ Tuple<Value[], Goal[]> getCircumstance(Decision d) {
 \end{lstlisting}
 
 \subsection{Reasoning over unfinished actions and their expected effects}
-By associating the action model to the knowledge model, we aim at enhancing adaptation process with new abilities to reason.
-In this section, we present an example of a reasoning algorithm which consider the impacts of running actions.
+By associating the action model to the knowledge model, we aim at enhancing adaptation processes with new abilities to reason.
+In this section, we present an example of a reasoning algorithm which considers the impacts of running actions.
 This example is based on our use case (\cf Section~\ref{sec:intro:use-case}).
 
-Let's imagine that the adaption process detects overloaded cables in the smart grid.
-To fix this situation, it takes severals counter measures, among which there are fuse state modifications.
+Let's imagine that the adaptation process detects overloaded cables in the smart grid.
+To fix this situation, it takes several countermeasures, among which there are fuse state modifications.
 As detailed in Section~\ref{sec:tkm:intro:motiv}, this action is considered as delayed action.
-Later, another incident is detected, for example a substation is being overloaded.
-Before taking any actions, the adaption process can, thanks to our solution, verify if the running actions will be sufficient to solve this new incidents.
+Later, another incident is detected, for example, a substation is being overloaded.
+Before taking any actions, the adaptation process can, thanks to our solution, verify if the running actions will be sufficient to solve this new incident.
 If not, it can either take additional actions or replan the running one.
-The algorithm to reschedule current actions or to compute additional actions is out of scope of this thesis.
-Here, we present the code to extract required information from our model.
+The algorithm to reschedule current actions or to compute additional actions is out of the scope of this thesis.
+Here, we present the code to extract the required information from our model.
 
-Checking if the running actions will be sufficient to solve all current issues can also be thought as: will the issue remain with the new context, \ie after each actions have been executed.
+Checking if the running actions will be sufficient to solve all current issues can also be thought as: will the issue remain with the new context, \ie after each action have been executed.
 In our case, it is like verifying if the second overload will still remain with the new topology, which is coming.
-The adaptation process therefore needs to extract the context in the future.
+The adaptation process, therefore, needs to extract the context in the future.
 To do so, the adaptation process should know the latest timepoint at which the impact will be measured.
 Listing~\ref{code:tkm:valid:latest-impact} shows the code to get this timepoint.
-Running, idle and finished actions are accessed thanks to the the two first nested loops with the if-condition.
+Running, idle and finished actions are accessed thanks to the first two nested loops with the if-condition.
 We consider that failed and canceled actions have no effects.
 As finished actions may still have effects, we also consider them.
 Then we navigate through all impacted values to get their start time, \ie the beginning of their validity period ($V^T$ relation, \cf Section~\ref{sec:tkm:k-formalism:formalism}).
@@ -117,18 +117,17 @@ Time latestImpact(Knowledge k) {
 }	
 \end{lstlisting}
 
-Using this timepoint, then the adaption process can then compute how the grid should be after the actions have been executed.
-If the system has no prediction mechanism, then the adaption process can verify how the power will be balance over the new topology.
+Using this timepoint, then the adaptation process can then compute how the grid should be after the actions have been executed.
+If the system has no prediction mechanism, then the adaptation process can verify how the power will be balanced over the new topology.
 Otherwise, it can use this prediction feature to compute the expected loads with the coming topology.
-Using these information, it can verify if all current incidents will be solved by the ongoing actions or not.
+Using this information, it can verify if all current incidents will be solved by the ongoing actions or not.
 If not, it may take additional actions or reschedule them.
 
 Listing~\ref{code:tkm:valid:extract-act} depicts the code to extract all running actions.
-The nested loops allow accessing to all executions made by decision.
+The nested loops allow accessing all executions made by decision.
 Then, we filter only those with the \textquote{RUNNING} status.
-The resulting collection should then be given to the scheduling algorithm, which will decide if a rescheduling is possible and how. 
+The resulting collection should then be given to the scheduling algorithm, which will decide if rescheduling is possible and how. 
 
- 
 \begin{lstlisting}[style=customc, caption=Extract ongoing actions and their effects, label=code:tkm:valid:extract-act,basicstyle=\scriptsize]
 TacticExecution[] runningActions(Knowledge k) {
   TacticExecution[] resA
@@ -143,8 +142,8 @@ TacticExecution[] runningActions(Knowledge k) {
 }
 \end{lstlisting}
 
-Using our model, developers have to solution to model a rescheduling operation.
-Either they modify the actions, which may delete the history of the previous decision, or they mark all running and idle actions as \textquote{CANCELLED} and create a new decision, with new actions, which update the circumstances and re-use the same requirements.
+Using our model, developers have two solutions to model a rescheduling operation.
+Either they modify the actions, which may delete the history of the previous decision, or they mark all running and idle actions as \textquote{CANCELED} and create a new decision, with new actions, which update the circumstances and re-use the same requirements.
 
 \subsection{Performance evaluation}
 GreyCat stores temporal graph elements in several key/value maps. Thus, the complexity of accessing a graph element is linear and depends on the size of the graph. 
@@ -227,10 +226,11 @@ Our implementation allows to dynamically load and release nodes during the execu
 However, the performance of our solution, in terms of memory and execution time, is restricted by the number of traversed elements and the number of input elements.
 Indeed, as shown in our experimentation, both the execution time and the memory consumption grow linearly.
 
-As described in~\cite{DBLP:conf/smartgridcomm/0001FKTPTR14}, the smart grid in Luxembourg is composed of 1 central system, 3 data concentrators and 227 meters.
-The network is thus composed of 231 elements.
+In the Luxembourg smart grid, a district contains approximatively 3 data concentrators and 227 meters\footnote{Previously, our studies uses the data described in \cite{DBLP:conf/smartgridcomm/0001FKTPTR14}, which corresponded to the all Luxembourg at this date. Since 2014, the smart grid has been more and more deployed. Numbers present in this paper now correspond more to one district.}.
+Counting the global datacenter, the network is thus composed of 231 elements.
 Each meter sends the consumption value every 15 min, being 908 every hours.
 Plus, there is from 0 to 273 topology modifications in the network.
 In total, the system generates from 908 to 1,181 new values every hour.
-If we consider that we have one model element per smart grid entity and one model element per new value, 100,000 model elements correspond thus from $((100,000 - 231) * 1H ) / 1,181 = 84,5H$ ($\sim$ 3,5 days) to $((100,000 - 231) * 1H ) / 908 = 109,9H$ ($\sim$ 4,6 days) of data. In other word, our approach can efficiently interrogate up to $\sim$5 days history data in 2.4s.
+If we consider that we have one model element per smart grid entity and one model element per new value, 100,000 model elements correspond thus from $((100,000 - 231) * 1H ) / 1,181 = 84,5H$ ($\sim$ 3,5 days) to $((100,000 - 231) * 1H ) / 908 = 109,9H$ ($\sim$ 4,6 days) of data.
+In other word, our approach can efficiently interrogate up to $\sim$5 days history data in 2.4s of one district.
 
