@@ -1,27 +1,26 @@
 \section{Validation}
 \label{sec:tkm:validation}
 
-In this section we validate 
-
-\begin{itemize}
-	\item How to enable reasoning over unfinished actions and their expected effects?
-	\item How to diagnose the self-adaptation process?
-\end{itemize}
-
-
-%\subsection{Validation for the temporal graph}
-%
-%This section briefly presents the implementation of our approach on top of an existing framework to store temporal graphs.
-%We validate our approach by first describing how one can implement graph manipulation operations involved in diagnosis algorithms. Later, we evaluate the performance of our implementation.
-
-\subsection{Diagnostic: implementation of the use case}
-To validate and evaluate our approach, we implemented a prototype publicly available online~\footnote{https://github.com/lmouline/LDAS}.
+To validate and evaluate our approach, we implemented a prototype publicly available online\footnote{https://github.com/lmouline/LDAS}.
 This implementation leverages the GreyCat framework\footnote{https://github.com/datathings/greycat}, more precisely the modeling plugin, which allows designing a metamodel using a textual syntax.
 Based on this specification, GreyCat generates a Java and a JavaScript API to create and manipulate models that conform to the predefined metamodel.
 The GreyCat framework handles time as a built-in concept.
 Additionally, it has a native support of a lazy loading mechanism and an advanced garbage collection.
 This is achieved by dynamically loading and unloading model elements from the main memory when necessary.
 
+The validation of our approach has been driven by the two research questions formulated in the introduction section:
+\begin{itemize}
+	\item How to diagnose the self-adaptation process?
+	\item How to enable reasoning over unfinished actions and their expected effects?
+\end{itemize}
+
+To address the first one, we describe how one can use our approach to represent the knowledge an adaptation process for a smart grid system.
+Then, we present a code to extract the circumstances and the goals of a decision.
+For the second one, we present a scenario where a developer can use our approach to reason over unfinished actions and their expected effects.
+The presented code shows how information can be extracted from our model to enable any reasoning algorithm.
+Finally, we present performance evaluation to show the scalability of our approach.
+
+\subsection{Diagnostic: implementation of the use case}
 In what follows, we explain how a stakeholder, Morgan, can apply our approach to a smart grid system in order to, first, abstract adaptive system concepts, then, structure runtime data, and finally, query the model for diagnosis purpose.
 The corresponding object model is depicted in Figure~\ref{fig:tkm:valid:diag}.
 Due to space limitation, we only present an excerpt of the knowledge model.
