@@ -85,7 +85,7 @@
 \fi
 
 \ifIFwriting
-	\RequirePackage[notref, notcite]{showkeys}
+%	\RequirePackage[notref, notcite]{showkeys}
 	\RequirePackage{warning}
 	\RequirePackage{refcheck}
 	\overfullrule=2cm
