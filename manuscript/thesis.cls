@@ -16,6 +16,7 @@
 \RequirePackage{listings}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[final]{microtype}
+\RequirePackage{lmodern}
 
 %%% Class options %%%%%
 %
