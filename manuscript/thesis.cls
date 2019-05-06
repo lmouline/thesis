@@ -14,6 +14,8 @@
 \RequirePackage[caption=false,font=footnotesize]{subfig}
 \RequirePackage{enumitem}
 \RequirePackage{listings}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[final]{microtype}
 
 %%% Class options %%%%%
 %
