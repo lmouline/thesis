@@ -50,7 +50,14 @@ In order to show their existence, we give four different examples: two based on 
 From our understanding, three phenomena can explain this delay: the time to execute an action(s) (Example 1), the time for the system to handle the new configuration (Example 3) and the inertia of the measured element (Example 2 and 4).
 
 \subparagraph{Example 1: Modification of fuse states in smart grids}
-Even if the Luxembourg power grid is moving to an autonomous one, not all the elements can be remotely controlled.One example is fuses that still need to be open or closed by a human.Open and close actions in the Luxembourg smart grid both imply technicians who are contacted, drive to fuse places and manually change their states.If several fuses need to be changed due to one decision, only one technician will drive to them, sequentially, and executes the modifications.For example, in our case, our industrial partner asks us to consider that each fuse modification takes 15 min whereas any incident should be detected in the minute.Let's imagine that an incident is detected at 4 p.m. and can be solved by modifying three fuses.The incidents will be seen as resolved by the adaptation process at 4 p.m. + 15 min * 3 = 4:45 p.m.In this case, the delay of the action is due to the execution time that is not immediate.
+Even if the Luxembourg power grid is moving to an autonomous one, not all the elements can be remotely controlled.
+One example is fuses that still need to be open or closed by a human.
+Open and close actions in the Luxembourg smart grid both imply technicians who are contacted, drive to fuse places and manually change their states.
+If several fuses need to be changed due to one decision, only one technician will drive to them, sequentially, and executes the modifications.
+For example, in our case, our industrial partner asks us to consider that each fuse modification takes 15 min whereas any incident should be detected in the minute.
+Let's imagine that an incident is detected at 4 p.m. and can be solved by modifying three fuses.
+The incidents will be seen as resolved by the adaptation process at 4 p.m. + 15 min * 3 = 4:45 p.m.
+In this case, the delay of the action is due to the execution time that is not immediate.
 
 \subparagraph[Example 2: Reduction of amps limits in smart grids]{Example 2: Reduction of amps limit in smart grids\footnote{This example is based on randomly generated data. As this action is not yet available on the Luxembourg smart grid, we miss real data. However, it reflects an hypothesis shared with our partner.}}
 \begin{figure}
@@ -105,7 +112,18 @@ This explains why the throughout is progressively decreasing to 0 and there is a
 This example shows a delayed action due to the time required by the system to handle the new configuration.
 
 \subparagraph{Example 4: Modifying home temperature through a smart home system}
-Smart home systems have been implemented in order to manage remotely a house or to perform automatically routines.For example, it allows users to close or open blinds from their smartphones.Based on instruction temperatures, smart home systems manage the heating or cooling system to reach them at the desired time.However, heating or cooling a house is not immediate, it can take several hours before the targeted temperature is reached.Plus, if the temperature sensor and the heating or cooling system are not placed nearby, the new temperature can take time before being measured.This can be explained due to the temperature inertia plus the delay for the temperature to be propagated.\bigskipThrough these four examples, we show that delayed actions can be found in different kinds of systems, from CPS to cloud infrastructure.However, not only knowing that an action is running is important but also knowing its expecting effect.We detail this point in the following section.
+Smart home systems have been implemented in order to manage remotely a house or to perform automatically routines.
+For example, it allows users to close or open blinds from their smartphones.
+Based on instruction temperatures, smart home systems manage the heating or cooling system to reach them at the desired time.
+However, heating or cooling a house is not immediate, it can take several hours before the targeted temperature is reached.
+Plus, if the temperature sensor and the heating or cooling system are not placed nearby, the new temperature can take time before being measured.
+This can be explained due to the temperature inertia plus the delay for the temperature to be propagated.
+
+\bigskip
+
+Through these four examples, we show that delayed actions can be found in different kinds of systems, from CPS to cloud infrastructure.
+However, not only knowing that an action is running is important but also knowing its expecting effect.
+We detail this point in the following section.
 
 \paragraph{The need to consider effects}
 In the previous section, we show the existence of delayed actions.
@@ -139,7 +157,7 @@ The research question that motivates our work is thus: how to enable reasoning o
 
 Fined and rich context information directly influences the accuracy of the actions taken.
 Various techniques to represent context information have been proposed; among which we find the models@run.time~\cite{DBLP:journals/computer/MorinBJFS09, DBLP:journals/computer/BlairBF09}.
-The models@run.time paradigm inherits model-driven engineering concepts to extend the use of models not only at design time but also at runtime. 
+The models@run.time \linebreak paradigm inherits model-driven engineering concepts to extend the use of models not only at design time but also at runtime. 
 This model-based representation has proven its ability to structure complex systems and synthesize its internal state as well as its surrounding environment.
 
 \subsubsection{Diagnosis support}
@@ -164,7 +182,7 @@ Additionally, it should be able to \textbf{trace the goals intended to be achiev
 Finally, in order to enable developers to interact with the system in a clear and understandable way, appropriate abstraction to \textbf{enable the navigation of the traces and their history should also be provided}.
 Unfortunately, suitable solutions to support these features are under-investigated. 
 
-Existing approaches~\cite{hassel13,heinrich14,ehlers11,DBLP:conf/icse/MendoncaAR14,DBLP:conf/icse/CasanovaGSA14,DBLP:conf/icse/IftikharW14a} are accompanied by built-in monitoring rules and do not allow to interact with the underlying system in a simple way. 
+Existing approaches~\cite{hassel13,DBLP:conf/models/HeinrichSJRMHRP14,DBLP:conf/icac/EhlersHWH11,DBLP:conf/icse/MendoncaAR14,DBLP:conf/icse/CasanovaGSA14,DBLP:conf/icse/IftikharW14a} are accompanied by built-in monitoring rules and do not allow to interact with the underlying system in a simple way. 
 Moreover, they do not keep track of historical changes as well as causal relationships linking requirements to their corresponding adaptations. Only flat execution logs are stored. 
 
 \subsection{Background}
@@ -182,18 +200,18 @@ The following subsections provide more details about these concepts.
 
 \subsubsection{Context}
 
-In this thesis, we use the widely accepted definition of context provided by Dey~\cite{DBLP:journals/puc/Dey01}: \textquote{Context is \textbf{any information that can be used to characterize} the situation of an entity. An entity is a person, place, or object that is considered relevant to the interaction between a user and [the system], including the user and [the system] themselves}.
-In this section, we list the characteristics of this information based on several works found in the literature~\cite{DBLP:conf/pervasive/HenricksenIR02, chong2007context, DBLP:conf/seke/0001FNMKT14, bettini2010survey, DBLP:journals/comsur/PereraZCG14}.
-We use them to drive our design choices of our Knowledge meta-model (cf. Section~\todo{Add ref}).
+In this thesis, we use the widely accepted definition of context provided by \linebreak Dey~\cite{DBLP:journals/puc/Dey01}: \textquote{Context is \textbf{any information that can be used to characterize} the situation of an entity. An entity is a person, place, or object that is considered relevant to the interaction between a user and [the system], including the user and [the system] themselves}.
+In this section, we list the characteristics of this information based on several works found in the literature~\cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:conf/seke/0001FNMKT14, DBLP:journals/percom/BettiniBHINRR10, DBLP:journals/comsur/PereraZCG14}.
+We use them to drive our design choices of our Knowledge meta-model (cf. Section~\ref{sec:tkm:mm:knoeldge}).
 
 \paragraph{Volatility}
 Data can be either \textbf{static} or \textbf{dynamic}.
-Static data, also called frozen, are data that will not be modified, over time, after their creation~\cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/comsur/MakrisSS13, bettini2010survey, chong2007context}.
+Static data, also called frozen, are data that will not be modified, over time, after their creation~\cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/comsur/MakrisSS13, DBLP:journals/percom/BettiniBHINRR10}.
 For example, the location of a machine, the first name or birth date of a user can be identified as static data. 
 Dynamic data, also referred to as volatile data, are data that will be modified over time.
 
 \paragraph{Temporality}
-In dynamic data, sometimes we may be interested not only in storing the latest value, but also the previous ones~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/pervasive/HenricksenIR02, chong2007context}. 
+In dynamic data, sometimes we may be interested not only in storing the latest value, but also the previous ones~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/pervasive/HenricksenIR02}. 
 We refer to these data as \textbf{historical} data.
 Temporal data is not only about past values, but also future ones. 
 Two kinds of future values can be identified, \textbf{predicted} and \textbf{planned}.  
@@ -201,19 +219,19 @@ Thanks to machine learning or statistical methods, dynamic data values can be \t
 \textbf{Planned} data are set by a system or a human to specify planned modification on the data.
 
 \paragraph{Uncertainty}
-One of the recurrent problems facing context-aware applications is the data uncertainty~\cite{DBLP:conf/dagstuhl/LemosGMSALSTVVWBBBBCDDEGGGGIKKLMMMMMNPPSSSSTWW10, DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/comsur/MakrisSS13, bettini2010survey}.
+One of the recurrent problems facing context-aware applications is the data uncertainty~\cite{DBLP:conf/dagstuhl/LemosGMSALSTVVWBBBBCDDEGGGGIKKLMMMMMNPPSSSSTWW10, DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/comsur/MakrisSS13, DBLP:journals/percom/BettiniBHINRR10}.
 Uncertain data are not likely to represent the reality. They contain a noise that makes it deviate from its original value.
 This noise is mainly due to the inaccuracy and imprecision of sensors.
 Another source of uncertainty is the behavior of the environment, which can be unpredictable.
 All the computations that use uncertain data are also uncertain by propagation.
 
 \paragraph{Source}
-According to the literature, data sources are grouped into two main categories, either sensed (measured) data or computed (derived) data~\cite{DBLP:journals/comsur/PereraZCG14, chong2007context}.
+According to the literature, data sources are grouped into two main categories, either sensed (measured) data or computed (derived) \linebreak data~\cite{DBLP:journals/comsur/PereraZCG14}.
 %We refine this with an additional category called profiled.
 %Profiled data may be set either by a user (\textbf{profiled by a human}) or by an external system (\textbf{profiled by an external}).
 
 \paragraph{Connection}
-Context data entities are usually linked using three kinds of connections: conceptual, computational, and consistency~\cite{DBLP:conf/pervasive/HenricksenIR02, bettini2010survey}.
+Context data entities are usually linked using three kinds of connections: conceptual, computational, and consistency~\cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/percom/BettiniBHINRR10}.
 The conceptual connection relates to  (direct) relationships between entities in the real world (e.g. smart meter and concentrator).
 The computational connection is set up when the state of an entity can be linked to another one by a computation process (derived, predicted). 
 Finally, the consistency connection relates entities that should have consistent values. For instance, temperature sensors belonging to the same geographical area.
@@ -225,7 +243,7 @@ Adaptation processes aim at modifying the system state to reach an optimal one.
 All along this process, the system should respect the \textbf{system requirements} established ahead. 
 Through this paper, we use the definition provided by IEEE~\cite{iso2017systems}: ``(1) Statement that translates or expresses a need and its associated \textbf{constraints} and \textbf{conditions}, (2) \textbf{Condition or capability that must be met or possessed} by a system [...] to satisfy an agreement, standard, specification, or other formally imposed documents".\looseness=-1
 
-Although in the literature, requirements are categorized as functional or non-functional, in this paper we use a more elaborate taxonomy introduced by Glinz~\cite{DBLP:conf/re/Glinz07}.
+Although in the literature, requirements are categorized as functional or non-func\-tional, in this paper we use a more elaborate taxonomy introduced by Glinz~\cite{DBLP:conf/re/Glinz07}.
 It classifies requirements in four categories: functional, performance, specific quality, and constraint.
 All these categories share a common feature: they are all temporal.
 During the life-cycle of an adaptive system, the developer can update, add or remove some requirements~\cite{DBLP:conf/icse/ChengA07, pandey2010effective}.
@@ -267,7 +285,7 @@ At the same time point, the system decides to reduce the load of all smart meter
 The impact of these actions will be measured at $t_2$ and $t_3$, \ie the consumption will slowly reduce until the cable is no longer overloaded from $t_3$.
 
 \paragraph{Diagnosis scenario}
-As all adaptive systems, smart grids are prone to failures~\cite{DBLP:conf/smartgridsec/0001FKNT14}.
+As all adaptive systems, smart grids are prone to \linebreak failures~\cite{DBLP:conf/smartgridsec/0001FKNT14}.
 Using our approach, an engineer could diagnose the system, and determine the adaptation process responsible for this failure. 
 For instance, considering some reports about regular power cuts during the last couple of days, in a particular area, a stakeholder may want to interrogate the system and determine what past decision(s) have led to this suboptimal state.
 More concretely, he will ask: did the system make any decisions that could have impacted the customer consumption? 

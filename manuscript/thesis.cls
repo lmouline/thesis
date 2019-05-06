@@ -76,7 +76,6 @@
 
 \ifIFdebug
 	\RequirePackage{showframe}
-	\overfullrule=5pt
 \fi
 
 \ifIFglossary
@@ -85,9 +84,9 @@
 \fi
 
 \ifIFwriting
-%	\RequirePackage[notref, notcite]{showkeys}
 	\RequirePackage{warning}
 	\RequirePackage{refcheck}
+	\RequirePackage{todonotes}
 	\overfullrule=2cm
 \fi
 
@@ -95,7 +94,7 @@
 \RequirePackage{csquotes}
 
 %%% Definition of the page layout %%%%%
-\RequirePackage[left=3cm, right=3cm, headheight=15pt]{geometry} %with page borders size
+\RequirePackage[headheight=15pt]{geometry} %with page borders size
 \RequirePackage{fancyhdr} 
 \pagestyle{fancy}
 \fancyhf{} %remove all rules
@@ -149,8 +148,6 @@
 % chapterPage
 %		setup the first page of a chapter with an abstract and a mini table of contents
 %
-% todo
-%		add a red text starting with TODO
 %%%%%%%%%%%%%%%%
 \let\OLDbackmatter\backmatter
 \renewcommand{\backmatter}[0]
@@ -186,15 +183,17 @@
 
 \newcommand{\highlightbox}[2][]
 {
-	\noindent\fbox{
-		\parbox{0.969\textwidth}
-		{
-			\ifthenelse{\isempty{#1}}
-			{}
-			{\textbf{#1:}}
-			#2
+	\begin{center}
+		\noindent\fbox{
+			\parbox{0.966\textwidth}
+			{
+				\ifthenelse{\isempty{#1}}
+				{}
+				{\textbf{#1:}}
+				#2
+			}
 		}
-	}	
+	\end{center}	
 }
 
 \newcommand{\ie}[0]{\textit{i.e., }}
@@ -212,11 +211,6 @@
 	\OLDtableofcontents
 }
 
-\newcommand{\todo}[1]
-{
-	\textcolor{red}{{\em TODO}: \bf #1}
-}
-
 %\renewcommand*{\backref}[1]{}
 %\renewcommand*{\backrefalt}[4]{{\footnotesize [%
 %    \ifcase #1 Not cited.%
@@ -224,7 +218,6 @@
 %    \else Cited on pages #2%
 %    \fi%
 %]}}
-
 
 \makeatletter
 \def\old@comma{,}
