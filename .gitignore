@@ -8,3 +8,6 @@ manuscript/build
 
 # Others
 phdthesis.cls
+
+# Excel files
+*.xlsx
