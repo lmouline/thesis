@@ -33,7 +33,7 @@ On the one hand, an incident should be detected in the next minutes.
 On the other hand, a reconfiguration action can take up to several hours.
 For example, when a tree falls on a cable and cuts it during a storm, the grid manager should be noticed in real time.
 The reconfiguration of the grid, to reconnect as many people as possible before replacing the cable, is done by technicians who need to use their cars to go on the reconfiguration places.
-In a fully autonomous adaptive system, the reasoning process should be considered the ongoing actions to avoid repeating decisions.
+In a fully autonomous adaptive system, the reasoning process should consider the ongoing actions to avoid repeating decisions.
 
 %% Problematic 
 \bigskip
@@ -53,7 +53,7 @@ For example, migrating a virtual machine from a server to another one can take s
 
 \textbf{Through this thesis, I argue that this data uncertainty and this delay cannot be ignored for all dynamic adaptive systems.}
 To know if the data uncertainty should be considered, stakeholders should wonder \textbf{if this data uncertainty affects the result of their reasoning process, like adaptation}.
-Regarding delayed action, they should verify \textbf{if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
+Regarding delayed actions, they should verify \textbf{if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
 These characteristics are common to smart grids, cloud infrastructure or cyber-physical systems in general.
 
 %% Challenge
@@ -76,21 +76,21 @@ All these representations should integrate the data uncertainty existing.
 %% Contributions which support the vision
 \bigskip
 \paragraphit{Contributions}
-Towards this vision, this document presents two approaches: a temporal context model and a language for uncertain data.The temporal context model allows abstracting past, ongoing and future actions with their impacts and context.First, a developer can use this model to know what the ongoing actions, with their expect future impacts on the system, are.Second, she/he can navigate through past decisions to understand why they have been made when they have led to a sub-optimal state.The language, named \langName, integrates data uncertainty as a first-class concept.It allows developers to attach data with a probability distribution which represents their uncertainty.Plus, it mapped all arithmetic and boolean operators to uncertainty propagation operations. And so, developers will automatically propagate the uncertainty of data without additional effort, compared to an algorithm which manipulates certain data.
+Towards this vision, this document presents two approaches: a temporal context model and a language for uncertain data.The temporal context model allows abstracting past, ongoing and future actions with their impacts and context.First, a developer can use this model to know what the ongoing actions, with their expect future impacts on the system, are.Second, she/he can navigate through past decisions to understand why they have been made when they have led to a sub-optimal state.The language, named \langName, integrates data uncertainty as a first-class citizen.It allows developers to attach data with a probability distribution which represents their uncertainty.Plus, it mapped all arithmetic and boolean operators to uncertainty propagation operations. And so, developers will automatically propagate the uncertainty of data without additional effort, compared to an algorithm which manipulates certain data.
 
 %% Validation
 \bigskip
 \paragraphit{Validation}
 Each contribution has been evaluated separately. 
-The language has been evaluated through two axes: its ability to detect errors at development time and its expressiveness.
-Ain'tea can detect errors in the combination of uncertain data earlier than state-of-the-art approaches.
-The language is also as expressive as current approaches found in the literature.
-Moreover, we use this language to implement the load approximation of a smart grid furnished by an industrial partner, Creos S.A.\footnote{Creos S.A. is the power grid manager of Luxembourg. \url{https://www.creos-net.lu}}.
-
 The context model has been evaluated through the performance axis.
 The dissertation shows that it can be used to represent the Luxembourg smart grid.
 The model also provides an API which enables the execution of query for diagnosis purpose.
 In order to show the feasibility of the solution, it has also been applied to the use case provided by the industrial partner.
+
+The language has been evaluated through two axes: its ability to detect errors at development time and its expressiveness.
+Ain'tea can detect errors in the combination of uncertain data earlier than state-of-the-art approaches.
+The language is also as expressive as current approaches found in the literature.
+Moreover, we use this language to implement the load approximation of a smart grid furnished by an industrial partner, Creos S.A.\footnote{Creos S.A. is the power grid manager of Luxembourg. \url{https://www.creos-net.lu}}.
 
 \bigskip
 \bigskip
