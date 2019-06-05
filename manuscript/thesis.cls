@@ -5,7 +5,7 @@
 %%% Package dependencies %%%%%
 \RequirePackage{xcolor}
 \RequirePackage{xifthen}
-\RequirePackage[backref=true, style=trad-alpha]{biblatex}
+\RequirePackage[backref=true, style=trad-alpha, backend=biber]{biblatex}
 \RequirePackage[colorlinks]{hyperref}
 \RequirePackage{indentfirst}
 \RequirePackage{doi}
@@ -17,6 +17,9 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage[final]{microtype}
 \RequirePackage{lmodern}
+\RequirePackage{bibentry}
+\nobibliography*
+\RequirePackage{pdfpages}
 
 %%% Class options %%%%%
 %
@@ -160,15 +163,16 @@
 	
 	\pagenumbering{roman}
 	
+	\addcontentsline{toc}{chapter}{List of publications and tools}
+	\input{publications}
+	
 	\ifIFglossary
 		\printglossary[type=\acronymtype, title={Abbreviations}]
 		\cleardoublepage
 		\printglossary[type=main]
 	\fi
 	
-%  \bibliography{bib}
-%  \bibliographystyle{alphaurl}
-%  \addcontentsline{toc}{chapter}{Bibliography}
+  	\addcontentsline{toc}{chapter}{Bibliography}
 	\printbibliography
 }
 
@@ -222,6 +226,7 @@
 %    \fi%
 %]}}
 
+%% Usage????
 \makeatletter
 \def\old@comma{,}
 \catcode`\,=13
