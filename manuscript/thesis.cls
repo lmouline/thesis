@@ -6,7 +6,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{xifthen}
 \RequirePackage[backref=true, style=trad-alpha, backend=biber]{biblatex}
-\RequirePackage[colorlinks]{hyperref}
+\RequirePackage[]{hyperref}
 \RequirePackage{indentfirst}
 \RequirePackage{doi}
 \RequirePackage{graphicx}
