@@ -239,5 +239,7 @@
 }
 \makeatother
 
+%% Glossary links in black and italic
+\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1$^*$}}
 
 
