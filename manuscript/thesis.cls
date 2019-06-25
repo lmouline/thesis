@@ -163,6 +163,7 @@
 	
 	\pagenumbering{roman}
 	
+	\phantomsection
 	\addcontentsline{toc}{chapter}{List of publications and tools}
 	\input{publications}
 	
@@ -172,8 +173,7 @@
 		\printglossary[type=main]
 	\fi
 	
-  	\addcontentsline{toc}{chapter}{Bibliography}
-	\printbibliography
+	\printbibliography[heading=bibintoc]
 }
 
 \renewcommand{\contentsname}{Table of Contents}
