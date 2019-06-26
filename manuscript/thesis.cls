@@ -68,8 +68,7 @@
 
 \ifIFreview
 	\RequirePackage[pagewise]{lineno}
-	\linenumbers
-	
+		
 	\RequirePackage{setspace}
 	\onehalfspacing
 
@@ -77,7 +76,6 @@
 
 \ifIFpublish
 	\RequirePackage[pagewise, modulo]{lineno}
-	\linenumbers
 \fi
 
 \ifIFdebug
