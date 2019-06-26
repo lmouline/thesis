@@ -128,6 +128,9 @@
 	  \filright}
 	  [\vspace{2ex}%
 	  \titlerule]
+
+
+\RequirePackage{cleveref}
 	  
 %%% Remove spaces for item list %%%%%
 \setlist[itemize]{noitemsep, nolistsep}

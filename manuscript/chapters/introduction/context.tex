@@ -1,56 +1,57 @@
 \section{Context}
-Utilities introduce more and more \gls{ict} in the grid in order to face the new challenges of electricity delivery~\cite{farhangi2010path, ipakchi2009grid, DBLP:journals/comsur/FangMXY12}.
-These novel power grids are referred to as \gls{sg}.
+Utilities are introducing more and more \gls{ict} in the grid in order to face the new challenges of electricity supply~\cite{farhangi2010path, ipakchi2009grid, DBLP:journals/comsur/FangMXY12}.
+These nowadays power grids are referred to as \gls{sg}.
 
-Among the different features that they possess, the one that will interest us in this document is the \textbf{\gls{shealing}} one.
-As defined by Jeffrey O. Kephart and David M. Chess~\cite{DBLP:journals/computer/KephartC03}, a system can be described as a \gls{shealing} system if it can automatically fix any incident at runtime.
-For example, a smart grid can automatically optimize the power flow in order to deal with failures of transformers\footnote{Transformers change the voltage in cables.}~\cite{DBLP:journals/comsur/FangMXY12}.
+In this document, we focus on the \textbf{\gls{shealing}} capacity of such grids.
+A \gls{shealingSyst} can automatically repair any incident, software or hardware, at runtime~\cite{DBLP:journals/computer/KephartC03}.
+For example, a smart grid can optimize the power flow to deal with failures of transformers\footnote{Transformers change the voltage in cables.}~\cite{DBLP:journals/comsur/FangMXY12}.
+In this way, the incident will impact as few users as possibles, ideally none. 
 
 This healing mechanism can be performed only if the smart grid has a deep understanding of itself and its environment.
 To tame their complexity, a common approach in software engineers is to use an \textbf{abstraction} mechanism.
-Abstractions provide an illuminating description of systems, their behaviors, and/or their environment.
+Abstractions provide an illuminating description of systems, their behaviours, or their environment.
 For example, Hartmann~\etal \cite{DBLP:conf/smartgridcomm/0001FKTPTR14} provide a class diagram that describes the smart grid topology, when it uses power-line communications\footnote{Data are sent through cables that also distribute electricity.}.
 
 \bigskip
 
 More generally, a \gls{shealing} is a \textbf{\gls{sadapt}}. 
 Cheng \etal define \glspl{sadapt} as \textquote{systems that are able to adjust their behaviour in response to their perception of the environment and the system itself}~\cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}.
-Jeffrey O. Kephart and David M. Chess~\cite{DBLP:journals/computer/KephartC03} laid the groundwork of this approach, based on a IBM white paper~\cite{computing2006architectural}.
+Jeffrey O. Kephart and David M. Chess~\cite{DBLP:journals/computer/KephartC03} laid the groundwork of this approach, based on an IBM white paper~\cite{computing2006architectural}.
 Since then, it has been used in different domain~\cite{DBLP:journals/corr/abs-1904-01518} such as cloud infrastructure~\cite{DBLP:conf/icac/JavadiG17, OpenStack:Watcher:Wiki, DBLP:conf/icse/BarnaKFL17} or \gls{cps}~\cite{DBLP:conf/icac/LalandaGC17, DBLP:conf/cbse/FouquetMFBPJ12, DBLP:conf/smartgridsec/0001FKNT14}.
 
 \textbf{\Gls{mde}} uses the abstraction mechanism to facilitate the development of nowadays software~\cite{DBLP:journals/computer/Schmidt06, DBLP:conf/ifm/Kent02, DBLP:series/synthesis/2017Brambilla}.
-This methodology can be applied on the different stages of software development.
+This methodology can be applied to different stages of software development.
 In this thesis, we focus on one of its paradigm: \textbf{\gls{m@rt}}~\cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}.
-The state of the system and/or its environment as well as its behavior are reflected in a model, used for analysis.
+The state of the system or its environment, as well as its behaviour, are reflected in a model, used for analysis.
 Developers can use this paradigm to implement \glspl{adptSyst}~\cite{DBLP:journals/computer/MorinBJFS09, DBLP:conf/smartgridsec/0001FKNT14}.
 
 \bigskip
 
 Whereas smart grids introduce more and more automation capacity, human interventions are still required.
 First, information gathered by smart grids is therefore not always known with absolute confidence.
-Second, smart grids reconfigurations are not immediate and their effects are not instantaneously measured.
-Third, smart grids behavior is emergent~\cite{zio2011uncertainties}, \ie it cannot be perfectly known at design time.
+Second, smart grids reconfigurations are not immediate, and their effects are not instantaneously measured.
+Third, smart grids behaviour is emergent~\cite{zio2011uncertainties}, \ie it cannot be entirely known at design time.
 
 Most fuses are manually open and close by technicians rather than automatically modified.
 Then, technicians manually report the modifications done on the grid.
-Due to human mistakes, this results in mistakes.
+Due to human mistakes, this results in errors.
 The grid topology is thus uncertain.
 This uncertainty is propagated to the load approximation, used to detect overloads in the grid.
 Wrong reconfigurations might be triggered, which could be even worse than if no change would have been applied.
 
 Reconfiguring a smart grid implied to change the power flow.
-This is done by connecting or disconnecting specific cables.
+It is done by connecting or disconnecting specific cables.
 That is, opening or closing fuses.
-As said before, a technician need to physically drive to the fuse location to modify its state.
-In addition, in the case of the Luxembourg smart grid, meters send energy measurement every 15 mins, desynchronously.
-Between the moment where a reconfiguration of the smart grid is decided and the moment of the effect are measured, a delay of at least 15 mins occurs.
+As said before, a technician needs to drive physically to the fuse location to modify its state.
+Besides, in the case of the Luxembourg smart grid, meters send energy measurement every 15 mins, non-synchronously.
+Between the time a reconfiguration of the smart grid is decided, and the time the effects are measured, a delay of at least 15 mins occurs.
 On the other hand, an incident should be detected in the next minutes.
 If the adaptation process does not consider this difference of paces, it can cause repeated decisions.
 
-Smart grid behavior is affected by several factors that cannot be controlled by the grid manager.
+Smart grid behaviour is affected by several factors that cannot be controlled by the grid manager.
 One example is the weather condition.
 Smart grids rely on an energy production that is distributed over several actors.
 For instance, users, who were mainly consumers before, now produce energy by adding solar panels on the roof of their houses.
-The production of such energy depends on the weather and even on the season\footnote{The angle of the sun has an impact on the amount of energy produced by solar panels. This angle varies according to the season.}.
-Another example is the increasing adoption of electrical vehicle, which de facto drastically increase the consumption of electricity during the night.
-Ignoring this characteristic of \gls{adptSyst} may result suboptimal situations that can be understood with difficulties.
+The production of such energy depends on the weather, and even on the season\footnote{The angle of the sun has an impact on the amount of energy produced by solar panels. This angle varies according to the season.}.
+Another example is the increasing adoption of electric vehicles, which de facto drastically increase the consumption of electricity during the night.
+Ignoring this characteristic of \gls{adptSyst} may result in suboptimal situations that can be understood with difficulties.
