@@ -2,14 +2,21 @@
 \newglossaryentry{action}
 {
 	name={action},
-	description={In this document, I use the definition provided by IEEE Standards~\cite{iso2017systems}: \textquote{Process that, given the \gls{context} and \glspl{requirement} as input, adjusts the system behavior}}
+	description={In this document, we use the definition provided by IEEE Standards~\cite{iso2017systems}: \textquote{Process that, given the \gls{context} and \glspl{requirement} as input, adjusts the \gls{systBhv}}}
 }
 
 \newglossaryentry{adptSyst}
 {
 	name={adaptive system},
-%	description={In this document, I use a slightly modified  definition provided by Cheng~\etal \cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}: \textquote{systems that are able to [have their] behaviour adjusted in response to the perception of the environment and the system itself.}}
-	description={In this document, I modified the definition of self-adaptive systems provided by Cheng~\etal in \cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}. Adaptive systems are able to have their behavior adjusted in response to the perception of the environment and the system themselves. If a system perform this adjustment on itself, the literature refers to it as self-adaptive system.}
+%	description={In this document, we use a slightly modified  definition provided by Cheng~\etal \cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}: \textquote{systems that are able to [have their] behaviour adjusted in response to the perception of the environment and the system itself.}}
+	description={In this document, we modified the definition of self-adaptive systems provided by Cheng~\etal in \cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}. Adaptive systems are able to have their \gls{behaviour} adjusted in response to the perception of the \gls{env} and the system themselves. If a system perform this adjustment on itself, the literature refers to it as self-adaptive system}
+}
+
+%% B
+\newglossaryentry{behaviour}
+{
+	name={behaviour},
+	description={See \gls{systBhv}}
 }
 
 %% C
@@ -22,7 +29,7 @@
 \newglossaryentry{context}
 {
 	name={context},
-	description={In this document, I use the definition provided by Anind K. Dey~\cite{DBLP:journals/puc/Dey01}: \textquote{Context is any information that can be used to characterize the situation of an entity. An entity is a person, place, or object that is considered relevant to the interaction between a user and [the system], including the user and [the system] themselves}}
+	description={In this document, we use the definition provided by Anind K. Dey~\cite{DBLP:journals/puc/Dey01}: \textquote{Context is any information that can be used to characterise the situation of an entity. An entity is a person, place, or object that is considered relevant to the interaction between a user and [the system], including the user and [the system] themselves}}
 }
 
 \newglossaryentry{cps}
@@ -38,6 +45,19 @@
 {
 	name={decision},
 	description={A set of \glspl{action} taken after comparing the state of the \gls{knowledge} with the \gls{requirement}}
+}
+
+%% E
+\newglossaryentry{env}
+{
+	name={environment},
+	description={See \gls{systEnv}}
+}
+
+\newglossaryentry{exec}
+{
+	name={execution},
+	description={In this document, we use the definition provided in the \gls{uml} specification~\cite{omg2017umlspec}: \textquote{An execution is a performance of a set of \glspl{action} (potentially over some period of time) that may generate and respond to occurrences of events, including accessing and changing the state of [the system]}}
 }
 
 %% I
@@ -68,8 +88,8 @@
 {
 	type=\acronymtype, 
 	name={MAPE-k}, 
-	description={Monitor, Analyze, Plan, and Execute over knowledge}, 
-	first={Monitor, Analyze, Plan, and Execute over knowledge (MAPE-k)\glsadd{mapekg}}, 
+	description={Monitor, Analyse, Plan, and Execute over knowledge}, 
+	first={Monitor, Analyse, Plan, and Execute over knowledge (MAPE-k)\glsadd{mapekg}}, 
 	see=[Glossary:]{mapekg}
 }
 
@@ -90,13 +110,13 @@
 % http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.106.9720&rep=rep1&type=pdf
 % https://www.cs.kent.ac.uk/projects/kmf/Documents/ifm02paper.pdf
 % https://www.researchgate.net/profile/Ed_Seidewitz/publication/3248044_What_models_mean/links/06187482fdd792dc482d00f7/What-models-mean.pdf
-In this document, I use the definition provided by Ed Seidewitz~\cite{DBLP:journals/software/Seidewitz03}: \textquote{A metamodel is a specification model for a class of [system  under  study] where each [system  under  study] in the class is it-self a valid model expressed in a certain modeling  language.}}
+In this document, we use the definition provided by Ed Seidewitz~\cite{DBLP:journals/software/Seidewitz03}: \textquote{A meta-model is a specification model for a class of [system  under  study] where each [system  under  study] in the class is it-self a valid model expressed in a certain modelling  language.}}
 }
 
 \newglossaryentry{m@rt}
 {
 	name={models@run.time},
-	description={In this document, I use the definition provided by Blair \etal~\cite{DBLP:journals/computer/BlairBF09}: \textquote{A model@run.time is a causally connected self-representation of the as-sociated system that emphasizes the structure, behavior, or goals of the system from a problem space perspective}}
+	description={In this document, we use the definition provided by Blair \etal~\cite{DBLP:journals/computer/BlairBF09}: \textquote{A model@run.time is a causally connected self-representation of the associated system that emphasises the structure, behaviour, or goals of the system from a problem space perspective}}
 }
 
 %% N
@@ -113,7 +133,7 @@ In this document, I use the definition provided by Ed Seidewitz~\cite{DBLP:journ
 \newglossaryentry{requirement}
 {
 	name={requirement},
-	description={In this document, I use the definition provided by IEEE Standards~\cite{iso2017systems}: \textquote{(1) Statement that translates or expresses a need and its associated constraints and conditions, (2) Condition or capability that must be met or possessed by a system [...] to satisfy an agreement, standard, specification, or other formally imposed documents}}
+	description={In this document, we use the definition provided by IEEE Standards~\cite{iso2017systems}: \textquote{(1) Statement that translates or expresses a need and its associated constraints and conditions, (2) Condition or capability that must be met or possessed by a system [...] to satisfy an agreement, standard, specification, or other formally imposed documents}}
 }
 
 %% S
@@ -126,7 +146,7 @@ In this document, I use the definition provided by Ed Seidewitz~\cite{DBLP:journ
 \newglossaryentry{shealingSyst}
 {
 	name={self-healing system},
-	description={In this document, I use the definition provided by Kephart and Chess~\cite{DBLP:journals/computer/KephartC03}: \textquote{[A self-healing] system automatically detects, diagnoses, and repairs localized software and hardware problems.}}
+	description={In this document, we use the definition provided by Kephart and Chess~\cite{DBLP:journals/computer/KephartC03}: \textquote{[A self-healing] system automatically detects, diagnoses, and repairs localised software and hardware problems.}}
 }
 
 \newglossaryentry{shealing}
@@ -138,5 +158,38 @@ In this document, I use the definition provided by Ed Seidewitz~\cite{DBLP:journ
 \newglossaryentry{sg}
 {
 	name={smart grid},
-	description={In this document, I use the definition provided by the \gls{nist}~\cite{NIST:SmartGrid:Def:What}: \textquote{a modernized grid that enables bidirectional flows of energy and uses two-way communication and control capabilities that will lead to an array of new functionalities and applications.}}
+	description={In this document, we use the definition provided by the \gls{nist}~\cite{NIST:SmartGrid:Def:What}: \textquote{a modernized grid that enables bidirectional flows of energy and uses two-way communication and control capabilities that will lead to an array of new functionalities and applications.}}
+}
+
+\newglossaryentry{structure}
+{
+	name={structure},
+	description={See \gls{systStruct}}
+}
+
+\newglossaryentry{systEnv}
+{
+	name={system environment},
+	description={Where the system is executed or is running. For example, a cloud application have the cloud infrastructure as environment}
+}
+
+\newglossaryentry{systBhv}
+{
+	name={system behaviour},
+	description={In this document, we use the definition provided in the \gls{uml} specification~\cite{omg2017umlspec}: \textquote{A behaviour describes a set of possible \glspl{exec}.}(p. 12) \textquote{Behaviour may be \textit{executed}, either by direct invocation or through the creation of an [element] that hosts the behaviour. Behaviour may also be \textit{emergent}, resulting from the interaction of one or more [elements] that are themselves carrying out their own individual behaviours.}(p. 285)}
+}
+
+\newglossaryentry{systStruct}
+{
+	name={system structure},
+	description={The structure describes all elements that compose the system}
+}
+
+%% U
+\newglossaryentry{uml}
+{
+	type=\acronymtype,
+	name={UML},
+	description={Unified Modelling Language},
+	first={Unified Modelling Language (UML)}
 }
