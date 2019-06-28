@@ -2,7 +2,7 @@
 \label{sec:tkm:validation}
 
 To validate and evaluate our approach, we implemented a prototype publicly available online\footnote{https://github.com/lmouline/LDAS}.
-This implementation leverages the GreyCat framework\footnote{https://github.com/datathings/greycat}, more precisely the modeling plugin, which allows designing a metamodel using a textual syntax.
+This implementation leverages the GreyCat framework\footnote{https://github.com/datathings/greycat}, more precisely the modelling plugin, which allows designing a meta-model using a textual syntax.
 Based on this specification, GreyCat generates a Java and a JavaScript API to create and manipulate models that conform to the predefined metamodel.
 The GreyCat framework handles time as a built-in concept.
 Additionally, it has native support of a lazy loading mechanism and an advanced garbage collection.
@@ -158,17 +158,17 @@ Note that in our experimentation we evaluate only the execution performance of d
 
 We consider a diagnosis algorithm to be a graph navigation from a set of nodes (input) to another set of nodes (output).
 Unlike typical graph algorithms, diagnosis algorithms are simple graph traversals and do not involve complex computations at the node level. Hence, we believe that three parameters can impact their performance (memory and/or CPU): the global size of the graph, the size of the input, and the number of traversed elements.
-In our evaluation, we altered these parameters and report on the behavior of the main memory and the execution time. The code of our evaluation is publicly available online\footnote{https://bitbucket.org/ludovicpapers/icac18-eval}.
+In our evaluation, we altered these parameters and report on the behaviour of the main memory and the execution time. The code of our evaluation is publicly available online\footnote{https://bitbucket.org/ludovicpapers/icac18-eval}.
 All experiments reporting on memory consumption were executed 20 times after one warm-up round. Whilst, execution time experiments were run 100 times after 20 warm-up rounds.
 The presented results correspond to the mean of all the iterations.
 We randomly generate graph with sizes (\textit{N}) ranging from 1\,000 to 2\,000\,000. 
-At every execution iteration, we follow these steps: (1) in a graph with size \textit{N}, we randomly select a set of \textit{I} input nodes, (2) then traverse \textit{M} nodes in the graph, (3) and  we collect  the first \textit{O} nodes that are at four hops from the input element. Listing~\ref{code:traversal-used} describes the behavior of the traversal using Cypher, a well-known graph traversal language.
+At every execution iteration, we follow these steps: (1) in a graph with size \textit{N}, we randomly select a set of \textit{I} input nodes, (2) then traverse \textit{M} nodes in the graph, (3) and  we collect  the first \textit{O} nodes that are at four hops from the input element. Listing~\ref{code:traversal-used} describes the behaviour of the traversal using Cypher, a well-known graph traversal language.
 
 We executed our experimentation on a MacBook Pro with an Intel Core i7 processor (2.6 GHz, 4 cores, 16GB main memory (RAM), macOS High Sierra version 10.13.2). We used the Oracle JDK version 1.8.0\_65.
 
 \paragraph{How performance is influenced by the graph size \textit{N}?}
 This experimentation aims at showing the impact of the graph size (\textit{N}) on memory and execution time while performing common diagnosis routines.
-We fix the size of \textit{I} to 10. To assure that the behavior of our traversals is the same, we use a seed value to select the starting input elements. We stop the algorithm when we reach 10 elements.
+We fix the size of \textit{I} to 10. To assure that the behaviour of our traversals is the same, we use a seed value to select the starting input elements. We stop the algorithm when we reach 10 elements.
 Results are depicted in Figure~\ref{fig:exp1}.
 
 As we can notice, the graph size does not have a significant impact on the execution time of diagnosis algorithms.
@@ -216,7 +216,7 @@ As we can notice, the memory consumption increases in a quasi-linear way. The me
 
 \subsection{Discussion}
 By linking context, actions, and requirements using decisions, data extraction for explanation or fault localization can be achieved by performing common temporal graph traversal operations.
-In the detailed example, we show how a stakeholder could use our approach to define the different elements required by such systems, to structure runtime data, finally, to diagnose the behavior of adaptation processes. 
+In the detailed example, we show how a stakeholder could use our approach to define the different elements required by such systems, to structure runtime data, finally, to diagnose the behaviour of adaptation processes. 
 
 Our implementation allows to dynamically load and release nodes during the execution of a graph traversal. Using this feature, only the needed elements are kept in the main memory.  Hence, we can perform interactive diagnosis routines on large graphs with an acceptable memory footprint. 
 However, the performance of our solution, in terms of memory and execution time, is restricted by the number of traversed elements and the number of input elements.

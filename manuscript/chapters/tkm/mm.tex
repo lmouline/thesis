@@ -1,4 +1,4 @@
-\section{Modeling the knowledge}
+\section{modelling the knowledge}
 \label{sec:tkm:mm}
  
  In order to simplify the diagnosis of adaptive systems, this thesis proposes a novel \gls{metamodel} that combines, what we call, design elements and runtime elements.
@@ -50,7 +50,7 @@ Likewise, the \textit{input} relationship is derived and can be computed similar
 In the smart grid example, a decision can be formulated (in plain English) as follows: since the district D is almost overloaded (\textit{input context}), we reduce the amps limit of greedy consumers using the ``\textit{reduce amps limit}" \textit{action} in order to reduce the load on the cable of the district (\textit{impact}) and satisfy the ``\textit{no overload}" policy (\textit{requirement}).
 
 As all the elements inherit from the \textit{TimedElement}, we can capture the time at which a given decision and its subsequent actions were executed, and when their impact materialized, \ie measured.
-Thanks to this metamodel representation, a developer can apprehend the possible causes behind malicious behavior by navigating from the context values to the decisions that have impacted its value (\textit{Property.expected.impact}) and the goals it was trying to reach (\textit{Decision.goals}).
+Thanks to this metamodel representation, a developer can apprehend the possible causes behind malicious behaviours by navigating from the context values to the decisions that have impacted its value (\textit{Property.expected.impact}) and the goals it was trying to reach (\textit{Decision.goals}).
 In Section~\ref{sec:tkm:intro:uc}, we present an example of interactive diagnosis queries applied to the smart grid use case.
 
 \subsection{Context metamodel}
@@ -89,7 +89,7 @@ As different solutions to model system requirements exist (\eg KAOS~\cite{DBLP:j
 The requirement model, depicted in Figure~\ref{fig:requirement-model}, represents the \textit{requirement} as a set of \textit{goals}.
 Each goal has a \textit{nature} and a textual specification.
 The nature of the goals adheres to the four categories of requirements presented in Section~\ref{sec:adaptation-req}.
-One may use one of the existing requirements modeling languages (\eg RELAX) to define the semantics of the requirements. 
+One may use one of the existing requirements modelling languages (\eg RELAX) to define the semantics of the requirements. 
 Since the requirement model is composed solely of design elements, we may rely on static analysis techniques to infer the requirement model from existing specifications.
 The work of Egyed~\cite{DBLP:conf/icse/Egyed01} is one solution among others.
 This work is out of the scope of the paper and envisaged for future work. 

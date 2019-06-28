@@ -19,14 +19,14 @@ By storing them, the adaptation process could consider ongoing actions with thei
 Plus, in case of faulty decisions, developers may trace back their effects to their circumstances.
 Our current approach is limited to the representation of measurable effects of any decision, and therefore action.
 
-The meta-model allow structuring and storing the state and behavior of a running adaptive system, together with a high-level API to efficiently perform diagnosis routines. 
+The meta-model allow structuring and storing the state and behaviour of a running adaptive system, together with a high-level API to efficiently perform diagnosis routines. 
 Our framework relies on a temporal model-based solution that efficiently abstracts decisions and their corresponding circumstances.
-Specifically, based on existing approaches for modeling and monitoring adaptation processes, we identify a set of properties that characterize context, requirements, and actions in self-adaptive systems.    
-Then, we formalize the common core concepts implied in adaptation processes, also referred to as knowledge, by means of temporal graphs and a set of relations that trace decisions impact to circumstances.
-Finally, thanks to exposing common interfaces in adaptive processes, existing approaches in requirements and goal modeling engineering can be easily integrated into our framework. 
+Specifically, based on existing approaches for modelling and monitoring adaptation processes, we identify a set of properties that characterise context, requirements, and actions in self-adaptive systems.    
+Then, we formalise the common core concepts implied in adaptation processes, also referred to as knowledge, by means of temporal graphs and a set of relations that trace decisions impact to circumstances.
+Finally, thanks to exposing common interfaces in adaptive processes, existing approaches in requirements and goal modelling engineering can be easily integrated into our framework. 
 
 The rest of this chapter is structured as follows.
-In the remaining part of this section, we motivate our approach, we summarize core concepts manipulated in adaptation processes, and we present a use case scenario based on the Luxembourg Smart Grid (\cf~Chapter~\todo{add ref}).
+In the remaining part of this section, we motivate our approach, we summarise core concepts manipulated in adaptation processes, and we present a use case scenario based on the Luxembourg Smart Grid (\cf~Chapter~\todo{add ref}).
 \todo{Update with last version}
 Then, we provide a formal definition of these concepts in Section~\ref{sec:tkm:k-formalism}.
 Later, we describe the proposed data model in Section~\ref{sec:tkm:mm}.
@@ -42,7 +42,7 @@ We conclude this chapter in Section~\ref{sec:tkm:conclusion}.
 In this section, we motivate the need to reason over delayed actions.
 To do so, we first give four examples of these actions.
 Then we detail why the effects of actions should be considered.
-Finally, we summarize and motivate the need for incorporating actions and their effects on the knowledge. 
+Finally, we summarise and motivate the need for incorporating actions and their effects on the knowledge. 
 
 \paragraph{Delayed action examples}
 Until here, we have claimed that adaptation processes should handle delayed actions.
@@ -133,7 +133,7 @@ However, for the best of our knowledge Watcher does not store the expecting effe
 While the adaptation process knows what action is running, it does not know what it should expect from them.
 
 Considering our example based on the modification of fuses, if the system knows that the technician is modifying fuse states, it does not know what would be the effects.
-In this case, when the adaptation process analyzes the system context it may wonder: what will be the next grid configuration? How the load will be balanced? Will the future configuration fix all the current incidents?
+In this case, when the adaptation process analyses the system context it may wonder: what will be the next grid configuration? How the load will be balanced? Will the future configuration fix all the current incidents?
 If the effects are not considered by the adaptation process, then it may take suboptimal decisions.
 
 Let's exemplify this claim through a scenario based on the fuse example (\cf Example 1).
@@ -163,10 +163,10 @@ This model-based representation has proven its ability to structure complex syst
 \subsubsection{Diagnosis support}
 
 Faced with growingly complex and large-scale software systems (e.g. smart grid systems), we can all agree that the presence of residual defects becomes unavoidable~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}. 
-Even with a meticulous verification or validation process, it is very likely to run into an unexpected behavior that was not foreseen at design time. Alone, existing formal modeling and verification approaches may not be sufficient to anticipate these failures~\cite{DBLP:conf/icse/TaharaOH17}. 
-As such, complementary techniques need to be proposed to locate the anomalous behavior and its origin in order to handle it in a safe way.
+Even with a meticulous verification or validation process, it is very likely to run into an unexpected behaviour that was not foreseen at design time. Alone, existing formal modelling and verification approaches may not be sufficient to anticipate these failures~\cite{DBLP:conf/icse/TaharaOH17}. 
+As such, complementary techniques need to be proposed to locate the anomalous behaviour and its origin in order to handle it in a safe way.
 
-As there might be many probable causes behind an abnormal behavior, developers usually perform a set of diagnosis routines to narrow down the scope or origin of the failure. One way to do so is by investigating the satisfaction of its requirements and the decisions that led to this system state, as well as their timing~\cite{DBLP:conf/iceccs/BencomoWSW12}.  
+As there might be many probable causes behind an abnormal behaviour, developers usually perform a set of diagnosis routines to narrow down the scope or origin of the failure. One way to do so is by investigating the satisfaction of its requirements and the decisions that led to this system state, as well as their timing~\cite{DBLP:conf/iceccs/BencomoWSW12}.  
 In this perspective, developers may set up a set of systematic questions that would help them understand why and how the system is behaving in such a way.
 These questions may comprise: 
 \begin{itemize}
@@ -175,7 +175,7 @@ These questions may comprise:
    \item what decision(s) influenced the system's context at a time $t$? 
 \end{itemize}
 
-Bencomo~\etal~\cite{DBLP:conf/iceccs/BencomoWSW12} argue that comprehensive explanation about the system behavior contributes drastically to the quality of the diagnosis, and eases the task of troubleshooting the system behavior.
+Bencomo~\etal~\cite{DBLP:conf/iceccs/BencomoWSW12} argue that comprehensive explanation about the system behaviour contributes drastically to the quality of the diagnosis, and eases the task of troubleshooting the system behaviour.
 To enable this, we believe that adaptive software systems should be equipped with traceability management facilities to link the decisions made to their \textbf{(i) circumstances, that is to say, the history of the system states and the targeted requirements, and (ii) the performed actions with their impact(s) on the system}.
 In particular, an \textbf{adaptive system should keep a trace of the relevant historical events}.
 Additionally, it should be able to \textbf{trace the goals intended to be achieved by the system to the adaptations and the decisions that have been made, and vice versa}. 
@@ -186,7 +186,7 @@ Existing approaches~\cite{hassel13,DBLP:conf/models/HeinrichSJRMHRP14,DBLP:conf/
 Moreover, they do not keep track of historical changes as well as causal relationships linking requirements to their corresponding adaptations. Only flat execution logs are stored. 
 
 \subsection{Background}
-Before formalizing and modeling decisions and their circumstances, we abstract common concepts implied in an adaptation process. We refer to these concepts as the knowledge.
+Before formalising and modelling decisions and their circumstances, we abstract common concepts implied in an adaptation process. We refer to these concepts as the knowledge.
 
 \subsubsection{General concepts of adaptation process}
 
@@ -222,7 +222,7 @@ Thanks to machine learning or statistical methods, dynamic data values can be \t
 One of the recurrent problems facing context-aware applications is the data uncertainty~\cite{DBLP:conf/dagstuhl/LemosGMSALSTVVWBBBBCDDEGGGGIKKLMMMMMNPPSSSSTWW10, DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/comsur/MakrisSS13, DBLP:journals/percom/BettiniBHINRR10}.
 Uncertain data are not likely to represent the reality. They contain a noise that makes it deviate from its original value.
 This noise is mainly due to the inaccuracy and imprecision of sensors.
-Another source of uncertainty is the behavior of the environment, which can be unpredictable.
+Another source of uncertainty is the behaviour of the environment, which can be unpredictable.
 All the computations that use uncertain data are also uncertain by propagation.
 
 \paragraph{Source}
@@ -251,7 +251,7 @@ During the life-cycle of an adaptive system, the developer can update, add or re
 \subsubsection{Action}
 In the IEEE Standards~\cite{iso2017systems}, an action is defined as: \textquote{\textbf{process of transformation} that \textbf{operates upon data} or other types of inputs to create data, produce outputs, or \textbf{change the state} or condition of the subject software}.
 
-Back to adaptive systems, we can define an action as a process that, given the context and requirements as input, adjusts the system behavior.
+Back to adaptive systems, we can define an action as a process that, given the context and requirements as input, adjusts the system behaviour.
 This modification will then create new data that correspond to an output context. In the remainder of this paper, we refer to output context as impacted context, or simply impact(s).
 Whereas requirements are used to add preconditions to the actions, context information is used to drive the modifications.
 Actions execution have a start time and a finish time. They can either succeed, fail, or be canceled by an internal or external actor.
