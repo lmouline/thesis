@@ -1,13 +1,13 @@
 \section{Contribution \& Validation}
 
-This dissertation tackle the previously described challenges with two contribution.
+This dissertation tackles the previously described challenges with two contributions.
 First, we define a language with uncertainty at a first-class citizen: \langName.
 We detail this contribution in~\Cref{chapt:aintea}.
-Second, we define a meta-model, and we formalise it, of the knowledge of \gls{adptSyst}.
+Second, we define a meta-model, and we formalise it, of the knowledge of \glspl{adptSyst}.
 We present this contribution in~\Cref{chapt:tkm}.
 
 \paragraph{\langName{}: Managing Data Uncertainty at the Language Level}
-This contribution addresses the challenge of the manipulation of uncertain data (cf. Sub-Challenge \#1).%todo check consistence numbering with previous subsection
+This contribution addresses the challenge of the manipulation of uncertain data (cf. Sub-Challenge \#1). %todo check consistence numbering with previous subsection
  We propose \langName{}, a language able to represent uncertain data as built-in language types along with their supported operations. 
  It contains a sampling of distributions (Gaussian, Bernoulli, binomial, Dirac delta function, and Rayleigh) that cover the different data types (booleans, numbers, and references).
  We implement a prototype of the language, publicly available on GitHub\footnote{\url{https://github.com/lmouline/aintea/}}.
@@ -27,7 +27,7 @@ The formalisation is based on temporal graphs and a set of relations that trace 
 Second, we propose a framework to structure and store the state and behaviour of a running \gls{adptSyst}, together with a high-level \gls{api} to efficiently perform diagnosis routines.
 Our framework relies on a temporal model-based solution that efficiently abstracts decisions, their corresponding circumstances, and their effects.
 We demonstrate the applicability of our approach by applying it to a \gls{sg} based example.
-We also show that our approach can be used to diagnose the behaviour of at most the last 5 days of a district in the Luxembourg \gls{sg} in $\sim$2.4 seconds.
+We also show that our approach can be used to diagnose the behaviour of at most the last five days of a district in the Luxembourg \gls{sg} in $\sim$2.4 seconds.
 
 
 Part of this contribution has been published at the IEEE International Conference on Autonomic Computing\footnote{\url{http://icac2018.informatik.uni-wuerzburg.de/}} (ICAC) and at the ACM/SIGAPP Symposium On Applied Computing\footnote{\url{http://www.sigapp.org/sac/sac2018/}} (SAC):
