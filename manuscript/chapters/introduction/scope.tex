@@ -1,14 +1,29 @@
 \section{Scope of the thesis}
 
-Among all the challenges described in the previous section, this thesis focus on XX: data uncertainty, XXX
-More precisely, we address three sub problems of these challenges.
+Among all the challenges described in the previous section, this thesis focus on three of them: data uncertainty (\Cref{intro:challenges:u-data}), long-term actions (\Cref{intro:challenges:long-term-act}), and emergent behaviours (\Cref{intro:challenges:ermger-bhv})
+More precisely, we address three sub-problems of these challenges.
 
-First,
-\highlightbox[Sub-Challenge \#1]{How to ease the manipulation of data uncertainty?}
+Managing uncertainty requires significant expertise in probability and statistics theory.
+The literature provides different solutions to manage uncertainty~\cite{zadeh1996fuzzy,metrology2008evaluation,shafer1992dempster}.
+The application of these techniques requires a deep understanding of the underlying theories and is a time-consuming task~\cite{DBLP:conf/quatic/VallecilloMO16}.
+Moreover, it is hard to test and perhaps most importantly, very error-prone.
+In this thesis, we address thus the following problem:
+\vspace{-2em}
+\highlightbox[Sub-challenge \#1]{How to ease the manipulation of data uncertainty?}
 
-Second,
-\highlightbox[Sub-Challenge \#2]{How to enable reasoning over unfinished actions and their expected effects?}
+Adaptation processes may rely on \gls{longTermAct} like resource migration in cloud infrastructure.
+The lack of information about unfinished actions and their expected effects on the system, the reasoning component may take repeated of sub-optimal decisions.
+One step for enabling this reasoning mechanism is to have an abstraction layer which can represent efficiently these \glspl{longTermAct}
+In this thesis, we therefore cope with the following challenge:
+\vspace{-2em}
+\highlightbox[Sub-challenge \#2]{How to enable reasoning over unfinished actions and their expected effects?}
 
-Third,
-\highlightbox[Sub-Challenge \#3]{How to diagnose the self-adaption process?}
+Due to the increasing complexity of systems, developers have difficulties to deliver error-free software~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}.
+Moreover, complex systems or large-scale systems may have emergent behaviours.
+Systems very likely have an abnormal behaviour that was not foresee at design time.
+Existing formal modelling and verification approaches may not be sufficient to verify and validate such processes~\cite{DBLP:conf/icse/TaharaOH17}.
+In such situation, developers usually apply diagnosis routines to identify the causes of the failures.
+During our studies, we tackle the following challenge:
+\vspace{-2em}
+\highlightbox[Sub-challenge \#3]{How to diagnose the self-adaption process?}
 

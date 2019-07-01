@@ -1,11 +1,11 @@
 \section{Problem statement}
 
-During our study, we have identified several characteristic of \gls{adptSyst} that bring challenges to the software engineering research community.
+During our study, we have identified several characteristics of \glspl{adptSyst} that bring challenges to the software engineering research community.
 First, information gathered is not always known with absolute confidence.
 Second, reconfigurations may not be immediate, and their effects are not instantaneously measured.
 Third, system behaviour may be emergent~\cite{zio2011uncertainties}, \ie it cannot be entirely known at design time.
 Four, the different sub-parts of the system do not evolve at the same pace.
-Five, data collected have a time dimension.
+Five, structure and behaviour of systems have a time dimension.
 
 
 \subsection{Data are uncertain}
@@ -18,17 +18,17 @@ Wrong reconfigurations might be triggered, which could be even worse than if no 
 
 More generally, \textbf{data are, almost by definition, uncertain and developers always work with estimates}~\cite{DBLP:conf/asplos/BornholtMM14, metrology2008evaluation, DBLP:journals/tkde/AggarwalY09}.
 The uncertainty may be explained by how data are collected.
-We can distinguish three categories: sensors, human, and result of cimputation.
-Sensors (software or hardware) always estimate the value and have a precision due to the method measurement~\cite{metrology2008evaluation, DBLP:conf/asplos/BornholtMM14}.
-Human are error-prone.
-And, computations can either given an approximation or may be base on uncertain data.
+We can distinguish three categories: sensors, humans, and results of computations.
+Sensors (software or hardware) always estimate the value and have a precision value due to the method of measurement~\cite{metrology2008evaluation, DBLP:conf/asplos/BornholtMM14}.
+Humans are error-prone.
+And computations can either give an approximation or be base on uncertain data.
 This uncertainty is then propagated through all steps until the final result.
 
 For a specific domain, this uncertainty may impact the understanding of the real situation.
 For example, the uncertainty of the \gls{cpu} clock is too low to damage the percentage load of the processor.
 However, the uncertainty of the \gls{gps} may impact the understanding by, for instance, showing the user on the wrong road (compared to the real one).
 \textbf{If the data uncertainty can mislead the understanding of a system behaviour or state, then developers should implement an uncertainty-aware system.}
-For \gls{adptSyst}, this lack of confidence may trigger sub-optimal adaptions.
+For \glspl{adptSyst}, this lack of confidence may trigger suboptimal adaptations.
 
 
 \subsection{Actions have long-term effects}
