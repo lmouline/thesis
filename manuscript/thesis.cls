@@ -20,6 +20,7 @@
 \RequirePackage{bibentry}
 \nobibliography*
 \RequirePackage{pdfpages}
+\RequirePackage{gensymb}
 
 %%% Class options %%%%%
 %

@@ -7,6 +7,8 @@ Third, system behaviour may be emergent~\cite{zio2011uncertainties}, \ie it cann
 Four, the different sub-parts of the system do not evolve at the same pace.
 Five, data collected have a time dimension.
 
+
+\subsection{Data are uncertain}
 Most fuses are manually open and close by technicians rather than automatically modified.
 Then, technicians manually report the modifications done on the grid.
 Due to human mistakes, this results in errors.
@@ -14,8 +16,22 @@ The grid topology is thus uncertain.
 This uncertainty is propagated to the load approximation, used to detect overloads in the grid.
 Wrong reconfigurations might be triggered, which could be even worse than if no change would have been applied.
 
-\bigskip
+More generally, \textbf{data are, almost by definition, uncertain and developers always work with estimates}~\cite{DBLP:conf/asplos/BornholtMM14, metrology2008evaluation, DBLP:journals/tkde/AggarwalY09}.
+The uncertainty may be explained by how data are collected.
+We can distinguish three categories: sensors, human, and result of cimputation.
+Sensors (software or hardware) always estimate the value and have a precision due to the method measurement~\cite{metrology2008evaluation, DBLP:conf/asplos/BornholtMM14}.
+Human are error-prone.
+And, computations can either given an approximation or may be base on uncertain data.
+This uncertainty is then propagated through all steps until the final result.
 
+For a specific domain, this uncertainty may impact the understanding of the real situation.
+For example, the uncertainty of the \gls{cpu} clock is too low to damage the percentage load of the processor.
+However, the uncertainty of the \gls{gps} may impact the understanding by, for instance, showing the user on the wrong road (compared to the real one).
+\textbf{If the data uncertainty can mislead the understanding of a system behaviour or state, then developers should implement an uncertainty-aware system.}
+For \gls{adptSyst}, this lack of confidence may trigger sub-optimal adaptions.
+
+
+\subsection{Actions have long-term effects}
 Reconfiguring a smart grid implied to change the power flow.
 It is done by connecting or disconnecting specific cables.
 That is, opening or closing fuses.
@@ -25,8 +41,17 @@ Between the time a reconfiguration of the smart grid is decided, and the time th
 On the other hand, an incident should be detected in the next minutes.
 If the adaptation process does not consider this difference of paces, it can cause repeated decisions.
 
-\bigskip
+\textbf{Actions are never immediate, take time to be executed, and have long-term effects.}
+Through this thesis, we refer to such actions as \glspl{longTermAct}.
+In computer science, the definition of "immediate" is specific to a domain.
+For example, in graphical user interface, a response time of less than 200 ms is considered as immediate.
+However, at while working at the processor level, the execution time of an instruction is measured at the nano seconds scale.
 
+Not considering this delay may lead to sub-optimal decisions.
+For example, not considering the delay for the system to handle the migration of a virtual machine may lead to repeat decisions.
+We argue that \textbf{developers should take into account this delay if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
+
+\subsection{Systems may have emergent behaviours}
 Smart grid behaviour is affected by several factors that cannot be controlled by the grid manager.
 One example is the weather condition.
 Smart grids rely on an energy production that is distributed over several actors.
@@ -35,22 +60,57 @@ The production of such energy depends on the weather, and even on the season\foo
 Another example is the increasing adoption of electric vehicles, which de facto drastically increase the consumption of electricity during the night.
 Ignoring this characteristic of \gls{adptSyst} may result in suboptimal situations that can be understood with difficulties.
 
+\textbf{System behaviour may be emergent.}~\cite{zio2011uncertainties}
+Different factor can explain this phenomena.
+As for \glspl{sg}, systems may evolve in a stochastic and uncertain environment.
+Or, some system, like those name ultra-large systems, are so complex that none of the engineer can tame it.
+But, groups of engineers will have an understanding of some part of the system.
+
+Despite the complexity, engineers still need to understand how the system is behaving or behaved.
+This will help them to optimise the global behaviour or to understand and repair errors.
+\textbf{Engineers need tooling support to trace back previous behaviour and or replay them.}
+
+
+\subsection{Different part of a system evolve at different paces}
+Every meters send consumption and production data every 15 mins.
+However, this collection is not synchronous.
+That is, all meters do not send their data at the same timestamp.
+The global system, which receive all data, has not thus a global vision with the same freshness for all the part of the network.
+Electricity data are very volatile: a peak or a drop may happen in less than a minute due to, for instance, the starting or the finishing of a washing machine.
+When analysing the data, the process should consider this difference of paces, and estimate the evolution of data.
+Otherwise, they will reason over outdated data, which do not reflect the real situation.
+This may lead to suboptimal decisions.
+
+\textbf{Different part of the same system may evolve at different paces.}
+Some systems are heterogeneous in term of hardware and software.
+This diversity results in different evolution or reaction paces.
+For example, if some component are working on batteries, they will have a sleep cycle in order to save energy.
+Contrary, if some others are running directly connecting to a power source, they can react faster.
+
+Despite this difference of paces, a global vision of a system at a precise time point may be still required.
+The vision should deal with data that have different freshness.
+In the worst case, some data would be outdated and cannot be used.
+\textbf{Solutions to seamlessly predict or estimate what should be the current state of these outdated elements are thus required.}
+
+
+\subsection{Evolution of systems are linked with time}
+Power flow is impacted by consumptions and productions of users, and by the modifications of the topology.
+Knowing the last status of the grid is as important as knowing how it evolves.
+Based on the evolution, the grid operator can predict any upcoming incidents, like overloads.
+It could also compare this evolution of behaviour with a normal one to detect, for example, any malicious behaviour.
+
+\textbf{Evolution of systems are inherently linked with a time dimension.}
+Evolution and time are two related concepts.
+For some systems, not only the last states are important but also how they evolve.
+Then, analysis process will analysis this evolution to know if it is a normal one or not.
+They can also use this evolution in order to predict how systems will evolve.
+Based on these predictions, they can proact on upcoming incidents in the system.
+
+Decisions are not made upon the last state of the system but how it evolves.
+The analysis process should thus navigate both in the structure of the system and its behaviour over time.
+\textbf{Engineers needs efficient tooling to structure, represent, query, and store temporal data at a large scale.}
 
 
 
 
 
-%\textbf{Data are uncertain, actions have delayed effects, and the behaviour of \glspl{adptSyst} is emergent.}
-%
-%Data are, almost by definition, uncertain and developers always work with estimates.
-%This is due to how data are collected.
-%We can identify three different sources.
-%They can .....
-%\textbf{Uncertainty impacts the understanding of the global situation}
-%
-%Actions....
-%\textbf{if the frequency of the monitoring stage is lower than the time of action effects to be measurable}
-%
-%
-%behaviour ...
-%\textbf{The behaviour cannot be perfectly known at design time or inferred from the set of executed actions.}
