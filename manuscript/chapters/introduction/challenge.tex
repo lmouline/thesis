@@ -1,5 +1,8 @@
 \section{Challenge}
 
+In this section we present five challenges for the research community in \gls{mde} and \gls{adptSyst}.
+The last one have been presented in our vision paper regarding time awareness in \gls{mde} in~\cite{DBLP:conf/models/Benelallam0MFBB17}.
+
 \subsection{Data are uncertain}
 \label{intro:challenges:u-data}
 Data become a cornerstone piece to autonomously derive decisions from them, or at least to support decision-making processes.
@@ -47,8 +50,44 @@ In other words, the research community should answer the following global challe
 
 \subsection{Different part of a system evolve at different paces}
 \label{intro:challenges:diff-paces}
+Systems may be heterogenous and diverse, in term of hardware but also software.
+Due to this diversity, the different part of a system may evolve at different paces.
+
+However, engineers may need to reason at a global scale.
+They will thus need to deal with data that have different freshness but also with components that can have their behaviour changed at different spaces.
+While decisions are executed to optimise the global behaviour, the system may be in inconsistent states or less good states than initial one.
+
+When designing the adaptation process, engineers need thus to consider this difference in freshness.
+For example, they need to implement estimation functions to estimate a value of an outdated data.
+Plus, they need to consider the fact that the system can be in an inconsistent states while being updated.
+To sum-up, the software engineering community should answer the following global challenge:
+\vspace{-2em}
 \highlightbox{How to represent, query, and store inconsistent system states and behaviours?}
 
 \subsection{Evolution of systems are linked with time}
 \label{intro:challenges:evol-syst}
+
+%When studying systems behaviour, the time quickly come as a problem.
+%Indeed, both are interestingly links.
+%
+%The relation of the two is not a new challenge that we brought.
+%Rivera \etal have already identified the challenges brought by the time dimension for the \gls{mde} community in~\cite{}.
+%
+%
+%This challenge has been primarily pushed by  Hartmann \etal \cite{DBLP:phd/basesearch/Hartmann16}
+
+
+System behaviours are temporal: the execution of the different actions are made over time.
+Plus, the structure of a system evolves over time.
+Not only the last state may be important but also how it evolves.
+Engineers need thus to analyse these temporal evolutions.
+
+Time in software engineering is not a new challenges.
+For example, Riviera \etal \cite{DBLP:conf/models/RiveraRV08} have already identified time as a challenge for the \gls{mde} community.
+Different approaches have been defined~\cite{DBLP:conf/sle/BousseCCGB15, DBLP:conf/sle/KansoT12, DBLP:conf/icse/KoegelH10, DBLP:conf/seke/0001FNMKT14}.
+
+However, we notice that modelling, persistence, and processing of data evolution remain understudied.
+Thomas Hartmann started addressing these challenging in his PhD thesis~\cite{DBLP:phd/basesearch/Hartmann16}.
+The final global challenge, not fully addressed, is thus:
+\vspace{-2em}
 \highlightbox{How to structure, represent query, and store efficiently temporal data at a large scale?}
