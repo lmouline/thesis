@@ -2,16 +2,47 @@
 
 \subsection{Data are uncertain}
 \label{intro:challenges:u-data}
+Data become a cornerstone piece to autonomously derive decisions from them, or at least to support decision-making processes.
+We argue that their uncertainty will impact all the development stages of software, from the design to the execution.
+Design techniques should provide mechanism to help developers abstracting and manipulating uncertain data.
+Control flows use data, for example, in the branching conditions.
+This branching should be redesign to consider the uncertainty in the data.
 
+The literature provides approaches to help reasoning or manipulating data uncertainty, or at least probability distributions.
+For example, beliefs functions~\cite{shafer1992dempster} help to reduce this uncertainty by combining several sources of data.
+Probabilistic programming~\cite{DBLP:conf/icse/GordonHNR14} community provide frameworks and languages~\cite{url:InferNET18, baudin2017openturns} to propagate probabilities through computations.
 
+However, from the best of our knowledge, no global study have been done to evaluate the impact of data uncertainty on the development of software.
+The following challenge still remain an open-question for the software engineering community:
+\vspace{-2em}
 \highlightbox{How to engineer uncertainty-aware software (design, implement, test, and validate)?}
 
 \subsection{Actions have long-term effects}
 \label{intro:challenges:long-term-act}
-\highlightbox{How to represent, query, store, and apply learning mechanism on XXX?}
+Decision-making processes follow the growing complexity of software.
+They are more and more able to not only make decisions on the current state of the system, but also its past and future ones.
+And this decision may have also long-term effects.
+
+Due to this complexity, developers and users may misunderstand the decisions taken by a system.
+Plus, designers may neglect or underestimate the impact of a decision.
+Moreover, as highlighted by Bencomo\etal, systems should be self-explained.
+They should be able to explain the decisions made.
+
+To achieve this vision and to help designers and users understanding the impact of a decision, we argue that the software engineering community should address the following question:
+\vspace{-2em}
+\highlightbox{How to represent, query, store, and understand the impacts of long-term actions?}
 
 \subsection{Systems may have emergent behaviours}
 \label{intro:challenges:ermger-bhv}
+The growing complexity of systems have also another impact: they have emergent behaviour.
+This behaviour may be suboptimal and hard to understand by designers, who generally have a local vision of the system.
+
+However, when this behaviour lead to failure, engineer still need to understand why and how to avoid a novel occurrence of the problem.
+Plus, as the behaviour might be suboptimal, they need to optimise it.
+
+To reach this goal, engineers need tooling support to help them in their investigation process.
+In other words, the research community should answer the following global challenge:
+\vspace{-2em}
 \highlightbox{How to understand, predict, and optimise emergent behaviours?}
 
 \subsection{Different part of a system evolve at different paces}
