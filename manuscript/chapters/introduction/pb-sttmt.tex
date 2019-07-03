@@ -21,7 +21,7 @@ The uncertainty may be explained by how data are collected.
 We can distinguish three categories: sensors, humans, and results of computations.
 Sensors (software or hardware) always estimate the value and have a precision value due to the method of measurement~\cite{metrology2008evaluation, DBLP:conf/asplos/BornholtMM14}.
 Humans are error-prone.
-And computations can either give an approximation or be base on uncertain data.
+And computations can either give an approximation or be based on uncertain data.
 This uncertainty is then propagated through all steps until the final result.
 
 For a specific domain, this uncertainty may impact the understanding of the real situation.
@@ -35,7 +35,7 @@ For \glspl{adptSyst}, this lack of confidence may trigger suboptimal adaptations
 Reconfiguring a smart grid implied to change the power flow.
 It is done by connecting or disconnecting specific cables.
 That is, opening or closing fuses.
-As said before, a technician needs to drive physically to the fuse location to modify its state.
+As said before, technicians need to drive physically to fuse locations to modify their states.
 Besides, in the case of the Luxembourg smart grid, meters send energy measurement every 15 mins, non-synchronously.
 Between the time a reconfiguration of the smart grid is decided, and the time the effects are measured, a delay of at least 15 mins occurs.
 On the other hand, an incident should be detected in the next minutes.
@@ -75,7 +75,7 @@ This will help them to optimise the global behaviour or to understand and repair
 Every meters send consumption and production data every 15 mins.
 However, this collection is not synchronous.
 That is, all meters do not send their data at the same timestamp.
-The global system, which receive all data, has not thus a global vision with the same freshness for all the part of the network.
+The global system, which receive all data, has not thus a global vision with the same freshness for all the part of the grid.
 Electricity data are very volatile: a peak or a drop may happen in less than a minute due to, for instance, the starting or the finishing of a washing machine.
 When analysing the data, the process should consider this difference of paces, and estimate the evolution of data.
 Otherwise, they will reason over outdated data, which do not reflect the real situation.
