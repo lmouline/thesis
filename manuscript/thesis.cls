@@ -21,6 +21,8 @@
 \nobibliography*
 \RequirePackage{pdfpages}
 \RequirePackage{gensymb}
+\RequirePackage{graphicx}
+\RequirePackage{dsfont}
 
 %%% Class options %%%%%
 %
