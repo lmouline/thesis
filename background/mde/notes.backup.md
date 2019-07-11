@@ -1,8 +1,6 @@
 MDE
 ---
 
-- modeling is key to computing (49.)
-
 - modeling: abstraction of a subject one wants to reason about
 - models = simplification: limit the scope of a subject to the relevant parts, given a certain purpose
 - models: simpler, safer, and cheaper means to reason (35.)
@@ -53,32 +51,6 @@ MDE
     - scalability
     - poor tool support
     - organisational challenges 
-
-1.: 
-- 1 system, multi models -> different perspective of the system
-- models are artefacts that should be maintenaied in the same time as code
-    - happen if cost of maintenaiing this is less than the benefit get from that 
-- models: valuable tools for absteaction, summarising, and providing alternatives perspectives
-- models are valuable if they can be simulated, transofrmed, checked, ...
-- tooling is very important
-    - to check/verify models (type/static semantics checking)
-    - to work with instances of models (generation, checking conformity, etc)
-    - to support mapping between models (code generation, transofrmation)
-    - model driven testing
-    - dashboard applications
-    - tools for version control
-    - tools for managing the software process
-- "A model driven engineering approach must specify the modelling languages,models, translations between models and languages, and the process used tocoordinate the construction and evolution of the models"
-
-2.
-- introducing MDE implies a lot of organizational changes and change management
-- "that is, the systematic use of models as primary artifacts during a software engineering process"
-- MDE claims many potential benefits – chiefly, gains in productivity, portability, maintainability and interoperability it has been developed largely without the support of empirical data to test or support these claims
-- negative impact of abstraction on developers
-    - hard to do
-    - prefer concrete instantiations (examplars, simulations)
-- MDE 2 edge sword
-    - e.g., code generation can help productivity, but could worsen it when the generated code needs to be modified  -> unknow, no data
 
 # Models, Metamodels, Model transformation
 
@@ -202,6 +174,8 @@ MDE
 
 # Papers to check
 
+1. S. Kent. Model Driven Engineering. In Proceedings of the 3rd IFM Conference, pages 286–298. Springer, 2002.
+2. J. Hutchinson, J. Whittle, and M. Rouncefield. Model-Driven Engineering Practices in Industry: Social, Organizational and Managerial Factors that Lead to Success or Failure. Science of Computer Programming
 3. J. Bézivin, N. Farcet, J.-M. Jézéquel, B. Langlois, and D. Pollet. Reflective Model Driven Engineering. In Proceedings of the 6th «UML» Conference
 4. J. Whittle, J. Hutchinson, and M. Rouncefield. The State of Practice in Model-Driven Engineering.
 5. J. Bézivin. On the Unification Power of Models. Software and Systems Modeling,
@@ -245,9 +219,3 @@ MDE
 46. J. C. Georgas, A. v. d. Hoek, and R. N. Taylor. Using architectural models to manage and visualize runtime adaptation. Computer,
 47. C. Cetina, P. Giner, J. Fons, and V. Pelechano. Autonomic computing through reuse of variability models at runtime: The case of smart homes. Computer
 48. Fouquet Francois, Gr ́egory Nain, Brice Morin, Erwan Daubert, Olivier Barais, No ̈el Plouzeau, and Jean-Marc J ́ez ́equel. Kevoree modeling framework (kmf): Efficient modeling techniques for runtime use
-49. J.Kramer,Is abstraction the key to computing?
-
-# Bibliography
-
-1. S. Kent. Model Driven Engineering. In Proceedings of the 3rd IFM Conference, pages 286–298. Springer, 2002.
-2. J. Hutchinson, J. Whittle, and M. Rouncefield. Model-Driven Engineering Practices in Industry: Social, Organizational and Managerial Factors that Lead to Success or Failure. Science of Computer Programming
