@@ -30,9 +30,7 @@ MDE
     - models: conforms to a metamodel and represent a particular instance of it
     - model transofrmation: operational part of MDE that refine modes and generate code
 
-- MDE more and more used (3., 4.)
-
-- one keay idea: move from descriptive models (that merely serve as documentation) to prescriptive models (that can be manipulated as first-class entities and used to construct the target system) (19., 5.)
+- MDE more and more used (4., 2.)
 
 - models use to perform validation and verification of the system (simulation, model checking, etc)
 
@@ -54,7 +52,7 @@ MDE
     - poor tool support
     - organisational challenges 
 
-1.: 
+1.  
 - 1 system, multi models -> different perspective of the system
 - models are artefacts that should be maintenaied in the same time as code
     - happen if cost of maintenaiing this is less than the benefit get from that 
@@ -70,7 +68,7 @@ MDE
     - tools for managing the software process
 - "A model driven engineering approach must specify the modelling languages,models, translations between models and languages, and the process used tocoordinate the construction and evolution of the models"
 
-2.
+2. 
 - introducing MDE implies a lot of organizational changes and change management
 - "that is, the systematic use of models as primary artifacts during a software engineering process"
 - MDE claims many potential benefits – chiefly, gains in productivity, portability, maintainability and interoperability it has been developed largely without the support of empirical data to test or support these claims
@@ -80,13 +78,45 @@ MDE
 - MDE 2 edge sword
     - e.g., code generation can help productivity, but could worsen it when the generated code needs to be modified  -> unknow, no data
 
+4. 
+- MDE -> models as primary artefacts in SE
+- models should be precise enough to support automated transformations between the different phase of dev'
+- MDE is widespread, at different stage of SE, maybe not all of them
+- MDE improves productivity  but training costs and organizational changes
+- MDE not only help in code generation but mainly in documentation
+- MDE helps to do faster and cheaper, so some companies that do not focus on software dev' can focus on their core expertise
+- MDE suitable for architect
+- modeling helps to understand, communicate about, and analyse software
+
+17. 
+- MDE: creation of abstract models of software, then "transformed" to concrete implementations
+- reduce gap between problem and software implementation (solution)
+- problem-level abstractions
+- abstract the complexifty of underlying implementation platform, focus on the business part
+- 2 broad class of models
+    - development models: abstraction above code level (e.g., requirements, architectural, implementation, and deployment)
+    - runtime models: abstraction of a runtime phenomena   , views of some aspect of an executing system (models@run.time)
+
+18. 
+- in computer science: abstractions use to help developers programing in their design intent rather than the underlying complexity of their environment
+- abstractions used to be in the solution space
+- MDE
+    - DSML: formalise application structure, behaviour, and requirements within a particular domain. Described through metamoels, that define the concepts and how they are linked, and the semantics and constraints associated to the concepts
+    - Transformation engine: analyzes models (instance of a metamodel) and create/generate software artifact (code, simulation inputs, deployment descriptors, or other model descriptions)
+
+20. 
+- abstraction: techniques used since the beginning
+- improve productivity
+
 # Models, Metamodels, Model transformation
 
 **Models**
     - (partial) representation of a system/domain that captures some of its characteristics into an abstraction that can be easily understood and manipulated by designers
     - Models are defined using a formal or semi-formal langiage such as UML
-    - [MDE] drive software engineering activities and are considered as the unifying concept between technologies and languages (5.)
+    - [MDE] drive software engineering activities
     - way to excange information
+
+    - "A modelis a simplification of a system built with an intended goal inmind" (28.)
 
 **Metamodels**
     - defines the set of concepts, relationships, and semantics tules regulating how models can be denoted in a particular language definition
@@ -115,6 +145,8 @@ MDE
         - M2: UML metamodel 
         - M3: user model expressed in UML
         - M0: runtime layer (instances)
+
+    - "A  meta-model  is  the  explicit  specification  of  an  ab-straction (a simplification)" (28.)
 
 
 **Model transformation**
@@ -186,6 +218,10 @@ MDE
             - efficient model (un)marshalling and cloning
             - connecting m@r.t to classical design tools 
 
+    - EMF:
+        - Specification of an application's data (object attributes, relationships between objects, operation available on each object, simple constraint)
+            - subset of class diagram of UML
+
 # Models@run.time
     - MDE paradigm (44., 45.)
     - uses models both at design and runtime to support self-adaptive systems
@@ -200,25 +236,24 @@ MDE
 
     - often mentioned in the context of architectural and variability models (44., 46., 47.)
 
-# Papers to check
+# Bibliography
 
-3. J. Bézivin, N. Farcet, J.-M. Jézéquel, B. Langlois, and D. Pollet. Reflective Model Driven Engineering. In Proceedings of the 6th «UML» Conference
+1. S. Kent. Model Driven Engineering. In Proceedings of the 3rd IFM Conference, pages 286–298. Springer, 2002.
+2. J. Hutchinson, J. Whittle, and M. Rouncefield. Model-Driven Engineering Practices in Industry: Social, Organizational and Managerial Factors that Lead to Success or Failure. Science of Computer Programming
 4. J. Whittle, J. Hutchinson, and M. Rouncefield. The State of Practice in Model-Driven Engineering.
-5. J. Bézivin. On the Unification Power of Models. Software and Systems Modeling,
 6. OMG. Meta Object Facility (MOF) Specifications, 2017. URL: http://www. omg.org/spec/MOF/2.4.1/
 7. OMG. OCL Specification, 2017. URL: www.omg.org/spec/OCL
 8. OMG. OMG MOF 2 XMI Mapping Specification version 2.5.1, 2017
 9. OMG. QVT Specification, 2017. URL: http://www.omg.org/spec/QVT
 10. OMG. UML Specification, 2017. URL: www.omg.org/spec/UML
 11. J. Rumbaugh, I. Jacobson, and G. Booch. The Unified Modeling Language Reference Manual. Pearson Higher Education, 2004
-12. J.Rumbaugh. OMT:The Object Model. JournalofObject-OrientedProgramming, pages 21–27, 1995
+12. J.Rumbaugh. OMT:The Object Model. Journal of Object-Oriented Programming, pages 21–27, 1995
 13. I. Jacobson. Object-Oriented Software Engineering: a Use Case Driven Approach. Pearson Education India, 1993
 14. D. Steinberg, F. Budinsky, E. Merks, and M. Paternostro. EMF: Eclipse Modeling Framework. Pearson Education, 2008
 15. D. S. Kolovos, R. F. Paige, and F. A. Polack. Eclipse Development Tools for Epsilon.
 16. F. Fouquet, G. Nain, B. Morin, E. Daubert, O. Barais, N. Plouzeau, and J.- M. Jézéquel. An Eclipse Modelling Framework Alternative to Meet the Models@Runtime Requirements. In Proceedings of the 15th MoDELS Conference, pages 87–101
 17. Robert France and Bernhard Rumpe. “Model-driven development of complex software: A research roadmap”. In: 2007 Future of Software Engineering
 18. Douglas C Schmidt. “Model-driven Engineering”. In: IEEE Computer 39.2
-19. Jean Bézivin. “In search of a basic principle for model driven engineer- ing”. In: Novatica Journal, Special Issue 5.2 (2004)
 20. Colin Atkinson and Thomas Kühne. “Model-driven development: a metamodeling foundation”. In: Software, IEEE 20.5 (2003),
 21. Jean-Marie Favre. “Towards a basic theory to model model driven engineering”. In: 3rd Workshop in Software Model Engineering, WiSME.
 22. Paul Baker, Shiou Loh, and Frank Weil. “Model-Driven engineering in a large industrial context—motorola case study”. In: International Con- ference on Model Driven Engineering Languages and Systems. Springer.
@@ -244,10 +279,6 @@ MDE
 45. G. Blair, N. Bencomo, and R. B. France. Models@ run.time. Computer, 42(10):22–27, Oct 2009
 46. J. C. Georgas, A. v. d. Hoek, and R. N. Taylor. Using architectural models to manage and visualize runtime adaptation. Computer,
 47. C. Cetina, P. Giner, J. Fons, and V. Pelechano. Autonomic computing through reuse of variability models at runtime: The case of smart homes. Computer
-48. Fouquet Francois, Gr ́egory Nain, Brice Morin, Erwan Daubert, Olivier Barais, No ̈el Plouzeau, and Jean-Marc J ́ez ́equel. Kevoree modeling framework (kmf): Efficient modeling techniques for runtime use
+48. Fouquet Francois, Gregory Nain, Brice Morin, Erwan Daubert, Olivier Barais, Noel Plouzeau, and Jean-Marc Jezequel. Kevoree modeling framework (kmf): Efficient modeling techniques for runtime use
 49. J.Kramer,Is abstraction the key to computing?
-
-# Bibliography
-
-1. S. Kent. Model Driven Engineering. In Proceedings of the 3rd IFM Conference, pages 286–298. Springer, 2002.
-2. J. Hutchinson, J. Whittle, and M. Rouncefield. Model-Driven Engineering Practices in Industry: Social, Organizational and Managerial Factors that Lead to Success or Failure. Science of Computer Programming
+50. A. Kleppe, S. Warmer, W. Bast, "MDA Explained. The Model Driven Architecture: Practice and Promise", Addison-Wesley, April 2003
