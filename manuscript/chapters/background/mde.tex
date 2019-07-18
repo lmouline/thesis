@@ -18,32 +18,6 @@ In the following sections, we give an overview of the \gls{mde} methodology and 
 
 
 \subsection{\gls{mde}: principles and vision}
-%- vision: use models for all software engineering activities: design, maintenance, software evolution, ...~\cite{DBLP:journals/computer/Schmidt06, DBLP:series/synthesis/2017Brambilla, DBLP:conf/icse/HutchinsonRW11, DBLP:conf/uml/BakerLW05, DBLP:conf/icse/HutchinsonWRK11}
-%- MDE eased software evolution \cite{DBLP:journals/software/AtkinsonK03a}
-%- idea: reduce gap between the problem space and the solution space by providing two mechanism: DSML (language specific to a domain (type system, semantics, concepts) and transformation engine \cite{DBLP:journals/computer/Schmidt06}
-%- goal: reduce accidental complexity in software development~\cite{DBLP:conf/icse/FranceR07, DBLP:journals/computer/Schmidt06}
-
-%- separation of concern principle: use of multiple domain-specific languages that provide appropriate abstractions
-%- this principle help stakeholders to focus on their problem without loosing the big picture
-%- 2nd principle: reduce gap between high and low level models by generating artifacts (components, documentaion, test cases, source code, ....
-
-%- pros \cite{DBLP:journals/computer/Schmidt06, DBLP:conf/ifm/Kent02, DBLP:conf/uml/BakerLW05}:
-%    - abstraction from specific techno., which improves portability and interoperability
-%    - automated code generation and transformation, that increase productivity and efficiency
-%    - model checking and verification that improve quality
-%    - separation of application and infrastructure code, reusability, readability, and cost-effectiveness
-%- cons \cite{DBLP:conf/ifm/Kent02, DBLP:conf/uml/BakerLW05, DBLP:conf/models/WhittleHRBH13, DBLP:conf/icse/HutchinsonRW11}:
-%    - high initial effort for defining DSMLs
-%    - scalability
-%    - poor tool support
-%    - organisational challenges 
-%    - negative impact of abstraction
-
-%- 3 fundamentals concepts: metamodels, models, and model transformations
-%- metamodels: represent how a model is structured, define the different concept and how their relationships
-- models: conform to metamodel, can be thought as an instance of metamodel
-- model transformation: operation part of MDE that refine models and generate artifacts (source code, ...)
-
 
 \paragraph{Global overview}    
 Software systems tend to be more and more complex.
@@ -88,8 +62,8 @@ They are also seen as models of models.
 Metamodels are then instantiated into models.
 And model transformations, which are the operational part of \gls{mde}, process these models.
 
-In this thesis we do not use 
-
+In this thesis we do not use any transformation technique.
+In the next section, we thus detail the concept of metamodel and model.
 
 \subsection{Metamodel, model}
 

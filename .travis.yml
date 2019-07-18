@@ -7,7 +7,7 @@ branches:
   - master
 
 install:
-  - sudo apt-get install texlive texlive-latex-base texlive-latex-extra texlive-bibtex-extra lmodern
+  - sudo apt-get install texlive texlive-latex-base texlive-latex-extra texlive-bibtex-extra lmodern texlive-fonts-extra 
  
 before_script: 
   - cd $TRAVIS_BUILD_DIR/manuscript
