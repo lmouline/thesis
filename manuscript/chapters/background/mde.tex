@@ -17,36 +17,36 @@ The contributions proposed in this thesis are in line with this vision.
 In the following sections, we give an overview of the \gls{mde} methodology and how we will use it.
 
 
-\subsection{\gls{mde}: principles and vision}
+\subsection[Principles and vision]{Principles and vision}
 
 \paragraph{Global overview}    
 Software systems tend to be more and more complex.
-To tame this complexity~\cite{DBLP:conf/icse/FranceR07, DBLP:journals/computer/Schmidt06}, the \gls{mde} methodology suggests  to use models for all the steps of software development and maintenance~\cite{DBLP:journals/computer/Schmidt06, DBLP:series/synthesis/2017Brambilla, DBLP:conf/icse/HutchinsonRW11, DBLP:conf/uml/BakerLW05, DBLP:conf/icse/HutchinsonWRK11, DBLP:journals/software/AtkinsonK03a}: design, evolution, validation, etc.
+To tame this complexity~\cite{DBLP:conf/icse/FranceR07, DBLP:journals/computer/Schmidt06}, the \gls{mde} methodology suggests  to use \glspl{model} for all the steps of software development and maintenance~\cite{DBLP:journals/computer/Schmidt06, DBLP:series/synthesis/2017Brambilla, DBLP:conf/icse/HutchinsonRW11, DBLP:conf/uml/BakerLW05, DBLP:conf/icse/HutchinsonWRK11, DBLP:journals/software/AtkinsonK03a}: design, evolution, validation, etc.
 The core idea of this approach is two reduce the gap between the the problem and the solution space~\cite{DBLP:journals/computer/Schmidt06}.
 Two main mechanisms have been defined: Domain Specific Modelling Languages (DSML) and model transformation.
 The former is based on the separation of concern principle.
 Each concern\footnote{The definition of concern is intentionally left undefined as it is domain specific.} should be addressed with a specific language, which manipulates concepts, has a type system, and a semantics dedicated to this concern.
-These languages allow to create and manipulate models, specific for a domain.
+These languages allow to create and manipulate \glspl{model}, specific for a domain.
 The latter allows engineers to automatically generate software artefacts, such as documentation, source code, or test cases.
 Using these mechanisms, stakeholders can focus on their own problem keeping in ming the big picture.
 A well known examples is the Structured Query Language \linebreak (SQL)~\cite{SQL:Spec}
-Using this language, engineers can query a relational database, the data model being the model.
+Using this language, engineers can query a relational database, the data model being the \gls{model}.
 They don't have to consider indexes (hidden behind the concept of, for example, primary keys) or all the mechanisms to persist and retrieve data from the disk.
 
 \paragraph{Advantages and disadvantages}
 Defenders of the \gls{mde} approach mainly highlight the benefits of abstraction in software engineering\cite{DBLP:journals/computer/Schmidt06, DBLP:conf/ifm/Kent02, DBLP:conf/uml/BakerLW05}.
-First, using a same model, engineers can target different specific platforms.
+First, using a same \gls{model}, engineers can target different specific platforms.
 For example, the ThingML~\cite{DBLP:conf/models/HarrandFMH16} language allow to specify the behaviour of system through state machines.
 A same ThingML can be deployed on different platform such a Arduino, Raspberry Pi.
 Second, thanks to the transformation engine, the productivity and efficiency of developers is improved.
-Third, models allow engineers to implement verification and validation techniques, like model checking~\cite{DBLP:books/daglib/0020348}, which improve the software quality.
-Finally, the models enable the separation of application and infrastructure code and the reusability of models.
+Third, \glspl{model} allow engineers to implement verification and validation techniques, like model checking~\cite{DBLP:books/daglib/0020348}, which improve the software quality.
+Finally, the \glspl{model} enable the separation of application and infrastructure code and the reusability of \glspl{model}.
 
 However, the literature has also identified some drawbacks of the \gls{mde} approach~\cite{DBLP:conf/ifm/Kent02, DBLP:conf/uml/BakerLW05, DBLP:conf/models/WhittleHRBH13, DBLP:conf/icse/HutchinsonRW11}.
 First, it requires a big initial effort when the DSML needs to be defined.
-Second, current approaches do not allow the definition of very large models.
-This drawback can be mitigated with new approaches such as NeoEMF~\cite{DBLP:conf/ecmdafa/BenelallamGSTL14, DBLP:journals/scp/DanielSBTVGC17}, which enable the storage of large models,  and Mogwaï~\cite{DBLP:conf/rcis/DanielSC16}, a query engine for large models.
-Third, this approach suffers of a poor tooling support, as they should be reimplemented for each model.
+Second, current approaches do not allow the definition of very large \glspl{model}.
+This drawback can be mitigated with new approaches such as NeoEMF~\cite{DBLP:conf/ecmdafa/BenelallamGSTL14, DBLP:journals/scp/DanielSBTVGC17}, which enable the storage of large \glspl{model},  and Mogwaï~\cite{DBLP:conf/rcis/DanielSC16}, a query engine for large \glspl{model}.
+Third, this approach suffers of a poor tooling support, as they should be reimplemented for each \gls{model}.
 As for the second drawback, recent contributions try to remove this limitation.
 For example, we can cite the work of Bousse \etal \cite{DBLP:journals/jss/BousseLCWB18} that define a generic omniscient debugger\footnote{Debugger, generally, allow to execute step by step a programs, that is, forward. An omniscient debugger is also able to go backward: to navigate back in the previous states of a program~\cite{DBLP:journals/corr/cs-SE-0310016}.} for DSML.
 Third, introducing \gls{mde} in a software development team introduces organisational challenges.
@@ -55,102 +55,77 @@ Finally, abstraction is a two edges sword.
 Indeed, reasoning at an abstract level may be more complex as some prefer to work with concrete examples and based on simulation.
 
 \paragraph{Fundamentals concepts}
-\gls{mde} is based on three fundamentals concepts: metamodel, model, and model transformation.
-Metamodels represent how models are structured.
-They define the different concept and their relationships that can be used in models.
-They are also seen as models of models.
-Metamodels are then instantiated into models.
-And model transformations, which are the operational part of \gls{mde}, process these models.
-
+\gls{mde} is based on three fundamentals concepts: \gls{metamodel}, \gls{model}, and model transformation.
 In this thesis we do not use any transformation technique.
-In the next section, we thus detail the concept of metamodel and model.
+In the next section, we thus detail the concept of \gls{metamodel} and \gls{model}.
 
-\subsection{Metamodel, model}
+\subsection[Metamodel, model]{\Gls{metamodel}, \gls{model}}
 
-\paragraph{Metamodel}
- - "A  meta-model  is  the  explicit  specification  of  an  abstraction (a simplification)" \cite{DBLP:conf/kbse/BezivinG01}
-  
- - defines the set of concepts, relationships, and semantics tules regulating how models can be denoted in a particular language definition
-        - materialize the knowledge of a given domain (concepts, their relations) \cite{DBLP:conf/iceccs/BezivinJT05}
-- metamodel: model of a model
-- uses also to define the syntax of DSL \cite{DBLP:journals/corr/ClarkSW15}
-- contains metaclass with properties (attributes or references), inheritence --> basically a class diagram
+\paragraph{\Gls{metamodel}}
+\Glspl{metamodel} the different concepts in a domain and their relationships.
+They represent the knowledge of a domain, for a specific purpose~\cite{DBLP:conf/iceccs/BezivinJT05}.
+In addition, they define the semantics rules and constraints to apply~\cite{DBLP:journals/computer/Schmidt06}.
+They can be sees as \glspl{model} of \glspl{model}.
+In the \gls{mde} community, they are generally defined using the class diagram of the \gls{uml} specification~\cite{omg2017umlspec}.
+They, therefore, contain classes, named metaclass, and properties (attributes or references).
+In the language engineering domain, \glspl{metamodel} are used to defined the concepts that a language can manipulate.
+We detail this part in \autoref{}. \todo{add section refer}
+\gls{omg}\footnote{\url{https://www.omg.org/}} define a standard metamodeling architecture: \gls{mof}~\cite{MOF:Spec}.
+It is defined aside with \gls{ocl}~\cite{OCL:Spec}, the standard constraint language to define constraints that cannot be specified by a class diagram, and \gls{xmi}~\cite{XMI:Spec}, the standard data format to persist (meta)\glspl{model}. 
 
-- MetaObject Facicilty (MOF) (6.) is the standard metamodeling architecture proposedby the OMG, nuilt around a set of modeling standard
-        - OCL (7.): constraints language
-        - XML Metadata Interchange (XMI) (8.): data format to store MOF-based models
+\paragraph{\Gls{model}}
+\Glspl{model} capture some of system characteristics into an abstraction that can be understood, manipulated, or processed by engineers or other system.
+They are linked to their \glspl{metamodel} through the conformance relationship.
+A \gls{model} is conformed to exactly one \gls{metamodel} if and only if it satisfies all the rules of the \gls{metamodel}.
+That is, each element of a \gls{model} should instantiate at least one element of the \gls{metamodel} and respect all the semantics rules and constraints, that can be defined using \gls{ocl}.
+Based on these models, stakeholders can apply verification and validation techniques, such as simulation and model checking, or model transformation.
+France \etal have identified two class of models~\cite{DBLP:conf/icse/FranceR07}: development and runtime models.
+The former are abstraction above the code level.
+It regroups requirements, architectural, or deployment models.
+The latter abstract the runtime behaviour or status of systems. 
+They are the basis of the \gls{m@rt} paradigm, that we detail in the next section.
 
-\paragraph{Model}
-- conform to a metamodel / instanciation of a metamodel
-	- satisfies all rules of the metamodel
-        - each object in the model is an instance of a meta-class and statisfies all semantics rules
-- models are used to perform verification and validation techniques such as simulation, model checking.
-- 2 broad class of models~\cite{DBLP:conf/icse/FranceR07}
-    - development models: abstraction above code level (e.g., requirements, architectural, implementation, and deployment)
-    - runtime models: abstraction of a runtime phenomena   , views of some aspect of an executing system (models@run.time)
-- (partial) representation of a system/domain that captures some of its characteristics into an abstraction that can be easily understood and manipulated by designers
-    - Models are defined using a formal or semi-formal langiage such as UML
-    
-\paragraph{}
-- models / metamodels are organized in multiple levels (metamodeling stack) related by the conformance relationship
- - 4 layers of modeling by MOF
-        - M3: represents te language used by MOF to define M2 models, define itself
-        - M2: UML metamodel 
-        - M3: user model expressed in UML
-        - M0: runtime layer (instances)
-        
 \subsection{Models@run.time}
--MDE paradigm \cite{DBLP:journals/computer/MorinBJFS09, DBLP:journals/computer/BlairBF09}
-- uses models both at design and runtime to support self-adaptive systems
-- model-based abstraction causally connected to their own current state
-- model reflects the current state of the system
-- adaptation can be made at the model level thanks to the causally connection
-- model of the problem space, not the solution space
-
-- design time: models support the design and implementation of the system
-- the same (or similar) models are then embedded at runtime in order to support reasoning process
-- models use as context model, and used in reasoning activities
-
-- often mentioned in the context of architectural and variability models \cite{DBLP:journals/computer/MorinBJFS09, DBLP:journals/computer/GeorgasHT09, DBLP:journals/computer/CetinaGFP09}
+At its origins, \gls{mde} mainly addresses the challenges of designing, validating, and maintaining complex software systems.
+However, these systems were facing a new challenge: the uncertainty of the environment in which they are deployed.
+As we detail in \autoref{sec:back:adapt-syst}, systems have been improved to enable runtime adaptation.
+This process can only be done they the adaptation process has a deep understanding of the structure, the behaviour, and the environment of the system.
+This deep understanding can be provided by a proper abstraction of these runtime elements.
+Extending \gls{mde} principles and visions, the \gls{m@rt} paradigm spans the use of \glspl{model} from design time to runtime.
+The model, as an abstraction of a real system, can be used during runtime to reason about the state of the actual system. 
+A conceptual link between the model and the real system allows modifying the actual system through the model and vice versa.
+The models@run.time paradigm uses \glspl{metamodel} to define the domain concepts of a real system together with its surrounding environment. 
+Consequently, the runtime model depicts an abstract and yet rich representation of the system context that conforms to (is an instance of) its meta-model.
 
 \subsection{Tooling}
-- def: development platforms that offer technical solutions to create, manipulate, and persist (meta) models
-- provide low level programming interface to interact with models
-- graphical tools to ease (meta) model definition, constraint specification, or model element creations
-- embeds code generator to create a set of software artefacts from models
+Tooling is an important aspect of every approach to be adopted.
+Development platforms allow developers to create, manipulate, and persist (meta)\glspl{model} through high or low level programming interfaces.
+For example, a graphical language can be used for this purpose.
+Additionally, these tools should embed transformation engines such as a code generator.
 
-- Standard tool: EMF~\cite{steinberg2008emf}
-- de-facto standard baseline framework to build DSL and modeling tools within the Eclipse ecosystem
-- embeds own metamodeling language ECore
-        - subset of UML
-        - reference implementation of E-MOF, subset of MOF that correspond to facilities found in OO languages
-    - Ecore model = model of the classes of a software application, used to generate Java code that allows manipulatingconceptual elements  at the application level
-    - different way to define models
-        - annotated Java, UML, XML, graphical/textual modelling tools
-- Specification of an application's data (object attributes, relationships between objects, operation available on each object, simple constraint)
-            - subset of class diagram of UML
-        
-- Pointed by Fouquet \etal \cite{DBLP:journals/corr/FrancoisNMDBPJ14, DBLP:conf/models/FouquetNMDBPJ12}, EMF has some limitation to adress m@r.t requirement
-- low memory footprint
-- small dependencies size
-- thread safety
-- efficient model (un)marshalling and cloning
-- connecting m@r.t to classical design tools 
+In the \gls{mde} community, the standard tool is the \gls{emf}~\cite{steinberg2008emf}.
+It is the de-facto baseline framework to build modelling tools within the Eclipse ecosystem.
+It embeds its own metamodelling  language, ECore~\cite{steinberg2008emf, ECore:website}.
+ECore is thus the standard implementation of \gls{emof}~\cite{MOF:Spec}, a subset of \gls{mof} that corresponds to facilities found in object-oriented languages.
+As written on the \gls{emf}-website\footnote{\url{https://www.eclipse.org/modeling/emf/}}, this modelling framework \textquote{provides tools and runtime support to produce a set of Java classes for the model, along with a set of adapter classes that enable viewing and command-based editing of the model, and a basic editor}. 
 
-- This work has been extended with the GreyCat Modeling Environment~\footnote{https://github.com/datathings/greycat/tree/master/modeling}
-- Based on the GreyCat temporal graph database~\cite{DBLP:journals/is/HartmannFMRT19}
-- Designed for m@r.t \cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/Moawad0FNKT15,} + high scalable \cite{DBLP:phd/basesearch/Hartmann16, DBLP:conf/seke/0001FJRT17}
-- also introduces machine learning \cite{DBLP:journals/sosym/0001MFT19}
-- GCM: allow to define model with time as first-class concepts
-	- all elements are automaticcaly augmented with a temporal dimension
-- from the meta-model definition, generates a Java/Javascript API to manipulate the model (here, the temporal graph)
+However, as highlighted by Fouquet \etal \cite{DBLP:journals/corr/FrancoisNMDBPJ14, DBLP:conf/models/FouquetNMDBPJ12}, models generated by EMF have some limitations, which prevent their use for the \gls{m@rt} paradigm.
+The \gls{m@rt} can be used to implement an adaptive \gls{iot} systems\footnote{Definition of \gls{iot} by Gubbi \etal~\cite{DBLP:journals/fgcs/GubbiBMP13}: \textquote{Interconnection of sensing and actuating devices providing the ability to share information across platforms through a unified framework, developing a common operating picture for enabling innovative applications.}}.
+These systems contain small devices, like micro-controllers, that have limited memory, disk space, and process capacity.
+If one wants to deploy a model on it, thus it should have a low memory footprint, a low dependency size, a thread safety capacity, en efficient model (un)marshalling and cloning, a lazy loading mechanism, and a compatibility with a standard design tool, here \gls{emf}.
+However, the approaches at this time failed to tame the first four requirements.
+They, therefore, define \gls{kmf}~\cite{DBLP:journals/corr/FrancoisNMDBPJ14, DBLP:conf/models/FouquetNMDBPJ12}, a modelling framework specific for the \gls{m@rt} paradigm.
+
+Hartmann extended this work and created the \gls{gcm}~\footnote{\url{https://github.com/datathings/greycat/tree/master/modeling}}.
+Using this environment, a developer can create high-scalable models, designed for \gls{m@rt}\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/Moawad0FNKT15}, with time as a first-class concept.
+All metaclasses have a default time attribute to represent the lifetime of the model element that instantiates it.
+The created models are object graphs stored on a temporal graph database, called GreyCat\footnote{\url{https://greycat.ai/}}~\cite{DBLP:journals/is/HartmannFMRT19, DBLP:phd/basesearch/Hartmann16}.
+In addition to time, \glspl{metamodel} defined by \gls{gcm} can have attribute with a value computed from a machine learning algorithm~\cite{DBLP:journals/sosym/0001MFT19}.
+Based on the \gls{metamodel} definition, a Java and Javascript \gls{api} are generated, to manipulate the model, \ie the temporal object graph.
+
 
 \subsection{Modelling in the context of this thesis}
-
-- models@run.time designed for adaptive systems
-- in this thesis we focus on the definition of this model
-
-- thesis is based on the work of Hartmann et al.,
-- it propose an approach to add time as a first-class concept for m@r.t
-- we will use the GreyCat Modelling Environment (GCM)
+The \gls{m@rt} paradigm is a well-know approach to handle the challenges faced in \gls{adptSyst} development.
+Plus, the \gls{gcm} has been designed to design a data model, with time as first-class concept.
+In this thesis, we will use this tool to define a \gls{metamodel} to abstract the knowledge of \glspl{adptSyst} (cf. \Cref{chapt:tkm}).
 

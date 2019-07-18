@@ -1,7 +1,7 @@
 %% A
 \newglossaryentry{action}
 {
-	name={action},
+	name={ac\-tion},
 	description={In this document, we use the definition provided by IEEE Standards~\cite{iso2017systems}: \textquote{Process that, given the \gls{context} and \glspl{requirement} as input, adjusts the \gls{systBhv}}}
 }
 
@@ -22,20 +22,20 @@
 %% B
 \newglossaryentry{behaviour}
 {
-	name={behaviour},
+	name={be\-ha\-viour},
 	description={See \gls{systBhv}}
 }
 
 %% C
 \newglossaryentry{circumstance}
 {
-	name={circumstance},
+	name={cir\-cums\-tance},
 	description={State of the \gls{knowledge} when a \gls{decision} has been taken}
 }
 
 \newglossaryentry{context}
 {
-	name={context},
+	name={con\-text},
 	description={In this document, we use the definition provided by Anind K. Dey~\cite{DBLP:journals/puc/Dey01}: \textquote{Context is any information that can be used to characterise the situation of an entity. An entity is a person, place, or object that is considered relevant to the interaction between a user and [the system], including the user and [the system] themselves}}
 }
 
@@ -58,7 +58,7 @@
 %% D
 \newglossaryentry{decision}
 {
-	name={decision},
+	name={de\-ci\-sion},
 	description={A set of \glspl{action} taken after comparing the state of the \gls{knowledge} with the \gls{requirement}}
 }
 
@@ -71,19 +71,35 @@
 	first={Eclipse Modelling Framework (EMF)}
 }
 
+\newglossaryentry{emof}
+{
+	type=\acronymtype,
+	name={E-MOF},
+	description={Essential MOF (EMOF)},
+	first={Essential MOF (EMOF)}
+}
+
 \newglossaryentry{env}
 {
-	name={environment},
+	name={envi\-ron\-ment},
 	description={See \gls{systEnv}}
 }
 
 \newglossaryentry{exec}
 {
-	name={execution},
+	name={exe\-cu\-tion},
 	description={In this document, we use the definition provided in the \gls{uml} specification~\cite{omg2017umlspec}: \textquote{An execution is a performance of a set of \glspl{action} (potentially over some period of time) that may generate and respond to occurrences of events, including accessing and changing the state of [the system]}}
 }
 
 %% G
+\newglossaryentry{gcm}
+{
+	type=\acronymtype,
+	name={GCM},
+	description={GreyCat Modelling Environment},
+	first={GreyCat Modelling Environment (GCM)}
+}
+
 \newglossaryentry{gps}
 {
 	type=\acronymtype,
@@ -101,10 +117,26 @@
 	first={Information and Communication Technology (ICT)}
 }
 
+\newglossaryentry{iot}
+{
+	type=\acronymtype,
+	name={IoT},
+	description={Internet of Things},
+	first={Internet of Things (IoT)}
+}
+
 %% K
+\newglossaryentry{kmf}
+{
+	type=\acronymtype,
+	name={KMF},
+	description={Kevoree Modelling Framework},
+	first={Kevoree Modelling Framework (KMF)}
+}
+
 \newglossaryentry{knowledge}
 {
-	name={knowledge},
+	name={knowl\-ed\-ge},
 	description={The knowledge of an adaptive system gathers information about the \gls{context}, \glspl{action} and \glspl{requirement}}
 }
 
@@ -142,20 +174,22 @@
 
 \newglossaryentry{metamodel}
 {
-	name={metamodel},
-	description={
-% todo: check :
-% https://www.sciencedirect.com/science/article/pii/S1477842415000408
-% http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.106.9720&rep=rep1&type=pdf
-% https://www.cs.kent.ac.uk/projects/kmf/Documents/ifm02paper.pdf
-% https://www.researchgate.net/profile/Ed_Seidewitz/publication/3248044_What_models_mean/links/06187482fdd792dc482d00f7/What-models-mean.pdf
-In this document, we use the definition provided by Ed Seidewitz~\cite{DBLP:journals/software/Seidewitz03}: \textquote{A meta-model is a specification model for a class of [system  under  study] where each [system  under  study] in the class is it-self a valid model expressed in a certain modelling  language.}}
+	name={meta\-model},
+	description={In this document, we use the definition provided by Douglas C. \linebreak Schmidt~\cite{DBLP:journals/computer/Schmidt06}: \textquote{[Metamodels] define the relationships among concepts in a domain and precisely specify the key semantics and constraints associated with these domain concepts}}
 }
 
 \newglossaryentry{model}
 {
 	name={model},
-	description={In this document, we use the definition provided by Ed Seidewitz~\cite{DBLP:journals/software/Seidewitz03}: \textquote{A model is a set of statements about some system under study. Here, statement means some expression about the SUS that can be considered true or false (although  no  truth value has to necessarily be assigned at any particular point in time).} In our case, the model follow the \gls{uml} specification~\cite{omg2017umlspec}}
+	description={In this document, we use the definition provided by Brambilla \etal~\cite{DBLP:series/synthesis/2017Brambilla}: \textquote{[A model is] a simplified or partial representation of reality, defined in order to accomplish a task or to reach an agreement on a topic.} The model should conform to a \gls{metamodel}: each element of the model instantiates one from the \gls{metamodel} and satisfies all semantics rules~\cite{DBLP:conf/iceccs/BezivinJT05}}
+}
+
+\newglossaryentry{mof}
+{
+	type=\acronymtype, 
+	name={MOF},
+	description={Meta Object Facility},
+	first={Meta Object Facility (MOF)}
 }
 
 \newglossaryentry{m@rt}
@@ -171,6 +205,23 @@ In this document, we use the definition provided by Ed Seidewitz~\cite{DBLP:jour
 	name={NIST},
 	description={National Institute of Standards and Technology},
 	first={National Institute of Standards and Technology (NIST)}
+}
+
+%% O
+\newglossaryentry{omg}
+{
+	type=\acronymtype,
+	name={OMG},
+	description={Object Management Group},
+	first={Object Management Group (OMG)}
+}
+
+\newglossaryentry{ocl}
+{
+	type=\acronymtype,
+	name={OCL},
+	description={Object Constraint Language},
+	first={Object Constraint Language (OCL)}
 }
 
 
@@ -238,3 +289,13 @@ In this document, we use the definition provided by Ed Seidewitz~\cite{DBLP:jour
 	description={Unified Modelling Language},
 	first={Unified Modelling Language (UML)}
 }
+
+%% X
+\newglossaryentry{xmi}
+{
+	type=\acronymtype,
+	name={XMI},
+	description={XML Metadata Interchange},
+	first={XML Metadata Interchange (XMI)}
+}
+
