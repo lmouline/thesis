@@ -1,8 +1,175 @@
-\section{\glsdesc{mde}}
+\section[Model-Driven Engineering]{\glsdesc{mde}}
+
+Abstraction, also called modelling, is the heart of all scientific discipline, including computer science~\cite{DBLP:journals/cacm/Kramer07}.
+One will abstract a system, computer or not, a problem, or a solution to reason about it for a specific purpose.
+Abstraction reduces the scope to relevant parts, removing the superfluous that complexity the understanding.
+For example, a climatologist models all elements that impact the global climate (wind, ocean current, temperature, ...), ignoring local information, like the temperature under a forest, or global one, like the solar system.
+In contrast, astronomers model the solar system, ignoring all information regarding the Earth climate.
+
+In computer science, different modelling formalisms have been proposed. 
+We can cite the entity-relationship~\cite{DBLP:journals/tods/Chen76} that is used to describe data model for relational databases.
+In the web community, they use the ontology~\cite{DBLP:journals/ijmms/Gruber95} formalism to define the semantic web\footnote{Semantic web is defined an en extension of the Web to enable the processing by machines.}~\cite{berners2001semantic}.
+The software engineering community uses the \gls{uml}~\cite{omg2017umlspec} to formalism software system structure or behaviour.
+
+Extending this need for abstraction to all software engineering activities, practitioners have proposed the \gls{mde} methodology~\cite{DBLP:journals/computer/Schmidt06,DBLP:conf/ifm/Kent02}.
+This methodology advocates the use of models, or abstractions, as primary software artefacts~\cite{DBLP:journals/software/WhittleHR14}.
+The contributions proposed in this thesis are in line with this vision.
+In the following sections, we give an overview of the \gls{mde} methodology and how we will use it.
 
 
+\subsection{\gls{mde}: principles and vision}
+%- vision: use models for all software engineering activities: design, maintenance, software evolution, ...~\cite{DBLP:journals/computer/Schmidt06, DBLP:series/synthesis/2017Brambilla, DBLP:conf/icse/HutchinsonRW11, DBLP:conf/uml/BakerLW05, DBLP:conf/icse/HutchinsonWRK11}
+%- MDE eased software evolution \cite{DBLP:journals/software/AtkinsonK03a}
+%- idea: reduce gap between the problem space and the solution space by providing two mechanism: DSML (language specific to a domain (type system, semantics, concepts) and transformation engine \cite{DBLP:journals/computer/Schmidt06}
+%- goal: reduce accidental complexity in software development~\cite{DBLP:conf/icse/FranceR07, DBLP:journals/computer/Schmidt06}
+
+%- separation of concern principle: use of multiple domain-specific languages that provide appropriate abstractions
+%- this principle help stakeholders to focus on their problem without loosing the big picture
+%- 2nd principle: reduce gap between high and low level models by generating artifacts (components, documentaion, test cases, source code, ....
+
+%- pros \cite{DBLP:journals/computer/Schmidt06, DBLP:conf/ifm/Kent02, DBLP:conf/uml/BakerLW05}:
+%    - abstraction from specific techno., which improves portability and interoperability
+%    - automated code generation and transformation, that increase productivity and efficiency
+%    - model checking and verification that improve quality
+%    - separation of application and infrastructure code, reusability, readability, and cost-effectiveness
+%- cons \cite{DBLP:conf/ifm/Kent02, DBLP:conf/uml/BakerLW05, DBLP:conf/models/WhittleHRBH13, DBLP:conf/icse/HutchinsonRW11}:
+%    - high initial effort for defining DSMLs
+%    - scalability
+%    - poor tool support
+%    - organisational challenges 
+%    - negative impact of abstraction
+
+%- 3 fundamentals concepts: metamodels, models, and model transformations
+%- metamodels: represent how a model is structured, define the different concept and how their relationships
+- models: conform to metamodel, can be thought as an instance of metamodel
+- model transformation: operation part of MDE that refine models and generate artifacts (source code, ...)
+
+
+\paragraph{Global overview}    
+Software systems tend to be more and more complex.
+To tame this complexity~\cite{DBLP:conf/icse/FranceR07, DBLP:journals/computer/Schmidt06}, the \gls{mde} methodology suggests  to use models for all the steps of software development and maintenance~\cite{DBLP:journals/computer/Schmidt06, DBLP:series/synthesis/2017Brambilla, DBLP:conf/icse/HutchinsonRW11, DBLP:conf/uml/BakerLW05, DBLP:conf/icse/HutchinsonWRK11, DBLP:journals/software/AtkinsonK03a}: design, evolution, validation, etc.
+The core idea of this approach is two reduce the gap between the the problem and the solution space~\cite{DBLP:journals/computer/Schmidt06}.
+Two main mechanisms have been defined: Domain Specific Modelling Languages (DSML) and model transformation.
+The former is based on the separation of concern principle.
+Each concern\footnote{The definition of concern is intentionally left undefined as it is domain specific.} should be addressed with a specific language, which manipulates concepts, has a type system, and a semantics dedicated to this concern.
+These languages allow to create and manipulate models, specific for a domain.
+The latter allows engineers to automatically generate software artefacts, such as documentation, source code, or test cases.
+Using these mechanisms, stakeholders can focus on their own problem keeping in ming the big picture.
+A well known examples is the Structured Query Language \linebreak (SQL)~\cite{SQL:Spec}
+Using this language, engineers can query a relational database, the data model being the model.
+They don't have to consider indexes (hidden behind the concept of, for example, primary keys) or all the mechanisms to persist and retrieve data from the disk.
+
+\paragraph{Advantages and disadvantages}
+Defenders of the \gls{mde} approach mainly highlight the benefits of abstraction in software engineering\cite{DBLP:journals/computer/Schmidt06, DBLP:conf/ifm/Kent02, DBLP:conf/uml/BakerLW05}.
+First, using a same model, engineers can target different specific platforms.
+For example, the ThingML~\cite{DBLP:conf/models/HarrandFMH16} language allow to specify the behaviour of system through state machines.
+A same ThingML can be deployed on different platform such a Arduino, Raspberry Pi.
+Second, thanks to the transformation engine, the productivity and efficiency of developers is improved.
+Third, models allow engineers to implement verification and validation techniques, like model checking~\cite{DBLP:books/daglib/0020348}, which improve the software quality.
+Finally, the models enable the separation of application and infrastructure code and the reusability of models.
+
+However, the literature has also identified some drawbacks of the \gls{mde} approach~\cite{DBLP:conf/ifm/Kent02, DBLP:conf/uml/BakerLW05, DBLP:conf/models/WhittleHRBH13, DBLP:conf/icse/HutchinsonRW11}.
+First, it requires a big initial effort when the DSML needs to be defined.
+Second, current approaches do not allow the definition of very large models.
+This drawback can be mitigated with new approaches such as NeoEMF~\cite{DBLP:conf/ecmdafa/BenelallamGSTL14, DBLP:journals/scp/DanielSBTVGC17}, which enable the storage of large models,  and Mogwaï~\cite{DBLP:conf/rcis/DanielSC16}, a query engine for large models.
+Third, this approach suffers of a poor tooling support, as they should be reimplemented for each model.
+As for the second drawback, recent contributions try to remove this limitation.
+For example, we can cite the work of Bousse \etal \cite{DBLP:journals/jss/BousseLCWB18} that define a generic omniscient debugger\footnote{Debugger, generally, allow to execute step by step a programs, that is, forward. An omniscient debugger is also able to go backward: to navigate back in the previous states of a program~\cite{DBLP:journals/corr/cs-SE-0310016}.} for DSML.
+Third, introducing \gls{mde} in a software development team introduces organisational challenges.
+It changes the way developers interact and work together.
+Finally, abstraction is a two edges sword.
+Indeed, reasoning at an abstract level may be more complex as some prefer to work with concrete examples and based on simulation.
+
+\paragraph{Fundamentals concepts}
+\gls{mde} is based on three fundamentals concepts: metamodel, model, and model transformation.
+Metamodels represent how models are structured.
+They define the different concept and their relationships that can be used in models.
+They are also seen as models of models.
+Metamodels are then instantiated into models.
+And model transformations, which are the operational part of \gls{mde}, process these models.
+
+In this thesis we do not use 
+
+
+\subsection{Metamodel, model}
+
+\paragraph{Metamodel}
+ - "A  meta-model  is  the  explicit  specification  of  an  abstraction (a simplification)" \cite{DBLP:conf/kbse/BezivinG01}
+  
+ - defines the set of concepts, relationships, and semantics tules regulating how models can be denoted in a particular language definition
+        - materialize the knowledge of a given domain (concepts, their relations) \cite{DBLP:conf/iceccs/BezivinJT05}
+- metamodel: model of a model
+- uses also to define the syntax of DSL \cite{DBLP:journals/corr/ClarkSW15}
+- contains metaclass with properties (attributes or references), inheritence --> basically a class diagram
+
+- MetaObject Facicilty (MOF) (6.) is the standard metamodeling architecture proposedby the OMG, nuilt around a set of modeling standard
+        - OCL (7.): constraints language
+        - XML Metadata Interchange (XMI) (8.): data format to store MOF-based models
+
+\paragraph{Model}
+- conform to a metamodel / instanciation of a metamodel
+	- satisfies all rules of the metamodel
+        - each object in the model is an instance of a meta-class and statisfies all semantics rules
+- models are used to perform verification and validation techniques such as simulation, model checking.
+- 2 broad class of models~\cite{DBLP:conf/icse/FranceR07}
+    - development models: abstraction above code level (e.g., requirements, architectural, implementation, and deployment)
+    - runtime models: abstraction of a runtime phenomena   , views of some aspect of an executing system (models@run.time)
+- (partial) representation of a system/domain that captures some of its characteristics into an abstraction that can be easily understood and manipulated by designers
+    - Models are defined using a formal or semi-formal langiage such as UML
+    
+\paragraph{}
+- models / metamodels are organized in multiple levels (metamodeling stack) related by the conformance relationship
+ - 4 layers of modeling by MOF
+        - M3: represents te language used by MOF to define M2 models, define itself
+        - M2: UML metamodel 
+        - M3: user model expressed in UML
+        - M0: runtime layer (instances)
+        
+\subsection{Models@run.time}
+-MDE paradigm \cite{DBLP:journals/computer/MorinBJFS09, DBLP:journals/computer/BlairBF09}
+- uses models both at design and runtime to support self-adaptive systems
+- model-based abstraction causally connected to their own current state
+- model reflects the current state of the system
+- adaptation can be made at the model level thanks to the causally connection
+- model of the problem space, not the solution space
+
+- design time: models support the design and implementation of the system
+- the same (or similar) models are then embedded at runtime in order to support reasoning process
+- models use as context model, and used in reasoning activities
+
+- often mentioned in the context of architectural and variability models \cite{DBLP:journals/computer/MorinBJFS09, DBLP:journals/computer/GeorgasHT09, DBLP:journals/computer/CetinaGFP09}
 
 \subsection{Tooling}
+- def: development platforms that offer technical solutions to create, manipulate, and persist (meta) models
+- provide low level programming interface to interact with models
+- graphical tools to ease (meta) model definition, constraint specification, or model element creations
+- embeds code generator to create a set of software artefacts from models
+
+- Standard tool: EMF~\cite{steinberg2008emf}
+- de-facto standard baseline framework to build DSL and modeling tools within the Eclipse ecosystem
+- embeds own metamodeling language ECore
+        - subset of UML
+        - reference implementation of E-MOF, subset of MOF that correspond to facilities found in OO languages
+    - Ecore model = model of the classes of a software application, used to generate Java code that allows manipulatingconceptual elements  at the application level
+    - different way to define models
+        - annotated Java, UML, XML, graphical/textual modelling tools
+- Specification of an application's data (object attributes, relationships between objects, operation available on each object, simple constraint)
+            - subset of class diagram of UML
+        
+- Pointed by Fouquet \etal \cite{DBLP:journals/corr/FrancoisNMDBPJ14, DBLP:conf/models/FouquetNMDBPJ12}, EMF has some limitation to adress m@r.t requirement
+- low memory footprint
+- small dependencies size
+- thread safety
+- efficient model (un)marshalling and cloning
+- connecting m@r.t to classical design tools 
+
+- This work has been extended with the GreyCat Modeling Environment~\footnote{https://github.com/datathings/greycat/tree/master/modeling}
+- Based on the GreyCat temporal graph database~\cite{DBLP:journals/is/HartmannFMRT19}
+- Designed for m@r.t \cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/Moawad0FNKT15,} + high scalable \cite{DBLP:phd/basesearch/Hartmann16, DBLP:conf/seke/0001FJRT17}
+- also introduces machine learning \cite{DBLP:journals/sosym/0001MFT19}
+- GCM: allow to define model with time as first-class concepts
+	- all elements are automaticcaly augmented with a temporal dimension
+- from the meta-model definition, generates a Java/Javascript API to manipulate the model (here, the temporal graph)
 
 \subsection{Modelling in the context of this thesis}
 
