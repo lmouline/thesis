@@ -1,28 +1,29 @@
 \section[Software Language Engineering]{\glsdesc{sle}}
 
-
-- SLE: \textquote{the application os systematic, disciplined, and measurable approaches to the develpment, use, deployment, and maintenance of software languages}~\cite{kleppe2008software}
-- SL = software
+As stated by Favre \etal \cite{DBLP:conf/sle/FavreGLP10}, software languages are softwares.
+As traditional software, they need to be designed, tested, deployed, and maintained.
+These activities are grouped under the term \gls{sle} \cite{kleppe2008software}.
+Before explaining the role of software languages in this thesis, we will first define them in this section.
 
 \subsection{Software Languages}
 
-- def: Kleppe~\cite{kleppe2008software}: \textquote{any language that is created to describe and create software systems.}
-- 2 categories
-	- modelling language: language who create a model (UML)
-	- programming language: languages who create a program (Java, Javascript)
-- In this thesis, we consider that a program == model, so both create a model
+%- def: Kleppe~\cite{kleppe2008software}: \textquote{any language that is created to describe and create software systems.}
+%- 2 categories
+%	- modelling language: language who create a model (UML)
+%	- programming language: languages who create a program (Java, Javascript)
+%- In this thesis, we consider that a program == model, so both create a model
 
-- Another distinction: scope targeted by the language \cite{DBLP:journals/sigplan/DeursenKV00}
-	- Global-Purpose Languages: languages that can be used in any application domain, 
-	- Domain-Specific Languages: expressiveness focus for one application domain
-- Def DSL: "is a programming language or executable specification language that offers, through appropriate notations and abstractions, expressive power focused on, and usually restricted to, a particular problem domain." \cite{DBLP:journals/sigplan/DeursenKV00}
-	- here we condiser DSML as a specific case of DSL
-- GPL: used for any kind of software
-	- ++: tooling, 1 language for all
-	- --: developer won't manipulate concept close to the problem
-- DSL specific purpose one
-	- ++: code can be understood/created by domain expert~\cite{DBLP:journals/sigplan/DeursenKV00}, code close to the problem, more concise, intuitive, easier to understand, reason about, maintain~\cite{DBLP:journals/smr/DeursenK98}
-	- --: tooling~\cite{voelter2014generic}
+%- Another distinction: scope targeted by the language \cite{DBLP:journals/sigplan/DeursenKV00}
+%	- Global-Purpose Languages: languages that can be used in any application domain, 
+%	- Domain-Specific Languages: expressiveness focus for one application domain
+%- Def DSL: "is a programming language or executable specification language that offers, through appropriate notations and abstractions, expressive power focused on, and usually restricted to, a particular problem domain." \cite{DBLP:journals/sigplan/DeursenKV00}
+%	- here we condiser DSML as a specific case of DSL
+%- GPL: used for any kind of software
+%	- ++: tooling, 1 language for all
+%	- --: developer won't manipulate concept close to the problem
+%- DSL specific purpose one
+%	- ++: code can be understood/created by domain expert~\cite{DBLP:journals/sigplan/DeursenKV00}, code close to the problem, more concise, intuitive, easier to understand, reason about, maintain~\cite{DBLP:journals/smr/DeursenK98}
+%	- --: tooling~\cite{voelter2014generic}
 	
 - 2 components~\cite{DBLP:journals/computer/HarelR04}: syntax, and semantics
 - syntax define the allowed elements in the language
@@ -37,6 +38,25 @@
 - usually engineers start by defining the syntax
 	- if with the abstract: model-first (way to do DSL by defining the model in a modeling framework)
 	- if concrete: grammar first (traditionnal way to do, for example using EBFN or so) 
+	
+	
+Most of, not to say all of, developers have used, at least once, a programming language to develop a software.
+For example, one may use Javascript to implement client-side behaviour of a web site and another one C to implement a driver.
+We can distinguish another kind of languages, named modelling languages.
+Those models allow developers to implement a model.
+For example, we can argue that many developers have already used the HTML language to implement a \gls{dom}\footnote{\textquote{The \gls{dom} is a platform -and language- neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of [web] documents.}~\cite{DOM:Spec}}
+With the emergence of executable models\footnote{Executable models are models that have a semantics attached to their concepts.}, the difference between models and programs are more and more blurry.
+So it is for the difference between programming and modelling language.
+Hence, Annake Kleppe uses the term \gls{softLge} to combine both kind of languages.
+
+Another way to classify \glspl{softLge} is by their scope~\cite{DBLP:journals/sigplan/DeursenKV00}.
+\Gls{gpl} are languages that can be used for any domain whereas \gls{dsl}\footnote{In this thesis, we do not make the difference between \gls{dsml} and \gls{dsl}} that are restricted to a specific domain.
+Using a \gls{gpl}, a developer can use it to implement a full software are benefits from great tooling support. 
+However, she may manipulates concepts that are different from those of the problem space.
+For example, implementing an automatic coffee machine in Java, she will have to manipulate the concept of class, object, functions.
+In contrary, \gls{dsl} offer a language close to their problem domain~\cite{DBLP:journals/smr/DeursenK98} but might suffer of a poor tooling support~\cite{voelter2014generic}.
+As for \gls{mde}, there is some research efforts to remove this disadvantage~\cite{DBLP:journals/jss/BousseLCWB18}. 
+Using \glspl{dsl}, developers can have simpler code, easier to understand and maintain~\cite{DBLP:journals/sigplan/DeursenKV00, DBLP:journals/smr/DeursenK98}.
 	
 \subsection[SLE in this thesis]{\gls{sle} in this thesis}
 

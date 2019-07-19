@@ -62,6 +62,38 @@
 	description={A set of \glspl{action} taken after comparing the state of the \gls{knowledge} with the \gls{requirement}}
 }
 
+\newglossaryentry{dom}
+{
+	type=\acronymtype,
+	name={DOM},
+	description={Document Object Model},
+	first={Document Object Model (DOM)}
+}
+
+\newglossaryentry{dslg}
+{
+	name={DSL},
+	description={In this document, we use the definition provided by Deursen \etal \cite{DBLP:journals/sigplan/DeursenKV00}: \textquote{is a programming language or executable specification language that offers, through appropriate notations and abstractions, expressive power focused on, and usually restricted to, a particular problem domain.}},
+	see=[Abbreviation:]{dsl}
+}
+
+\newglossaryentry{dsl}
+{
+	type=\acronymtype,
+	name={DSL},
+	description={Domain Specific Language},
+	first={Domain Specific Language (DSL)\glsadd{dslg}},
+	see=[Glossary:]{dslg}
+}
+
+\newglossaryentry{dsml}
+{
+	type=\acronymtype,
+	name={DSML},
+	description={Domain Specific Modelling Language},
+	first={Domain Specific Modelling Language (DSML)}
+}
+
 %% E
 \newglossaryentry{emf}
 {
@@ -98,6 +130,14 @@
 	name={GCM},
 	description={GreyCat Modelling Environment},
 	first={GreyCat Modelling Environment (GCM)}
+}
+
+\newglossaryentry{gpl}
+{
+	type=\acronymtype,
+	name={GPL},
+	description={General Purpose Language},
+	first={General Purpose Language (GPL)}
 }
 
 \newglossaryentry{gps}
@@ -256,13 +296,26 @@
 	name={smart grid},
 	description={In this document, we use the definition provided by the \gls{nist}~\cite{NIST:SmartGrid:Def:What}: \textquote{a modernized grid that enables bidirectional flows of energy and uses two-way communication and control capabilities that will lead to an array of new functionalities and applications.}}
 }
+\newglossaryentry{sleg}
+{
+	name={SLE},
+ 	description={In this document, we use the definition provided by Anneke Kleppe \cite{kleppe2008software}: \textquote{the application of systematic, disciplined, and measurable approaches to the development, use, deployment, and maintenance of software languages}},
+ 	see=[Abbreviation:]{sle}
+}
 
 \newglossaryentry{sle}
 {
 	type=\acronymtype,
 	name={SLE},
 	description={Software Language Engineering},
-	first={Software Language Engineering (SLE)}
+	first={Software Language Engineering (SLE)\glsadd{sleg}},
+	see=[Glossary:]{sleg}
+}
+
+\newglossaryentry{softLge}
+{
+	name={software language},
+	description={In this document, we use the definition provided by Anneke Kleppe \cite{kleppe2008software}: \textquote{any language that is created to describe and create software systems}}
 }
 
 \newglossaryentry{structure}

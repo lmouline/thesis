@@ -23,7 +23,7 @@ In the following sections, we give an overview of the \gls{mde} methodology and 
 Software systems tend to be more and more complex.
 To tame this complexity~\cite{DBLP:conf/icse/FranceR07, DBLP:journals/computer/Schmidt06}, the \gls{mde} methodology suggests  to use \glspl{model} for all the steps of software development and maintenance~\cite{DBLP:journals/computer/Schmidt06, DBLP:series/synthesis/2017Brambilla, DBLP:conf/icse/HutchinsonRW11, DBLP:conf/uml/BakerLW05, DBLP:conf/icse/HutchinsonWRK11, DBLP:journals/software/AtkinsonK03a}: design, evolution, validation, etc.
 The core idea of this approach is two reduce the gap between the the problem and the solution space~\cite{DBLP:journals/computer/Schmidt06}.
-Two main mechanisms have been defined: Domain Specific Modelling Languages (DSML) and model transformation.
+Two main mechanisms have been defined: \gls{dsml} and model transformation.
 The former is based on the separation of concern principle.
 Each concern\footnote{The definition of concern is intentionally left undefined as it is domain specific.} should be addressed with a specific language, which manipulates concepts, has a type system, and a semantics dedicated to this concern.
 These languages allow to create and manipulate \glspl{model}, specific for a domain.
@@ -43,12 +43,12 @@ Third, \glspl{model} allow engineers to implement verification and validation te
 Finally, the \glspl{model} enable the separation of application and infrastructure code and the reusability of \glspl{model}.
 
 However, the literature has also identified some drawbacks of the \gls{mde} approach~\cite{DBLP:conf/ifm/Kent02, DBLP:conf/uml/BakerLW05, DBLP:conf/models/WhittleHRBH13, DBLP:conf/icse/HutchinsonRW11}.
-First, it requires a big initial effort when the DSML needs to be defined.
+First, it requires a big initial effort when the \gls{dsml} needs to be defined.
 Second, current approaches do not allow the definition of very large \glspl{model}.
 This drawback can be mitigated with new approaches such as NeoEMF~\cite{DBLP:conf/ecmdafa/BenelallamGSTL14, DBLP:journals/scp/DanielSBTVGC17}, which enable the storage of large \glspl{model},  and Mogwaï~\cite{DBLP:conf/rcis/DanielSC16}, a query engine for large \glspl{model}.
 Third, this approach suffers of a poor tooling support, as they should be reimplemented for each \gls{model}.
 As for the second drawback, recent contributions try to remove this limitation.
-For example, we can cite the work of Bousse \etal \cite{DBLP:journals/jss/BousseLCWB18} that define a generic omniscient debugger\footnote{Debugger, generally, allow to execute step by step a programs, that is, forward. An omniscient debugger is also able to go backward: to navigate back in the previous states of a program~\cite{DBLP:journals/corr/cs-SE-0310016}.} for DSML.
+For example, we can cite the work of Bousse \etal \cite{DBLP:journals/jss/BousseLCWB18} that define a generic omniscient debugger\footnote{Debugger, generally, allow to execute step by step a programs, that is, forward. An omniscient debugger is also able to go backward: to navigate back in the previous states of a program~\cite{DBLP:journals/corr/cs-SE-0310016}.} for \gls{dsml}.
 Third, introducing \gls{mde} in a software development team introduces organisational challenges.
 It changes the way developers interact and work together.
 Finally, abstraction is a two edges sword.
