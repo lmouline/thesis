@@ -1,1 +1,48 @@
 \section[Software Language Engineering]{\glsdesc{sle}}
+
+
+- SLE: \textquote{the application os systematic, disciplined, and measurable approaches to the develpment, use, deployment, and maintenance of software languages}~\cite{kleppe2008software}
+- SL = software
+
+\subsection{Software Languages}
+
+- def: Kleppe~\cite{kleppe2008software}: \textquote{any language that is created to describe and create software systems.}
+- 2 categories
+	- modelling language: language who create a model (UML)
+	- programming language: languages who create a program (Java, Javascript)
+- In this thesis, we consider that a program == model, so both create a model
+
+- Another distinction: scope targeted by the language \cite{DBLP:journals/sigplan/DeursenKV00}
+	- Global-Purpose Languages: languages that can be used in any application domain, 
+	- Domain-Specific Languages: expressiveness focus for one application domain
+- Def DSL: "is a programming language or executable specification language that offers, through appropriate notations and abstractions, expressive power focused on, and usually restricted to, a particular problem domain." \cite{DBLP:journals/sigplan/DeursenKV00}
+	- here we condiser DSML as a specific case of DSL
+- GPL: used for any kind of software
+	- ++: tooling, 1 language for all
+	- --: developer won't manipulate concept close to the problem
+- DSL specific purpose one
+	- ++: code can be understood/created by domain expert~\cite{DBLP:journals/sigplan/DeursenKV00}, code close to the problem, more concise, intuitive, easier to understand, reason about, maintain~\cite{DBLP:journals/smr/DeursenK98}
+	- --: tooling~\cite{voelter2014generic}
+	
+- 2 components~\cite{DBLP:journals/computer/HarelR04}: syntax, and semantics
+- syntax define the allowed elements in the language
+- semantics define their meaning
+- There is two kind of syntax: abstract and concrete
+	- abstract: define the different concepts manipulated by the language, can be expressed by a metamodel
+	- concrete: textual or graphical, it defines how concepts are represented and manipulated
+	- 1 abstract can have several concrete syntax
+- 2 kind of semantics
+	- static: define the constraints of the (type system, uniquenss of an element, dependencies cycles, ...)
+	- dynamic: behaviour of the language
+- usually engineers start by defining the syntax
+	- if with the abstract: model-first (way to do DSL by defining the model in a modeling framework)
+	- if concrete: grammar first (traditionnal way to do, for example using EBFN or so) 
+	
+\subsection[SLE in this thesis]{\gls{sle} in this thesis}
+
+
+- our vision: introduce uncertainty as a first-class concept of the meta-language
+- metamodel created by this kind of framework can be used to defined languages
+- here, we propose this (cf. \Cref{chapt:aintea})
+
+- xtext as tooling - grammar first approach
