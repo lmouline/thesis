@@ -7,39 +7,6 @@ Before explaining the role of software languages in this thesis, we will first d
 
 \subsection{Software Languages}
 
-%- def: Kleppe~\cite{kleppe2008software}: \textquote{any language that is created to describe and create software systems.}
-%- 2 categories
-%	- modelling language: language who create a model (UML)
-%	- programming language: languages who create a program (Java, Javascript)
-%- In this thesis, we consider that a program == model, so both create a model
-
-%- Another distinction: scope targeted by the language \cite{DBLP:journals/sigplan/DeursenKV00}
-%	- Global-Purpose Languages: languages that can be used in any application domain, 
-%	- Domain-Specific Languages: expressiveness focus for one application domain
-%- Def DSL: "is a programming language or executable specification language that offers, through appropriate notations and abstractions, expressive power focused on, and usually restricted to, a particular problem domain." \cite{DBLP:journals/sigplan/DeursenKV00}
-%	- here we condiser DSML as a specific case of DSL
-%- GPL: used for any kind of software
-%	- ++: tooling, 1 language for all
-%	- --: developer won't manipulate concept close to the problem
-%- DSL specific purpose one
-%	- ++: code can be understood/created by domain expert~\cite{DBLP:journals/sigplan/DeursenKV00}, code close to the problem, more concise, intuitive, easier to understand, reason about, maintain~\cite{DBLP:journals/smr/DeursenK98}
-%	- --: tooling~\cite{voelter2014generic}
-	
-- 2 components~\cite{DBLP:journals/computer/HarelR04}: syntax, and semantics
-- syntax define the allowed elements in the language
-- semantics define their meaning
-- There is two kind of syntax: abstract and concrete
-	- abstract: define the different concepts manipulated by the language, can be expressed by a metamodel
-	- concrete: textual or graphical, it defines how concepts are represented and manipulated
-	- 1 abstract can have several concrete syntax
-- 2 kind of semantics
-	- static: define the constraints of the (type system, uniquenss of an element, dependencies cycles, ...)
-	- dynamic: behaviour of the language
-- usually engineers start by defining the syntax
-	- if with the abstract: model-first (way to do DSL by defining the model in a modeling framework)
-	- if concrete: grammar first (traditionnal way to do, for example using EBFN or so) 
-	
-	
 Most of, not to say all of, developers have used, at least once, a programming language to develop a software.
 For example, one may use Javascript to implement client-side behaviour of a web site and another one C to implement a driver.
 We can distinguish another kind of languages, named modelling languages.
@@ -57,12 +24,30 @@ For example, implementing an automatic coffee machine in Java, she will have to 
 In contrary, \gls{dsl} offer a language close to their problem domain~\cite{DBLP:journals/smr/DeursenK98} but might suffer of a poor tooling support~\cite{voelter2014generic}.
 As for \gls{mde}, there is some research efforts to remove this disadvantage~\cite{DBLP:journals/jss/BousseLCWB18}. 
 Using \glspl{dsl}, developers can have simpler code, easier to understand and maintain~\cite{DBLP:journals/sigplan/DeursenKV00, DBLP:journals/smr/DeursenK98}.
+
+\Glspl{softLge} are composed of two parts~\cite{DBLP:journals/computer/HarelR04}: a syntax and a semantics.
+The syntax defines the element allowed in the language and the semantics their meaning.
+We can distinguish two kind of syntax: the abstract one and the concrete one.
+The abstract one define the different concepts manipulated with the language and their relationships.
+It can be expressed by a \gls{metamodel}/
+The concrete abstract defines how these concepts are represented.
+It exists two categories of concrete syntax: graphical and textual.
+As for the syntax, there is two kinds of semantics: the static and the dynamic.
+Static semantics defines the constraints of the abstract syntax that cannot be directly expressed in the formalism chosen.
+For example, the static semantics will define uniqueness constraint for some elements or will forbid any cycle in dependencies (if any).
+The type system usually goes in part of the static semantics.
+The dynamic semantics defines the behaviour of the language.
+
+When designing a language, engineers can start with the abstract or with the concrete abstract.
+In the first case, we say that they define the language in a \gls{model}-first way.
+Others will prefer to start by the concrete syntax, and thus they are using a grammar-first approach.
+Some tools, like XText~\cite{DBLP:conf/oopsla/EysholdtB10}, can generate automatically the model from the grammar.
+ 
+
 	
 \subsection[SLE in this thesis]{\gls{sle} in this thesis}
 
-
-- our vision: introduce uncertainty as a first-class concept of the meta-language
-- metamodel created by this kind of framework can be used to defined languages
-- here, we propose this (cf. \Cref{chapt:aintea})
-
-- xtext as tooling - grammar first approach
+In our vision, we argue that uncertainty should be considered as a first-class citizen for modelling frameworks.
+This modelling framework should allow the definition of \glspl{metamodel} with uncertainty management capacities.
+As described in the previous sections, these \glspl{metamodel} can correspond to the abstract syntax of a language.
+As a contribution, we, therefore, propose a language with uncertainty as a first-class citizen: \langName (\cf \Cref{chapt:aintea}).
