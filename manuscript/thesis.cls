@@ -5,7 +5,7 @@
 %%% Package dependencies %%%%%
 \RequirePackage{xcolor}
 \RequirePackage{xifthen}
-\RequirePackage[backref=true, style=trad-alpha, backend=biber]{biblatex}
+\RequirePackage[backref=true, style=trad-alpha, backend=biber, bibencoding=utf8]{biblatex}
 \RequirePackage[]{hyperref}
 \RequirePackage{indentfirst}
 \RequirePackage{doi}
