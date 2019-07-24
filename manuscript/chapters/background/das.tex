@@ -1,3 +1,161 @@
-\section{Adaptive systems}
+\section[Adaptive systems]{\Glspl{adptSyst}}
 \label{sec:back:adapt-syst}
 
+- \glspl{sadapt} defined in response to the increasing complexity of software systems and their environment~\cite{computing2006architectural, DBLP:journals/computer/KephartC03}
+	- more and more complex to install, configure, tune, and maintain these systems
+	- evolve in uncertain environment~\cite{DBLP:conf/dagstuhl/EsfahaniM10}
+- a \gls{adptSyst} can be automatically adapted to achieve its goals based on high-level objectives in response to changes in the environment of the system itself~\cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}
+- \glspl{sadapt} is an \gls{adptSyst} that adapts itself, autonomously, with minimal interference~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}
+
+
+\subsection{Principles and vision}
+
+- 2 principles for \glspl{sadapt}~\cite{DBLP:books/sp/19/Weyns19}
+	- internal principle, base on the \textquote{discipline split}~\cite{DBLP:conf/icse/AnderssonLMW09}
+		- part that deals with the domain concern (concerns for which the system is built), the business part
+		- part that deals with the adaptation concern, interacts with the first one
+	- external principle
+		- \glspl{sadapt} handle changes and uncertainties in their environment, the system, and the goal autonomously, without minimal human interference	
+- SAS principles can be employed in any software layer (low level, middleware, ...)
+- optimal adaptation should be performed without interfering with the SAS activity~\cite{DBLP:journals/tse/KramerM90}
+
+- distinguish between 4 families, often referred to as the self-* features~\cite{computing2006architectural}
+	- self-healing: \textquote{To discover, diagnose, and act to prevent disruptions}~\cite{computing2006architectural}
+	- self-optimisation: \textquote{To tune resources and balance workloads to maximize the use of information technology resources.}~\cite{computing2006architectural}
+	- self-configuration: \textquote{To adapt to dynamically changing environments.}~\cite{computing2006architectural}
+	- self-protection: \textquote{To anticipate, detect, identify, and protect against threats.}~\cite{computing2006architectural}
+- we can also consider self-organisation~\cite{dempster1998self}
+	- "Self-organisation is a dynamical and adaptive process where systems acquire and maintain structure themselves, without external control."~\cite{DBLP:conf/atal/WolfH04}
+	- component apply local rules to adapt their interactions and cooperatively realise adaption
+	- but have emergent behaviour
+	
+- \glspl{sadapt} are composed of 4 elements~\cite{DBLP:books/sp/19/Weyns19}
+	- environment:
+    	- part of the external world with which the SAS interacts and in which the effects of the system will be observed and evaluated \cite{DBLP:journals/ansoft/Jackson97}
+    	- can contain both virtual or physical entities
+    	- difference between the SAS and the environment: the SAS can be controlled by the developer whereas he cannot control the environment
+	- managed system:
+    	- the system that reaslises the domain functionality (domain concern)
+    	- it evolves in en environment
+    	- should contain sensors and actuators to be monitored and adapted
+    	- different names in the litterarture:
+        	- managed element \cite{DBLP:journals/computer/KephartC03}
+        	- system layer \cite{DBLP:journals/computer/GarlanCHSS04}
+        	- core function \cite{DBLP:journals/taas/SalehieT09}
+        	- base-level subsystem \cite{DBLP:journals/taas/WeynsMA12}
+        	- controllable plant \cite{DBLP:conf/icse/FilieriHM14}
+	- adaptation goals: 
+    	- concerns of the managing system over the managed systems
+    	- related to software qualities of the managed system \cite{DBLP:conf/ecsa/WeynsA13}
+    	- 4 kinds of goals \cite{DBLP:journals/computer/KephartC03}: configuration, optimisation, healing, protection
+    	- can evolve over time
+    	- goals expressed in terms of the uncertainty they have to deal with
+        	- probabilistic temporal logics \cite{DBLP:journals/tse/CalinescuGKMT11}
+        	- fuzzy goals, expressed by fuzzy constraints \cite{DBLP:conf/re/BaresiPS10}
+	- managing system:
+    	- adapt the managed system according to the adaptation goals
+    	- monitor the environment and the managed systems
+    	- different names:
+        	- autonomic manager \cite{DBLP:journals/computer/KephartC03}
+        	- architecture layer \cite{DBLP:journals/computer/GarlanCHSS04}
+        	- adaptation engine \cite{DBLP:journals/taas/SalehieT09}
+        	- reflective subsystem \cite{DBLP:journals/taas/WeynsMA12}
+        	- controller \cite{DBLP:conf/icse/FilieriHM14}
+
+- different mechanism can be used to implement a SAS~\cite{DBLP:journals/computer/GarlanCHSS04}
+	- traditional one, like exceptions or fault-tolerant protocols
+	- feedback control loop, taken from control control theory~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}
+- the common implementation of the feedback control loop is the MAPE-K model \cite{DBLP:journals/computer/KephartC03, computing2006architectural}
+	- Monitor, that continuously monitor the managed element and its environment, it updates the Knowledge
+    - Analyse, from the Knowledge, detects if there is a need for adaptation regarding the adaptation goals
+    - Plan, that define the set of adaptation actions to realise the goals
+    - Execute, that executes the plan
+
+\subsection[Models@run.time]{\Gls{m@rt}}
+
+- 6 Waves of engineering \glspl{sadapt}
+	- automating tasks
+		- focus on the automation of recurrent and error-prone management tasks~\cite{DBLP:journals/computer/KephartC03}: installing, configuring, operating, optimising, and maintaining heterogeneous systems 
+	- architecture-based adaptation
+		- architecture as fundation to support systematic runtime change and manage the complexity of engineering SAS
+	- \Gls{m@rt}~\cite{DBLP:journals/computer/BlairBF09}
+		- "causally connected self-representation of the associated system that emphasises the structure, behaviour, or goals of the system from a problem space perspective"
+	- Goal-driven Adaptation
+		- two sides: how to specify the requirements of a system that is exposed to uncertainties and what are the requirement of the solution, found by a feedback control loop, is intended to solve?
+	- Guarantees Under Uncertainties
+		- uncertainty is key driver for self-adaptation, 
+		- Guarantees for a managing system include guarantees for the adaptation goals (qualities) and the functional corectness of the adaptation components themselves
+	- Control-Based Adaptation
+		- use of the control theory for \glspl{sadapt}
+		
+		
+- models@run.time: "causally connected self-representation of the associated system that emphasises the structure, behaviour, or goals of the system from a problem space perspective" [7]
+    - stucture the infromation received by the SAS
+    - causally connection:
+        - modification of the system are reflected in the model
+        - modification of the model triggers modification of the system
+    - abstraction of the system and its goals
+    - 4 dimensions that can be used for classification:
+        - structural vs behavioural
+        - procedural (how: organisation or execution of the system) vs declarative (what: purpose of the adaptation: goal/requirement modeling)
+        - functional (functions of the SAS) vs non-functional (quality properties of the SAS)
+        - formal vs non-formal
+    - \cite{DBLP:journals/computer/MorinBJFS09} defines models@run.time as a set of configuration points, that can be selected at runtime in response to changes
+
+    - model-oriented architecture
+        - 3 layers
+            - Online Model Space: platform independent layer, manipulates model
+            - Causal Connection: platform-specific, "drivers", link between the 2 layers: model and runtime spaces
+            - Business Application: contains application logic, is equipped with sensors that track runtime events, equipped with sensors and "factories services" (actuators)
+        - 4 types of runtime models
+            - feature model, describes the configuration/variability point
+            - context model, specifies relevant variables of the environment
+            - reasoning model, associates features with particular context, example: Event-Condition-Action rules
+            - architecture model, specifies the component composition of the application
+        - 5 elements
+            - Event processor (implement the Monitor stage): update the context model with the received information
+            - Goal-Based Reasoner (implements the Analyse stage): uses the feature and reasoning model to select the new features that should be executed by the SAS, according to goals
+            - Model Weaver (implements part of the Plan stage): from the selected feature, compose a new architecture model
+            - Configuration checker (implements part of the Plan stage): check the configuration at runtime
+            - Configuration manager (implements part of the Plan stage + the Execute stage): define the right sequence of actions to reach the proposed architecture model, execute them 
+
+Sum-up:
+    - causally connection between the the DAS and the model: model represents the up-to date state of the system, modification on the model will trigger modification on the system
+    - models allow to tame the complexity and the huge amount of information
+    - with goal first class citizen, models enable anaysis of the behaviour of SAS at runtime, supporting decision making
+    - 4 dimensions of runtime models: structural or behavioural, procedural or declarative, functional or non-functional, formal or non-formal
+    - SAS can be viewed as a set of possible configuration that should be selected/modified at runtime 
+
+\subsection{Context}
+
+\subsection[Adaptive systems in the context of this thesis]{\Glspl{adptSyst} in this thesis}
+
+- following the \gls{mapek} loop, the adaptation is based on a shared knowledge
+- this knowledge is uncertain and time related
+- in this thesis, we propose a meta-model to represent decisions over time, following the \gls{m@rt} paradigm
+- a language to handle uncertainty
+
+
+
+
+
+
+
+- 0  DBLP:books/sp/19/Weyns19
+- 2  DBLP:conf/icse/AnderssonLMW09
+- 5  DBLP:conf/re/BaresiPS10
+- 10 DBLP:conf/dagstuhl/BrunSGGKLMPS09
+- 13 DBLP:journals/tse/CalinescuGKMT11
+- 17 DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09
+- 23 DBLP:conf/atal/WolfH04
+- 27 DBLP:conf/dagstuhl/EsfahaniM10
+- 28 DBLP:conf/icse/FilieriHM14
+- 30 DBLP:journals/computer/GarlanCHSS04
+- 36 computing2006architectural
+- 38 DBLP:journals/ansoft/Jackson97
+- 39 DBLP:journals/computer/KephartC03
+- 40 DBLP:journals/tse/KramerM90
+- 44 DBLP:journals/computer/MorinBJFS09
+- 52 DBLP:journals/taas/SalehieT09
+- 59 DBLP:conf/ecsa/WeynsA13
+- 61 DBLP:journals/taas/WeynsMA12
