@@ -10,85 +10,58 @@ If the system performs itself this adaptation mechanism with minimal interferenc
 
 \subsection{Principles and vision}
 
-- 2 principles for \glspl{sadapt}~\cite{DBLP:books/sp/19/Weyns19}
-	- internal principle, base on the \textquote{discipline split}~\cite{DBLP:conf/icse/AnderssonLMW09}
-		- part that deals with the domain concern (concerns for which the system is built), the business part
-		- part that deals with the adaptation concern, interacts with the first one
-	- external principle
-		- \glspl{sadapt} handle changes and uncertainties in their environment, the system, and the goal autonomously, without minimal human interference	
-- SAS principles can be employed in any software layer (low level, middleware, ...)
-- optimal adaptation should be performed without interfering with the SAS activity~\cite{DBLP:journals/tse/KramerM90}
+Danny Weyns	identified two principles for \glspl{adptSyst}~\cite{DBLP:books/sp/19/Weyns19}: the internal and the external principle.
+The former one is based on the \textquote{discipline split} defined by Andersson \etal ~\cite{DBLP:conf/icse/AnderssonLMW09}: each \gls{adptSyst} can be split in two concerns.
+First, the domain concern categorises the part of the system that deals with the purpose for which the system has been built.
+Second, the adaptation concern handles the adaptation mechanism and interacts with the first one without interfering with it~\cite{DBLP:journals/tse/KramerM90}.
+On the other hand, the external principle says that \glspl{adptSyst} should handle changes and uncertainties in their environment, the managed systems, and the goal autonomously.
 
-- distinguish between 4 families, often referred to as the self-* features~\cite{computing2006architectural}
-	- self-healing: \textquote{To discover, diagnose, and act to prevent disruptions}~\cite{computing2006architectural}
-	- self-optimisation: \textquote{To tune resources and balance workloads to maximize the use of information technology resources.}~\cite{computing2006architectural}
-	- self-configuration: \textquote{To adapt to dynamically changing environments.}~\cite{computing2006architectural}
-	- self-protection: \textquote{To anticipate, detect, identify, and protect against threats.}~\cite{computing2006architectural}
-- we can also consider self-organisation~\cite{dempster1998self}
-	- "Self-organisation is a dynamical and adaptive process where systems acquire and maintain structure themselves, without external control."~\cite{DBLP:conf/atal/WolfH04}
-	- component apply local rules to adapt their interactions and cooperatively realise adaption
-	- but have emergent behaviour
-	
-- \glspl{sadapt} are composed of 4 elements~\cite{DBLP:books/sp/19/Weyns19}
-	- environment:
-    	- part of the external world with which the SAS interacts and in which the effects of the system will be observed and evaluated \cite{DBLP:journals/ansoft/Jackson97}
-    	- can contain both virtual or physical entities
-    	- difference between the SAS and the environment: the SAS can be controlled by the developer whereas he cannot control the environment
-	- managed system:
-    	- the system that reaslises the domain functionality (domain concern)
-    	- it evolves in en environment
-    	- should contain sensors and actuators to be monitored and adapted
-    	- different names in the litterarture:
-        	- managed element \cite{DBLP:journals/computer/KephartC03}
-        	- system layer \cite{DBLP:journals/computer/GarlanCHSS04}
-        	- core function \cite{DBLP:journals/taas/SalehieT09}
-        	- base-level subsystem \cite{DBLP:journals/taas/WeynsMA12}
-        	- controllable plant \cite{DBLP:conf/icse/FilieriHM14}
-	- adaptation goals: 
-    	- concerns of the managing system over the managed systems
-    	- related to software qualities of the managed system \cite{DBLP:conf/ecsa/WeynsA13}
-    	- 4 kinds of goals \cite{DBLP:journals/computer/KephartC03}: configuration, optimisation, healing, protection
-    	- can evolve over time
-    	- goals expressed in terms of the uncertainty they have to deal with
-        	- probabilistic temporal logics \cite{DBLP:journals/tse/CalinescuGKMT11}
-        	- fuzzy goals, expressed by fuzzy constraints \cite{DBLP:conf/re/BaresiPS10}
-	- managing system:
-    	- adapt the managed system according to the adaptation goals
-    	- monitor the environment and the managed systems
-    	- different names:
-        	- autonomic manager \cite{DBLP:journals/computer/KephartC03}
-        	- architecture layer \cite{DBLP:journals/computer/GarlanCHSS04}
-        	- adaptation engine \cite{DBLP:journals/taas/SalehieT09}
-        	- reflective subsystem \cite{DBLP:journals/taas/WeynsMA12}
-        	- controller \cite{DBLP:conf/icse/FilieriHM14}
+In addition to these principles, the literature has defined four adaptation goals usually called the self-* features~\cite{computing2006architectural}: self-healing, self-optimising, self-configuring, and self-protecting.
+First, the healing capacity, defined when the failures in the system can be automatically discovered, diagnosed, and repaired.
+Second, the adaptation mechanism can be used to optimise the system by tuning resources and balancing workloads.
+Third, the system can be autonomously configured to dynamically adapt to changing \gls{env}.
+Four, threats can be anticipated, detected, and identified by the adaptation process to protect the managed system.
+In addition, we can add the self-organisation feature~\cite{dempster1998self}: \glspl{adptSyst} can \textquote{acquire and maintain themselves, without external control.}~\cite{DBLP:conf/atal/WolfH04}.
+This is mainly discussed for distributed systems, where local rules are applied to adjust their interactions and act cooperatively for adaptation.
+However, this mechanism can lead to emergent behaviour~\cite{DBLP:conf/atal/WolfH04}.
 
-- different mechanism can be used to implement a SAS~\cite{DBLP:journals/computer/GarlanCHSS04}
-	- traditional one, like exceptions or fault-tolerant protocols
-	- feedback control loop, taken from control control theory~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}
-- the common implementation of the feedback control loop is the MAPE-K model \cite{DBLP:journals/computer/KephartC03, computing2006architectural}
-	- Monitor, that continuously monitor the managed element and its environment, it updates the Knowledge
-    - Analyse, from the Knowledge, detects if there is a need for adaptation regarding the adaptation goals
-    - Plan, that define the set of adaptation actions to realise the goals
-    - Execute, that executes the plan
+Furthermore, \glspl{adptSyst} are composed of four elements: \gls{env}, managed system, adaptation goals, and managing systems~\cite{DBLP:books/sp/19/Weyns19}.
+The \gls{env} includes all external entities, virtual or physical, with which the \gls{adptSyst} interacts on each it effects~\cite{DBLP:journals/ansoft/Jackson97}.
+Only the elements that are monitored are part of the system.
+One may distinguish the environment to the \gls{adptSyst} as, contrary to the element of the \gls{adptSyst}, it cannot be directly impacted by the engineer.
+The managed system evolves in the \gls{env} and covers all the part of the system that implements the domain concern.
+In the literature, researchers use different names to refer to it: managed element~\cite{DBLP:journals/computer/KephartC03}, system layer~\cite{DBLP:journals/computer/GarlanCHSS04}, core function~\cite{DBLP:journals/taas/SalehieT09}, base-level subsystem~\cite{DBLP:journals/taas/WeynsMA12}, or controllable plant~\cite{DBLP:conf/icse/FilieriHM14}.
+To enable the adaptation process, the managed system should contain sensors, for monitoring, and actuators, for modifications.
+This adaptation process needs adaptation goals to perform.
+They are related to the managed system and mainly concern its software quality metrics~\cite{DBLP:conf/ecsa/WeynsA13}.
+At the roots of the self-* features, Kephart and Chess have defined four families of goals: configuration, optimisation, healing, and protection~\cite{DBLP:journals/computer/KephartC03}.  
+These goals can evolve over time and should consider the uncertainty of the \gls{env} or the system.
+To express such goals, different approaches have been defined such as probabilistic temporal logics~\cite{DBLP:journals/tse/CalinescuGKMT11} or fuzzy goals~\cite{DBLP:conf/re/BaresiPS10}.
+Finally, the managing system will use these goals to drive the adaptation of the managed system in response to changes of the \gls{env}.
+It thus continuously monitor the \gls{env} and the managing system.
+Researchers use different names to refer to this element: autonomic manager~\cite{DBLP:journals/computer/KephartC03}, architecture layer~\cite{DBLP:journals/computer/GarlanCHSS04}, adaptation engine~\cite{DBLP:journals/taas/SalehieT09}, reflective subsystem~\cite{DBLP:journals/taas/WeynsMA12}, controller~\cite{DBLP:conf/icse/FilieriHM14}.
+
+In the litterature, we can find different approaches to engineer \glspl{adptSyst}~\cite{DBLP:journals/computer/GarlanCHSS04}.
+Among them, the most used one took its inspiration from control theory~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}: the feedback control loop.
+The common implementation is the \gls{mapek} loop~\cite{DBLP:journals/computer/KephartC03, computing2006architectural}.
+This loops is split in four phases: monitor, analyse, plan, and execute.
+During the monitoring phase, all information of managed element and the \gls{env} are put into the knowledge.
+Based on the updated knowledge, the analyse phase detects any need for adaptation using the adaptation goals.
+If any, the plan phase computes the set of actions to adjust the managing system structure or behaviour.
+Finally, the execute phase completes the plan.
+
+Danny Weyns have identified six waves of engineering \glspl{adptSyst}~\cite{DBLP:books/sp/19/Weyns19}.
+First, \textit{automating tasks} that focus on the automation of recurrent and error-prone management tasks of complex systems~\cite{DBLP:journals/computer/KephartC03}.
+Second, \textit{architecture-based adaptation} that defines architecture as the basis of supporting engineering of \glspl{adptSyst}. 
+Third, \textit{\gls{m@rt}}~\cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09} that defines a technique to link the \gls{adptSyst} with a model with a \textquote{causal connection}.
+Four, \textit{goal-driven adaptation} that put the emphasise on the specification of the system requirements, exposed to uncertainties, and those for the solutions.
+Five, \textit{guarantees under uncertainties} that consider uncertainty as a cornerstone concern for \glspl{adptSyst} and that define techniques to guarantee the adaptation goals and the functional correctness of the adaptation components.
+Six, \textit{control-based adaptation} that stress the use of the control theory to benefit from a strong mathematical formalism.
+Among these six waves, this thesis is part of the third one, \gls{m@rt}, that we detail in the next section.
+
 
 \subsection[Models@run.time]{\Gls{m@rt}}
 
-- 6 Waves of engineering \glspl{sadapt}
-	- automating tasks
-		- focus on the automation of recurrent and error-prone management tasks~\cite{DBLP:journals/computer/KephartC03}: installing, configuring, operating, optimising, and maintaining heterogeneous systems 
-	- architecture-based adaptation
-		- architecture as fundation to support systematic runtime change and manage the complexity of engineering SAS
-	- \Gls{m@rt}~\cite{DBLP:journals/computer/BlairBF09}
-		- "causally connected self-representation of the associated system that emphasises the structure, behaviour, or goals of the system from a problem space perspective"
-	- Goal-driven Adaptation
-		- two sides: how to specify the requirements of a system that is exposed to uncertainties and what are the requirement of the solution, found by a feedback control loop, is intended to solve?
-	- Guarantees Under Uncertainties
-		- uncertainty is key driver for self-adaptation, 
-		- Guarantees for a managing system include guarantees for the adaptation goals (qualities) and the functional corectness of the adaptation components themselves
-	- Control-Based Adaptation
-		- use of the control theory for \glspl{sadapt}
-		
-		
 - models@run.time: "causally connected self-representation of the associated system that emphasises the structure, behaviour, or goals of the system from a problem space perspective" [7]
     - stucture the infromation received by the SAS
     - causally connection:
@@ -134,28 +107,3 @@ Sum-up:
 - this knowledge is uncertain and time related
 - in this thesis, we propose a meta-model to represent decisions over time, following the \gls{m@rt} paradigm
 - a language to handle uncertainty
-
-
-
-
-
-
-
-- 0  DBLP:books/sp/19/Weyns19
-- 2  DBLP:conf/icse/AnderssonLMW09
-- 5  DBLP:conf/re/BaresiPS10
-- 10 DBLP:conf/dagstuhl/BrunSGGKLMPS09
-- 13 DBLP:journals/tse/CalinescuGKMT11
-- 17 DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09
-- 23 DBLP:conf/atal/WolfH04
-- 27 DBLP:conf/dagstuhl/EsfahaniM10
-- 28 DBLP:conf/icse/FilieriHM14
-- 30 DBLP:journals/computer/GarlanCHSS04
-- 36 computing2006architectural
-- 38 DBLP:journals/ansoft/Jackson97
-- 39 DBLP:journals/computer/KephartC03
-- 40 DBLP:journals/tse/KramerM90
-- 44 DBLP:journals/computer/MorinBJFS09
-- 52 DBLP:journals/taas/SalehieT09
-- 59 DBLP:conf/ecsa/WeynsA13
-- 61 DBLP:journals/taas/WeynsMA12
