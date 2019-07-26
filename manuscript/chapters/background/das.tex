@@ -8,6 +8,11 @@ Following the autonomic computing vision pushed by IBM engineers~\cite{computing
 \Glspl{adptSyst} have the capacity to be adapted automatically in response to changes in the \gls{env} or of the system themselves in order to achieve their goals based on high-level objectives.~\cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}
 If the system performs itself this adaptation mechanism with minimal interference, the literature refers to it as \glspl{sadapt}~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}.
 
+In this section, we first describes the principles and vision for \gls{adptSyst}.
+Then, the \gls{m@rt} paradigm, a model-based approach to implement them.
+Before explaining the link between \gls{adptSyst} and this thesis, we detail the characteristic of the context of these systems.
+
+
 \subsection{Principles and vision}
 
 Danny Weyns	identified two principles for \glspl{adptSyst}~\cite{DBLP:books/sp/19/Weyns19}: the internal and the external principle.
@@ -61,49 +66,130 @@ Among these six waves, this thesis is part of the third one, \gls{m@rt}, that we
 
 
 \subsection[Models@run.time]{\Gls{m@rt}}
+The adaptation process needs to have a deep understanding of the system and its \gls{env}.
+Following the \gls{mde} methodology\footnote{\gls{mde} is a methodology that promotes the usage of \glspl{model} for software engineering activities (\cf \Cref{sec:back:mde})}, research efforts has lead to the \gls{m@rt} paradigm~\cite{DBLP:journals/computer/MorinBJFS09, DBLP:journals/computer/BlairBF09}.
+The paradigm defines a \gls{model} that is \textquote{causally connected} to the system.
+The \gls{model} abstracts the structure and the behaviour of the system, the \gls{env}, and the adaptation goals.
+The causally connection encompasses two features of the \gls{model}.
+First, the model reflects the up to date state of the system (structure and behaviour) and its \gls{env}.
+Second, any modification of the model triggers a modification of the system.
+In this way, the \gls{model} can be used as interface between the system and the adaptation process.
+Moreover, Morin \etal \cite{DBLP:journals/computer/MorinBJFS09} define \gls{m@rt} allow to represent a set of configuration points that can be selected at runtime to implement the adaptation mechanism.
 
-- models@run.time: "causally connected self-representation of the associated system that emphasises the structure, behaviour, or goals of the system from a problem space perspective" [7]
-    - stucture the infromation received by the SAS
-    - causally connection:
-        - modification of the system are reflected in the model
-        - modification of the model triggers modification of the system
-    - abstraction of the system and its goals
-    - 4 dimensions that can be used for classification:
-        - structural vs behavioural
-        - procedural (how: organisation or execution of the system) vs declarative (what: purpose of the adaptation: goal/requirement modeling)
-        - functional (functions of the SAS) vs non-functional (quality properties of the SAS)
-        - formal vs non-formal
-    - \cite{DBLP:journals/computer/MorinBJFS09} defines models@run.time as a set of configuration points, that can be selected at runtime in response to changes
-
-    - model-oriented architecture
-        - 3 layers
-            - Online Model Space: platform independent layer, manipulates model
-            - Causal Connection: platform-specific, "drivers", link between the 2 layers: model and runtime spaces
-            - Business Application: contains application logic, is equipped with sensors that track runtime events, equipped with sensors and "factories services" (actuators)
-        - 4 types of runtime models
-            - feature model, describes the configuration/variability point
-            - context model, specifies relevant variables of the environment
-            - reasoning model, associates features with particular context, example: Event-Condition-Action rules
-            - architecture model, specifies the component composition of the application
-        - 5 elements
-            - Event processor (implement the Monitor stage): update the context model with the received information
-            - Goal-Based Reasoner (implements the Analyse stage): uses the feature and reasoning model to select the new features that should be executed by the SAS, according to goals
-            - Model Weaver (implements part of the Plan stage): from the selected feature, compose a new architecture model
-            - Configuration checker (implements part of the Plan stage): check the configuration at runtime
-            - Configuration manager (implements part of the Plan stage + the Execute stage): define the right sequence of actions to reach the proposed architecture model, execute them 
-
-Sum-up:
-    - causally connection between the the DAS and the model: model represents the up-to date state of the system, modification on the model will trigger modification on the system
-    - models allow to tame the complexity and the huge amount of information
-    - with goal first class citizen, models enable anaysis of the behaviour of SAS at runtime, supporting decision making
-    - 4 dimensions of runtime models: structural or behavioural, procedural or declarative, functional or non-functional, formal or non-formal
-    - SAS can be viewed as a set of possible configuration that should be selected/modified at runtime 
+Using this approach, we can say that engineers use a model-based architecture.
+This approach is characterised by three layers, four types of runtime models, and five elements~\cite{DBLP:journals/computer/MorinBJFS09}.
+The three layers are: online model space, causal connection, and business application.
+The business application layer contains the logic of the system.
+It has sensors for monitoring and actuators (here called factories).
+This layer is connected to the online model space, which is platform independent, through the causal connection layer.
+The online model space contains the four different runtime models: feature, context, reasoning, and architecture model.
+The feature model represents the different configuration point of the system.
+The context model abstracts the relevant part of the system and the \gls{env}.
+The reasoning model makes the link between the two first models by associating the features with a particular context.
+Finally, the architecture model specifies the different entities of the system.
+These models are exchanged by the five elements that implement the adaptation mechanism.
+First, the \textit{event processor}, which implements the monitor stage of the \gls{mapek} loop, updates the context model with information received through the sensors.
+Second, the \textit{goal-based reasoner}, which implements the analyse phase, uses the feature and reasoning model to select the new features for adjusting the system and achieving the goals.
+Third, the \textit{model weaver}, which implements a part of the phase stage, transforms the selected features into a new architecture model, checked by the \textit{configuration checker}.
+Finally, the configuration manager, which implements part of the plan stage and the execute one, computes and executes the sequence of actions to reach the proposed architecture model.
 
 \subsection{Context}
+Before formalising and modelling decisions and their circumstances, we abstract common concepts implied in an adaptation process. We refer to these concepts as the knowledge.
+
+\subsubsection{General concepts of adaptation process}
+
+Similar to the definition provided by Kephart~\cite{DBLP:journals/computer/KephartC03}, IBM  defines adaptive systems as ``a computing environment with the ability to manage itself and \textbf{dynamically adapt} to change in accordance with \textbf{business policies and objectives}. [These systems] can perform such activities based on \textbf{situations they observe or sense in the IT environment} [...]"~\cite{computing2006architectural}.
+
+Based on this definition, we can identify three principal concepts involved in adaptation processes.
+The first concept is  \textit{actions}. They are executed in order to perform a dynamic adaptation through actuators.
+The second concept is \textbf{business policies and objectives}, which is also referred to as the \textbf{system requirements} in the domain of (self-)adaptive systems.
+The last concept is the observed or sensed \textbf{situation}, also known as the \textbf{context}.
+The following subsections provide more details about these concepts.
+
+\subsubsection{Context}
+
+In this thesis, we use the widely accepted definition of context provided by \linebreak Dey~\cite{DBLP:journals/puc/Dey01}: \textquote{Context is \textbf{any information that can be used to characterize} the situation of an entity. An entity is a person, place, or object that is considered relevant to the interaction between a user and [the system], including the user and [the system] themselves}.
+In this section, we list the characteristics of this information based on several works found in the literature~\cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:conf/seke/0001FNMKT14, DBLP:journals/percom/BettiniBHINRR10, DBLP:journals/comsur/PereraZCG14}.
+We use them to drive our design choices of our Knowledge meta-model (cf. Section~\ref{sec:tkm:mm:knoeldge}).
+
+\paragraph{Volatility}
+Data can be either \textbf{static} or \textbf{dynamic}.
+Static data, also called frozen, are data that will not be modified, over time, after their creation~\cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/comsur/MakrisSS13, DBLP:journals/percom/BettiniBHINRR10}.
+For example, the location of a machine, the first name or birth date of a user can be identified as static data. 
+Dynamic data, also referred to as volatile data, are data that will be modified over time.
+
+\paragraph{Temporality}
+In dynamic data, sometimes we may be interested not only in storing the latest value, but also the previous ones~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/pervasive/HenricksenIR02}. 
+We refer to these data as \textbf{historical} data.
+Temporal data is not only about past values, but also future ones. 
+Two kinds of future values can be identified, \textbf{predicted} and \textbf{planned}.  
+Thanks to machine learning or statistical methods, dynamic data values can be \textbf{predicted}. 
+\textbf{Planned} data are set by a system or a human to specify planned modification on the data.
+
+\paragraph{Uncertainty}
+One of the recurrent problems facing context-aware applications is the data uncertainty~\cite{DBLP:conf/dagstuhl/LemosGMSALSTVVWBBBBCDDEGGGGIKKLMMMMMNPPSSSSTWW10, DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/comsur/MakrisSS13, DBLP:journals/percom/BettiniBHINRR10}.
+Uncertain data are not likely to represent the reality. They contain a noise that makes it deviate from its original value.
+This noise is mainly due to the inaccuracy and imprecision of sensors.
+Another source of uncertainty is the behaviour of the environment, which can be unpredictable.
+All the computations that use uncertain data are also uncertain by propagation.
+
+\paragraph{Source}
+According to the literature, data sources are grouped into two main categories, either sensed (measured) data or computed (derived) \linebreak data~\cite{DBLP:journals/comsur/PereraZCG14}.
+We refine this with an additional category called profiled.
+Profiled data may be set either by a user (\textbf{profiled by a human}) or by an external system (\textbf{profiled by an external}).
+
+\paragraph{Connection}
+Context data entities are usually linked using three kinds of connections: conceptual, computational, and consistency~\cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:journals/percom/BettiniBHINRR10}.
+The conceptual connection relates to  (direct) relationships between entities in the real world (e.g. smart meter and concentrator).
+The computational connection is set up when the state of an entity can be linked to another one by a computation process (derived, predicted). 
+Finally, the consistency connection relates entities that should have consistent values. For instance, temperature sensors belonging to the same geographical area.
+
+\subsubsection{Requirement}
+\label{sec:adaptation-req}
+
+Adaptation processes aim at modifying the system state to reach an optimal one.
+All along this process, the system should respect the \textbf{system requirements} established ahead. 
+Through this paper, we use the definition provided by IEEE~\cite{iso2017systems}: ``(1) Statement that translates or expresses a need and its associated \textbf{constraints} and \textbf{conditions}, (2) \textbf{Condition or capability that must be met or possessed} by a system [...] to satisfy an agreement, standard, specification, or other formally imposed documents".\looseness=-1
+
+Although in the literature, requirements are categorized as functional or non-func\-tional, in this paper we use a more elaborate taxonomy introduced by Glinz~\cite{DBLP:conf/re/Glinz07}.
+It classifies requirements in four categories: functional, performance, specific quality, and constraint.
+All these categories share a common feature: they are all temporal.
+During the life-cycle of an adaptive system, the developer can update, add or remove some requirements~\cite{DBLP:conf/icse/ChengA07, pandey2010effective}.
+
+\subsubsection{Action}
+In the IEEE Standards~\cite{iso2017systems}, an action is defined as: \textquote{\textbf{process of transformation} that \textbf{operates upon data} or other types of inputs to create data, produce outputs, or \textbf{change the state} or condition of the subject software}.
+
+Back to adaptive systems, we can define an action as a process that, given the context and requirements as input, adjusts the system behaviour.
+This modification will then create new data that correspond to an output context. In the remainder of this paper, we refer to output context as impacted context, or simply impact(s).
+Whereas requirements are used to add preconditions to the actions, context information is used to drive the modifications.
+Actions execution have a start time and a finish time. They can either succeed, fail, or be canceled by an internal or external actor.
 
 \subsection[Adaptive systems in the context of this thesis]{\Glspl{adptSyst} in this thesis}
 
-- following the \gls{mapek} loop, the adaptation is based on a shared knowledge
-- this knowledge is uncertain and time related
-- in this thesis, we propose a meta-model to represent decisions over time, following the \gls{m@rt} paradigm
-- a language to handle uncertainty
+\Glspl{adptSyst} have been proposed to tackle the growing complexity of systems (structure and behaviour) and their \gls{env}.
+One common model to implement them is the well-known \gls{mapek} loop, a feedback control loop based on a shared knowledge.
+Applying the \gls{m@rt} paradigm, this knowledge can be structured by a \gls{model}, which is causally connected to the system.
+This \gls{model} should represent the uncertain and time dimension of the knowledge.
+In this thesis, we propose a \gls{metamodel}\footnote{A model that defines another model (\cf \Cref{sec:back:mde}).} to represent the decisions made by the adaptation process over time (\cf \Cref{chapt:tkm}).
+Plus, we define a language, \langName, to propagate uncertainty in the computation made during the adaptation process (\cf \Cref{chapt:aintea}).
+
+un
+deux
+trois
+quatre
+cing
+six
+setps
+huit
+neuf
+dix
+onze
+douze
+treize
+
+
+
+
+
+
+
