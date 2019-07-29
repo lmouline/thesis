@@ -1,43 +1,43 @@
 \section{Probability theory}
 
 Data uncertainty, and more generally uncertainty, is linked with confidence.
-Indeed, the confidence level that one can give to a data depends on its uncertainty.
+Indeed, the confidence level that one can give to data depends on its uncertainty.
 The more uncertain value is, the less trust it can be placed in it.
 However, it is rather difficult to put exact numbers on this confidence level.
 A strategy used by experts to formalise this confidence level, and thus the uncertainty, is to use probability distributions.
 
 In this section, we thus introduce the necessary concepts of these distributions.
-We first describes the concept of random variables in the probability theory.
+We first describe the concept of random variables in probability theory.
 Then we describe what a probability distribution is and the properties that will be used in this thesis.
-Finally, we will describe the distributions used in this thesis.
+Finally, we will explain the distributions used in this thesis.
 
 \subsection{Random variables}
 
 \paragraph{Definition}
 The three base elements of the probability theory are: an outcome, an event, and a sample space.
 An outcome is the occurrence of a random phenomenon.
-An event is a set of outcomes and a sample space $S$ is the set of all possible outcomes.
-Let us take an example: the rolling of two dices.
+An event is a set of outcomes, and a sample space $S$ is the set of all possible outcomes.
+Let us take an example: the rolling of two dice.
 $i$ denotes the result of one die and $j$ the result of the other.
 An example of an outcome is the result of a roll, like the pair (2, 6).
-An event could contain all outcomes where both dices have an even result: $E = \{ (i,j) \mid i,j \in \{2, 4, 6\}\}$.
+An event could contain all outcomes where both dice have an even result: $E = \{ (i,j) \mid i,j \in \{2, 4, 6\}\}$.
 The sample space of our example is this equals to: $S_1 = \{ (i,j) \mid i,j \in \{1, 2, \dots , 6\} \}$.
 We thus have: 
 
 A random variable is a function from the sample space $S$ to $\mathds{R}$.
-In our example, we can define two random variables $X$ and $Y$ that represent, respectively, the minimum of the two dices and the sum of the two.
+In our example, we can define two random variables $X$ and $Y$ that represent, respectively, the minimum of the two dice and the sum of the two.
 We have thus: $X= min(i, j)$ and $Y= i + j$.
 
 \paragraph{Discrete and continuous}
 Random variable can be either discrete or continuous.
 For discrete random variables, we can list all the events of the sample space, whereas we cannot for continuous ones.
-For example, it is possible to list all result of the rolling of $n$ dices, $n \in \mathds{N}$.
-But, we cannot list all possible temperatures of a room (if we consider that we have an infinite precision).
+For example, it is possible to list all results of the rolling of $n$ dice, $n \in \mathds{N}$.
+But we cannot list all possible temperatures of a room (if we consider that we have an infinite precision).
 
 \paragraph{Independence and disjoint}
 Independence and joint are defined at the event level.
-Two event are independents if the probability of occurrence of one does not impact the probability of occurrence of the others.
-Two events are disjoints if and only if they do not share any outcome.
+Two events are independent if the probability of occurrence of one does not impact the probability of occurrence of the others.
+Two events are disjoint if and only if they do not share any outcome.
 Mathematically speaking, events $A$ and $B$ are independent if and only if $P(A \cap B) = P(A) * P(B)$, and they are disjoint if and only if $P(A \cap B) = P(A) * P(B)$.
 
 \subsection{Distribution}
@@ -82,16 +82,16 @@ As the area under a precise point is null, the probability that a continuous ran
 \end{figure*}
 
 Probability distributions have proven their ability to represent uncertain data.
-Among the existing distributions, in this thesis we use on five of them: Gaussian (or Normal) distribution, Rayleigh distribution, binomial distribution, Bernoulli distribution and the Dirac delta function.
+Among the existing distributions, in this thesis, we use on five of them: Gaussian (or Normal) distribution, Rayleigh distribution, binomial distribution, Bernoulli distribution and the Dirac delta function.
 The Gaussian and the Rayleigh distributions will represent continuous distributions.
-Discrete distributions are represented by the Bernoulli and the binomial one.
+The Bernoulli and the binomial one represent discrete distributions.
 Finally, the Dirac delta function can represent the confidence level of exactly one value.
 
 \paragraph{Bernoulli distribution}
 Bernoulli distribution represents the distribution of a binary phenomenon.
 One well-known example is the flip of a fair coin.
 Bernoulli($p$) denotes a random variable that equals 1 with a probability of $p$ and 0 with a probability of $(1 - p)$.
-Following the coin example, 1 can represent head and 0 tail.
+Following the coin example, 1 can represent the head and 0 tail.
 
 \paragraph{Binomial distribution}
 The binomial distribution represents the probability of success of a binary phenomenon over a set of trials.
