@@ -1,19 +1,18 @@
 \section[Adaptive systems]{\Glspl{adptSyst}}
 \label{sec:back:adapt-syst}
 
-Complexity of nowadays software systems comes with difficulties, errors, and redundant tasks for developers.
-These tasks go from installation, configuration to maintenance.
-Moreover, they evolve in uncertain and evolving \gls{env}~\cite{DBLP:conf/dagstuhl/EsfahaniM10}.
-Following the autonomic computing vision pushed by IBM engineers~\cite{computing2006architectural}, Kephart and Chess put the basis for \glspl{adptSyst}~\cite{DBLP:journals/computer/KephartC03}.
-\Glspl{adptSyst} have the capacity to be adapted automatically in response to changes in the \gls{env} or of the system themselves in order to achieve their goals based on high-level objectives.~\cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}
-If the system performs itself this adaptation mechanism with minimal interference, the literature refers to it as \glspl{sadapt}~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}.
-
-In this section, we first describes the principles and vision for \gls{adptSyst}.
-Then, the \gls{m@rt} paradigm, a model-based approach to implement them.
-Before explaining the link between \gls{adptSyst} and this thesis, we detail the characteristic of the context of these systems.
-
+This section introduces the background to understand \glspl{adptSyst}.
+First, we describe the principles and vision of \glspl{adptSyst}.
+Before we characterise the information used by an adaptation process, we detail a model-based technique to implement them: \gls{m@rt}.
+Finally, we highlight the key concepts used in this thesis and link them to the contributions.
 
 \subsection{Principles and vision}
+Complexity of nowadays software systems comes with difficulties, errors, and redundant tasks for developers.
+These tasks go from the installation, including the configuration, to the maintenance of these systems.
+Moreover, software systems can evolve in uncertain and evolving \gls{env}~\cite{DBLP:conf/dagstuhl/EsfahaniM10}.
+Following the autonomic computing vision pushed by IBM engineers~\cite{computing2006architectural}, Kephart and Chess set the basis for \glspl{adptSyst}~\cite{DBLP:journals/computer/KephartC03}.
+\Glspl{adptSyst} have the capacity to be adapted automatically in response to changes in the \gls{env} or of the system themselves in order to achieve their goals based on high-level objectives~\cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}.
+If the system performs itself this adaptation mechanism with minimal interference, the literature refers to it as \glspl{sadapt}~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}.
 
 Danny Weyns	identified two principles for \glspl{adptSyst}~\cite{DBLP:books/sp/19/Weyns19}: the internal and the external principle.
 The former one is based on the \textquote{discipline split} defined by Andersson \etal ~\cite{DBLP:conf/icse/AnderssonLMW09}: each \gls{adptSyst} can be split in two concerns.
@@ -164,28 +163,13 @@ This modification will then create new data that correspond to an output context
 Whereas requirements are used to add preconditions to the actions, context information is used to drive the modifications.
 Actions execution have a start time and a finish time. They can either succeed, fail, or be canceled by an internal or external actor.
 
-\subsection[Adaptive systems in the context of this thesis]{\Glspl{adptSyst} in this thesis}
-
+\subsection{Key concepts for this thesis}
 \Glspl{adptSyst} have been proposed to tackle the growing complexity of systems (structure and behaviour) and their \gls{env}.
 One common model to implement them is the well-known \gls{mapek} loop, a feedback control loop based on a shared knowledge.
 Applying the \gls{m@rt} paradigm, this knowledge can be structured by a \gls{model}, which is causally connected to the system.
 This \gls{model} should represent the uncertain and time dimension of the knowledge.
 In this thesis, we propose a \gls{metamodel}\footnote{A model that defines another model (\cf \Cref{sec:back:mde}).} to represent the decisions made by the adaptation process over time (\cf \Cref{chapt:tkm}).
 Plus, we define a language, \langName, to propagate uncertainty in the computation made during the adaptation process (\cf \Cref{chapt:aintea}).
-
-un
-deux
-trois
-quatre
-cing
-six
-setps
-huit
-neuf
-dix
-onze
-douze
-treize
 
 
 
