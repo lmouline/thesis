@@ -9,8 +9,8 @@ Finally, we highlight the key concepts used in this thesis and link them to the 
 \subsection{Principles and vision}
 The complexity of nowadays software systems comes with laborious, error-prone, and redundant tasks (installation, configuration, maintenance, \etc) for developers.
 Moreover, software systems can be executed in uncertain and evolving \glspl{env}~\cite{DBLP:conf/dagstuhl/EsfahaniM10}.
-Following the autonomic computing vision pushed by IBM engineers~\cite{computing2006architectural}, Kephart and Chess set the basis for \glspl{adptSyst}~\cite{DBLP:journals/computer/KephartC03}.
-\Glspl{adptSyst} can be adapted automatically in response to changes in their \gls{env} or of the systems themselves.
+Following the autonomic computing vision pushed by IBM engineers~\cite{computing2006architectural}, Kephart and Chess have established the basis for \glspl{adptSyst}~\cite{DBLP:journals/computer/KephartC03}.
+\Glspl{adptSyst} are recognised by their ability to have their behaviour or structure adapted automatically in response to changes in their \gls{env} or of the systems themselves.
 This adaptation helps them to achieve their goals based on high-level objectives~\cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}.
 If a system performs itself this adaptation mechanism with minimal interference, the literature refers to it as a \gls{sadapt}~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}.\looseness-1
 
@@ -18,7 +18,7 @@ Danny Weyns	identified two principles for \glspl{adptSyst}~\cite{DBLP:books/sp/1
 The former one is based on the \textquote{discipline split} defined by Andersson \etal ~\cite{DBLP:conf/icse/AnderssonLMW09}: each \gls{adptSyst} can be split into two concerns.
 First, the domain concern categorises the part of the system that deals with the purpose for which the system has been built.
 Second, the adaptation concern handles the adaptation mechanism and interacts with the first one without interfering with it~\cite{DBLP:journals/tse/KramerM90}.
-On the other hand, the external principle says that \glspl{adptSyst} should handle changes and uncertainties in their environment, the managed systems, and the goal autonomously.
+The external principle says that \glspl{adptSyst} should handle changes and uncertainties in their environment, the managed systems, and the goal autonomously.
 
 In addition to these principles, the literature has defined four adaptation goals, usually called the self-* features~\cite{computing2006architectural}: self-healing, self-optimising, self-configuring, and self-protecting.
 First, the healing capacity, defined when the failures in the system can be automatically discovered, diagnosed, and repaired.
@@ -76,7 +76,7 @@ In this way, the \gls{model} can be used as an interface between the system and 
 Moreover, Morin \etal \cite{DBLP:journals/computer/MorinBJFS09} define \gls{m@rt} allow stakeholders to represent a set of configuration points that can be selected at runtime to implement the adaptation mechanism.
 
 Using this approach, we can say that engineers use a model-based architecture.
-This approach is characterised by three layers, four types of runtime models, and five elements~\cite{DBLP:journals/computer/MorinBJFS09}.
+Morin \etal described a possible solution that is characterised by three layers, four types of runtime models, and five elements~\cite{DBLP:journals/computer/MorinBJFS09}.
 The three layers are: online model space, causal connection, and business application.
 The business application layer contains the logic of the system.
 It has sensors for monitoring and actuators (here called factories).
@@ -87,13 +87,17 @@ The context model abstracts the relevant part of the system and the \gls{env}.
 The reasoning model links between the first two models by associating the features with a particular context.
 Finally, the architecture model specifies the different entities of the system.
 These models are exchanged by the five elements that implement the adaptation mechanism.
-First, the \textit{event processor}, which implements the monitor stage of the \gls{mapek} loop, updates the context model with information received through the sensors.
+First, the \textit{event processor}, which implements the monitoring stage of the \gls{mapek} loop, updates the context model with information received through the sensors.
 Second, the \textit{goal-based reasoner}, which implements the analyse phase, uses the feature and reasoning model to select the new features for adjusting the system and achieving the goals.
-Third, the \textit{model weaver}, which implements a part of the phase stage, transforms the selected features into a new architecture model, checked by the \textit{configuration checker}.
+Third, the \textit{model weaver}, which implements a part of the planning stage, transforms the selected features into a new architecture model, checked by the \textit{configuration checker}.
 Finally, the configuration manager, which implements a part of the planning stage and the executing one, computes and executes the sequence of actions to reach the proposed architecture model.
 
-\subsection{Context}
-Before formalising and modelling decisions and their circumstances, we abstract common concepts implied in an adaptation process. We refer to these concepts as the knowledge.
+More generally, this solution stresses the use of a model layer, causally connected to the system, and used by the adaptation process.
+Following the \gls{mapek}, the model layer should structure the knowledge.
+In this thesis, we define a metamodel of this knowledge to enable developers diagnosing, understanding, and reasoning over \gls{longTermAct} (\cf \Cref{chapt:tkm}).
+In the next section, we thus characterise the information that composes the knowledge.
+
+\subsection{Characterisation of information of the knowledge}
 
 \subsubsection{General concepts of adaptation processes}
 
@@ -151,7 +155,7 @@ Adaptation processes aim at modifying the system state to reach an optimal one.
 All along this process, the system should respect the \textbf{system requirements} established ahead. 
 Through this thesis, we use the definition provided by IEEE~\cite{iso2017systems}: ``(1) Statement that translates or expresses a need and its associated \textbf{constraints} and \textbf{conditions}, (2) \textbf{Condition or capability that must be met or possessed} by a system [...] to satisfy an agreement, standard, specification, or other formally imposed documents".\looseness=-1
 
-Although in the literature, requirements are categorized as functional or non-func\-tional, in this paper we use a more elaborate taxonomy introduced by Glinz~\cite{DBLP:conf/re/Glinz07}.
+Although in the literature, requirements are categorised as functional or non-func\-tional, in this document we use a more elaborate taxonomy introduced by Glinz~\cite{DBLP:conf/re/Glinz07}.
 It classifies requirements in four categories: functional, performance, specific quality, and constraint.
 All these categories share a common feature: they are all temporal.
 During the life-cycle of an adaptive system, the developer can update, add or remove some requirements~\cite{DBLP:conf/icse/ChengA07, pandey2010effective}.
@@ -160,7 +164,7 @@ During the life-cycle of an adaptive system, the developer can update, add or re
 In the IEEE Standards~\cite{iso2017systems}, an action is defined as: \textquote{\textbf{process of transformation} that \textbf{operates upon data} or other types of inputs to create data, produce outputs, or \textbf{change the state} or condition of the subject software}.
 
 Back to adaptive systems, we can define an action as a process that, given the context and requirements as input, adjusts the system behaviour.
-This modification will then create new data that correspond to an output context. In the remainder of this paper, we refer to the output context as impacted context, or impact(s).
+This modification will then create new data that correspond to an output context. In the remainder of this document, we refer to the output context as impacted context, or impact(s).
 Whereas requirements are used to add preconditions to the actions, context information is used to drive the modifications.
 Actions executions have a start time and a finish time. They can either succeed, fail, or be cancelled by an internal or external actor.
 
@@ -169,6 +173,7 @@ Actions executions have a start time and a finish time. They can either succeed,
 One common model for implementing them is the well-known \gls{mapek} loop, a feedback control loop based on shared knowledge.
 Applying the \gls{m@rt} paradigm, this knowledge can be structured by a \gls{model}, which is causally connected to the system.
 This \gls{model} should represent the uncertain and time dimension of the knowledge.
+In this thesis, we consider that the knowledge comprises information related to the context, the actions, and the requirement.
 In this thesis, we propose a \gls{metamodel}\footnote{A \gls{metamodel} is a \gls{model} that defines another \gls{model} (\cf \Cref{sec:back:mde}).} to represent the decisions made by the adaptation process over time (\cf \Cref{chapt:tkm}).
 Plus, we define a language, \langName, to propagate uncertainty in the computation made during the adaptation process (\cf \Cref{chapt:aintea}).
 
