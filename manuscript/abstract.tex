@@ -28,7 +28,7 @@ If it is neither present in the model nor not considered by the adaptation proce
 
 The literature refers to systems which provide adaptation capabilities as dynamically adaptive systems (DAS).
 One challenge in the grid is the phase difference between the monitoring frequency and the time for actions to have measurable effects.
-Action with no immediate measurable effects are named \textbf{delayed action}.
+Action with no immediate measurable effects are named \textbf{long-term action}.
 On the one hand, an incident should be detected in the next minutes.
 On the other hand, a reconfiguration action can take up to several hours.
 For example, when a tree falls on a cable and cuts it during a storm, the grid manager should be noticed in real time.
@@ -38,7 +38,7 @@ In a fully autonomous adaptive system, the reasoning process should consider the
 %% Problematic 
 \bigskip
 \paragraphit{Problematic}
-\textbf{Data uncertainty and delayed actions are not specific to smart grids.}
+\textbf{Data uncertainty and long-term actions are not specific to smart grids.}
 
 First, data are, almost by definition, uncertain and developers always work with estimates.
 Hardware sensors have by construction a precision that can vary according to the current environment in which they are deployed.
@@ -51,9 +51,9 @@ Second, it always exists a delay between the moment where a suboptimal state is 
 This delayed is due to the time needed by a computer to process data and, eventually, to send orders or data through networks.
 For example, migrating a virtual machine from a server to another one can take several minutes.
 
-\textbf{Through this thesis, I argue that this data uncertainty and this delay cannot be ignored for all dynamic adaptive systems.}
+\textbf{Through this thesis, we argue that this data uncertainty and this delay cannot be ignored for all dynamic adaptive systems.}
 To know if the data uncertainty should be considered, stakeholders should wonder \textbf{if this data uncertainty affects the result of their reasoning process, like adaptation}.
-Regarding delayed actions, they should verify \textbf{if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
+Regarding long-term actions, they should verify \textbf{if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
 These characteristics are common to smart grids, cloud infrastructure or cyber-physical systems in general.
 
 %% Challenge
