@@ -1,2 +1,61 @@
 \section{Review methodology}
 \label{sec:sota:methodo}
+
+This review aim at answering two global research questions.
+As they remain large, we split both in three sub-research questions to help us answering them.
+
+\paragraph{Research questions}
+The first research question has been set to study the presence of \glspl{longTermAct} in the modelling layer: (\textbf{RQ1}) do current state of the art solutions that model \gls{adptSyst} allow representing and reasoning over \glspl{longTermAct}?
+We split it the following sub-questions:
+\begin{itemize}
+	\item \textbf{RQ1.1}: How current approaches model the evolution of the context and/or the evolution of the behaviours of systems over time?
+	\item \textbf{RQ1.2}: Do these solutions model actions, their circumstances and their effects over time? Can this model be processed or navigated automatically?
+	\item \textbf{RQ1.3}: What are the solutions that enable the reasoning over the evolving context and/or behaviours of systems?
+\end{itemize}
+With RQ1.1, we investigated the approaches that model the context and the structure of \glspl{adptSyst}.
+The second one filter those that also consider \glspl{longTermAct}.
+Finally, we use RQ1.3 to list solutions that provide a technique, such as an algorithm, to reason over evolving context or behaviour.
+
+With the second research question, we seek modelling solutions that consider data uncertainty and its propagation: \textbf{RQ2}: Do current state of the art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)?
+The three sub-questions are:
+\begin{itemize}
+	\item \textbf{RQ2.1}: What are the categories of uncertainties that have been addressed by the literature, and how?
+	\item \textbf{RQ2.2}: How the uncertainty of data is modelled?
+	\item \textbf{RQ2.3}: What are the solutions that enable an imperceptible propagation and a reasoning over the uncertainty?
+\end{itemize}
+We set RQ2.1 to list approaches that tackle challenges brought by uncertainty in software engineering.
+And we scope them to \gls{duc} with RQ2.2.
+Lastly, we review approaches that allow developers to propagate uncertainty without writing special code for that and to reason over uncertainty.
+
+
+
+%% Methodology
+\paragraph{Methodology}
+In order to review the literature, we applied a technique inspired from the snowballing approach~\cite{DBLP:conf/ease/Wohlin14}.
+Other, due to limited resources, we did not fully applied it.
+This methodology advocates the use of bibliography (backward navigation) and papers that cite (forward navigation) the selected ones to navigate in the literature.
+Each paper should be evaluated according to a set of inclusion and exclusion criteria.
+And a starting set should be defined.
+
+In our case, we use the bibliography of the papers that are grounded in this thesis as starting set (\cf \Cref{sec:intro:contrib}).
+Then, we apply the backward navigation for a subset of them.
+In order t
+
+
+\paragraph{Inclusion criteria}
+\begin{itemize}
+	\item \textbf{IC1}: The paper has been published before the May 31 2019
+	\item \textbf{IC2}: The paper is available online and written in English
+	\item \textbf{IC3}: The paper describes a modelling approach that abstract the context or behaviour of a system, an approach that enables to reason or navigate through a temporal model, an approach that handles data uncertainty, or an approach that helps the manipulation of probability distributions. % add the concepts of languages
+\end{itemize}
+
+\paragraph{Exclusion criteria}
+\begin{itemize}
+	\item \textbf{EC1}: The paper has at most 4 pages (short paper).
+	\item \textbf{EC2}: The paper presents a work in progress (workshop papers), a poster, a vision, a position, an exemplar, a data set, a tutorial, a project, or a Bachelor, Master or PhD dissertation.
+	\item \textbf{EC3}: The paper describes a secondary study (\eg literature reviews, lessons learned).
+	\item \textbf{EC4}: The document has not been published in a venue with a peer-review process. For example, technical and research report or white papers.
+	\item \textbf{EC5}: The document is an introduction to the proceedings of a venue or a special issue or it is a guest paper.
+\end{itemize}
+
+However, the references of papers rejected are considered for the snowballing iteration.
