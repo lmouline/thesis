@@ -71,7 +71,7 @@ A structure can be viewed as a C-structure with a set of properties (\textit{Pro
 A structure may contain other nested structures (\textit{Structure.inner}).
 Structures and properties have values.
 They correspond to the nodes described in the formalization section (\cf Section~\ref{sec:tkm:k-formalism:formalism}).
-The connection feature described in Section~\ref{sec:adaptation-req} is represented thanks to three recursive relationships on the Property class: \textit{consistentWith}, \textit{computedUsing} and \textit{influence}.
+The connection feature described in Section~\ref{sec:back:adapt:knowledge:req} is represented thanks to three recursive relationships on the Property class: \textit{consistentWith}, \textit{computedUsing} and \textit{influence}.
 Additionally, each property has a source (\textit{Source}) and an uncertainty (\textit{Uncertainty}).
 It is up to the stakeholder to extend data with the appropriate source: measured, computed, provided by a user, or by another system (\eg weather information coming from a public API).
 Similarly, the uncertainty class can be extended to represent the different kinds of uncertainties. Finally, a property can be either historic or static.
@@ -88,7 +88,7 @@ Similarly, the uncertainty class can be extended to represent the different kind
 As different solutions to model system requirements exist (\eg KAOS~\cite{DBLP:journals/scp/DardenneLF93}, i*~\cite{yu2011modelling} or Tropos~\cite{DBLP:journals/aamas/BrescianiPGGM04}), in this metamodel, we abstract their shared concepts.
 The requirement model, depicted in Figure~\ref{fig:requirement-model}, represents the \textit{requirement} as a set of \textit{goals}.
 Each goal has a \textit{nature} and a textual specification.
-The nature of the goals adheres to the four categories of requirements presented in Section~\ref{sec:adaptation-req}.
+The nature of the goals adheres to the four categories of requirements presented in Section~\ref{sec:back:adapt:knowledge:req}.
 One may use one of the existing requirements modelling languages (\eg RELAX) to define the semantics of the requirements. 
 Since the requirement model is composed solely of design elements, we may rely on static analysis techniques to infer the requirement model from existing specifications.
 The work of Egyed~\cite{DBLP:conf/icse/Egyed01} is one solution among others.
@@ -98,7 +98,6 @@ In the guidance example, the requirement model may contain a \textbf{balanced re
 It can be split into different goals: (i) \textit{minimizing overloads}, (ii) \textit{minimizing production lack}, (iii) \textit{minimizing production loss}.
 
 \subsection{Action metamodel}
-\label{sec:action-mm}
 
 \begin{figure}
 	\centering

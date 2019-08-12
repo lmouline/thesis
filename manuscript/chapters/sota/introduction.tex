@@ -1,51 +1,33 @@
 \section{Introduction}
 
-%% Research questions
-\paragraph{Delayed actions}
-General research question:
-\begin{center}
-	\textbf{RQ1}: Do current state of the art solutions that model \gls{adptSyst} allow representing and reasoning over \glspl{longTermAct}?  
-\end{center}
+%% Link with previous chapters
+- Thesis focus on the capacity of \gls{adptSyst}
+- Need a modelling layer for reasoning (\gls{m@rt})
 
-Sub-research questions:
-\begin{itemize}
-	\item \textbf{RQ1.1}: How current approaches model the evolution of the context and/or the evolution of the behaviours of systems over time?
-	\item \textbf{RQ1.2}: Do these solutions model actions, their circumstances and their effects over time? Can this model be processed or navigated automatically?
-	\item \textbf{RQ1.3}: What are the solutions that enable the reasoning over the evolving context and/or behaviours of systems?
-\end{itemize}
+%% Motivation of the need of this chapters
+- identification of several problematics and challenges in \gls{adptSyst}:
+	- \gls{longTermAct}
+	- \gls{duc}
+- \gls{adptSyst} and uncertainty (general) have been heavily studied by researchers
+- need to identify any potential studies that have already addressed these challenges
+
+%% RQs
+this state of the art aims at answering two research questions:
+- RQ1: Do current state of the art solutions that model \gls{adptSyst} allow representing and reasoning over \glspl{longTermAct}? 
+- RQ2: Do current state of the art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)? 
 
 
-\paragraph{Data uncertainty}
-General research question:
-\begin{center}
-	\textbf{RQ2}: Do current state of the art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)? 
-\end{center}
+%% Sum-up findings
+- RQ1: state of the art approaches do not model actions, their effects, and their circumstances over time, or they do not allow querying them
+- RQ2:
+	- modelling community has mainly focused on design uncertainty
+	- adaptive systems community has focused on the uncertainty of system environment / context in which they evolve
+	- probabilistic languages community focused on the manipulation of probability distributions and learning models
+	
 
-Sub-research questions:
-\begin{itemize}
-	\item \textbf{RQ2.1}: What are the categories of uncertainties that have been addressed by the literature, and how?
-	\item \textbf{RQ2.1}: How the uncertainty of data is modelled?
-	\item \textbf{RQ2.3}: What are the solutions that enable an imperceptible propagation and a reasoning over the uncertainty?
-\end{itemize}
-
-%% Methodology
-\paragraph{Methodology}
-Snowballing approach~\cite{DBLP:conf/ease/Wohlin14}
-
-\paragraph{Inclusion criteria}
-\begin{itemize}
-	\item \textbf{IC1}: The paper has been published before the May 31 2019
-	\item \textbf{IC2}: The paper is available online and written in English
-	\item \textbf{IC3}: The paper describes a modelling approach that abstract the context or behaviour of a system, an approach that enables to reason or navigate through a temporal model, an approach that handles data uncertainty, or an approach that helps the manipulation of probability distributions.
-\end{itemize}
-
-\paragraph{Exclusion criteria}
-\begin{itemize}
-	\item \textbf{EC1}: The paper has at most 4 pages (short paper).
-	\item \textbf{EC2}: The paper presents a work in progress (workshop papers), a poster, a vision, a position, an exemplar, a data set, a tutorial or the paper is a Bachelor, Master or PhD dissertation.
-	\item \textbf{EC3}: The paper describes a secondary study (\eg literature reviews, lessons learned).
-	\item \textbf{EC4}: The document has not been published in a venue with a peer-review process. For example, technical and research report or white papers.
-	\item \textbf{EC5}: The document is an introduction to the proceedings of a venue or a special issue or it is a guest paper.
-\end{itemize}
-
-However, the references of papers rejected are considered for the snowballing iteration.
+%% Structure of the chapter
+- \Cref{sec:sota:methodo}: describes the methodology
+- \Cref{sec:sota:results:actions}: presents the results to answer RQ1
+- \Cref{sec:sota:results:duc}: presents the results to answer RQ2
+- \Cref{sec:sota:validity}: presents threat to validity to this literature review
+- \Cref{sec:sota:conclusion}: synthesises the findings and concludes the chapter
