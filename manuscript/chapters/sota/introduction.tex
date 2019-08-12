@@ -1,33 +1,32 @@
 \section{Introduction}
 
-%% Link with previous chapters
-- Thesis focus on the capacity of \gls{adptSyst}
-- Need a modelling layer for reasoning (\gls{m@rt})
+In this thesis, we focus on the capacity of \glspl{adptSyst} to adjust their behaviour or structure in response to changes in their environment or structure (\cf \Cref{chapt:intro}).
+Following the \gls{m@rt} paradigm, these systems use a modelling layer that abstracts all information needed to enable reasoning processes (\cf \Cref{chapt:background}).
+As a results, a set of \glspl{action} are executed.
 
-%% Motivation of the need of this chapters
-- identification of several problematics and challenges in \gls{adptSyst}:
-	- \gls{longTermAct}
-	- \gls{duc}
-- \gls{adptSyst} and uncertainty (general) have been heavily studied by researchers
-- need to identify any potential studies that have already addressed these challenges
+However, we have identified three open challenges due to \gls{longTermAct} present in some systems, the uncertainty of data received, and the emergence of the behaviour of these systems (\cf \Cref{sec:intro:scope}).
+\Glspl{adptSyst} and uncertainty have been heavily studied by researchers in the past years.
+We thus need to identify any potential work that have already tackled, partially or totally, these challenges.
+In addition, we have to review approaches that model \glspl{adptSyst}, \gls{structure}, \gls{behaviour}, or \gls{env}, or manipulate uncertainty data.
 
-%% RQs
-this state of the art aims at answering two research questions:
-- RQ1: Do current state of the art solutions that model \gls{adptSyst} allow representing and reasoning over \glspl{longTermAct}? 
-- RQ2: Do current state of the art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)? 
+Two research questions have driven this review process:
+\begin{itemize}
+	\item \textbf{RQ1:} Do current state of the art solutions that model \gls{adptSyst} allow representing and reasoning over \glspl{longTermAct}? 
+	\item \textbf{RQ2:} Do current state of the art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)? 
+\end{itemize} 
 
+Through this review, we found that none of the start of the art solutions model action, their effects, and their circumstances over time (RQ1).
+Some approaches will partially model these elements, for example actions and their effects.
+However, these model cannot be automatically navigated by a process, like a reasoning process.
+Or, some approaches do not consider the temporal dimension of the effects,
 
-%% Sum-up findings
-- RQ1: state of the art approaches do not model actions, their effects, and their circumstances over time, or they do not allow querying them
-- RQ2:
-	- modelling community has mainly focused on design uncertainty
-	- adaptive systems community has focused on the uncertainty of system environment / context in which they evolve
-	- probabilistic languages community focused on the manipulation of probability distributions and learning models
-	
+Our findings show that different community have studies uncertainty in software.
+Modelling community has focused on design-time uncertainty, adaptive system community has studied environment uncertainty.
+Researchers have put a lot of efforts to encapsulate probability distributions behind programming language concepts such as variables.
+\todo{miss something here}
 
-%% Structure of the chapter
-- \Cref{sec:sota:methodo}: describes the methodology
-- \Cref{sec:sota:results:actions}: presents the results to answer RQ1
-- \Cref{sec:sota:results:duc}: presents the results to answer RQ2
-- \Cref{sec:sota:validity}: presents threat to validity to this literature review
-- \Cref{sec:sota:conclusion}: synthesises the findings and concludes the chapter
+The remainder of this chapter is structured as followed.
+First, we describe the methodology used to perform this review in \Cref{sec:sota:methodo}.
+In \Cref{sec:sota:results:actions} and \Cref{sec:sota:results:duc}, we present and discuss our findings.
+Before concluding in \Cref{sec:sota:conclusion}, we detail some threats to validity of this literature review.
+
