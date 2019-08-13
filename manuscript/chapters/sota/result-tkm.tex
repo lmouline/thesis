@@ -1,2 +1,137 @@
-\section[Results: long-term actions]{Results: \glspl{longTermAct}}
+\section[Results RQ1: long-term actions]{Results RQ1: \glspl{longTermAct}}
 \label{sec:sota:results:actions}
+
+% 1.1 %
+\subsection[Modelling the evolution of system's context or behaviour]{Modelling the evolution of system's context or \gls{behaviour}}
+
+%%% Context %%%
+
+\paragraph{Modeling paradigm}
+- \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}
+	- causality link between a model and the system
+	- model should reflect the system, modification of the model triggers modification of the system
+- \cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14}
+	- extend \gls{m@rt} to introduce time in the model
+
+\paragraph{Formal model} %% Context %%
+- \cite{DBLP:journals/taas/WeynsMA12}
+	- reference model for AS
+	- no time consideration
+
+\paragraph{Low level model} %% Context %%
+- \cite{DBLP:conf/dbpl/MoffittS17}
+	- low level model: temporal graph
+	- can be used by higher level model tool
+	- define a temporal graph
+	- add 2 functions:
+		- one which indicate the existence of a node/edge for a time period
+		- one to retrieve the value of a node or an edge at a time period
+		
+\paragraph{Object-based model} %% Context %%
+- \cite{DBLP:conf/pervasive/HenricksenIR02}
+	- define a model for pervasive computing systems\footnote{A pervasive system is composed of cheap and interconnected devices that are ubiquitous and can support users' tasks.\cite{DBLP:conf/pervasive/HenricksenIR02}}
+	- model use object-based approach
+	- define entity, and attribute, both link with uni-directional association
+	- these associations can be dynamic, one category of dynamically is temporal one: the association ends with a set of values attached to a timestamp
+- \cite{DBLP:conf/smartgridsec/0001FKNT14}
+	- model the context and its history using following the \gls{m@rt} paradigm
+	
+\paragraph{Goal model} %% Context %%
+- \cite{DBLP:conf/icse/CailliauL17}
+	- use a probabilistic goal model, can be thought as a high-level model of the context
+		- probability: describes the satisfactory rate of each goals
+- \cite{DBLP:conf/icse/IftikharW14a}
+	- use a goal model
+- \cite{DBLP:conf/icse/MendoncaAR14}
+
+\paragraph{State machine} %% Behaviour + context %%
+- \cite{DBLP:conf/smartgridsec/0001FKNT14}
+	- behaviour of the system model with a \gls{fsm}
+- \cite{DBLP:conf/icse/IftikharW14a}
+	- use of a \gls{fsm}
+- \cite{DBLP:conf/icse/ArcainiRS15}
+	- use of an \gls{asm}
+- \cite{DBLP:conf/icse/BarbosaLMJ17}
+	- probabilistic labelled transition system (probabilistic state machine) 
+		- expected values set at design time, then compared with those get at runtime
+
+\paragraph{Sequential diagram}
+- \cite{DBLP:conf/icse/TaharaOH17}
+
+\paragraph{Maude~\cite{DBLP:journals/tcs/ClavelDELMMQ02}x}
+- \cite{DBLP:conf/icse/TaharaOH17}: use of the Maude language  to represent the context
+	- no time aspect
+	
+	
+	
+	
+	
+	
+	
+	
+	
+% 1.2 %		
+\subsection[Modelling actions, their circumstances, and their effects]{Modelling \glspl{action}, their \glspl{circumstance}, and their effects}
+
+\paragraph{Rule-based approach}
+- \cite{DBLP:conf/icse/TaharaOH17}: use the Maude language to define the adaptation mechanism
+	- rewriting rules
+	- rl [ (label)] : (source)=> (target)
+		- label: name of the rule
+		- source: init state of the system
+		- target: final state of the system
+	- source/target => circumstances/effects of action
+	 - but no time dimension, side effects, no delayed effects, no action execution tracing
+- \cite{DBLP:conf/icse/ArcainiRS15}
+	- define a set of rules to change state of the system
+	- circumstances = init state + conditions
+	- effects = target states
+		- but no time consideration, side effects, delayed effects
+		
+\paragraph{State machine}
+- \cite{DBLP:conf/icse/ArcainiRS15} use of an \gls{asm}
+	- use rules to define state transition
+- \cite{DBLP:conf/icse/IftikharW14a}
+		 
+\paragraph{Publish/Subscribe approach}
+- \cite{DBLP:conf/icse/BarbosaLMJ17}
+	- adaptation mechanism is triggered following the publish/subscribe mechanism
+	- no additional information
+	- circumstances = conditions
+	- no effects modeled, no time dimension, model cannot be navigable
+	
+\paragraph{Goal-modelling}
+- \cite{DBLP:conf/icse/MendoncaAR14}
+	- actions are part of the goal model, and are represented as mean to achieve goals
+	- effects are thus represented as fulfilment of a goal
+	- no circumstances modelled
+	- high-level abstraction of actions
+	- no time consideration
+	
+\paragraph{}
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+% 1.3 %
+\subsection{Reasoning over evolving context or behaviour}
+
+\paragraph{Modeling paradigm}
+- \gls{m@rt} \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}
+	- extension to support temporal axis \cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14}
+- Lotus@Runtime~\cite{DBLP:conf/icse/BarbosaLMJ17}
+	
+\paragraph{FORMS}
+- \cite{DBLP:conf/icse/IftikharW14a}
+	- define a global formal model that represent abstract \gls{sadapt}, here a state machine
+	
+\paragraph{Rule-based adaptation}
+- \cite{DBLP:conf/icse/ArcainiRS15}
+	
+
+
+\subsection[Modelling and reasoning over long-term actions]{Modelling and reasoning over \glspl{longTermAct}}
