@@ -35,14 +35,15 @@
 	- these associations can be dynamic, one category of dynamically is temporal one: the association ends with a set of values attached to a timestamp
 - \cite{DBLP:conf/smartgridsec/0001FKNT14}
 	- model the context and its history using following the \gls{m@rt} paradigm
+- \cite{DBLP:conf/icse/TaharaOH17}
+	- use of the Maude~\cite{DBLP:journals/tcs/ClavelDELMMQ02} language  to represent the context
+	- no time aspect
 	
 \paragraph{Goal model} %% Context %%
 - \cite{DBLP:conf/icse/CailliauL17}
 	- use a probabilistic goal model, can be thought as a high-level model of the context
 		- probability: describes the satisfactory rate of each goals
-- \cite{DBLP:conf/icse/IftikharW14a}
-	- use a goal model
-- \cite{DBLP:conf/icse/MendoncaAR14}
+- \cite{DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/MendoncaAR14, DBLP:conf/icse/ChenPYNZ14}
 
 \paragraph{State machine} %% Behaviour + context %%
 - \cite{DBLP:conf/smartgridsec/0001FKNT14}
@@ -58,9 +59,10 @@
 \paragraph{Sequential diagram}
 - \cite{DBLP:conf/icse/TaharaOH17}
 
-\paragraph{Maude~\cite{DBLP:journals/tcs/ClavelDELMMQ02}x}
-- \cite{DBLP:conf/icse/TaharaOH17}: use of the Maude language  to represent the context
-	- no time aspect
+	
+\paragraph{Component model} %% Context %%
+- \cite{DBLP:conf/soco/DavidL06}
+	- use Fractal~\cite{DBLP:conf/cbse/BrunetonCLQS04}, a component model
 	
 	
 	
@@ -87,11 +89,18 @@
 	- circumstances = init state + conditions
 	- effects = target states
 		- but no time consideration, side effects, delayed effects
+- \cite{DBLP:conf/wrla/BruniCGLV12}
+	- apply rewriting rules
+	- no effects 
+- \cite{DBLP:conf/eurosys/GraceHPBCT08}
+	- no effects
+	- action = scripts
 		
 \paragraph{State machine}
 - \cite{DBLP:conf/icse/ArcainiRS15} use of an \gls{asm}
 	- use rules to define state transition
 - \cite{DBLP:conf/icse/IftikharW14a}
+- \cite{DBLP:conf/smartgridsec/0001FKNT14}
 		 
 \paragraph{Publish/Subscribe approach}
 - \cite{DBLP:conf/icse/BarbosaLMJ17}
@@ -101,16 +110,46 @@
 	- no effects modeled, no time dimension, model cannot be navigable
 	
 \paragraph{Goal-modelling}
-- \cite{DBLP:conf/icse/MendoncaAR14}
+- \cite{DBLP:conf/icse/MendoncaAR14, DBLP:conf/iceccs/BencomoWSW12}
 	- actions are part of the goal model, and are represented as mean to achieve goals
 	- effects are thus represented as fulfilment of a goal
 	- no circumstances modelled
 	- high-level abstraction of actions
 	- no time consideration
 	
-\paragraph{}
+\paragraph{Programming language}
+- \cite{DBLP:journals/jss/ChengG12} defines a language to define the adaptation mechanism
+	- here, talk about strategies
+	- the language allow also to describe the effects of the strategies 
+	- condition can be thought as the circumstances of the streategy
+	- time aspect: time out for the execution of a strategy
+	- nothing for "temporal effects" / cannot be navigated / nothing about the runtime, only design time
+	
+\paragraph{Temporal planning}
+- \cite{DBLP:conf/aaai/CimattiMR15}
+	- formalise the planning following temporal planning principle
+	- define planning algorithm for a set of actions (not precisely define)
+	- planning consider the time of the execution of the action, that might not be controllable (uncertain)
+	- nothing about the effects of their circumstances
 	 
-	 
+\paragraph{Event-Condition Action}
+- \cite{DBLP:conf/soco/DavidL06} defines FScript
+	- action: weave/remove aspects, or control component (start, stop, replace)
+ 	- no time, effect
+ 	- circumstances = condition
+ 	- not navigable
+ 	- only design time
+- \cite{DBLP:conf/icws/CharfiDM09}
+	- aspects have pre/post condition to trigger the adaptation mechanism (weaving or not an aspect) 
+- \cite{DBLP:journals/scp/ParraBCD11}
+	- aspects have a condition, triggered by events
+	
+\paragraph{Model transformation}
+- \cite{DBLP:conf/icse/ChenPYNZ14}
+	- use Query/View/Transofrmation~\cite{QVT:Spec} approach
+	- then transfo trigger adaptations
+	- no effects
+		 
 	 
 	 
 	 
@@ -120,17 +159,45 @@
 % 1.3 %
 \subsection{Reasoning over evolving context or behaviour}
 
-\paragraph{Modeling paradigm}
+\paragraph{Model-based approach}
 - \gls{m@rt} \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}
 	- extension to support temporal axis \cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14}
 - Lotus@Runtime~\cite{DBLP:conf/icse/BarbosaLMJ17}
-	
-\paragraph{FORMS}
-- \cite{DBLP:conf/icse/IftikharW14a}
-	- define a global formal model that represent abstract \gls{sadapt}, here a state machine
-	
+- \cite{DBLP:conf/icse/ChenPYNZ14}
+		
 \paragraph{Rule-based adaptation}
-- \cite{DBLP:conf/icse/ArcainiRS15}
+- \cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/TaharaOH17, DBLP:conf/eurosys/GraceHPBCT08}
+
+\paragraph{Architecture-based adaptation}
+- \cite{DBLP:journals/jss/ChengG12} defines a language for architecture-based adaptation
+
+\paragraph{Simulation-based adaptation}
+- \cite{DBLP:conf/smartgridsec/0001FKNT14}
+	- simulate different sequences of actions, and evaluate them to evaluate optimal one
+
+\paragraph{Formal model}
+- \cite{DBLP:journals/taas/WeynsMA12}: Forms
+- \cite{DBLP:conf/icse/IftikharW14a}, extension of FORMS
+	- define a global formal model that represent abstract \gls{sadapt}, here a state machine
+
+
+\paragraph{Complex Event Processing}
+- \cite{DBLP:conf/rr/AnicicFRSSS10}
+
+\paragraph{Graph model}
+- \cite{DBLP:conf/dbpl/MoffittS17}: temporal graph algebra
+	- can be used as low-level "basis" to define a temporal context and behaviour
+	
+\paragraph{Aspect oriented programming}
+- \cite{DBLP:journals/taosd/GreenwoodB06, DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/ewsa/FalcarinA04}: dynamic Aspect Oriented Programing
+	- adaptation by dynamically weaving/removing aspects in the program
+	- no time aspect, no effects
+	- circumstances == conditions to remove/weave an aspect
+
+\paragraph{Component-based adaptation}
+- \cite{DBLP:conf/soco/DavidL06}: adaptation by modifying component of the system
+
+
 	
 
 
