@@ -17,6 +17,14 @@
 - \cite{DBLP:journals/taas/WeynsMA12}
 	- reference model for AS
 	- no time consideration
+- \cite{DBLP:journals/taas/WeynsHH10}
+	- use the Z Language~\cite{DBLP:books/daglib/0011651}
+		- language based on the set theory and first order predicate calculus
+		- used for formal specification
+	- behaviour model with "laws"
+		- functions from one set to another
+- \cite{DBLP:conf/icse/BartelsK11}
+	- use of Communicating Sequential Process
 
 \paragraph{Low level model} %% Context %%
 - \cite{DBLP:conf/dbpl/MoffittS17}
@@ -39,6 +47,7 @@
 	- use of the Maude~\cite{DBLP:journals/tcs/ClavelDELMMQ02} language  to represent the context
 	- no time aspect
 	
+	
 \paragraph{Goal model} %% Context %%
 - \cite{DBLP:conf/icse/CailliauL17}
 	- use a probabilistic goal model, can be thought as a high-level model of the context
@@ -50,11 +59,28 @@
 	- behaviour of the system model with a \gls{fsm}
 - \cite{DBLP:conf/icse/IftikharW14a}
 	- use of a \gls{fsm}
-- \cite{DBLP:conf/icse/ArcainiRS15}
+- \cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/rv/ArcainiGR11}
 	- use of an \gls{asm}
 - \cite{DBLP:conf/icse/BarbosaLMJ17}
 	- probabilistic labelled transition system (probabilistic state machine) 
 		- expected values set at design time, then compared with those get at runtime
+- \cite{DBLP:journals/computing/BencomoBGBI13}
+- \cite{DBLP:conf/sigsoft/MorenoCGS15}
+	- use a Markov model, which a probabilistic model
+	- context contains action that are executing with their progress status
+	- decision look ahead, effects are "predicted" -> probability to reach next state
+	- no history
+- \cite{DBLP:conf/kbse/FilieriGLM11, DBLP:conf/dagstuhl/GhezziS10}
+	- Discrete Time Markov Chain
+- \cite{DBLP:conf/icse/DuarteMS18}
+	- Labelled Transition Model (Markov Chain)
+- \cite{DBLP:conf/wetice/DjoudiBZ14}
+- \cite{DBLP:conf/aosd/ZhangGC09}
+- \cite{DBLP:conf/icse/GhezziPST13}
+	- FSM
+	- sate=functionalities with their impact on the system, edges=possible executable flow
+- \cite{DBLP:conf/kbse/TajalliGEM10}
+	- 2 models: 1 domain and 1 adaptation
 
 \paragraph{Sequential diagram}
 - \cite{DBLP:conf/icse/TaharaOH17}
@@ -63,6 +89,19 @@
 \paragraph{Component model} %% Context %%
 - \cite{DBLP:conf/soco/DavidL06}
 	- use Fractal~\cite{DBLP:conf/cbse/BrunetonCLQS04}, a component model
+- \cite{DBLP:conf/wetice/DjoudiBZ14}
+	- extension of Maude
+	- the description of the component contain also behaviour description
+		- sate machine description
+	
+\paragraph{Trace models}
+- \cite{DBLP:journals/computer/Maoz09}
+	- create model by analysing the traces of the system and reflect the runtime state of the system
+	
+\paragraph{Graph model}
+- \cite{DBLP:journals/tse/KramerM90}
+	- node=process unit
+	- edge=communication
 	
 	
 	
@@ -95,12 +134,22 @@
 - \cite{DBLP:conf/eurosys/GraceHPBCT08}
 	- no effects
 	- action = scripts
+- \cite{DBLP:conf/gpce/PintoFT03}
+	- rules to weave adaptation
 		
 \paragraph{State machine}
 - \cite{DBLP:conf/icse/ArcainiRS15} use of an \gls{asm}
 	- use rules to define state transition
 - \cite{DBLP:conf/icse/IftikharW14a}
 - \cite{DBLP:conf/smartgridsec/0001FKNT14}
+- \cite{DBLP:conf/sigsoft/MorenoCGS15}
+	- Markov decision process
+- \cite{DBLP:conf/kbse/FilieriGLM11}
+	- Discrete Time Markov Chain
+- \cite{DBLP:conf/wetice/DjoudiBZ14}
+- \cite{DBLP:conf/aosd/ZhangGC09}
+- \cite{DBLP:conf/icse/GhezziPST13}
+- \cite{DBLP:conf/kbse/TajalliGEM10}
 		 
 \paragraph{Publish/Subscribe approach}
 - \cite{DBLP:conf/icse/BarbosaLMJ17}
@@ -149,8 +198,21 @@
 	- use Query/View/Transofrmation~\cite{QVT:Spec} approach
 	- then transfo trigger adaptations
 	- no effects
-		 
-	 
+	
+\paragraph{Graph modification}
+- \cite{DBLP:journals/tse/KramerM90}
+	- graph changes: adding/removing node(s)/edge(s)
+	
+\paragraph{Formal model}
+- \cite{DBLP:journals/taas/WeynsHH10}
+	- function from set to set
+	- represent adding,removing merging, splitting organisations (group of agents/components)
+- \cite{DBLP:conf/icse/BartelsK11}
+	- speical stuff......
+	
+\paragraph{Dynamic Software Product-Lines}
+- \cite{DBLP:conf/dagstuhl/GhezziS10}
+	- model variation point in a SPL model
 	 
 	 
 	 
@@ -179,7 +241,10 @@
 - \cite{DBLP:journals/taas/WeynsMA12}: Forms
 - \cite{DBLP:conf/icse/IftikharW14a}, extension of FORMS
 	- define a global formal model that represent abstract \gls{sadapt}, here a state machine
-
+- \cite{DBLP:journals/taas/WeynsHH10}
+	- formal model for self-organisation
+- \cite{DBLP:conf/icse/BartelsK11}
+	- speical stuff......
 
 \paragraph{Complex Event Processing}
 - \cite{DBLP:conf/rr/AnicicFRSSS10}
@@ -187,15 +252,32 @@
 \paragraph{Graph model}
 - \cite{DBLP:conf/dbpl/MoffittS17}: temporal graph algebra
 	- can be used as low-level "basis" to define a temporal context and behaviour
+- \cite{DBLP:journals/tse/KramerM90}
+	- representation of the context as a graph, and reason over it
 	
 \paragraph{Aspect oriented programming}
-- \cite{DBLP:journals/taosd/GreenwoodB06, DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/ewsa/FalcarinA04}: dynamic Aspect Oriented Programing
+- \cite{DBLP:journals/taosd/GreenwoodB06, DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/ewsa/FalcarinA04, DBLP:conf/gpce/PintoFT03}: dynamic Aspect Oriented Programing
 	- adaptation by dynamically weaving/removing aspects in the program
 	- no time aspect, no effects
 	- circumstances == conditions to remove/weave an aspect
 
 \paragraph{Component-based adaptation}
 - \cite{DBLP:conf/soco/DavidL06}: adaptation by modifying component of the system
+
+\paragraph{State machine}
+- \cite{DBLP:conf/sigsoft/MorenoCGS15}
+	- Markov Decision Process
+	- actions (strategies) are triggered by a condition
+- \cite{DBLP:conf/kbse/FilieriGLM11}
+	- Discrete Time Markov Chain
+- \cite{DBLP:conf/wetice/DjoudiBZ14}
+- \cite{DBLP:conf/aosd/ZhangGC09}
+- \cite{DBLP:conf/icse/GhezziPST13}
+	- adaptation: finding a path in the FSM to achieve the goals
+- \cite{DBLP:conf/kbse/TajalliGEM10}
+
+\paragraph{Dynamic Software Product-Lines}
+- \cite{DBLP:conf/dagstuhl/GhezziS10}
 
 
 	
