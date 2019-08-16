@@ -1,215 +1,201 @@
 \section[Results RQ1: long-term actions]{Results RQ1: \glspl{longTermAct}}
 \label{sec:sota:results:actions}
 
-% 1.1 %
+In this section, we detail our findings regarding the first research questions.
+First, we detail all approaches that propose a solution to model the evolution of system's context and behaviour.
+Then, we list approaches that model actions.
+Before summarising and answering the research question, we list solutions that model and reason over evolving context and \gls{behaviour}, \ie that implement an adaptation process.
+
 \subsection[Modelling the evolution of system's context or behaviour]{Modelling the evolution of system's context or \gls{behaviour}}
 
-%%% Context %%%
+Different categories of approaches exist to represent the context or the \gls{behaviour} of a system.
+In this section, we details our findings, with an overview given in \Cref{table:sota:results:actions:rq1.1}.
 
 \paragraph{Modeling paradigm}
-- \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}
-	- causality link between a model and the system
-	- model should reflect the system, modification of the model triggers modification of the system
-- \cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14}
-	- extend \gls{m@rt} to introduce time in the model
+In the \gls{mde} community, researchers have defined the \gls{m@rt} paradigm to implement an adaptation process~\cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}.
+This approach is based on a runtime model that reflects the current state of the system.
+It can contain information about either the context of the system, its \gls{behaviour}, or both.
+Moreover, there is a causal link between the model and the system: modifications of the model, made by a stakeholder or a process, trigger modification of the system.
+For example, changing the status of a fuse in a model that reflects a smart grid triggers the action to open or close it.
+Hartmann \etal extended this paradigm to introduce a temporal dimension~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14}.
+This allow to not only store the current state of the system, but also its past (previous states) and future (predicted context).
+In this thesis, we will use this extension of the paradigm to build our knowledge model, and more precisely to represent \glspl{longTermAct}.
 
-\paragraph{Formal model} %% Context %%
-- \cite{DBLP:journals/taas/WeynsMA12}
-	- reference model for AS
-	- no time consideration
-- \cite{DBLP:journals/taas/WeynsHH10}
-	- use the Z Language~\cite{DBLP:books/daglib/0011651}
-		- language based on the set theory and first order predicate calculus
-		- used for formal specification
-	- behaviour model with "laws"
-		- functions from one set to another
-- \cite{DBLP:conf/icse/BartelsK11}
-	- use of Communicating Sequential Process
 
-\paragraph{Low level model} %% Context %%
-- \cite{DBLP:conf/dbpl/MoffittS17}
-	- low level model: temporal graph
-	- can be used by higher level model tool
-	- define a temporal graph
-	- add 2 functions:
-		- one which indicate the existence of a node/edge for a time period
-		- one to retrieve the value of a node or an edge at a time period
-		
-\paragraph{Object-based model} %% Context %%
-- \cite{DBLP:conf/pervasive/HenricksenIR02}
-	- define a model for pervasive computing systems\footnote{A pervasive system is composed of cheap and interconnected devices that are ubiquitous and can support users' tasks.\cite{DBLP:conf/pervasive/HenricksenIR02}}
-	- model use object-based approach
-	- define entity, and attribute, both link with uni-directional association
-	- these associations can be dynamic, one category of dynamically is temporal one: the association ends with a set of values attached to a timestamp
-- \cite{DBLP:conf/smartgridsec/0001FKNT14}
-	- model the context and its history using following the \gls{m@rt} paradigm
-- \cite{DBLP:conf/icse/TaharaOH17}
-	- use of the Maude~\cite{DBLP:journals/tcs/ClavelDELMMQ02} language  to represent the context
-	- no time aspect
-	
-	
-\paragraph{Goal model} %% Context %%
-- \cite{DBLP:conf/icse/CailliauL17}
-	- use a probabilistic goal model, can be thought as a high-level model of the context
-		- probability: describes the satisfactory rate of each goals
-- \cite{DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/MendoncaAR14, DBLP:conf/icse/ChenPYNZ14}
+\paragraph{Formal model}
+In~\cite{DBLP:journals/taas/WeynsMA12}, Weyns \etal defined a formal model for \gls{adptSyst}, called FORMS.
+Their goal was to define a reference model, which can be used for discussion or implementation.
+For self-organisation systems, the literature provide another formal model: MACODO~\cite{DBLP:journals/taas/WeynsHH10}.
+It uses the Z language~\cite{DBLP:books/daglib/0011651} to formalise the context of the system following the set theory and the first order predicate calculus.
+The \gls{behaviour} is formalised with what they call \textit{laws}.
+A law is a function from one set to another.
+The third formal model found in our review has been specified by Bartels and Kleine~\cite{DBLP:conf/icse/BartelsK11}.
+This one uses Communicating Sequential Process principles~\cite{DBLP:journals/cacm/Hoare78}, a formalism designed for reactive and concurrent systems.
+However, none of these models include a time dimension, important to abstract \gls{longTermAct}.
 
-\paragraph{State machine} %% Behaviour + context %%
-- \cite{DBLP:conf/smartgridsec/0001FKNT14}
-	- behaviour of the system model with a \gls{fsm}
-- \cite{DBLP:conf/icse/IftikharW14a}
-	- use of a \gls{fsm}
-- \cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/rv/ArcainiGR11}
-	- use of an \gls{asm}
-- \cite{DBLP:conf/icse/BarbosaLMJ17}
-	- probabilistic labelled transition system (probabilistic state machine) 
-		- expected values set at design time, then compared with those get at runtime
-- \cite{DBLP:journals/computing/BencomoBGBI13}
-- \cite{DBLP:conf/sigsoft/MorenoCGS15}
-	- use a Markov model, which a probabilistic model
-	- context contains action that are executing with their progress status
-	- decision look ahead, effects are "predicted" -> probability to reach next state
-	- no history
-- \cite{DBLP:conf/kbse/FilieriGLM11, DBLP:conf/dagstuhl/GhezziS10}
-	- Discrete Time Markov Chain
-- \cite{DBLP:conf/icse/DuarteMS18}
-	- Labelled Transition Model (Markov Chain)
-- \cite{DBLP:conf/wetice/DjoudiBZ14}
-- \cite{DBLP:conf/aosd/ZhangGC09}
-- \cite{DBLP:conf/icse/GhezziPST13}
-	- FSM
-	- sate=functionalities with their impact on the system, edges=possible executable flow
-- \cite{DBLP:conf/kbse/TajalliGEM10}
-	- 2 models: 1 domain and 1 adaptation
+\paragraph{Object-based model}
+One category of approach found in the literature is object-based models.
+These models follow object-oriented principles.
+First, Henricksen \etal defined a model for pervasive computing systems\footnote{A pervasive system is composed of cheap and interconnected devices that are ubiquitous and can support users' tasks.\cite{DBLP:conf/pervasive/HenricksenIR02}}.
+In their model, there are entities that are linked to their attributes through uni-directional association.
+These associations can be dynamic, can evolve, or static, do not evolve.
+A dynamic association can also be temporal.
+In this case, the entity can have several attributes with a timestamp attached.
+Second, Hartmann \etal use a temporal model to store the context and the history of a smart grid system~\cite{DBLP:conf/smartgridsec/0001FKNT14}.
+This model is based on their extension of the \gls{m@rt} described above~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14}.
+Third, Tahara \etal \cite{DBLP:conf/icse/TaharaOH17} use the Maude language~\cite{DBLP:journals/tcs/ClavelDELMMQ02}, to represent the context. 
+Among these three solutions, only the last one do not include a temporal dimension.
+
+\paragraph{Goal model}
+Goal modelling is a technique used by several contributions in our findings~\cite{DBLP:conf/icse/CailliauL17, DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/MendoncaAR14, DBLP:conf/icse/ChenPYNZ14, DBLP:conf/re/BaresiPS10}.
+This technique, mainly used in requirement engineering, represent the different model the different goals of an application.
+By modelling the requirements of a system's context, we can argue that they de facto represent it in a high level perspective.
+The context is mainly represented by the goals that are achieved or not.
+Moreover, in \cite{DBLP:conf/icse/CailliauL17}, authors add satisfactory rate information on each goal.
+However, these methods do not include a time dimension.
+
+\paragraph{State machine}
+State machines have the capacity to model, in a same model, the context and the behaviour of a system.
+The context is represented by the different states while the behaviour can be abstracted by the transitions between the states.
+\cite{DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/ArcainiRS15, DBLP:conf/rv/ArcainiGR11, DBLP:conf/icse/GhezziPST13} use the \gls{fsm} formalism.
+For example, Hartmann \etal abstracts the behaviour of a smart meter in \cite{DBLP:conf/smartgridsec/0001FKNT14}.
+In~\cite{DBLP:conf/icse/GhezziPST13}, the authors represent the functionalities of the system and their impact with states.
+Transitions abstract the different execution flow between the different functionalities.
+In~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:journals/computing/BencomoBGBI13}, authors apply the labelled transition system~\cite{DBLP:journals/cacm/Keller76}.
+When authors want to consider the the stochastic behaviour of the system, then they use probabilistic state machines
+In \cite{DBLP:conf/icse/BarbosaLMJ17}, the authors extended  the model with probabilities, which represent the probability for a transition of a transition to be executed.
+Another strategy is to use Markov Chain~\cite{DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11, DBLP:conf/dagstuhl/GhezziS10, DBLP:conf/icse/DuarteMS18}
+A Markov chain can be thought as a \gls{fsm} with probabilities attached to the transition.
+In~\cite{DBLP:conf/sigsoft/MorenoCGS15}, authors also add information regarding current actions being executed with their progress status.
+But, no history is kept, when the action is finished, the information is lost.
+Other approaches use state machine without specifying the formalism used~\cite{DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/kbse/TajalliGEM10}.
+Tajalli \etal use two state machines: one to represent the system context and behaviour, and another one to represent the adaptation mechanism.
 
 \paragraph{Sequential diagram}
-- \cite{DBLP:conf/icse/TaharaOH17}
+Through our review, we find one approach that uses sequential diagram to represent the behaviour of the the system~\cite{DBLP:conf/icse/TaharaOH17}.
+However, nothing is mentioned regarding the context of the system and its history.
+	
+\paragraph{Component model}
+In order to represent the context of a system, one can use a component models.
+This model is at the architecture level and described the different entity (component) that composes a system with their interaction.
+Four contributions apply this technique in our review~\cite{DBLP:conf/soco/DavidL06, DBLP:conf/wetice/DjoudiBZ14, DBLP:journals/computer/GarlanCHSS04, DBLP:conf/cbse/FouquetMFBPJ12}.
+In order to also represent the behaviour, some have extended this model with a sate machine description in~\cite{DBLP:conf/wetice/DjoudiBZ14} or with annotation in~\cite{DBLP:journals/computer/GarlanCHSS04}.
+However, no time dimension is considered in these approaches.
 
-	
-\paragraph{Component model} %% Context %%
-- \cite{DBLP:conf/soco/DavidL06}
-	- use Fractal~\cite{DBLP:conf/cbse/BrunetonCLQS04}, a component model
-- \cite{DBLP:conf/wetice/DjoudiBZ14}
-	- extension of Maude
-	- the description of the component contain also behaviour description
-		- sate machine description
-- \cite{DBLP:journals/computer/GarlanCHSS04}
-	- annotated with properties to represent the behaviour and some constraints
-	
 \paragraph{Trace models}
-- \cite{DBLP:journals/computer/Maoz09}
-	- create model by analysing the traces of the system and reflect the runtime state of the system
+Context and behaviour of a system can be inferred by analysing its logs.
+In~\cite{DBLP:journals/computer/Maoz09}, researchers defined an approach to create a model that reflects the runtime state of the system.
+However, this approach do not keep the history of the system.
 	
 \paragraph{Graph model}
-- \cite{DBLP:journals/tse/KramerM90}
-	- node=process unit
-	- edge=communication
-- \cite{DBLP:journals/computer/GeorgasHT09}
-	- temporal graph: contain the history of configurations
-	- have some meta-data about previous adaptation (rate of configuration, average time in this configuration)
-	- node: configuration of the system
-	- edge: represent the actions to achieve it
+Finally, the last technique used to represent the context of a system is to use a graph model~\cite{DBLP:journals/tse/KramerM90, DBLP:journals/computer/GeorgasHT09, DBLP:conf/dbpl/MoffittS17}.
+In the former, node represents the process unit and the edges the communication between them.
+In the second one, node represent the possible configuration of the system and the edges represent the actions to reach a configuration.
+Only the latter include a time dimension.
+The graph represents the different configuration over time of the system.
+Plus, some meta-data about previous adaptations (\eg rate of configuration, average time in this configuration) are added.
+The latter defined a temporal graph~\cite{DBLP:conf/dbpl/MoffittS17}.
+Their temporal graph is a graph that is augmented with two functions.
+One function serves to indicate if a graph element, a node or an edge, exists for a given time period.
+The other can retrieve the value of a graph element for a given time period.
+Using this temporal graph, one can define a model that abstract \glspl{longTermAct}.
+However, in our work, we use another temporal graph definition provided by Hartmann \etal and implemented in our research group~\cite{DBLP:journals/is/HartmannFMRT19}.
+
+\paragraph{Sum-up}
+Different approaches are used in the literature to represent the context, the \gls{behaviour}, or both of systems (\cf \Cref{table:sota:results:actions:rq1.1}).
+However, only a few can be used to keep the history of these informations~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14, 	DBLP:conf/dbpl/MoffittS17, DBLP:conf/icse/TaharaOH17, DBLP:conf/pervasive/HenricksenIR02, DBLP:conf/smartgridsec/0001FKNT14}.
+This feature remains a key concern to represent \glspl{longTermAct} as information about delayed effects and previous \glspl{circumstance} (next and previous context of an action).
+In the next section, we detail approaches that model actions.
 	
+\begin{table}
+	\begin{center}
+    	\begin{tabular}{p{0.25\textwidth}p{0.69\textwidth}}
+    		\hline
+    		\textbf{Approach} & \textbf{Reference} \\
+    		\hline
+    		Modeling paradigm & \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09, DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14} \\
+    		Formal model & \cite{DBLP:journals/taas/WeynsMA12, DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11} \\
+    		Low level model & \cite{DBLP:conf/dbpl/MoffittS17} \\
+    		Object-based model & \cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/icse/TaharaOH17}\\
+    		Goal model & \cite{DBLP:conf/icse/CailliauL17, DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/MendoncaAR14, DBLP:conf/icse/ChenPYNZ14, DBLP:conf/re/BaresiPS10} \\
+    		State machine & \cite{DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/ArcainiRS15, DBLP:conf/rv/ArcainiGR11, DBLP:conf/icse/BarbosaLMJ17, DBLP:journals/computing/BencomoBGBI13, DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11, DBLP:conf/dagstuhl/GhezziS10, DBLP:conf/icse/DuarteMS18, DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10} \\
+    		Sequential diagram & \cite{DBLP:conf/icse/TaharaOH17} \\
+    		Component model & \cite{DBLP:conf/soco/DavidL06, DBLP:conf/wetice/DjoudiBZ14, DBLP:journals/computer/GarlanCHSS04, DBLP:conf/cbse/FouquetMFBPJ12} \\
+    		Trace models & \cite{DBLP:journals/computer/Maoz09} \\
+    		Graph model & \cite{DBLP:journals/tse/KramerM90, DBLP:journals/computer/GeorgasHT09} \\
+    		\hline
+    	\end{tabular}
+    	\caption{Approaches to model systems' context and \gls{behaviour} (RQ1.1)}
+    	\label{table:sota:results:actions:rq1.1}
+    \end{center}
+\end{table}
+
 	
-	
-	
-	
-	
-	
-	
-	
-% 1.2 %		
 \subsection[Modelling actions, their circumstances, and their effects]{Modelling \glspl{action}, their \glspl{circumstance}, and their effects}
 
+In~\Cref{table:sota:results:actions:rq1.2}, we regroup the different approaches of our review that model \glspl{action}.
+In this section, we describe the different categories that we identified.
+
 \paragraph{Rule-based approach}
-- \cite{DBLP:conf/icse/TaharaOH17}: use the Maude language to define the adaptation mechanism
-	- rewriting rules
-	- rl [ (label)] : (source)=> (target)
-		- label: name of the rule
-		- source: init state of the system
-		- target: final state of the system
-	- source/target => circumstances/effects of action
-	 - but no time dimension, side effects, no delayed effects, no action execution tracing
-- \cite{DBLP:conf/icse/ArcainiRS15}
-	- define a set of rules to change state of the system
-	- circumstances = init state + conditions
-	- effects = target states
-		- but no time consideration, side effects, delayed effects
-- \cite{DBLP:conf/wrla/BruniCGLV12}
-	- apply rewriting rules
-	- no effects 
-- \cite{DBLP:conf/eurosys/GraceHPBCT08}
-	- no effects
-	- action = scripts
-- \cite{DBLP:conf/gpce/PintoFT03}
-	- rules to weave adaptation
-- \cite{DBLP:journals/computer/GarlanCHSS04}
-		
+One solution to model \glspl{action} is to use a rule en-\linebreak gine~\cite{DBLP:conf/icse/TaharaOH17, DBLP:conf/icse/ArcainiRS15, DBLP:conf/wrla/BruniCGLV12, DBLP:conf/eurosys/GraceHPBCT08, DBLP:conf/gpce/PintoFT03, DBLP:journals/computer/GarlanCHSS04}.
+Rules are characterised by a condition and an executable code.
+The executable code is executed if the current state of the system meets the condition.
+Conditions can thus serve to abstract the \Glspl{circumstance} of an action and the executable code as its effect.
+However, these information are available at design time and lost during the execution.
+Plus, these approach do not allow the representation of the side effects of an action.
+For example, changing the fuse state has a direct effect on the fuse state.
+But it also impacts the power grid load.
+We can notice two exceptions in our review: \cite{DBLP:conf/icse/TaharaOH17} and \cite{DBLP:conf/icse/ArcainiRS15}.
+In both cases, rules are used to trigger a state modification in a sate machine.
+We explain the advantages and disadvantages of the state machine approach in the next paragraph. 
+
+
+
 \paragraph{State machine}
-- \cite{DBLP:conf/icse/ArcainiRS15} use of an \gls{asm}
-	- use rules to define state transition
-- \cite{DBLP:conf/icse/IftikharW14a}
-- \cite{DBLP:conf/smartgridsec/0001FKNT14}
-- \cite{DBLP:conf/sigsoft/MorenoCGS15}
-	- Markov decision process
-- \cite{DBLP:conf/kbse/FilieriGLM11}
-	- Discrete Time Markov Chain
-- \cite{DBLP:conf/wetice/DjoudiBZ14}
-- \cite{DBLP:conf/aosd/ZhangGC09}
-- \cite{DBLP:conf/icse/GhezziPST13}
-- \cite{DBLP:conf/kbse/TajalliGEM10}
-		 
+Several approaches use a state machine to represent the adaptation mechanism~\cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/IftikharW14a, DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11, DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10}.
+States represent the state of the system and the transition the execution of \glspl{action}. 
+One advantage of this approach is that they represent both the \glspl{circumstance} and the effects of actions.
+Additionally, it can be used to represent actions at design time and runtime.
+But, this link remains at high level.
+The all state is considered at the circumstance or the effect of the action while, in most cases, it just a subset of the element of the state that triggers the action or are affected by it. 
+
 \paragraph{Publish/Subscribe approach}
-- \cite{DBLP:conf/icse/BarbosaLMJ17}
-	- adaptation mechanism is triggered following the publish/subscribe mechanism
-	- no additional information
-	- circumstances = conditions
-	- no effects modeled, no time dimension, model cannot be navigable
+In our review, we found one approach that uses the publish/subscribe mechanism to trigger \glspl{action}~\cite{DBLP:conf/icse/BarbosaLMJ17}.
+The \glspl{circumstance} are thus modelled with the condition of the consumer.
+In this case, the action is a script.
+The effects are thus spread, and cannot be navigated.
+Moreover, this solution only represent the actions at design time, and not their executions.
 	
 \paragraph{Goal-modelling}
-- \cite{DBLP:conf/icse/MendoncaAR14, DBLP:conf/iceccs/BencomoWSW12}
-	- actions are part of the goal model, and are represented as mean to achieve goals
-	- effects are thus represented as fulfilment of a goal
-	- no circumstances modelled
-	- high-level abstraction of actions
-	- no time consideration
+In addition to the goals of the system, goal models offer the capacity to represent the \glspl{action} that can achieve them.
+Three approaches have used this ability to represent action in their model~\cite{DBLP:conf/icse/MendoncaAR14, DBLP:conf/iceccs/BencomoWSW12, DBLP:conf/re/BaresiPS10}.
+Baresi \etal extended goal model with \textit{adaptive goals}.
+This goals contain a condition, objectives (to weaken or enforce some goals), and \textit{actions} (here, an action modify goals or operation-executable code- in the goal model).
+Here, effects can be seen as the fulfilment of a goal.
+And a condition is when a goal is not satisfied anymore.
+However, these information are not kept over time.
+Furthermore, no information about the runtime execution of the actions is kept.
 	
 \paragraph{Programming language}
-- \cite{DBLP:journals/jss/ChengG12} defines a language to define the adaptation mechanism
-	- here, talk about strategies
-	- the language allow also to describe the effects of the strategies 
-	- condition can be thought as the circumstances of the streategy
-	- time aspect: time out for the execution of a strategy
-	- nothing for "temporal effects" / cannot be navigated / nothing about the runtime, only design time
+Among our findings, one approach defined its own language to define actions: \cite{DBLP:journals/jss/ChengG12}.
+This language allow developers modelling their actions, with their conditions, and their effects.
+However, the language does not include a temporal dimension.
+Plus, the language is suitable to describe actions at design time but provide no mechanism to track them during their execution.
 	
-\paragraph{Temporal planning}
-- \cite{DBLP:conf/aaai/CimattiMR15}
-	- formalise the planning following temporal planning principle
-	- define planning algorithm for a set of actions (not precisely define)
-	- planning consider the time of the execution of the action, that might not be controllable (uncertain)
-	- nothing about the effects of their circumstances
-	 
 \paragraph{Event-Condition Action}
-- \cite{DBLP:conf/soco/DavidL06} defines FScript
-	- action: weave/remove aspects, or control component (start, stop, replace)
- 	- no time, effect
- 	- circumstances = condition
- 	- not navigable
- 	- only design time
-- \cite{DBLP:conf/icws/CharfiDM09}
-	- aspects have pre/post condition to trigger the adaptation mechanism (weaving or not an aspect) 
-- \cite{DBLP:journals/scp/ParraBCD11}
-	- aspects have a condition, triggered by events
+In order to trigger adaptation, one can use the Event-Condition Action approach: the action is triggered if an event respect the condition.
+In our review, all the works use this methodology in order to weave or remove aspects of the program, following Aspect-Oriented Programming\footnote{Aspect-Oriented Programming is a programming paradigm that prones the separation of concern. For that, a program is seen as a set of aspects, each aspect implementing one concern.}~\cite{DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/soco/DavidL06}.
+However, there is no temporal dimension.
+Plus, this solution is suitable to describe actions at design time, but does not allow navigation through runtime information.
+
 	
 \paragraph{Model transformation}
-- \cite{DBLP:conf/icse/ChenPYNZ14}
-	- use Query/View/Transofrmation~\cite{QVT:Spec} approach
-	- then transfo trigger adaptations
-	- no effects
-	
-\paragraph{Graph modification}
-- \cite{DBLP:journals/tse/KramerM90}
-	- graph changes: adding/removing node(s)/edge(s)
+Following the \gls{m@rt}, one way to adapt a system is to modify the model to trigger the actions.
+One way to do this, is to use the Query/View/Transformation~\cite{QVT:Spec} approach as Chen \etal did in \cite{DBLP:conf/icse/ChenPYNZ14}.
+Here, the \gls{circumstance} and the effects are represented at the model level in the query and the transformation part.
+When the context is represented as a graph, \glspl{action} will thus be modelled as graph modifications.
+In~\cite{DBLP:journals/tse/KramerM90}, authors represent an action by adding or removing graph elements (node and edge).
+However, these solution do not take into account any time dimension, side-effects or runtime information.
 	
 \paragraph{Formal model}
 - \cite{DBLP:journals/taas/WeynsHH10}
@@ -217,6 +203,33 @@
 	- represent adding,removing merging, splitting organisations (group of agents/components)
 - \cite{DBLP:conf/icse/BartelsK11}
 	- speical stuff......
+- \cite{DBLP:conf/aaai/CimattiMR15} %% previous temporal planning %%
+	- formalise the planning following temporal planning principle
+	- define planning algorithm for a set of actions (not precisely define)
+	- planning consider the time of the execution of the action, that might not be controllable (uncertain)
+	- nothing about the effects of their circumstances
+	
+	
+\begin{table}
+	\begin{center}
+    	\begin{tabular}{p{0.25\textwidth}p{0.69\textwidth}}
+    		\hline
+    		\textbf{Approach} & \textbf{Reference} \\
+    		\hline
+    		Rule-based & \cite{DBLP:conf/icse/TaharaOH17, DBLP:conf/icse/ArcainiRS15, DBLP:conf/wrla/BruniCGLV12, DBLP:conf/eurosys/GraceHPBCT08, DBLP:conf/gpce/PintoFT03, DBLP:journals/computer/GarlanCHSS04} \\
+    		Sate machine & \cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/IftikharW14a, DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11, DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10}\\
+    		Goal-modelling & \cite{DBLP:conf/icse/MendoncaAR14, DBLP:conf/iceccs/BencomoWSW12, DBLP:conf/re/BaresiPS10}\\
+    		Programming language & \cite{DBLP:journals/jss/ChengG12} \\
+    		Event-Condition Action & \cite{DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11} \\
+    		Model transformation & \cite{DBLP:conf/icse/ChenPYNZ14, DBLP:journals/tse/KramerM90} \\
+    		Formal model & \cite{DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11, DBLP:conf/aaai/CimattiMR15} \\ 
+    		\hline
+    	\end{tabular}
+    	\caption{Approaches to model \glspl{action}, their \glspl{circumstance}, and their effects (RQ1.2)}
+    	\label{table:sota:results:actions:rq1.2}
+    \end{center}
+\end{table}
+
 	
 \paragraph{Dynamic Software Product-Lines}
 - \cite{DBLP:conf/dagstuhl/GhezziS10}
@@ -229,8 +242,8 @@
 	- action = represented by edges in a graph where nodes represent possible configuration
 	 
 	 
-	 
-	 
+\paragraph{Sum up}	 
+
 	 
 % 1.3 %
 \subsection{Reasoning over evolving context or behaviour}
@@ -248,6 +261,9 @@
 - \cite{DBLP:journals/jss/ChengG12} defines a language for architecture-based adaptation
 - \cite{DBLP:journals/computer/GarlanCHSS04}
 - \cite{DBLP:journals/computer/GeorgasHT09}
+- \cite{DBLP:conf/cbse/FouquetMFBPJ12}
+	- architecture modification / adaptation of component configuration
+	- adaptation executed by scripts, computed by applying a diff between current and expected component model
 
 \paragraph{Simulation-based adaptation}
 - \cite{DBLP:conf/smartgridsec/0001FKNT14}
@@ -299,6 +315,11 @@
 \paragraph{Dynamic Software Product-Lines}
 - \cite{DBLP:conf/dagstuhl/GhezziS10, DBLP:series/lncs/CordyCHLS13}
 
+\paragraph{Requirement-driven adaptation}
+- goal model: \cite{DBLP:conf/re/BaresiPS10}
+
+\paragraph{Extension of \gls{mapek} loop}
+- \cite{DBLP:conf/iscc/MaurerBEB11}
 
 	
 
