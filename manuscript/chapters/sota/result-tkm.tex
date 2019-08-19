@@ -149,8 +149,6 @@ We can notice two exceptions in our review: \cite{DBLP:conf/icse/TaharaOH17} and
 In both cases, rules are used to trigger a state modification in a sate machine.
 We explain the advantages and disadvantages of the state machine approach in the next paragraph. 
 
-
-
 \paragraph{State machine}
 Several approaches use a state machine to represent the adaptation mechanism~\cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/IftikharW14a, DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11, DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10}.
 States represent the state of the system and the transition the execution of \glspl{action}. 
@@ -198,18 +196,47 @@ In~\cite{DBLP:journals/tse/KramerM90}, authors represent an action by adding or 
 However, these solution do not take into account any time dimension, side-effects or runtime information.
 	
 \paragraph{Formal model}
-- \cite{DBLP:journals/taas/WeynsHH10}
-	- function from set to set
-	- represent adding,removing merging, splitting organisations (group of agents/components)
-- \cite{DBLP:conf/icse/BartelsK11}
-	- speical stuff......
-- \cite{DBLP:conf/aaai/CimattiMR15} %% previous temporal planning %%
-	- formalise the planning following temporal planning principle
-	- define planning algorithm for a set of actions (not precisely define)
-	- planning consider the time of the execution of the action, that might not be controllable (uncertain)
-	- nothing about the effects of their circumstances
+In our review, we found three formal models~\cite{DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11, DBLP:conf/aaai/CimattiMR15}.
+First, the MACODO formalisation~\cite{DBLP:journals/taas/WeynsHH10} that defines actions as function from one set to another.
+These functions represent actions to reorganise a system: adding, removing, or merging group of components.
+Second, in~\cite{DBLP:conf/icse/BartelsK11}, authors use the process calculus Communicating Sequential Process, which allow engineers formalising reactive and concurrent systems where atomic \textit{events} are handled by \textit{processes} (an infinite transition system).
+\Glspl{action} here correspond to a modification of a component configuration in response to an event.
+Last, Cimatti \etal defined a planning algorithm which include time~\cite{DBLP:conf/aaai/CimattiMR15}.
+In their algorithm, they formalise \glspl{action} as element with an execution time, possibly uncertain.
+None of these models include a temporal dimension or represent the effects of an action.
+Plus these solution do not model the execution of \glspl{action}.
+
+\paragraph{Dynamic Software Product-Lines}
+One approach to represent the possible adaptation of a system is to use a Software Product-Lines model.
+Engineer model the the all the possible variations of a system.
+Then, at runtime, the system select the one that can achieve the requirements in the current context.
+This approach is refers to as Dynamic Software Product-Lines and used by two approaches in our findings~\cite{DBLP:conf/dagstuhl/GhezziS10, DBLP:series/lncs/CordyCHLS13}.
+Here \glspl{action} can be executed to achieve the selection of the different variation point.
+Effects are thus represented as the new configuration selected.
+However, these solutions do not include a time dimension or cannot represent runtime information.
+
 	
-	
+\paragraph{Graph model}
+Finally, the last approach found in our review is to use graph model.
+In~\cite{DBLP:journals/computer/GeorgasHT09}, researchers use a graph where nodes represent possible configurations and edges represent the modification of the configuration, using our wording an \gls{action}.
+However, there is no time dimension and only design time information are modelled.
+
+\paragraph{Sum up}
+As shown in \Cref{table:sota:results:actions:rq1.2}, the literature provides different solution to model \gls{action}.
+However, none of them include a temporal dimension.
+Thus, even if they represent effects, they cannot describe them over time.
+For example, they will be able to model that a new server will be added, but not when.
+Moreover, these solutions mainly remain at design time, except for those that use a state machine.
+No information concerning the runtime, like the status of the execution of an action, the runtime values or the effects. are not represented.
+One limitation is that they do not represent side-effects over time.
+For example, they will represent the addition of a server but not the effects on the bandwidth or the workload.
+Additionally, as they do not represent runtime information, no autonomous solution can be employed to detect any unknown effects of an action to the system.
+The last limitation is the representation of \glspl{circumstance}.
+In the approaches of the review, they are mainly represented as the condition that triggers the action.
+Even if a human can guess it after, there is no direct link between the action execution and the circumstances.
+No model can allow an automatic navigation over these time-related information. 
+
+
 \begin{table}
 	\begin{center}
     	\begin{tabular}{p{0.25\textwidth}p{0.69\textwidth}}
@@ -223,39 +250,31 @@ However, these solution do not take into account any time dimension, side-effect
     		Event-Condition Action & \cite{DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11} \\
     		Model transformation & \cite{DBLP:conf/icse/ChenPYNZ14, DBLP:journals/tse/KramerM90} \\
     		Formal model & \cite{DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11, DBLP:conf/aaai/CimattiMR15} \\ 
+    		Dynamic Software Product-Lines & \cite{DBLP:conf/dagstuhl/GhezziS10, DBLP:series/lncs/CordyCHLS13}\\
+    		Graph model & \cite{DBLP:journals/computer/GeorgasHT09} \\
     		\hline
     	\end{tabular}
     	\caption{Approaches to model \glspl{action}, their \glspl{circumstance}, and their effects (RQ1.2)}
     	\label{table:sota:results:actions:rq1.2}
     \end{center}
 \end{table}
+	 
+\subsection[Reasoning over evolving context or behaviour]{Reasoning over evolving context or \gls{behaviour}}
 
-	
-\paragraph{Dynamic Software Product-Lines}
-- \cite{DBLP:conf/dagstuhl/GhezziS10}
-	- model variation point in a SPL model
-- \cite{DBLP:series/lncs/CordyCHLS13}
-	- use of Adaptive Featured Transition Systems
-	
-\paragraph{Graph model}
-- \cite{DBLP:journals/computer/GeorgasHT09}
-	- action = represented by edges in a graph where nodes represent possible configuration
-	 
-	 
-\paragraph{Sum up}	 
+In this section, we review the solutions that enable reasoning over evolving context or \gls{behaviour}.
+That is, solutions that can be used to implement \gls{adptSyst}.
+\Cref{table:sota:results:actions:rq1.3} gives an overview of our findings, detailed in the rest if this section.
 
-	 
-% 1.3 %
-\subsection{Reasoning over evolving context or behaviour}
 
 \paragraph{Model-based approach}
-- \gls{m@rt} \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}
-	- extension to support temporal axis \cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14}
-- Lotus@Runtime~\cite{DBLP:conf/icse/BarbosaLMJ17}
-- \cite{DBLP:conf/icse/ChenPYNZ14}
-		
+Following the \gls{mde} methodology, one approach to reason over an evolving context or \gls{behaviour} is the \gls{m@rt} paradigm~\cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}.
+Hartmann \etal extended it to include a temporal dimension~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14} for reasoning over the history of a system.
+Approaches detailed in \cite{DBLP:conf/icse/BarbosaLMJ17} and in \cite{DBLP:conf/icse/ChenPYNZ14} follow this paradigm.
+However, in they process, they do not consider \gls{longTermAct}, specially those that are under execution of with effects in a near future.
+
 \paragraph{Rule-based adaptation}
-- \cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/TaharaOH17, DBLP:conf/eurosys/GraceHPBCT08}
+In our review, some approaches employ a rule-based mechanism to define the adaptation mechanism~\cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/TaharaOH17, DBLP:conf/eurosys/GraceHPBCT08}.
+However, they only reason over the context or the behaviour, not on the running actions or their future effects.
 
 \paragraph{Architecture-based adaptation}
 - \cite{DBLP:journals/jss/ChengG12} defines a language for architecture-based adaptation
@@ -264,6 +283,22 @@ However, these solution do not take into account any time dimension, side-effect
 - \cite{DBLP:conf/cbse/FouquetMFBPJ12}
 	- architecture modification / adaptation of component configuration
 	- adaptation executed by scripts, computed by applying a diff between current and expected component model
+	
+\begin{table}
+	\begin{center}
+    	\begin{tabular}{p{0.2\textwidth}p{0.49\textwidth}p{0.22\textwidth}}
+    		\hline
+    		\textbf{Approach} & \textbf{Reference} & Reasoning over \gls{longTermAct}\\
+    		\hline
+    		Model-based & \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09, DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14, DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/ChenPYNZ14} & None\\
+    		Rule-based & \cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/TaharaOH17, DBLP:conf/eurosys/GraceHPBCT08} & None \\
+    		Architecture-based & \cite{DBLP:journals/jss/ChengG12, DBLP:journals/computer/GarlanCHSS04, DBLP:journals/computer/GeorgasHT09, DBLP:conf/cbse/FouquetMFBPJ12} & \\
+    		\hline
+    	\end{tabular}
+    	\caption{Approaches to reason over evolving context or \gls{behaviour} (RQ1.3)}
+    	\label{table:sota:results:actions:rq1.3}
+    \end{center}
+\end{table}
 
 \paragraph{Simulation-based adaptation}
 - \cite{DBLP:conf/smartgridsec/0001FKNT14}
