@@ -265,7 +265,6 @@ In this section, we review the solutions that enable reasoning over evolving con
 That is, solutions that can be used to implement \gls{adptSyst}.
 \Cref{table:sota:results:actions:rq1.3} gives an overview of our findings, detailed in the rest if this section.
 
-
 \paragraph{Model-based approach}
 Following the \gls{mde} methodology, one approach to reason over an evolving context or \gls{behaviour} is the \gls{m@rt} paradigm~\cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}.
 Hartmann \etal extended it to include a temporal dimension~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14} for reasoning over the history of a system.
@@ -277,13 +276,73 @@ In our review, some approaches employ a rule-based mechanism to define the adapt
 However, they only reason over the context or the behaviour, not on the running actions or their future effects.
 
 \paragraph{Architecture-based adaptation}
-- \cite{DBLP:journals/jss/ChengG12} defines a language for architecture-based adaptation
-- \cite{DBLP:journals/computer/GarlanCHSS04}
-- \cite{DBLP:journals/computer/GeorgasHT09}
-- \cite{DBLP:conf/cbse/FouquetMFBPJ12}
-	- architecture modification / adaptation of component configuration
-	- adaptation executed by scripts, computed by applying a diff between current and expected component model
+Architecture-based adaptation adjust the architecture of a system to achieve requirements.
+In our review, different approaches use this mechanism~\cite{DBLP:journals/jss/ChengG12, DBLP:journals/computer/GarlanCHSS04, DBLP:journals/computer/GeorgasHT09, DBLP:conf/cbse/FouquetMFBPJ12}.
+For example, Cheng \etal define a language to design \glspl{action} for architecture-based adaptation.
+Also, the adaptive mechanism can compute a reconfiguration script by comparing the current component model with the exepcted one~\cite{DBLP:conf/cbse/FouquetMFBPJ12}.
+However, none of these solutions consider running \gls{action} and their future effects.
+
+\paragraph{Simulation-based adaptation}
+In our review, one approach applies a simulation-based approach~\cite{DBLP:conf/smartgridsec/0001FKNT14}.
+In their works, authors simulated different sequences of \glspl{action}, evaluate and select the optimal one regarding the requirements.
+To perform this approach, they have to know the look ahead and consider the impact of each action on the system.
+However, they do not reason over \glspl{action} being executed or their future effects.
 	
+\paragraph{Formal model}
+In our review, four formal models describe \gls{adptSyst} with their adaptation mechanism~\cite{DBLP:journals/taas/WeynsMA12, DBLP:conf/icse/IftikharW14a, DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11}.
+For example, Iftikhar and Weyns use a state machine formalism to specify \gls{sadapt}~\cite{DBLP:conf/icse/IftikharW14a}.
+But, none of the formal model includes a time dimension, which would allow stakeholders to consider running \glspl{longTermAct}.
+
+\paragraph{Complex Event Processing}
+Among our findings, one is using the an approach based on a complex event processing engine~\cite{DBLP:conf/rr/AnicicFRSSS10}.
+Here, \glspl{action} are triggered in response to an event, as much complex as necessary.
+Using this approach, one cannot reason over running \glspl{action} and their future effects.
+
+\paragraph{Graph model}
+Two approaches in our findings employ a graph model~\cite{DBLP:journals/tse/KramerM90, DBLP:conf/dbpl/MoffittS17}.
+These approaches reason over a graph to trigger an adaptation process.
+In~\cite{DBLP:conf/dbpl/MoffittS17}, authors use a temporal graph algebra, which can store the history of the context.
+But, none of them include running \glspl{action} in their model.
+	
+\paragraph{Aspect oriented programming}
+From what we see in our findings, aspect oriented programming is an approach heavily used by researchers~\cite{DBLP:journals/taosd/GreenwoodB06, DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/ewsa/FalcarinA04, DBLP:conf/gpce/PintoFT03}.
+More specially, they use dynamic aspect oriented programming: aspects are automatically weaved and removed aspects in a software.
+In addition, Morin \etal uses an aspect-oriented modelling~\cite{DBLP:conf/icse/MorinBNJ09}.
+Part of the \gls{mde} methodoly, this approach models the different aspects with their point cuts\footnote{A point cut is part of the software where an aspect can be weaved or removed.}.
+However, none of them allow to reason executing \gls{action} or their future effects.
+	
+\paragraph{Component-based adaptation}
+One approach uses a component model as basis to reason for the adaptation mechanism~\cite{DBLP:conf/soco/DavidL06}.
+Here, \glspl{action} modify the configuration of a component to adjust the behaviour or the context of the system.
+But, in this approach, running \glspl{action} are not considered by the adaptation process.
+
+\paragraph{State machine}
+Another approach widely adopted in the findings is the use of a state machine~\cite{DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11,DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10}.
+Transitions represent \glspl{action}.
+Effects of an action are also known and modelled.
+However, no information about running \glspl{action} is represented and thus considered.
+
+
+\paragraph{Dynamic software product-lines}
+Dynamic software product-lines approaches see the adaptation mechanism as a runtime selection between different software product-lines options.
+However, the two solutions that use this approach in our finding~\cite{DBLP:conf/dagstuhl/GhezziS10, DBLP:series/lncs/CordyCHLS13} do not use information about running \glspl{action} and their future effects to take decisions.  
+
+\paragraph{Requirement-driven adaptation}
+In our review, Baresi \etal defines a reasoning approach over a goal model~\cite{DBLP:conf/re/BaresiPS10}.
+However, running \glspl{action} are excluded from the adaptation process.
+
+\paragraph{Extension of \gls{mapek} loop}
+Maurer \etal \cite{DBLP:conf/iscc/MaurerBEB11} extended the traditional \gls{mapek} loop.
+Authors added a step before the monitoring one called \textit{adaptation}.
+In the context of cloud infrastructure, this step allows to prepare the entity before a deployment, such as contract establishment for service level agreement.
+But, the \gls{mapek} loop is not modified to consider running \gls{action} and their effects.
+
+\paragraph{Sum up}
+
+In the literature, we can find different approaches to reason over an evolving context or behaviour, as depicted in \Cref{table:sota:results:actions:rq1.3}.
+However, none of them provide a solution to reason over running execution of their future effects.
+To make decisions, current solutions only consider current, past, or future context or \gls{behaviour}.
+
 \begin{table}
 	\begin{center}
     	\begin{tabular}{p{0.2\textwidth}p{0.49\textwidth}p{0.22\textwidth}}
@@ -292,7 +351,17 @@ However, they only reason over the context or the behaviour, not on the running 
     		\hline
     		Model-based & \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09, DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14, DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/ChenPYNZ14} & None\\
     		Rule-based & \cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/TaharaOH17, DBLP:conf/eurosys/GraceHPBCT08} & None \\
-    		Architecture-based & \cite{DBLP:journals/jss/ChengG12, DBLP:journals/computer/GarlanCHSS04, DBLP:journals/computer/GeorgasHT09, DBLP:conf/cbse/FouquetMFBPJ12} & \\
+    		Architecture-based & \cite{DBLP:journals/jss/ChengG12, DBLP:journals/computer/GarlanCHSS04, DBLP:journals/computer/GeorgasHT09, DBLP:conf/cbse/FouquetMFBPJ12} & None \\
+    		Simulation-based & \cite{DBLP:conf/smartgridsec/0001FKNT14} & Consider effects of \glspl{action} to select those to execute. Do not consider running \glspl{action}\\
+    		Formal model & \cite{DBLP:journals/taas/WeynsMA12, DBLP:conf/icse/IftikharW14a, DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11} & None \\
+    		Complex event processing &\cite{DBLP:conf/rr/AnicicFRSSS10} & None\\
+    		Graph model & \cite{DBLP:conf/dbpl/MoffittS17, DBLP:journals/tse/KramerM90} & None \\
+    		Aspect Oriented Programming  & \cite{DBLP:journals/taosd/GreenwoodB06, DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/ewsa/FalcarinA04, DBLP:conf/gpce/PintoFT03, DBLP:conf/icse/MorinBNJ09} & None \\
+    		Component-based & \cite{DBLP:conf/soco/DavidL06} & None \\
+    		State machine & \cite{DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11,DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10} & Effects modelled but do not contain any runtime information about \glspl{action} execution \\	
+    		Dynamic software product-lines & \cite{DBLP:conf/dagstuhl/GhezziS10, DBLP:series/lncs/CordyCHLS13} & None \\
+    		Requirement-driven & \cite{DBLP:conf/re/BaresiPS10} & None \\
+    		Extension of \gls{mapek} & \cite{DBLP:conf/iscc/MaurerBEB11} & None \\
     		\hline
     	\end{tabular}
     	\caption{Approaches to reason over evolving context or \gls{behaviour} (RQ1.3)}
@@ -300,63 +369,21 @@ However, they only reason over the context or the behaviour, not on the running 
     \end{center}
 \end{table}
 
-\paragraph{Simulation-based adaptation}
-- \cite{DBLP:conf/smartgridsec/0001FKNT14}
-	- simulate different sequences of actions, and evaluate them to evaluate optimal one
-
-\paragraph{Formal model}
-- \cite{DBLP:journals/taas/WeynsMA12}: Forms
-- \cite{DBLP:conf/icse/IftikharW14a}, extension of FORMS
-	- define a global formal model that represent abstract \gls{sadapt}, here a state machine
-- \cite{DBLP:journals/taas/WeynsHH10}
-	- formal model for self-organisation
-- \cite{DBLP:conf/icse/BartelsK11}
-	- speical stuff......
-
-\paragraph{Complex Event Processing}
-- \cite{DBLP:conf/rr/AnicicFRSSS10}
-
-\paragraph{Graph model}
-- \cite{DBLP:conf/dbpl/MoffittS17}: temporal graph algebra
-	- can be used as low-level "basis" to define a temporal context and behaviour
-- \cite{DBLP:journals/tse/KramerM90}
-	- representation of the context as a graph, and reason over it
-	
-\paragraph{Aspect oriented programming}
-- \cite{DBLP:journals/taosd/GreenwoodB06, DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/ewsa/FalcarinA04, DBLP:conf/gpce/PintoFT03}: dynamic Aspect Oriented Programing
-	- adaptation by dynamically weaving/removing aspects in the program
-	- no time aspect, no effects
-	- circumstances == conditions to remove/weave an aspect
-- \cite{DBLP:conf/icse/MorinBNJ09}
-	- Aspect-oriented modelling
-	 - family of MDE
-	- model aspects and their point cut
-
-\paragraph{Component-based adaptation}
-- \cite{DBLP:conf/soco/DavidL06}: adaptation by modifying component of the system
-
-\paragraph{State machine}
-- \cite{DBLP:conf/sigsoft/MorenoCGS15}
-	- Markov Decision Process
-	- actions (strategies) are triggered by a condition
-- \cite{DBLP:conf/kbse/FilieriGLM11}
-	- Discrete Time Markov Chain
-- \cite{DBLP:conf/wetice/DjoudiBZ14}
-- \cite{DBLP:conf/aosd/ZhangGC09}
-- \cite{DBLP:conf/icse/GhezziPST13}
-	- adaptation: finding a path in the FSM to achieve the goals
-- \cite{DBLP:conf/kbse/TajalliGEM10}
-
-\paragraph{Dynamic Software Product-Lines}
-- \cite{DBLP:conf/dagstuhl/GhezziS10, DBLP:series/lncs/CordyCHLS13}
-
-\paragraph{Requirement-driven adaptation}
-- goal model: \cite{DBLP:conf/re/BaresiPS10}
-
-\paragraph{Extension of \gls{mapek} loop}
-- \cite{DBLP:conf/iscc/MaurerBEB11}
-
-	
-
-
 \subsection[Modelling and reasoning over long-term actions]{Modelling and reasoning over \glspl{longTermAct}}
+In the previous section, we detailed our review concerning modelling techniques for \glspl{adptSyst}.
+First, we saw that just a couple of approaches that model the context or the \gls{behaviour} include a time dimension.
+Then, despite this element, current approaches do not include \glspl{action} with their circumstances and their effects over time.
+Finally, we saw that none of the solutions propose an approach to reason over running actions.
+To answer RQ1, our review shows that no solution in the state-of-art represent and reason over \gls{longTermAct} and their execution.
+
+
+
+
+
+
+
+
+
+
+
+
