@@ -6,7 +6,7 @@
 \subsection{Categories of data uncertainty}
 
 \paragraph{Data uncertainty}
-- \cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/asplos/BornholtMM14, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:journals/sosym/Zhang00NO19, DBLP:journals/csi/Hall06, DBLP:journals/infsof/Jimenez-RamirezW0V15, DBLP:conf/ecmdafa/ZhangSAYON16, DBLP:journals/tkde/BarbaraGP92, DBLP:conf/vldb/BenjellounSHW06, DBLP:conf/popl/BhatAVG12}
+- \cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/asplos/BornholtMM14, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:journals/sosym/Zhang00NO19, DBLP:journals/csi/Hall06, DBLP:journals/infsof/Jimenez-RamirezW0V15, DBLP:conf/ecmdafa/ZhangSAYON16, DBLP:journals/tkde/BarbaraGP92, DBLP:conf/vldb/BenjellounSHW06, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/uist/SchwarzMH11, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}
 
 \paragraph{Model transformation}
 - \cite{DBLP:conf/models/BurguenoBMV18, DBLP:conf/sle/EramoPR15, DBLP:conf/icse/EramoPR14}
@@ -53,8 +53,11 @@
 
 	
 \paragraph{Probabilistic program}
-- \cite{baudin2017openturns, DBLP:conf/asplos/BornholtMM14, DBLP:journals/corr/BorgstromGGMG13, osti_1430202, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/popl/BhatAVG12}
+- \cite{baudin2017openturns, DBLP:conf/asplos/BornholtMM14, DBLP:journals/corr/BorgstromGGMG13, osti_1430202, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}
 	- define new types to encapsulate probability distributions
+- \cite{DBLP:conf/uist/SchwarzMH11}
+	- probability distribution attached to variable
+	- language to define \gls{fsm} 
 
 \paragraph{Multiple possibilities}
 - \cite{DBLP:conf/icse/FamelisSC12}
@@ -102,7 +105,15 @@
 
 % Propagation
 \paragraph{Attach to language operators}
-- \cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:conf/popl/BhatAVG12}
+- \cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}
+
+\paragraph{Through state machine}
+- \cite{DBLP:conf/uist/SchwarzMH11}
+	- uncertainty propagtes through the different steps of a sate machine
+	- event are processed by interactor
+	- when event is uncertain, multiple interactos (that could match the event) are called
+	- a weight is computed based on the probabilities
+	- when an action should be executed, most probable one is executed based on the different uncertain states
 
 \paragraph{Require manual propagation}
 - \cite{DBLP:conf/models/BurguenoBMV18}
