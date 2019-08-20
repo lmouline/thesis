@@ -1,2 +1,124 @@
-\section{Results: \gls{duc}}
+\section[Results RQ2: data uncertainty]{Results RQ2: \gls{duc}}
 \label{sec:sota:results:duc}
+
+
+%%% 2.1 %%%
+\subsection{Categories of data uncertainty}
+
+\paragraph{Data uncertainty}
+- \cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/asplos/BornholtMM14, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:journals/sosym/Zhang00NO19, DBLP:journals/csi/Hall06, DBLP:journals/infsof/Jimenez-RamirezW0V15, DBLP:conf/ecmdafa/ZhangSAYON16, DBLP:journals/tkde/BarbaraGP92, DBLP:conf/vldb/BenjellounSHW06, DBLP:conf/popl/BhatAVG12}
+
+\paragraph{Model transformation}
+- \cite{DBLP:conf/models/BurguenoBMV18, DBLP:conf/sle/EramoPR15, DBLP:conf/icse/EramoPR14}
+	- express uncertainty in transformation rules
+	
+\paragraph{Design uncertainty}
+- \cite{DBLP:conf/icse/FamelisSC12, DBLP:journals/sosym/FamelisC19, DBLP:conf/sle/EramoPR15, DBLP:conf/icse/EramoPR14, DBLP:journals/re/SalayCHS13, DBLP:conf/ecmdafa/ZhangSAYON16}
+
+\paragraph{Time uncertainty}
+- \cite{DBLP:conf/icst/Garousi08}
+	- uncertainty about when an event is expected to occur
+	
+\paragraph{Requirement uncertainty}
+- \cite{DBLP:journals/re/WhittleSBCB10, DBLP:conf/re/WhittleSBCB09, DBLP:journals/re/SalayCHS13}
+	- uncertainty in the requirements of a software
+
+\paragraph{Uncertainty in \gls{behaviour}}
+- \cite{DBLP:journals/sosym/Zhang00NO19}
+	- behaviour of a system in a production environment remain uncertain as the environment itself is uncertain
+	
+\paragraph{Uncertainty in \gls{env}}
+- \cite{DBLP:conf/dagstuhl/EsfahaniM10}
+	- SAS
+- \cite{DBLP:conf/ecmdafa/ZhangSAYON16}
+	
+\paragraph{Uncertain process}
+- \cite{DBLP:journals/infsof/Jimenez-RamirezW0V15}
+	- uncertainty in Business Process
+	
+\paragraph{Uncertain hardware}
+- \cite{DBLP:conf/oopsla/CarbinMR13}
+	- reliability of a computation made on an uncertain hardware
+	
+%%% 2.2 %%%
+\subsection[Modelling data uncertainty]{Modelling \gls{duc}}
+
+\paragraph{Data type with uncertain field}
+- \cite{DBLP:conf/models/BurguenoBMV18, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/sle/MayerhoferWV16, DBLP:conf/quatic/VallecilloMO16}
+	- define a new type: UReal
+	- Type is composed of 2 elements: the value + a standard uncertainty
+	- allow to represent uncertainty that follow a normal distribution
+- \cite{DBLP:journals/tkde/BarbaraGP92}
+	- attached a probability to a value in databases
+
+	
+\paragraph{Probabilistic program}
+- \cite{baudin2017openturns, DBLP:conf/asplos/BornholtMM14, DBLP:journals/corr/BorgstromGGMG13, osti_1430202, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/popl/BhatAVG12}
+	- define new types to encapsulate probability distributions
+
+\paragraph{Multiple possibilities}
+- \cite{DBLP:conf/icse/FamelisSC12}
+	- define the concept of partial model: graph extended with annotation on graph elements that are true, maybe, false
+		- true/false: think should be present or not in the model
+		- maybe: it may be present + formula to describe this "maybe"
+- \cite{DBLP:journals/sosym/FamelisC19}
+	- alternatives in models
+- \cite{DBLP:conf/sle/EramoPR15, DBLP:conf/icse/EramoPR14}
+	- model is a partial model
+	- transformation generates partial model
+- \cite{DBLP:journals/re/SalayCHS13}
+	- use partial model to reflect requirement uncertainty
+- \cite{DBLP:conf/vldb/BenjellounSHW06}	
+	- in databases
+	- different possibilities for a same data
+	
+\paragraph{Randomness}
+- \cite{DBLP:conf/icst/Garousi08}
+	- introduce randomness in the time of occurrence during testing phase
+	
+\paragraph{Language}
+- \cite{DBLP:journals/re/WhittleSBCB10, DBLP:conf/re/WhittleSBCB09}
+	- add fuzzy words in a language to define requirements 
+- \cite{DBLP:journals/infsof/Jimenez-RamirezW0V15}
+	- declarative description of business process
+	- properties can be probability distribution
+- \cite{DBLP:conf/oopsla/CarbinMR13}
+	- defines a language that can specify constraints on the reliability before executing a piece of code (function)
+	
+\paragraph{Model-level uncertainty}
+- \cite{DBLP:journals/sosym/Zhang00NO19}
+	- uses a UML profile which allow to define different kind of uncertainties
+	- U-Model~\cite{DBLP:conf/ecmdafa/ZhangSAYON16}
+	- use to test CPS to generate test cases based on uncertainty
+	
+\paragraph{Formal model}
+- \cite{DBLP:journals/csi/Hall06}
+	- implements the \gls{gum}~\cite{metrology2008evaluation}
+- \cite{DBLP:conf/ecmdafa/ZhangSAYON16}
+	- defines a conceptual model of uncertainty which regroup different kind of uncertainty in a \gls{cps}
+	- UML model
+%%% 2.3 %%%
+\subsection{Propagation and reasoning over uncertainty}
+
+% Propagation
+\paragraph{Attach to language operators}
+- \cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:conf/popl/BhatAVG12}
+
+\paragraph{Require manual propagation}
+- \cite{DBLP:conf/models/BurguenoBMV18}
+	- manual propagation from data uncertainty to model transformation uncertainty 
+	
+% Reasoning
+\paragraph{Access to the confidence parameter}
+- \cite{DBLP:conf/models/BurguenoBMV18, DBLP:conf/sle/MayerhoferWV16, DBLP:conf/quatic/VallecilloMO16}
+	- confidence is considered as an attribute, accessible if pointed syntax
+	
+\paragraph{Access to probability features}
+- \cite{baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/asplos/BornholtMM14, osti_1430202, DBLP:journals/peerj-cs/SalvatierWF16}
+	- allow to get the different element of a probability distribution such as the mean, variance, ...
+
+
+
+
+%%% 2 %%%
+\subsection[Modelling of data uncertainty and its manipulation]{Modelling of \gls{duc} and its manipulation}
