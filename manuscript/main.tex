@@ -4,8 +4,14 @@
 
 \def\UrlBreaks{\do\/\do-}
 
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
 \newcommand{\langName}[0]{Ain'tea}
 \newcommand{\creos}[0]{Creos S.A.}
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 
 \definecolor{stringgreen}{RGB}{106,135,89}
 \lstdefinestyle{customc}{

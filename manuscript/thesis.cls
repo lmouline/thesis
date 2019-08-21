@@ -23,6 +23,7 @@
 \RequirePackage{gensymb}
 \RequirePackage{graphicx}
 \RequirePackage{dsfont}
+\RequirePackage{pifont}
 
 %%% Class options %%%%%
 %
