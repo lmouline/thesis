@@ -1,40 +1,40 @@
 \section{Review methodology}
 \label{sec:sota:methodo}
 
-This review aim at answering two global research questions.
-As they remain large, we split both in three sub-research questions to help us answering them.
+This review aims at answering two global research questions.
+To help us answer them, we split them into three sub-research questions.
 
 \paragraph{Research questions}
-The first research question has been set to study the presence of \glspl{longTermAct} in the modelling layer: (\textbf{RQ1}) do current state-of-the art solutions that model \gls{adptSyst} allow representing and reasoning over \glspl{longTermAct} (design time and runtime)? 
+The first research question has been set to study the presence of \glspl{longTermAct} in the modelling layer: (\textbf{RQ1}) do state-of-the-art solutions that model \gls{adptSyst} allow representing and reasoning over \glspl{longTermAct} (design time and runtime)? 
 We split it into the following sub-questions:
 \begin{itemize}
-	\item \textbf{RQ1.1}: How current approaches model the evolution of the \gls{context} and/or the evolution of systems (\gls{structure} or \gls{behaviour}) over time?
+	\item \textbf{RQ1.1}: How current approaches model the evolution of the \gls{context} or the evolution of systems (\gls{structure} or \gls{behaviour}) over time?
 	\item \textbf{RQ1.2}: What are the solutions that model \glspl{action}, their \glspl{circumstance} and their effects over time at design time and runtime? Can this model be processed or navigated automatically?
 	\item \textbf{RQ1.3}: What are the solutions that enable the reasoning over the evolving \gls{context}, \gls{structure}, or \gls{behaviour} of systems? Do they also enable reasoning over running \glspl{action} and their effects?
 \end{itemize}
 With RQ1.1, we investigated the approaches that model the \gls{context}, \gls{structure}, or \gls{behaviour} of \glspl{adptSyst}.
-The second one filter those that also consider \glspl{longTermAct}.
+The second one filters those that also consider \glspl{longTermAct}.
 Finally, we use RQ1.3 to list solutions that provide a technique, such as an algorithm, to reason over evolving \gls{context}, \gls{structure}, or \gls{behaviour}.
 
-With the second research question, we seek for modelling solutions that consider uncertain data and its propagation: \textbf{RQ2}: Do current state of the art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)?
+With the second research question, we seek for modelling solutions that consider uncertain data and its propagation: (\textbf{RQ2}) do state-of-the-art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)?
 The three sub-questions are:
 \begin{itemize}
 	\item \textbf{RQ2.1}: What are the categories of uncertainties that have been addressed by the literature?
 	\item \textbf{RQ2.2}: How the uncertainty of data is modelled?
-	\item \textbf{RQ2.3}: What are the solutions that enable an imperceptible propagation and a reasoning over uncertainty?
+	\item \textbf{RQ2.3}: What are the solutions that enable an imperceptible propagation and reasoning over uncertainty?
 \end{itemize}
-We set RQ2.1 to identify the different kind of uncertainties that bring challenges in software engineering.
-Then, we search for the technique to model uncertainty, with a particular interest for \gls{duc} with RQ2.2.
-Lastly, we review approaches that allow developers to propagate uncertainty without writing special code for that and to reason over uncertainty using RQ2.3.
+We set RQ2.1 to identify the different kinds of uncertainties that bring challenges in software engineering.
+Then, we search for the technique to model uncertainty, with a particular interest in \gls{duc} with RQ2.2.
+Lastly, we review approaches that allow developers to propagate uncertainty without writing specific code for that and to reason over uncertainty using RQ2.3.
 
 \paragraph{Methodology}
-In order to review the literature, we applied a technique inspired from the snowballing approach~\cite{DBLP:conf/ease/Wohlin14}.
-But, due to limited resources, we did not fully applied it.
+To review the literature, we applied a technique inspired by the snowballing approach~\cite{DBLP:conf/ease/Wohlin14}.
+But, due to limited resources, we did not fully implement it.
 The methodology advocates the use of bibliography (backward navigation) and papers that cite (forward navigation) the selected ones to navigate in the literature.
-Each paper should be evaluated according to a set of inclusion and exclusion criteria.
+Each article should be evaluated according to a set of inclusion and exclusion criteria.
 And a starting set should be defined.
 
-In our case, we use the bibliography of the papers that ground in this thesis as starting set (\cf \Cref{sec:intro:contrib}).
+In our case, we use the bibliography of the papers that ground in this thesis as the starting set (\cf \Cref{sec:intro:contrib}).
 Then, we apply the backward navigation for a subset of them.
 Then, we select the paper to add in this review according to a set of inclusion and exclusion criteria.
 To be picked, a paper should satisfy all inclusion criteria and should not fulfil any of the exclusion criteria.
@@ -42,25 +42,25 @@ These criteria are the following:
 \begin{itemize}
 	\item Inclusion criteria (IC):
 	\begin{itemize}
-		\item \textbf{IC1}: The paper has been published before the August 9 2019.
+		\item \textbf{IC1}: The paper has been published before August 9 2019.
 		\item \textbf{IC2}: The paper is available online and written in English.
 		\item \textbf{IC3}: The paper describes a modelling approach that abstract the \gls{context}, the \gls{structure}, or the \gls{behaviour} of a system, an approach that enables to reason or navigate through a temporal model, an approach that describes a solution used to engineer a \gls{adptSyst}, an approach that handles uncertainty, or an approach that helps to manipulate probability distributions.\looseness-1 
 	\end{itemize}
 	\item Exclusion criteria (EC):
 	\begin{itemize}
-		\item \textbf{EC1}: The paper has at most 4 pages (short paper).
+		\item \textbf{EC1}: The paper has at most four pages (short paper).
 		\item \textbf{EC2}: The paper presents a work in progress (workshop papers), a poster, a vision, a position, an exemplar, a data set, a tutorial, a project, or a Bachelor, Master or PhD dissertation.
 		\item \textbf{EC3}: The paper describes a secondary study (\eg literature reviews, lessons learned).
 		\item \textbf{EC4}: The document has not been published in a venue with a peer-review process. For example, technical and research report or white papers.
-		\item \textbf{EC5}: The document is an introduction to the proceedings of a venue or a special issue or it is a guest paper.
+		\item \textbf{EC5}: The document is an introduction to the proceedings of a venue or a special issue, or it is a guest paper.
 	\end{itemize}
 \end{itemize}
 
-The two first inclusion criteria are accessibility criteria: they guarantee that the paper is accessible for any reader of this document.
+The first two inclusion criteria are accessibility criteria: they guarantee that the paper is accessible for any reader of this document.
 With the third one, IC3, we can include all papers that can be used to answer our research questions.
-We define the exclusion criteria in order to keep only papers that have been published in a peer-reviewed venue and that present an approach.
+We define the exclusion criteria to keep only papers that have been published in a peer-reviewed venue, and that present an approach.
 
-In this review, 412 papers have been processed and 84 kept for the review.
+In this review, 412 papers have been processed, and 84 kept for the review.
 We report our selection results in an Excel file publicly available on GitHub~\footnote{\url{https://github.com/lmouline/thesis/tree/master/sota/src}}.
-Results have also been exported in \gls{csv} files for those who cannot open Excel files.
+Results have also been exported to \gls{csv} files for those who cannot open Excel files.
 
