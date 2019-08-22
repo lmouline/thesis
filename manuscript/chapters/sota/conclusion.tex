@@ -1,2 +1,16 @@
 \section{Conclusion}
 \label{sec:sota:conclusion}
+
+In this chapter, we review the state-of-the-art approaches to answer two research questions.
+First, we look for studies that model \gls{adptSyst}, their context or \gls{behaviour} in order to see if they also consider \gls{longTermAct} (RQ1).
+Our review shows that none of the current approaches model or enable reasoning over \gls{action} with delayed effects.
+Thus, some research efforts are still required to specify solutions that allow designers to add \gls{longTermAct} in their model and to implement techniques to reason over them.
+In this thesis, we start studying this problem and we present a mode-based solution, detailed in \Cref{chapt:tkm}.
+
+Then, we search solutions that model \gls{duc}.
+Different solutions have been found in our review, the main one being refer to as probabilistic programming.
+This solution allow developers manipulate probability distributions as common variable of a programming language.
+However, as seen in our review, not all kind of uncertainty can be represented by this approach.
+For example, some researchers represent the uncertainty uncertainty of a value with a set of different possibilities.
+Therefore, open challenges need research efforts to handle \gls{duc}.
+Towards solving these challenges, we start by defining a language that integrates \gls{duc} as a first-class citizen (\cf \Cref{chapt:aintea}).
