@@ -2,7 +2,7 @@
 \label{sec:sota:results:actions}
 
 In this section, we detail our findings regarding the first research questions.
-First, we detail all approaches that propose a solution to model the evolution of system's \gls{context}, \gls{structure}, and \gls{behaviour}.
+First, we detail all approaches that propose a solution to model the evolution of a system's \gls{context}, \gls{structure}, and \gls{behaviour}.
 Then, we list approaches that model \glspl{action}.
 Before summarising and answering the research question, we list solutions that model and reason over evolving \gls{context}, \gls{behaviour}, and \gls{behaviour}, \ie that implement an adaptation process.
 
@@ -14,7 +14,7 @@ Before summarising and answering the research question, we list solutions that m
     		\hline
     		\textbf{Approach} & \textbf{Reference} \\
     		\hline
-    		Modeling paradigm & \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09, DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14} \\
+    		Modelling paradigm & \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09, DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14} \\
     		Formal model & \cite{DBLP:journals/taas/WeynsMA12, DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11} \\
     		Low level model & \cite{DBLP:conf/dbpl/MoffittS17} \\
     		Object-based model & \cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/icse/TaharaOH17}\\
@@ -22,7 +22,7 @@ Before summarising and answering the research question, we list solutions that m
     		State machine & \cite{DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/ArcainiRS15, DBLP:conf/rv/ArcainiGR11, DBLP:conf/icse/BarbosaLMJ17, DBLP:journals/computing/BencomoBGBI13, DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11, DBLP:conf/dagstuhl/GhezziS10, DBLP:conf/icse/DuarteMS18, DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10} \\
     		Sequential diagram & \cite{DBLP:conf/icse/TaharaOH17} \\
     		Component model & \cite{DBLP:conf/soco/DavidL06, DBLP:conf/wetice/DjoudiBZ14, DBLP:journals/computer/GarlanCHSS04, DBLP:conf/cbse/FouquetMFBPJ12} \\
-    		Trace models & \cite{DBLP:journals/computer/Maoz09} \\
+    		Trace model & \cite{DBLP:journals/computer/Maoz09} \\
     		Graph model & \cite{DBLP:journals/tse/KramerM90, DBLP:journals/computer/GeorgasHT09} \\
     		\hline
     	\end{tabular}
@@ -34,50 +34,50 @@ Before summarising and answering the research question, we list solutions that m
 Different categories of approaches exist to represent the \gls{context}, \gls{structure}, or the \gls{behaviour} of a system.
 In this section, we detail our findings with an overview given in \Cref{table:sota:results:actions:rq1.1}.
 
-\paragraph{Modeling paradigm}
+\paragraph{Modelling paradigm}
 In the \gls{mde} community, researchers defined the \gls{m@rt} paradigm to implement an adaptation process~\cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}.
 This approach is based on a runtime model that reflects the current state of the system.
 It can contain information about either the \gls{context} of the system, its \gls{behaviour}, or its \gls{structure}.
 Moreover, there is a causal link between the model and the system: modifications of the model, made by a stakeholder or a process, trigger modifications in the system.
 For example, changing the status of a fuse in a model that reflects a smart grid triggers the action to open or close it.
 Hartmann \etal extended this paradigm to introduce a temporal dimension~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14}.
-This allows designers to not only store the current state of the system, but also its past (previous states) and future (predicted).
+It allows designers to store not only the current state of the system but also its past (previous states) and future (predicted).
 In this thesis, we will use this extension of the paradigm to build our knowledge model, and more precisely to represent \glspl{longTermAct}.
 
 \paragraph{Formal model}
-In~\cite{DBLP:journals/taas/WeynsMA12}, Weyns \etal defined a formal model for \gls{adptSyst}, called FORMS.
-Their goal was to define a reference model, which can be used for discussion or implementation.
+In~\cite{DBLP:journals/taas/WeynsMA12}, Weyns \etal defined a formal model for \glspl{adptSyst}, called FORMS.
+Their goal was to establish a reference model, which can be used for discussion or implementation.
 For self-organisation systems, the literature provides another formal model: MACODO~\cite{DBLP:journals/taas/WeynsHH10}.
 It uses the Z language~\cite{DBLP:books/daglib/0011651} to formalise the context of the system following the set theory and the first order predicate calculus.
 The \gls{behaviour} is formalised with what they call \textit{laws}.
 A law is a function from one set to another.
 The third formal model found in our review was specified by Bartels and Kleine~\cite{DBLP:conf/icse/BartelsK11}.
 This one uses Communicating Sequential Process principles~\cite{DBLP:journals/cacm/Hoare78}, a formalism designed for reactive and concurrent systems.
-However, none of these models include a time dimension, important to abstract \gls{longTermAct}.
+However, none of these models includes a time dimension, relevant to abstract \gls{longTermAct}.
 
 \paragraph{Object-based model}
 One category of approach found in the literature is object-based models.
 These models follow object-oriented principles.
 First, Henricksen \etal defined a model for pervasive computing systems\footnote{A pervasive system is composed of cheap and interconnected devices that are ubiquitous and can support users' tasks.\cite{DBLP:conf/pervasive/HenricksenIR02}}.
-In their model, there are entities that are linked to their attributes through uni-directional association.
-These associations can be dynamic (can evolve) or static (do not evolve).
+In their model, some entities are linked to their attributes through uni-directional association.
+These associations can be dynamic (can evolve) or static (do not change over time).
 A dynamic association can also be temporal.
 In this case, the entity can have several attributes with a timestamp attached.
 Second, Hartmann \etal use a temporal model to store the \gls{context} and its history of a smart grid system~\cite{DBLP:conf/smartgridsec/0001FKNT14}.
 This model is based on their extension of the \gls{m@rt} described above~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14}.
 Third, Tahara \etal \cite{DBLP:conf/icse/TaharaOH17} use the Maude language~\cite{DBLP:journals/tcs/ClavelDELMMQ02}, to represent the context. 
-Among these three solutions, only the last one do not include a temporal dimension.
+Among these three solutions, only the last one does not include a temporal dimension.
 
 \paragraph{Goal model}
 Goal modelling is a technique used by several contributions in our findings~\cite{DBLP:conf/icse/CailliauL17, DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/MendoncaAR14, DBLP:conf/icse/ChenPYNZ14, DBLP:conf/re/BaresiPS10}.
 This technique, mainly used in requirement engineering, represents the different goals of an application.
 By modelling the requirements of a system, we can argue that they \textit{de facto} represent the \gls{context} by the goals that are achieved or not.
-Moreover, in \cite{DBLP:conf/icse/CailliauL17}, authors add satisfactory rate information on each goal.
+Moreover, in \cite{DBLP:conf/icse/CailliauL17}, the authors add a satisfactory rate on each goal.
 However, these methods do not include a time dimension.
 
 \paragraph{State machine}
-State machines have the capacity to abstract, in a same model, the context and the behaviour of a system.
-The context is represented by the different states while the behaviour can be abstracted by the transitions between the states.
+State machines have the capacity to abstract, in the same model, the context and the behaviour of a system.
+The different states represent the \gls{context} while the transitions between the states abstract the \gls{behaviour}.
 \cite{DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/ArcainiRS15, DBLP:conf/rv/ArcainiGR11, DBLP:conf/icse/GhezziPST13} use the \gls{fsm} formalism.
 For example, Hartmann \etal abstracts the behaviour of a smart meter in \cite{DBLP:conf/smartgridsec/0001FKNT14}.
 In~\cite{DBLP:conf/icse/GhezziPST13}, the authors represent the functionalities of the system and their impact with states.
@@ -88,44 +88,44 @@ In \cite{DBLP:conf/icse/BarbosaLMJ17}, the authors extended  the model with prob
 Another strategy is to use Markov Chain~\cite{DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11, DBLP:conf/dagstuhl/GhezziS10, DBLP:conf/icse/DuarteMS18}
 A Markov chain can be thought as a \gls{fsm} with probabilities attached to the transition.
 In~\cite{DBLP:conf/sigsoft/MorenoCGS15}, authors also add information regarding current \glspl{action} being executed with their progress status.
-But, no history is kept, when the \glspl{action} is finished, the information is lost.
+But, no history is kept, the information is lost when \glspl{action} finish.
 Other approaches use state machine without specifying the formalism used~\cite{DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/kbse/TajalliGEM10}.
-Tajalli \etal use two state machines: one to represent the system context and behaviour, and another one to represent the adaptation mechanism.
+Tajalli \etal use two state machines: one to represent the system \gls{context} and \gls{behaviour}, and another one to represent the adaptation mechanism.
 
 \paragraph{Sequential diagram}
-Through our review, we find one approach that uses sequential diagram to represent the \gls{behaviour} of the system~\cite{DBLP:conf/icse/TaharaOH17}.
+Through our review, we find one approach that uses a sequential diagram to represent the \gls{behaviour} of the system~\cite{DBLP:conf/icse/TaharaOH17}.
 However, nothing is mentioned regarding the context of the system and its history.
 	
 \paragraph{Component model}
-In order to represent the context of a system, one can use a component models.
+In order to represent the context of a system, one can use a component model.
 This model is at the architecture level and described the different entities (component) that compose a system with their interactions.
 Four contributions apply this technique in our review~\cite{DBLP:conf/soco/DavidL06, DBLP:conf/wetice/DjoudiBZ14, DBLP:journals/computer/GarlanCHSS04, DBLP:conf/cbse/FouquetMFBPJ12}.
-In order to also represent the behaviour, some have extended this model with a sate machine description in~\cite{DBLP:conf/wetice/DjoudiBZ14} or with annotation in~\cite{DBLP:journals/computer/GarlanCHSS04}.
+To also represent the behaviour, some have extended this model with a state machine description in~\cite{DBLP:conf/wetice/DjoudiBZ14} or with annotation in~\cite{DBLP:journals/computer/GarlanCHSS04}.
 However, no time dimension is considered in these approaches.
 
-\paragraph{Trace models}
+\paragraph{Trace model}
 Context and behaviour of a system can be inferred by analysing its logs.
 In~\cite{DBLP:journals/computer/Maoz09}, researchers defined an approach to create a model that reflects the runtime state of the system.
-However, this approach do not keep the history of the system.
+However, this approach does not keep the history of the system.
 	
 \paragraph{Graph model}
 Finally, the last technique used to represent the context of a system is to use a graph model~\cite{DBLP:journals/tse/KramerM90, DBLP:journals/computer/GeorgasHT09, DBLP:conf/dbpl/MoffittS17}.
-In the former, node represents the process unit and the edges the communication between them.
-In the second one, node represent the possible configuration of the system and the edges represent the actions to reach a configuration.
+In the former, nodes represent process units, and edges the communication between them.
+In the second one, nodes represent the possible configurations of the system, and the edges represent the actions to reach a configuration.
 Only the latter include a time dimension.
 The graph represents the different configuration over time of the system.
-Plus, some meta-data about previous adaptations (\eg rate of configuration, average time in this configuration) are added.
+Plus, some meta-data about previous adaptations (\eg average time in this configuration) are added.
 The latter defined a temporal graph~\cite{DBLP:conf/dbpl/MoffittS17}.
 Their temporal graph is a graph that is augmented with two functions.
-One function serves to indicate if a graph element, a node or an edge, exists for a given time period.
-The other can retrieve the value of a graph element for a given time period.
+One function serves to indicate if a graph element, a node or an edge, exists for a given period.
+The other can retrieve the value of a graph element for a given period.
 Using this temporal graph, one can define a model that abstract \glspl{longTermAct}.
 However, in our work, we use another temporal graph definition provided by Hartmann \etal and implemented in our research group~\cite{DBLP:journals/is/HartmannFMRT19}.
 
-\paragraph{Sum-up}
-Different approaches are used in the literature to represent the context, the \gls{behaviour}, or both of systems (\cf \Cref{table:sota:results:actions:rq1.1}).
-However, only a few can be used to keep the history of these informations~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14, 	DBLP:conf/dbpl/MoffittS17, DBLP:conf/icse/TaharaOH17, DBLP:conf/pervasive/HenricksenIR02, DBLP:conf/smartgridsec/0001FKNT14}.
-This feature remains a key concern to represent \glspl{longTermAct} as information about delayed effects and previous \glspl{circumstance} (next and previous context of an action).
+\paragraph{Sum up}
+Different approaches are used in the literature to represent the \gls{context}, the \gls{behaviour}, or the \gls{structure} of systems (\cf \Cref{table:sota:results:actions:rq1.1}).
+However, only a few can be used to keep the history of this information~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14, 	DBLP:conf/dbpl/MoffittS17, DBLP:conf/icse/TaharaOH17, DBLP:conf/pervasive/HenricksenIR02, DBLP:conf/smartgridsec/0001FKNT14}.
+This feature remains a crucial concern to represent \glspl{longTermAct} as information about delayed effects and previous \glspl{circumstance} (next and previous \gls{context} of an \gls{action}).
 In the next section, we detail approaches that model actions.
 	
 \vfil
@@ -161,11 +161,11 @@ In this section, we describe the different categories that we identified.
 
 \paragraph{Rule-based approach}
 One solution to model \glspl{action} is to use a rule en-\linebreak gine~\cite{DBLP:conf/icse/TaharaOH17, DBLP:conf/icse/ArcainiRS15, DBLP:conf/wrla/BruniCGLV12, DBLP:conf/eurosys/GraceHPBCT08, DBLP:conf/gpce/PintoFT03, DBLP:journals/computer/GarlanCHSS04}.
-Rules are characterised by a condition and an executable code.
+A condition and an executable code characterise rules.
 The executable code is executed if the current state of the system meets the condition.
-Conditions can thus serve to abstract the \Glspl{circumstance} of an action and the executable code as its effect.
-However, these information are available at design time and lost during the execution.
-Plus, these approach do not allow the representation of the side effects of an action.
+Conditions can thus serve to abstract the \glspl{circumstance} of \glspl{action} and the executable code as its effect.
+However, this information is available at design time and lost during the execution.
+Moreover, these approaches do not allow the representation of the side effects of an action.
 For example, changing the fuse state has a direct effect on the fuse state.
 But it also impacts the power grid load.
 We can notice two exceptions in our review: \cite{DBLP:conf/icse/TaharaOH17} and \cite{DBLP:conf/icse/ArcainiRS15}.
@@ -174,90 +174,88 @@ We explain the advantages and disadvantages of the state machine approach in the
 
 \paragraph{State machine}
 Several approaches use a state machine to represent the adaptation mechanism~\cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/IftikharW14a, DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11, DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10}.
-States represent the state of the system and the transition the execution of \glspl{action}. 
+States represent the state of the system, and the transition abstract the execution of \glspl{action}. 
 One advantage of this approach is that they represent both the \glspl{circumstance} and the effects of actions.
 Additionally, it can be used to represent actions at design time and runtime.
-But, this link remains at high level.
-The all state is considered at the circumstance or the effect of the action while, in most cases, it just a subset of the element of the state that triggers the action or are affected by it. 
+But this link remains at a high-level.
+An entire state is considered as the circumstance or the effect of an action while, in most cases, it just a subset of the elements of the state that triggers the action or is affected by it. 
 
 \paragraph{Publish/Subscribe approach}
 In our review, we found one approach that uses the publish/subscribe mechanism to trigger \glspl{action}~\cite{DBLP:conf/icse/BarbosaLMJ17}.
 The \glspl{circumstance} are thus modelled with the condition of the consumer.
-In this case, the action is a script.
+In this case, the \gls{action} is a script.
 The effects are thus spread, and cannot be navigated.
-Moreover, this solution only represent the actions at design time, and not their executions.
+Moreover, this solution only represents the actions at design time and not their executions.
 	
 \paragraph{Goal-modelling}
 In addition to the goals of the system, goal models offer the capacity to represent the \glspl{action} that can achieve them.
 Three approaches have used this ability to represent action in their model~\cite{DBLP:conf/icse/MendoncaAR14, DBLP:conf/iceccs/BencomoWSW12, DBLP:conf/re/BaresiPS10}.
 Baresi \etal extended goal model with \textit{adaptive goals}.
-This goals contain a condition, objectives (to weaken or enforce some goals), and \textit{actions} (here, an action modify goals or operation-executable code- in the goal model).
+These goals contain a condition, objectives (to weaken or enforce some goals), and \textit{actions} (here, an action modify goals or operation-executable code- in the goal model).
 Here, effects can be seen as the fulfilment of a goal.
 And a condition is when a goal is not satisfied anymore.
-However, these information are not kept over time.
+However, this information is not kept over time.
 Furthermore, no information about the runtime execution of the actions is kept.
 	
 \paragraph{Programming language}
-Among our findings, one approach defined its own language to define actions: \cite{DBLP:journals/jss/ChengG12}.
-This language allow developers modelling their actions, with their conditions, and their effects.
+Among our findings, one approach defined a language to define actions: \cite{DBLP:journals/jss/ChengG12}.
+This language allows developers modelling their actions, with their conditions, and their effects.
 However, the language does not include a temporal dimension.
 Plus, the language is suitable to describe actions at design time but provide no mechanism to track them during their execution.
 	
 \paragraph{Event-Condition Action}
-In order to trigger adaptation, one can use the Event-Condition Action approach: the action is triggered if an event respect the condition.
+To trigger adaptation, one can use the Event-Condition Action approach: the action is triggered if an event respects the condition.
 In our review, all the works use this methodology in order to weave or remove aspects of the program, following Aspect-Oriented Programming\footnote{Aspect-Oriented Programming is a programming paradigm that prones the separation of concern. For that, a program is seen as a set of aspects, each aspect implementing one concern.}~\cite{DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/soco/DavidL06}.
 However, there is no temporal dimension.
-Plus, this solution is suitable to describe actions at design time, but does not allow navigation through runtime information.
+Plus, this solution is suitable to describe actions at design time but does not allow navigation through runtime information.
 
-	
 \paragraph{Model transformation}
 Following the \gls{m@rt}, one way to adapt a system is to modify the model to trigger the actions.
 One way to do this, is to use the Query/View/Transformation~\cite{QVT:Spec} approach as Chen \etal did in \cite{DBLP:conf/icse/ChenPYNZ14}.
 Here, the \gls{circumstance} and the effects are represented at the model level in the query and the transformation part.
 When the context is represented as a graph, \glspl{action} will thus be modelled as graph modifications.
 In~\cite{DBLP:journals/tse/KramerM90}, authors represent an action by adding or removing graph elements (node and edge).
-However, these solution do not take into account any time dimension, side-effects or runtime information.
+However, these solutions do not take into account any time dimension, side effects or runtime information.
 	
 \paragraph{Formal model}
 In our review, we found three formal models~\cite{DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11, DBLP:conf/aaai/CimattiMR15}.
-First, the MACODO formalisation~\cite{DBLP:journals/taas/WeynsHH10} that defines actions as function from one set to another.
+First, the MACODO formalisation~\cite{DBLP:journals/taas/WeynsHH10} that defines actions as functions from one set to another.
 These functions represent actions to reorganise a system: adding, removing, or merging group of components.
-Second, in~\cite{DBLP:conf/icse/BartelsK11}, authors use the process calculus Communicating Sequential Process, which allow engineers formalising reactive and concurrent systems where atomic \textit{events} are handled by \textit{processes} (an infinite transition system).
+Second, in~\cite{DBLP:conf/icse/BartelsK11}, the authors use the process calculus Communicating Sequential Process, which allows engineers formalising reactive and concurrent systems where atomic \textit{events} are handled by \textit{processes} (an infinite transition system).
 \Glspl{action} here correspond to a modification of a component configuration in response to an event.
-Last, Cimatti \etal defined a planning algorithm which include time~\cite{DBLP:conf/aaai/CimattiMR15}.
-In their algorithm, they formalise \glspl{action} as element with an execution time, possibly uncertain.
-None of these models include a temporal dimension or represent the effects of an action.
-Plus these solution do not model the execution of \glspl{action}.
+Last, Cimatti \etal defined a planning algorithm which includes time~\cite{DBLP:conf/aaai/CimattiMR15}.
+In their algorithm, they formalise \glspl{action} as elements with a field to store the execution time, possibly uncertain.
+None of these models adds a temporal dimension or represents the effects of an action.
+Plus these solutions do not model the execution of \glspl{action}.
 
-\paragraph{Dynamic Software Product-Lines}
+\paragraph{Dynamic software product-lines}
 One approach to represent the possible adaptation of a system is to use a Software Product-Lines model.
-Engineer model the the all the possible variations of a system.
-Then, at runtime, the system select the one that can achieve the requirements in the current context.
-This approach is refers to as Dynamic Software Product-Lines and used by two approaches in our findings~\cite{DBLP:conf/dagstuhl/GhezziS10, DBLP:series/lncs/CordyCHLS13}.
+Engineers model all the possible variations of a system.
+Then, at runtime, the system selects the one that can achieve the requirements in the current context.
+This approach is referred to as Dynamic Software Product-Lines and used by two approaches in our findings~\cite{DBLP:conf/dagstuhl/GhezziS10, DBLP:series/lncs/CordyCHLS13}.
 Here \glspl{action} can be executed to achieve the selection of the different variation point.
 Effects are thus represented as the new configuration selected.
 However, these solutions do not include a time dimension or cannot represent runtime information.
 
-	
 \paragraph{Graph model}
-Finally, the last approach found in our review is to use graph model.
+Finally, the last approach found in our review is to use a graph model.
 In~\cite{DBLP:journals/computer/GeorgasHT09}, researchers use a graph where nodes represent possible configurations and edges represent the modification of the configuration, using our wording an \gls{action}.
-However, there is no time dimension and only design time information are modelled.
+However, there is no time dimension, and only design time information is modelled.
 
 \paragraph{Sum up}
-As shown in \Cref{table:sota:results:actions:rq1.2}, the literature provides different solution to model \gls{action}.
-However, none of them include a temporal dimension.
+As shown in \Cref{table:sota:results:actions:rq1.2}, the literature provides different solutions to model \glspl{action}.
+However, none of them includes a temporal dimension.
 Thus, even if they represent effects, they cannot describe them over time.
 For example, they will be able to model that a new server will be added, but not when.
 Moreover, these solutions mainly remain at design time, except for those that use a state machine.
-No information concerning the runtime, like the status of the execution of an action, the runtime values or the effects. are not represented.
+No information concerning the runtime, like the status of the execution of an action, the runtime values or the effects, are not represented.
 One limitation is that they do not represent side-effects over time.
 For example, they will represent the addition of a server but not the effects on the bandwidth or the workload.
 Additionally, as they do not represent runtime information, no autonomous solution can be employed to detect any unknown effects of an action to the system.
 The last limitation is the representation of \glspl{circumstance}.
 In the approaches of the review, they are mainly represented as the condition that triggers the action.
 Even if a human can guess it after, there is no direct link between the action execution and the circumstances.
-No model can allow an automatic navigation over these time-related information. 
+No model can allow automatic navigation over this time-related information. 
 
 \vfill
 	 
@@ -290,39 +288,39 @@ No model can allow an automatic navigation over these time-related information.
 \end{table}
 
 In this section, we review the solutions that enable reasoning over evolving context or \gls{behaviour}.
-That is, solutions that can be used to implement \gls{adptSyst}.
-\Cref{table:sota:results:actions:rq1.3} gives an overview of our findings, detailed in the rest if this section.
+That is solutions that can be used to implement \glspl{adptSyst}.
+\Cref{table:sota:results:actions:rq1.3} gives an overview of our findings, detailed in the rest of this section.
 
 \paragraph{Model-based approach}
 Following the \gls{mde} methodology, one approach to reason over an evolving context or \gls{behaviour} is the \gls{m@rt} paradigm~\cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09}.
 Hartmann \etal extended it to include a temporal dimension~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14} for reasoning over the history of a system.
 Approaches detailed in \cite{DBLP:conf/icse/BarbosaLMJ17} and in \cite{DBLP:conf/icse/ChenPYNZ14} follow this paradigm.
-However, in they process, they do not consider \gls{longTermAct}, specially those that are under execution of with effects in a near future.
+However, in their process, they do not consider \gls{longTermAct}, especially those that are under execution of with effects in the near future.
 
 \paragraph{Rule-based adaptation}
 In our review, some approaches employ a rule-based mechanism to define the adaptation mechanism~\cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/TaharaOH17, DBLP:conf/eurosys/GraceHPBCT08}.
 However, they only reason over the context or the behaviour, not on the running actions or their future effects.
 
 \paragraph{Architecture-based adaptation}
-Architecture-based adaptation adjust the architecture of a system to achieve requirements.
+Architecture-based adaptations adjust the architecture of a system to achieve requirements.
 In our review, different approaches use this mechanism~\cite{DBLP:journals/jss/ChengG12, DBLP:journals/computer/GarlanCHSS04, DBLP:journals/computer/GeorgasHT09, DBLP:conf/cbse/FouquetMFBPJ12}.
 For example, Cheng \etal define a language to design \glspl{action} for architecture-based adaptation.
-Also, the adaptive mechanism can compute a reconfiguration script by comparing the current component model with the exepcted one~\cite{DBLP:conf/cbse/FouquetMFBPJ12}.
-However, none of these solutions consider running \gls{action} and their future effects.
+Also, the adaptive mechanism can compute a reconfiguration script by comparing the current component model with the expected one~\cite{DBLP:conf/cbse/FouquetMFBPJ12}.
+However, none of these solutions considers running \gls{action} and their future effects.
 
 \paragraph{Simulation-based adaptation}
 In our review, one approach applies a simulation-based approach~\cite{DBLP:conf/smartgridsec/0001FKNT14}.
-In their works, authors simulated different sequences of \glspl{action}, evaluate and select the optimal one regarding the requirements.
+In their work, the authors simulated different sequences of \glspl{action}, evaluate and select the optimal one regarding the requirements.
 To perform this approach, they have to know the look ahead and consider the impact of each action on the system.
 However, they do not reason over \glspl{action} being executed or their future effects.
 	
 \paragraph{Formal model}
-In our review, four formal models describe \gls{adptSyst} with their adaptation mechanism~\cite{DBLP:journals/taas/WeynsMA12, DBLP:conf/icse/IftikharW14a, DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11}.
-For example, Iftikhar and Weyns use a state machine formalism to specify \gls{sadapt}~\cite{DBLP:conf/icse/IftikharW14a}.
-But, none of the formal model includes a time dimension, which would allow stakeholders to consider running \glspl{longTermAct}.
+In our review, four formal models describe \glspl{adptSyst} with their adaptation mechanism~\cite{DBLP:journals/taas/WeynsMA12, DBLP:conf/icse/IftikharW14a, DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11}.
+For example, Iftikhar and Weyns use a state machine formalism to specify \glspl{sadapt}~\cite{DBLP:conf/icse/IftikharW14a}.
+But, none of the formal models includes a time dimension, which would allow stakeholders to consider running \glspl{longTermAct}.
 
-\paragraph{Complex Event Processing}
-Among our findings, one is using the an approach based on a complex event processing engine~\cite{DBLP:conf/rr/AnicicFRSSS10}.
+\paragraph{Complex event processing}
+Among our findings, one is using an approach based on a complex event processing engine~\cite{DBLP:conf/rr/AnicicFRSSS10}.
 Here, \glspl{action} are triggered in response to an event, as much complex as necessary.
 Using this approach, one cannot reason over running \glspl{action} and their future effects.
 
@@ -330,26 +328,25 @@ Using this approach, one cannot reason over running \glspl{action} and their fut
 Two approaches in our findings employ a graph model~\cite{DBLP:journals/tse/KramerM90, DBLP:conf/dbpl/MoffittS17}.
 These approaches reason over a graph to trigger an adaptation process.
 In~\cite{DBLP:conf/dbpl/MoffittS17}, authors use a temporal graph algebra, which can store the history of the context.
-But, none of them include running \glspl{action} in their model.
+But, none of them includes running \glspl{action} in their model.
 	
-\paragraph{Aspect oriented programming}
-From what we see in our findings, aspect oriented programming is an approach heavily used by researchers~\cite{DBLP:journals/taosd/GreenwoodB06, DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/ewsa/FalcarinA04, DBLP:conf/gpce/PintoFT03}.
-More specially, they use dynamic aspect oriented programming: aspects are automatically weaved and removed aspects in a software.
-In addition, Morin \etal uses an aspect-oriented modelling~\cite{DBLP:conf/icse/MorinBNJ09}.
-Part of the \gls{mde} methodoly, this approach models the different aspects with their point cuts\footnote{A point cut is part of the software where an aspect can be weaved or removed.}.
-However, none of them allow to reason executing \gls{action} or their future effects.
+\paragraph{Aspect-oriented programming}
+From what we see in our findings, aspect-oriented programming is an approach heavily used by researchers~\cite{DBLP:journals/taosd/GreenwoodB06, DBLP:conf/soco/DavidL06, DBLP:conf/icws/CharfiDM09, DBLP:journals/scp/ParraBCD11, DBLP:conf/ewsa/FalcarinA04, DBLP:conf/gpce/PintoFT03}.
+More specially, they use dynamic aspect-oriented programming: aspects are automatically weaved and removed aspects in a software.
+Besides, Morin \etal uses aspect-oriented modelling~\cite{DBLP:conf/icse/MorinBNJ09}.
+Part of the \gls{mde} methodology, this approach models the different aspects with their pointcuts\footnote{A pointcut is part of the software where an aspect can be weaved or removed.}.
+However, none of them allows reasoning over \glspl{action} being executed or their future effects.
 	
 \paragraph{Component-based adaptation}
-One approach uses a component model as basis to reason for the adaptation mechanism~\cite{DBLP:conf/soco/DavidL06}.
+One approach uses a component model as a basis to reason for the adaptation mechanism~\cite{DBLP:conf/soco/DavidL06}.
 Here, \glspl{action} modify the configuration of a component to adjust the behaviour or the context of the system.
 But, in this approach, running \glspl{action} are not considered by the adaptation process.
 
 \paragraph{State machine}
 Another approach widely adopted in the findings is the use of a state machine~\cite{DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11,DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10}.
 Transitions represent \glspl{action}.
-Effects of an action are also known and modelled.
+Effects of action are also known and modelled.
 However, no information about running \glspl{action} is represented and thus considered.
-
 
 \paragraph{Dynamic software product-lines}
 Dynamic software product-lines approaches see the adaptation mechanism as a runtime selection between different software product-lines options.
@@ -362,21 +359,21 @@ However, running \glspl{action} are excluded from the adaptation process.
 \paragraph{Extension of \gls{mapek} loop}
 Maurer \etal \cite{DBLP:conf/iscc/MaurerBEB11} extended the traditional \gls{mapek} loop.
 Authors added a step before the monitoring one called \textit{adaptation}.
-In the context of cloud infrastructure, this step allows to prepare the entity before a deployment, such as contract establishment for service level agreement.
+In the context of cloud infrastructure, this step allows preparing the entity before deployment, such as contract establishment for service level agreement.
 But, the \gls{mapek} loop is not modified to consider running \gls{action} and their effects.
 
 \paragraph{Sum up}
 
 In the literature, we can find different approaches to reason over an evolving context or behaviour, as depicted in \Cref{table:sota:results:actions:rq1.3}.
-However, none of them provide a solution to reason over running execution of their future effects.
+However, none of them provides a solution to reason over running execution of their future effects.
 To make decisions, current solutions only consider current, past, or future context or \gls{behaviour}.
 
 \subsection[Modelling and reasoning over long-term actions]{Modelling and reasoning over \glspl{longTermAct}}
-In the previous section, we detailed our review concerning modelling techniques for \glspl{adptSyst}.
-First, we saw that just a couple of approaches that model the context or the \gls{behaviour} include a time dimension.
+In the previous sections, we detailed our review concerning modelling techniques for \glspl{adptSyst}.
+First, we saw that just a couple of approaches that model the \gls{context}, the \gls{structure}, or the \gls{behaviour} include a time dimension.
 Then, despite this element, current approaches do not include \glspl{action} with their circumstances and their effects over time.
-Finally, we saw that none of the solutions propose an approach to reason over running actions.
-To answer RQ1, our review shows that no solution in the state-of-art represent and reason over \gls{longTermAct} and their execution.
+Finally, we saw that none of the solutions proposes an approach to reason over running \glspl{action}.
+To answer RQ1, our review shows that no solution in the state-of-the-art represents and reason over \glspl{longTermAct} and their executions.
 
 
 
