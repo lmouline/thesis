@@ -1,29 +1,30 @@
 \section{Introduction}
 
-In this thesis, we focus on the capacity of \glspl{adptSyst} to adjust their behaviour or structure in response to changes in their environment or structure (\cf \Cref{chapt:intro}).
-Following the \gls{m@rt} paradigm, these systems use a modelling layer that abstracts all information needed to enable reasoning processes (\cf \Cref{chapt:background}).
-As a results, a set of \glspl{action} are executed.
+In this thesis, we focus on the capacity of \glspl{adptSyst} to adjust their \gls{behaviour} or \gls{structure} in response to changes in their \gls{env} or \gls{structure} (\cf \Cref{chapt:intro}).
+Following the \gls{m@rt} paradigm, these systems can use a modelling layer that abstracts all information needed to enable reasoning processes (\cf \Cref{chapt:background}).
+This process leads to the execution of a set of adaptation \glspl{action}, among which we identified \gls{longTermAct} (\cf \Cref{chapt:intro}).
 
-However, we have identified three open challenges due to \gls{longTermAct} present in some systems, the uncertainty of data received, and the emergence of the behaviour of these systems (\cf \Cref{sec:intro:scope}).
+However, we have identified three open challenges due to \gls{longTermAct}, the uncertainty of data received, and the emergence of the \gls{behaviour} of these systems (\cf \Cref{sec:intro:scope}).
 \Glspl{adptSyst} and uncertainty have been heavily studied by researchers in the past years.
 We thus need to identify any potential work that have already tackled, partially or totally, these challenges.
-In addition, we have to review approaches that model \glspl{adptSyst}, \gls{structure}, \gls{behaviour}, or \gls{env}, or manipulate uncertainty data.
+In addition, we have to review approaches that model \glspl{adptSyst}, \gls{structure}, \gls{behaviour}, \gls{env}, or manipulate uncertain data.
 
-Two research questions have driven this review process:
+We set two research questions to drive this review process:
 \begin{itemize}
-	\item \textbf{RQ1:} Do current state of the art solutions that model \gls{adptSyst} allow representing and reasoning over \glspl{longTermAct}? 
-	\item \textbf{RQ2:} Do current state of the art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)? 
+	\item \textbf{RQ1:} Do current state-of-the art solutions that model \gls{adptSyst} allow representing and reasoning over \glspl{longTermAct} (design time and runtime\footnote{Here we refer to the execution of an \gls{action}.})? 
+	\item \textbf{RQ2:} Do current state-of-the art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)? 
 \end{itemize} 
 
-Through this review, we found that none of the start of the art solutions model action, their effects, and their circumstances over time (RQ1).
-Some approaches will partially model these elements, for example actions and their effects.
-However, these model cannot be automatically navigated by a process, like a reasoning process.
-Or, some approaches do not consider the temporal dimension of the effects,
+Through this review, we found that none of the state-of-the art solutions model \glspl{action}, their effects, and their \glspl{circumstance} over time (RQ1), both at design time and at runtime.
+Some approaches will partially model these elements, for example \glspl{action} and their effects at design time.
+However, these models cannot be automatically navigated by a process, like a reasoning engine.
+Or, some approaches do not consider the temporal dimension of the effects.
 
 Our findings show that different community have studies uncertainty in software.
-Modelling community has focused on design-time uncertainty, adaptive system community has studied environment uncertainty.
+Modelling community has focused on design uncertainty, \gls{adptSyst} community has studied \gls{env} uncertainty.
 Researchers have put a lot of efforts to encapsulate probability distributions behind programming language concepts such as variables.
-\todo{miss something here}
+But, we strongly think that higher-level abstraction should be defined, to help engineers.
+Additionally, tools to help developers to manipulate uncertain data are needed.
 
 The remainder of this chapter is structured as followed.
 First, we describe the methodology used to perform this review in \Cref{sec:sota:methodo}.
