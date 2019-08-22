@@ -2,10 +2,10 @@
 \label{sec:sota:results:duc}
 
 In this section, we detail our findings regarding the modelling of uncertainty.
-First, we categorise the different kind of uncertainty addressed in the literature.
-Second, we explain how state-of-the art solution model \gls{duc}.
+First, we categorise the different kinds of uncertainty addressed in the literature.
+Second, we explain how state-of-the-art solutions model \gls{duc}.
 Third, we show current approaches propagate uncertainty.
-Finally, we conclude by answering the our second research questions of our review.
+Finally, we conclude by answering the second research questions of our review.
 
 \subsection{Categories of data uncertainty}
 
@@ -32,18 +32,17 @@ Finally, we conclude by answering the our second research questions of our revie
 \end{table}
 
 
-The literature provides different approaches to tackle challenges that come with the different aspect of uncertainty.
+The literature provides different approaches to tackle challenges that come with different aspects of uncertainty.
 In~\Cref{table:sota:results:duc:rq2.1}, we give an overview of the different categories of these approaches found in our review.
 
 \paragraph{Data uncertainty}
 The main category of uncertainty addressed by the different research community if the uncertainty of data~\cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/asplos/BornholtMM14, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:journals/sosym/Zhang00NO19, DBLP:journals/csi/Hall06, DBLP:journals/infsof/Jimenez-RamirezW0V15, DBLP:conf/ecmdafa/ZhangSAYON16, DBLP:journals/tkde/BarbaraGP92, DBLP:conf/vldb/BenjellounSHW06, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/uist/SchwarzMH11, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}.
 In these studies, they tackle challenges due to the uncertainty that can be attached to a value, in our word a data.
 
-
 \paragraph{Design uncertainty}
 The modelling community studied the uncertainty in the design of a model-based solution~\cite{DBLP:conf/icse/FamelisSC12, DBLP:journals/sosym/FamelisC19, DBLP:conf/sle/EramoPR15, DBLP:conf/icse/EramoPR14, DBLP:journals/re/SalayCHS13, DBLP:conf/ecmdafa/ZhangSAYON16}.
 An example used by Famelis \etal \cite{DBLP:conf/icse/FamelisSC12}, is the uncertainty in modelling a state machine.
-One may not not known with the most thorough confidence the transitions to add.
+One may not know with the most thorough confidence the transitions to add.
 
 \paragraph{Requirement uncertainty}
 Related to design uncertainty, there is the requirement uncertainty.
@@ -51,7 +50,7 @@ This uncertainty is due to the lack of confidence when stakeholders model the re
 In our finding, three studies have addressed challenges related to this kind of uncertainty~\cite{DBLP:journals/re/WhittleSBCB10, DBLP:conf/re/WhittleSBCB09, DBLP:journals/re/SalayCHS13}.
 	
 \paragraph{Model transformation}
-Due to design uncertainty, researchers prone the use of partial models~\cite{DBLP:conf/icse/FamelisSC12}.
+Due to design uncertainty, researchers advocate the use of partial models~\cite{DBLP:conf/icse/FamelisSC12}.
 As explained in~\Cref{sec:back:mde}, model transformation is a cornerstone feature in the \gls{mde} community.
 But, this process also contains uncertainty, tackled by three studies from our review~\cite{DBLP:conf/models/BurguenoBMV18, DBLP:conf/sle/EramoPR15, DBLP:conf/icse/EramoPR14}.
 	
@@ -64,23 +63,23 @@ Staying in the modelling approaches, we found one study that deals with the unce
 In this paper, Jiménez-Ramírez \etal studied the uncertainty in the properties of business processes.	
 	
 \paragraph{Uncertainty in \gls{env}}
-Systems tend to be more and more complex and evolve in uncertain \gls{env}.
-To face challenges due to this uncertainty, researchers defined a new category of systems refer to as \gls{adptSyst}.
+Systems tend to be more and more complex and evolve in an uncertain \gls{env}.
+To face challenges due to this uncertainty, researchers defined a new category of systems refers to as \gls{adptSyst}.
 Here, we can add all studies found that answer RQ1 (\cf \Cref{sec:sota:results:actions}).
 For the sake of conciseness, here we will just add two studies~\cite{DBLP:conf/dagstuhl/EsfahaniM10, DBLP:conf/ecmdafa/ZhangSAYON16}
 
 \paragraph{Uncertainty in \gls{behaviour}}
-The uncertainty in the \gls{env} can cause an uncertainty in the behaviour of a system.
+The uncertainty in the \gls{env} can cause uncertainty in the behaviour of a system.
 It thus may complexify the testing phase of the system.
-In~\cite{DBLP:journals/sosym/Zhang00NO19}, authors tackle a challenge for the testing phase of system with uncertain \gls{behaviour}.
+In~\cite{DBLP:journals/sosym/Zhang00NO19}, the authors tackle a challenge for the testing phase of a system with uncertain \gls{behaviour}.
 	
 \paragraph{Uncertain hardware}
-Software rely on faulty hardware, which can create errors in the computation and damage them.
-In our review we found one study that face this uncertainty in hardware~\cite{DBLP:conf/oopsla/CarbinMR13}.
+Software relies on faulty hardware, which can create errors in the computation and damage them.
+In our review, we found one study that faces this uncertainty in hardware~\cite{DBLP:conf/oopsla/CarbinMR13}.
 
 \paragraph{Sum up}
 During our review, we found nine different categories of uncertainty studied in the literature shown in~\Cref{table:sota:results:duc:rq2.1}.
-These categories cover different phase of a software lifecycle, from requirement specification to execution environment.
+These categories cover different phase of a software lifecycle, from requirement specification to the execution environment.
 In this thesis, we focus on \gls{duc}: the lack of confidence in the data manipulated by a software.
 
 \subsection[Modelling data uncertainty]{Modelling \gls{duc}}
@@ -112,7 +111,7 @@ We give an overview of the different approaches in~\Cref{table:sota:results:duc:
 In~\cite{DBLP:conf/models/BurguenoBMV18, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/sle/MayerhoferWV16, DBLP:conf/quatic/VallecilloMO16}, authors use a complex type, named \textit{UReal}, that contain two fields: one to represent the value and another one to represent the \textit{standard uncertainty}.
 For example, when manipulating a dimension value, one may say that the value is 19.1cm $\pm$ 0.1. 
 With the data type, an instance will have 19.1 as value and 0.1 as \textit{standard uncertainty}.
-Then, based on these values they can define a normal distribution where the mean equals the value (here 19.1) and the variance the \textit{standard uncertainty} (here 0.1).
+Then, based on these values, they can define a normal distribution where the mean equals the value (here 19.1) and the variance the \textit{standard uncertainty} (here 0.1).
 Barbará \etal \cite{DBLP:journals/tkde/BarbaraGP92} used a similar approach in their database model.
 In their model, a probability value (a value between 0 and 1) is attached to a database value.
 Finally, Schwarz \etal \cite{DBLP:conf/uist/SchwarzMH11} attached a confidence value to variables in a state machine.
@@ -134,12 +133,12 @@ Therefore, the language hides the distribution for developers.
 However, as in ours, they can still define and use different distributions.
 We strongly think that using dynamic typing and always hiding the real type, developers may not know or understand what they manipulate.
 It may end with runtime errors that do not provide any clear explanation.
-By forcing static types, we can help developers to manipulate uncertain data but we lose in terms of flexibility~\cite{Meijer2004StaticTW}.
+By forcing static types, we can help developers to manipulate uncertain data, but we lose in terms of flexibility~\cite{Meijer2004StaticTW}.
 
 As stated by Gordon~\etal\cite{DBLP:conf/icse/GordonHNR14}, ``the purpose of a probabilistic program is to implicitly specify a probability distribution".
 Knowledge about the probability distribution is still required to understand and manipulate a code done by one of these languages.
-We think that work can be done to abstract the concepts in a higher level.
-Doing so, engineers can write reasoning algorithms over uncertain data, without knowledge about probability distribution.
+We think that work can be done to abstract the concepts at a higher level.
+Doing so, engineers can write reasoning algorithms over uncertain data, without knowledge about probability distributions.
 Moreover, there is a shift in how to apprehend the problem of uncertain data.
 Using a probabilistic program, engineers will try to see the probability of an event E to be in a situation S whereas in this work they are interested in knowing if the current instance of E is in S.
 For example, using a probabilistic program, engineers will see the overall probability that the temperature is greater than 20\degree{}C.
@@ -149,43 +148,43 @@ In our problem, they are want to see what is the confidence, \ie the probability
 In order to face design uncertainty, Famelis \etal defined the concept of \textit{partial models}~\cite{DBLP:conf/icse/FamelisSC12, DBLP:journals/sosym/FamelisC19}.
 A partial model is a graph where elements can be annotated with \textit{TRUE}, \textit{FALSE}, or \textit{MAYBE}.
 \textit{TRUE} and \textit{FALSE} respectively indicate that the graph element should be present or not.
-When the presence of the element in uncertain, designer can annotated it with \textit{MAYBE}.
+When the presence of the element is uncertain, a designer can annotate it with \textit{MAYBE}.
 Eramo \etal apply this approach to handle uncertainty in model transformation~\cite{DBLP:conf/sle/EramoPR15, DBLP:conf/icse/EramoPR14}: the process generate partial models.
 Partial models can also be used to reflect requirement uncertainty~\cite{DBLP:journals/re/SalayCHS13}.
 Finally, in the database community, Benjelloun \etal \cite{DBLP:conf/vldb/BenjellounSHW06} defined an approach where data can have different possible values.
-This approach is only suitable for data when the different possibilities can be listed.
+This approach is only suitable for data when different possibilities can be listed.
 
 \paragraph{Randomness}
 As seen in the previous section, the time uncertainty may affect some events, which can complexify the test phase of such systems.
-To address this challenge, Garousi \etal \cite{DBLP:conf/icst/Garousi08} define an approach where the time of occurrence of events happen with a random parameter.
-However, this approach can only be used in testing phase to represent the lack of confidence in a value.
+To address this challenge, Garousi \etal \cite{DBLP:conf/icst/Garousi08} defines an approach where the time of occurrence of events happen with a random parameter.
+However, this approach can only be used in the testing phase to represent the lack of confidence in a value.
 Indeed, when one has to reason over received data, such as measurement data, she cannot randomly select the value.
 	
-\paragraph{Domain specific language}
+\paragraph{Domain-specific language}
 In our review, we found four studies that define a specific language to handle uncertainty in their domain.
 First, for uncertainty in requirements, Whittle \etal \cite{DBLP:journals/re/WhittleSBCB10, DBLP:conf/re/WhittleSBCB09} designed the RELAX language.
-The language introduces fuzzy words to reflect the uncertainty.
+The language introduces fuzzy words to reflect uncertainty.
 For example, a requirement could be: \textquote{The workload \textit{SHALL NOT} be greater than \textit{THRESHOLD}}.
-In~\cite{DBLP:journals/infsof/Jimenez-RamirezW0V15}, authors presents a declarative language for business process that allow stakeholders adding probability information to properties.
+In~\cite{DBLP:journals/infsof/Jimenez-RamirezW0V15}, the authors present a declarative language for business processes that allow stakeholders adding probability information to properties.
 For example, to handle uncertain hardware, authors of~\cite{DBLP:conf/oopsla/CarbinMR13} have implemented a language that can specify reliability constraints on the execution of a function.
-If a language engineer consider that uncertainty is a first-class citizen concern, as done by these approaches, then she should integrate techniques to handle it in the language.
+If a language engineer considers that uncertainty is a first-class citizen concern, as done by these approaches, then she should integrate techniques to handle it in the language.
 	
 \paragraph{Model-level uncertainty}
 Zhang \etal \cite{DBLP:journals/sosym/Zhang00NO19} uses a \gls{uml} profile to define different kind of uncertainties, called U-Model~\cite{DBLP:conf/ecmdafa/ZhangSAYON16}.
-Following this approach, designer can define a model to test \gls{cps} by generating test cases.
+Following this approach, a designer can define a model to test \gls{cps} by generating test cases.
 One may use this technique to model \gls{duc}.
 	
 \paragraph{Formal model}
 In our review, we found two formal models for uncertainty~\cite{DBLP:journals/csi/Hall06, DBLP:conf/ecmdafa/ZhangSAYON16}.
 First, Hall \etal defined a model that implements the recommendation of the \gls{gum}~\cite{DBLP:journals/csi/Hall06}. 
-Second, Zhang \etal presented a conceptual model of uncertainty which regroup different kind of uncertainty in a \gls{cps}~\cite{DBLP:conf/ecmdafa/ZhangSAYON16}.
+Second, Zhang \etal presented a conceptual model of uncertainty which regroups different kinds of uncertainty in a \gls{cps}~\cite{DBLP:conf/ecmdafa/ZhangSAYON16}.
 An engineer can implement one of these formal models to represent \gls{duc}.
 	
 \paragraph{Sum up}
 
-As depicted in \Cref{table:sota:results:duc:rq2.2}, in our review we find seven categories of approach that model uncertainty, with the most widely present: probabilistic programming.
+As depicted in \Cref{table:sota:results:duc:rq2.2}, in our review, we find seven categories of approach that model uncertainty, with the most widely present: probabilistic programming.
 As shown in the table, most of these approaches can be used to implement \gls{duc}.
-In this thesis, we mainly focus in using a similar approach as probabilistic programming or defining new data types that contain a field for uncertainty to help developers modelling uncertain data.
+In this thesis, we mainly focus on using a similar approach as probabilistic programming or defining new data types that contain a field for uncertainty to help developers modelling uncertain data.
 
 \subsection{Propagation and reasoning over uncertainty}
 \begin{table}
@@ -219,59 +218,59 @@ In this thesis, we mainly focus in using a similar approach as probabilistic pro
     \end{center}
 \end{table}
 
-In this section, we study state-of-the art approaches to propagate uncertainty when uncertain data are manipulated.
+In this section, we study state-of-the-art approaches to propagate uncertainty when uncertain data are manipulated.
 Plus, we study the different approaches to reason over uncertainty.
 \Cref{table:sota:results:duc:rq2.3.1} and \Cref{table:sota:results:duc:rq2.3.2} present a summary of our findings.
 
 \paragraph{\textit{[Propagation]} Attached to language operators}
 According to our finding, the most common approach to propagate uncertainty is to attache the propagation mechanism to the language operator~\cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}.
 From a programming language point of view, (uncertain) data are mainly manipulated through language operators, such as arithmetic operators.
-In these works, researchers define strategies to map the semantic of a language operator to a process that propagate the uncertainty.
-For example mapping the addition operator to the addition of two probability distributions.
+In these works, researchers define strategies to map the semantics of a language operator to a process that propagates the uncertainty.
+For example, mapping the addition operator to the addition of two probability distributions.
 
 
 \paragraph{\textit{[Propagation]} Through state machine}
 One study propagate the uncertainty using a state machine~\cite{DBLP:conf/uist/SchwarzMH11}.
 In this work, uncertain events are handled by \textit{interactors}.
-Due to the uncertainty, multiple interactor can match the event.
-They are are called and their results is weighted according to the uncertainty of the event.
+Due to the uncertainty, multiple interactors can match the event.
+They are called, and their results are weighted according to the uncertainty of the event.
 The state machine can thus be in different states, with different confidence.
 The most probable one is selected.
 
 	
 \paragraph{\textit{[Propagation]} Manual propagation}
-Finally, one solution requires a manual propagation~\cite{DBLP:conf/models/BurguenoBMV18}.
-This work is used in model transformation.
-When a designer implements a transformation rule, she also has to implement manually the code to propagate uncertainty.
+Finally, one solution requires manual propagation~\cite{DBLP:conf/models/BurguenoBMV18}.
+This work is used in model transformations.
+When a designer implements a transformation rule, she also has to implement the code manually to propagate uncertainty.
 	
 \paragraph{\textit{[Reasoning]} Access to the confidence parameter}
-Six approaches in our findings allow to access to the confidence parameter.
-For example, using  \cite{DBLP:conf/quatic/VallecilloMO16} developers can access the \textit{standard uncertainty}.
+Six approaches in our findings allow accessing to the confidence parameter.
+For example, using  \cite{DBLP:conf/quatic/VallecilloMO16} developers can access to the \textit{standard uncertainty}.
 	
 \paragraph{\textit{[Reasoning]} Access to properties of probability distribution}
-Probabilistic programming allow to manipulate probability distributions as programming language variables.
+Probabilistic programming allow the manipulation of probability distributions as programming language variables.
 Using such approaches, developers can access different properties of a probability distribution~\cite{baudin2017openturns, DBLP:conf/asplos/BornholtMM14, DBLP:journals/corr/BorgstromGGMG13, osti_1430202, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}.
 For example, they can access to the mean or the variance of a Gaussian distribution.
 Of, they can compute a sample from the distribution.
 	
 \paragraph{Sum up}
-The widely approach to imperceptibly propagate uncertainty is to attach the propagation uncertainty to the language operators as we can see in \Cref{table:sota:results:duc:rq2.3.1}.
+The widely used approach to imperceptibly propagate uncertainty is to attach the propagation uncertainty to the language operators as we can see in \Cref{table:sota:results:duc:rq2.3.1}.
 The main advantage of this approach is to keep a language with a syntax as close as possible to what developers are used to.
-However, current solutions provide only what we call \textit{low level} techniques to reason over uncertainty (\cf \Cref{table:sota:results:duc:rq2.3.2}).
-Indeed, state-of-the art solution allow developers to access either the values stored or the properties of a probability distribution.
+However, current solutions provide, what we call, \textit{low-level} techniques to reason over uncertainty (\cf \Cref{table:sota:results:duc:rq2.3.2}).
+Indeed, state-of-the-art solutions allow developers to access either the values stored or the properties of a probability distribution.
 
 \subsection[Modelling of data uncertainty and its manipulation]{Modelling of \gls{duc} and its manipulation}
 
-In this review, we have seen that different kind of uncertainty have been addressed by the literature (RQ2.1).
-Among them, in this thesis we focus on \gls{duc}.
-Different strategies can be used to model the uncertainty, with the most used one which consist in using a probabilistic program (RQ2.2).
-This approach offers propagation of uncertainty by mapping this process to language operators (RQ2.3).
+In this review, we have seen that different kinds of uncertainty have been addressed by the literature (RQ2.1).
+Among them, in this thesis, we focus on \gls{duc}.
+Different strategies can be used to model the uncertainty, with the most used one, which consists of using a probabilistic program (RQ2.2).
+This approach offers the propagation of uncertainty by mapping this process to language operators (RQ2.3).
 Plus, the properties of probability distributions can also be accessed using such techniques  (RQ2.3).
 However, we think that research efforts now can be done to provide a language with a higher level of abstraction, as initiated by Vallecillo \etal~\cite{DBLP:conf/quatic/VallecilloMO16}.
 One goal is to help developers implementing reasoning algorithms over uncertain data with a high-level understanding of the probability theory.
 Moreover, we think that specific operators should be specified to reason over this uncertainty.
-Another limitation of these work is that they studied uncertainties on numerical values.
-There is still open research questions to employ these techniques in an object-oriented language, which also contains references and  
+Another limitation of these works is that they studied uncertainties on numerical values.
+There are still open research questions to employ these techniques in an object-oriented language, which also contains references, nested objects or hierarchical relations.  
 
 
 
