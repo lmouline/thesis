@@ -1,8 +1,8 @@
 \section{Evaluation}
-\label{sec:validation}
+\label{sec:aintea:validation}
 
-We validated our approach by implementing a language named \languageName{}, which features an uncertainty-aware static type system and provides the concepts and operators presented in section \ref{sec:data-uncertainty}.
-We evaluate the following two research questions based on our implementation of \languageName{}:
+We validated our approach by implementing a language named \langName{}, which features an uncertainty-aware static type system and provides the concepts and operators presented in \Cref{sec:aintea:duc}.
+We evaluate the following two research questions based on our implementation of \langName{}:
 \begin{itemize}
 	\vspace{-0.5em}
 	\setlength\itemsep{-0.3em}
@@ -12,13 +12,13 @@ We evaluate the following two research questions based on our implementation of 
 
 To address them, we compared our implementation to two state-of-the-art frameworks: Infer.NET~\cite{url:InferNET18} and OpenTURNS~\cite{baudin2017openturns}.
 The code used for the experiments of the validation is available on the repository of our implementation.
-%The source code of our \languageName{} implementation\footnote{\url{https://github.com/lmouline/aintea}} together with the experiments of the presented validation.%\footnote{\url{https://github.com/lmouline/aintea/tree/master/evaluation/2019-06-Journal}} are accessible on GitHub.
+%The source code of our \langName{} implementation\footnote{\url{https://github.com/lmouline/aintea}} together with the experiments of the presented validation.%\footnote{\url{https://github.com/lmouline/aintea/tree/master/evaluation/2019-06-Journal}} are accessible on GitHub.
 
-In this section, we first detail the implementation of the \languageName{} language.
+In this section, we first detail the implementation of the \langName{} language.
 Then, we show that our solution can detect type errors earlier than the two solutions we compare our work to.
 Before discussing the results, we compare the number of lines of codes required for the different solutions to perform uncertainty propagation.
 
-\subsection{\languageName{}: our implementation}
+\subsection{\langName{}: our implementation}
 \label{sec:uminijava}
 
 We use the Xtext language workbench\footnote{\url{http://www.eclipse.org/Xtext/}} to define the concrete syntax and the type checker of our language (static semantics).
@@ -26,15 +26,15 @@ Based on the concrete syntax, Xtext generates the abstract one.
 We implement the dynamic semantics with K3\footnote{\url{http://diverse-project.github.io/k3/}}. 
 
 In addition, we implemented different code samples which shows the different features of our language.%\footnote{\url{https://github.com/lmouline/aintea/tree/master/sample/tutorial/basics}}.
-We also developed a simplified version of our use case example, introduced in Section~\ref{sec:lux-sg-scenario}.
+We also developed a simplified version of our use case example, introduced in Section~\ref{sec:lux-sg-scenario}\todo{update}.
 We presented it as a tutorial of our language.%\footnote{\url{https://lmouline.github.io/aintea/tutorial/creos-use-case/}}.
 All code can be executed using a runner, available on the project repository.%\footnote{\url{https://github.com/lmouline/aintea/tree/master/duc.uscript.parent/duc.uscript.runner.standalone}}.
 
 \subsubsection{Overview of the language}
-\languageName{} supports classes, with fields and functions.
+\langName{} supports classes, with fields and functions.
 It has an expression language with arithmetic and boolean expressions, \textit{IF-}conditions and affectation statements.
 
-\languageName{} is composed of four elements: an abstract syntax, a concrete syntax, static and dynamic semantics.
+\langName{} is composed of four elements: an abstract syntax, a concrete syntax, static and dynamic semantics.
 As depicted in Figure~\ref{fig:global-lang-arch}, the concrete syntax has been implemented using Xtext.
 As we used a grammar-first approach, the abstract syntax has been automatically generated from the concrete one.
 In addition, stub-classes are generated for the semantics (static and dynamic).
@@ -49,7 +49,7 @@ Among them, there is the error maker, auto-completion and an Eclipse plugin.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\linewidth]{img/impl/global2}
+	\includegraphics[width=0.8\linewidth]{img/chapt-aintea/impl/global2}
 	\caption{Global architecture of Ain'tea}
 	\label{fig:global-lang-arch}
 \end{figure}
@@ -58,17 +58,17 @@ Among them, there is the error maker, auto-completion and an Eclipse plugin.
 The syntax of the language has been inspired by Java: keywords to define classes, fields and functions are similar. 
 Regarding the uncertain operators defined in Section~\ref{sec:data-uncertainty}, we use the same syntax as for certain operators where ever possible.
 We give an overview of their corresponding syntax in the following list:
-\begin{tasks}[style=itemize, after-item-skip=-1mm, before-skip={0mm}](2)
-    \task confidence: \textbf{[ ]}
-    \task existence: \textbf{exist}
-    \task cast: \textbf{as}
-    \task dot: \textbf{.}
-    \task inequality: \textbf{$>$}, \textbf{$>=$}, \textbf{$<$}, \textbf{$<=$}
-    \task (uncertain) equality: \textbf{==}, \textbf{!=}
-    \task identity: \textbf{===}, \textbf{!==}
-    \task uncertain arithmetic: \textbf{+}, \textbf{-}, \textbf{*}, \textbf{/}
-    \task uncertain boolean: \textbf{\&\&}, \textbf{$\|$}, \textbf{!} 
-\end{tasks}
+\begin{itemize}
+    \item confidence: \textbf{[ ]}
+    \item existence: \textbf{exist}
+    \item cast: \textbf{as}
+    \item dot: \textbf{.}
+    \item inequality: \textbf{$>$}, \textbf{$>=$}, \textbf{$<$}, \textbf{$<=$}
+    \item (uncertain) equality: \textbf{==}, \textbf{!=}
+    \item identity: \textbf{===}, \textbf{!==}
+    \item uncertain arithmetic: \textbf{+}, \textbf{-}, \textbf{*}, \textbf{/}
+    \item uncertain boolean: \textbf{\&\&}, \textbf{$\|$}, \textbf{!} 
+\end{itemize}
 
 Inequality, arithmetic and boolean operators have identical syntax for uncertain and certain data.
 By making this choice, combining uncertain or certain data is done with the same syntax.
@@ -113,11 +113,11 @@ We let for future work the implementation of an algorithm that applies the same 
 Below, an example of what our implementation can do.
 
 Let us imagine three uncertain booleans $b_1$, $b_2$, and $b_3$ defined as follow, with $u_n$ an uncertain number: 
-\begin{itemize*}
-	\item[] $b_1 := u_n >= 10$
-	\item[] $b_2 := u_n < 15$
-	\item[] $b_3 := u_n > 20$
-\end{itemize*}
+\begin{itemize}
+	\item $b_1 := u_n >= 10$
+	\item $b_2 := u_n < 15$
+	\item $b_3 := u_n > 20$
+\end{itemize}
 
 From this definition, $b_1$ is defined on the range $[10, +\infty)$, $b_2$ on $(-\infty, 15)$, and $b_3$ on $(20, +\infty)$.
 $b_1$ and $b_2$ are thus non-disjoint, like $b_1$ and $b_3$.
@@ -145,7 +145,7 @@ From our understanding of this tool, it was not designed to allow an iterative p
 Thus, we need to split the propagation in different models and explicitly call their inference engine to enable such a process.
 
 Finally, all three solutions allow reasoning on uncertain data.
-In Listing~\ref{lst:valid-expr-csharp} at line 17, Listing~\ref{lst:valid-expr-python} at line 18, and Listing~\ref{lst:valid-expruscript} at line 24, we highlight an IF-condition based on the confidence of an uncertain boolean\footnote{As OpenTurns does not include an uncertain boolean implementation, we implemented one similar to the one we provide in \languageName{}, using their Bernoulli implementation. The implementation is  accessible in our GitHub repository}.
+In Listing~\ref{lst:valid-expr-csharp} at line 17, Listing~\ref{lst:valid-expr-python} at line 18, and Listing~\ref{lst:valid-expruscript} at line 24, we highlight an IF-condition based on the confidence of an uncertain boolean\footnote{As OpenTurns does not include an uncertain boolean implementation, we implemented one similar to the one we provide in \langName{}, using their Bernoulli implementation. The implementation is  accessible in our GitHub repository}.
 Infer.NET provides a method to help manipulate uncertain booleans, by providing methods to access the probability of the \true{} and \false{} value.
 In this case, our confidence operator can be thought of as a sugar syntax of these methods.
 
@@ -204,7 +204,7 @@ def compute_load(substation):
   substation.load = load	
 \end{lstlisting}
 
-\begin{lstlisting}[style=uMiniJavaStyle, caption={Excerpt of the \languageName{} implementation}, label=lst:valid-expruscript, linewidth=0.97\textwidth, escapechar=\%]
+\begin{lstlisting}[style=uMiniJavaStyle, caption={Excerpt of the \langName{} implementation}, label=lst:valid-expruscript, linewidth=0.97\textwidth, escapechar=\%]
 void ComputeLoadNoCable(Substation substation) {
   Bernoulli<bool> noCableConn = new Bernoulli<bool>(true, 1);
   Fuse[] fuses = substation.fuses;
@@ -274,7 +274,7 @@ Plus, we can also notice that we can help developers fix this kind of issue by l
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\linewidth]{img/valid/ErrorHandling-Refactoring}
+    \includegraphics[width=0.9\linewidth]{img/chapt-aintea/valid/ErrorHandling-Refactoring}
     \caption{Detection of a type error}
     \label{fig:valid-error-handling}
 \end{figure}
@@ -287,17 +287,17 @@ As we show in Figure~\ref{fig:valid-error-handling-csharp-global}, the error is 
 \begin{figure*}[ht]
 	\centering
 	\subfloat[Code with a type error, detected at the green highlighted line] {
-		\includegraphics[width=.9\linewidth]{img/valid/ErrorHandling-CSharp-Code}
+		\includegraphics[width=.9\linewidth]{img/chapt-aintea/valid/ErrorHandling-CSharp-Code}
 		\label{fig:valid-error-handling-csharp-code}
 	}
-%	\hfill
-%    \subfloat[Console output] {
-%		\includegraphics[width=.6\linewidth]{img/valid/ErrorHandling-CSharp-Terminal}
-%		\label{fig:valid-error-handling-csharp-console}
-%	}
+	\hfill
+    \subfloat[Console output] {
+		\includegraphics[width=.6\linewidth]{img/chapt-aintea/valid/ErrorHandling-CSharp-Terminal}
+		\label{fig:valid-error-handling-csharp-console}
+	}
 	\hfill
 	\subfloat[Excerpt of the error message] {
-		\includegraphics[width=.65\linewidth]{img/valid/ErrorHandling-CSharp-ErrorMsg-2}
+		\includegraphics[width=.65\linewidth]{img/chapt-aintea/valid/ErrorHandling-CSharp-ErrorMsg-2}
 		\label{fig:valid-error-handling-csharp-error-msg}
 	}
 	\caption{Infer.NET detect the error at runtime.}

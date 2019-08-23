@@ -3,7 +3,8 @@
 \LoadClass[12pt, twoside]{book}
 
 %%% Package dependencies %%%%%
-\RequirePackage{xcolor}
+\RequirePackage{diagbox}
+\RequirePackage[table]{xcolor}
 \RequirePackage{xifthen}
 \RequirePackage[backref=true, style=trad-alpha, backend=biber, bibencoding=utf8]{biblatex}
 \RequirePackage[]{hyperref}

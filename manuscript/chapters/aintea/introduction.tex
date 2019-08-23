@@ -17,7 +17,6 @@ Uncertainty blurs the human's or algorithm's understanding of a situation or sys
 James Bornholt shows in~\cite{bornholt2013abstractions} that computing the average speed during a walking activity and ignoring the uncertainty of GPS data lead to unrealistic situations such a walking speed equals to 95 km/h.
 Another example in the smart grid domain is the load approximation.
 Ignoring the uncertainty of the grid topology may lead to a false detection of an overloading incident.\looseness-1
-%We detail this example in Section~\ref{sec:lux-sg-scenario}.
 
 On the one hand, developers ignore this uncertainty.
 As shown by James Bornholt~\cite{bornholt2013abstractions}, over 100 popular applications which use GPS location, only one considers the uncertainty of data manipulated.
@@ -30,23 +29,18 @@ The application of these techniques requires a deep understanding of the underly
 Moreover, it is hard to test and, perhaps most importantly, very error-prone.
 
 Different works implement the theory behind uncertainty management in the form of libraries or frameworks~\cite{url:InferNET18, baudin2017openturns}.  
-In this article, we argue that using a library or a framework to handle uncertainty is efficient in terms of reusability but it fails to prevent the most common errors during development time. 
+In this chapter, we argue that using a library or a framework to handle uncertainty is efficient in terms of reusability but it fails to prevent the most common errors during development time. 
 For example, all errors and bugs related to type inconsistencies and mismatches (semantics error) will be discovered only at runtime.
 As done by Vallecillo~\etal in~\cite{DBLP:conf/quatic/VallecilloMO16}, we argue that \textbf{an efficient solution to handle data uncertainty in software systems should be realized at the language level itself with a first-class citizen}. 
 Having it on the language level enhances library and framework-based approaches by adding a static, uncertainty-aware type system which is able to detect type errors at development time.\looseness-1
 
-%In this article, we propose \languageName{}, a language able to represent uncertain data as built-in language types along with their supported operations. 
-%This language extends common primitive data types with uncertainty while redefining operational semantics of their supported operators to enable a transparent propagation of uncertainty.
-%\languageName{} supports the following probability distribution: Gaussian, Bernoulli, binomial, Dirac delta function, and Rayleigh.
-%These fours distributions are a sampling of distributions which cover the different data types: uncertain booleans, continuous or discrete uncertain numbers, and uncertain reference.
-
-In this article, we describe the following contributions: 
+In this chapter, we describe the following contributions: 
 \begin{itemize}
 	\vspace{-0.5em}
 	\setlength\itemsep{-0.3em}
     \item Description and definition of the main concepts and operators to introduce in a language with uncertainty as a first-class citizen. Doing so, developers will be able to manipulate uncertain and certain data in a similar way, hiding complex concepts behind ones they are used to. 
     \item An uncertainty-aware static type checker enabling the design-time detection of programming errors. This type checker can be used as \textit{implicit documentation}, which helps developers in implementing uncertainty-aware algorithms.
-    \item We implement these two contributions in the \languageName{} language, publicly available\footnote{\url{https://github.com/lmouline/aintea/}}. An overview of this language is depicted in \autoref{fig:motivation-aintea-overview}. Then, we use a real-world case study, built with our partner Creos S.A., to answer the two following research questions: 
+    \item We implement these two contributions in the \langName{} language, publicly available\footnote{\url{https://github.com/lmouline/aintea/}}. An overview of this language is depicted in \autoref{fig:motivation-aintea-overview}. Then, we use a real-world case study, built with our partner Creos S.A., to answer the two following research questions: 
     \begin{itemize}
    		\vspace{-0.5em}
 		\setlength\itemsep{-0.3em}
@@ -58,17 +52,15 @@ In this article, we describe the following contributions:
 Our use-case implementation shows first that our approach does not impact the conciseness of the language (RQ1).
 Second, it highlights the feasibility and the advantages (RQ2) of an uncertainty-aware type checking system on the language level.
 
-The remainder of this article is as follows.
-In Section~\ref{sec:lux-sg-scenario}, we introduce smart grid as a motivating example. 
-Then, in Section~\ref{sec:data-uncertainty}, we present and discuss the main concepts and operators for uncertainty management as a first-class citizen of a language. 
-Section \ref{sec:validation} presents our \languageName{} implementation and validates the design time error detection and its impact on language conciseness. 
-Finally, Section \ref{sec:related-work} presents the related work.
-Section \ref{sec:conclusion} concludes and presents some open research perspectives. 
+The remainder of this chapter is as follows.
+In \Cref{sec:aintea:duc}, we present and discuss the main concepts and operators for uncertainty management as a first-class citizen of a language. 
+\Cref{sec:aintea:validation} presents our \langName{} implementation and validates the design time error detection and its impact on language conciseness. 
+\Cref{sec:aintea:conclusion} concludes and presents some open research perspectives. 
 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth]{img/motivation/aintea-overview}
-	\caption{Overview of the language proposed, \languageName{}}
+	\includegraphics[width=\linewidth]{img/chapt-aintea/intro/aintea-overview}
+	\caption{Overview of the language proposed, \langName{}}
 	\label{fig:motivation-aintea-overview}
 \end{figure}

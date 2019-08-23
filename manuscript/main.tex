@@ -7,24 +7,10 @@
 \usepackage{array}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
-\newcommand{\langName}[0]{Ain'tea}
-\newcommand{\creos}[0]{Creos S.A.}
+\newtheorem{operator}{Operator}
 
-\newcommand{\cmark}{\ding{51}}%
-\newcommand{\xmark}{\ding{55}}%
-
-\definecolor{stringgreen}{RGB}{106,135,89}
-\lstdefinestyle{customc}{
-	stringstyle=\color{stringgreen},
-	showstringspaces=false,
-	captionpos=b, 
-	frame=single, 
-	basicstyle=\footnotesize\ttfamily, 
-	language=Java,  
-	morekeywords={creationTimes, resolve, MATCH, LIMIT, WHERE, RETURN}, 
-	numbers=none, 
-	numberstyle=\tiny\color{black}
-}
+\input{command}
+\input{listingColors}
 
 \input{glossary}
 

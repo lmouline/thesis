@@ -1,8 +1,5 @@
 \section{Uncertainty as a first-class language citizen}
-\label{sec:data-uncertainty}
-
-%% Ludo: I keep this comment for the major revision version :)
-%\tha{Overall, I really like the chapter. Two main things remain to be improved in my opinion. First, it reads quite like a factual list of statements. I would weave some sentences like: 'this is why we decided to do this or this in our language like this or this Or: 'Even though we considered to do this and this in our language, we find that it is better/more convenient/has advantages to do it like this... '. Make the whole definitions more fluent and interesting to read, add some examples, etc. Make clear that it is YOUR language that you describe here rather than just explaining some aspects of probability theory.  Secondly, the presentation of lists, bullet points, subsections etc. is not very nice yet. I don't have concrete points yet but it looks visually not very nice. }
+\label{sec:aintea:duc}
 
 \subsection{Language overview}
 Data are uncertain when some data points are not precisely known. 
@@ -16,11 +13,11 @@ Adding uncertainty as a first-class language citizen thus implies to enable the 
 We propose to add new data types to represent such pairs and define operators on top of these data types to  manipulate them.
 Uncertainty propagation is done through these operators.
 This impacts the different elements of our language~\cite{DBLP:journals/computer/HarelR04, DBLP:phd/hal/Degueule16}: the syntax (abstract and concrete) and the semantics (static and dynamic).
-This is summarized in \autoref{fig:contrib-summary}.
+This is summarised in \autoref{fig:contrib-summary}.
 
 In the abstract syntax, we define the probability distributions and uncertain data types as primitive types.
 Plus, it contains a definition of the operators to manipulate them.
-In this article, we do not propose a concrete syntax as part of the contribution, we only give an example through our implementation, \languageName{}.
+In this article, we do not propose a concrete syntax as part of the contribution, we only give an example through our implementation, \langName{}.
 In the static semantics, the type system implements typing rules that follow the probability theory.
 Moreover, meaningful error messages for end users are provided.
 Finally, dynamic semantics define how the different operators are executed and thus how uncertainty is propagated.
@@ -29,7 +26,7 @@ It also defines the execution of the creation or deletion of uncertain data in t
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{img/sumup-contrib}
+	\includegraphics[width=\linewidth]{img/chapt-aintea/duc/sumup-contrib}
 	\caption{Impact of having uncertainty as a first-class language citizen on a language}
 	\label{fig:contrib-summary}
 \end{figure}
@@ -37,6 +34,8 @@ It also defines the execution of the creation or deletion of uncertain data in t
 
 To facilitate reading, we start by explaining the principles behind the manipulation of uncertain data based on the boolean case and deal with the numeric case (discrete and continuous) afterwards. 
 We define the operators that can be applied on such data as well as their formal semantics.
+
+\vfill
 
 \subsection{Uncertain boolean}
 
@@ -89,14 +88,14 @@ Using this operator, developers know if it exists at least one value for which i
 The operational semantics of this operator is specified by the following function:\looseness-1 $$exists((v, B(p)), t) := (p \geqslant t) \| (1-p \geqslant t)$$
 
 Applying the operator on $u_{b1}$, we thus get:
-\begin{itemize*}
-    \item[] $exists$($u_{b1}$, 0) := (0.3 $\geqslant$ 0) $\|$ (0.7 $\geqslant$ 0) := \true{},
-    \item[] $exists$($u_{b1}$, 0.5) := (0.3 $\geqslant$ 0.5) $\|$ (0.7 $\geqslant$ 0.5) := \true{},
-    \item[] $exists$($u_{b1}$, 0.9) := (0.3 $\geqslant$ 0.9) $\|$ (0.7 $\geqslant$ 0.9) := \false{}.
-\end{itemize*}
+\begin{itemize}
+    \item $exists$($u_{b1}$, 0) := (0.3 $\geqslant$ 0) $\|$ (0.7 $\geqslant$ 0) := \true{},
+    \item $exists$($u_{b1}$, 0.5) := (0.3 $\geqslant$ 0.5) $\|$ (0.7 $\geqslant$ 0.5) := \true{},
+    \item $exists$($u_{b1}$, 0.9) := (0.3 $\geqslant$ 0.9) $\|$ (0.7 $\geqslant$ 0.9) := \false{}.
+\end{itemize}
 In plain English, these examples mean: considering $u_{b1}$, there exists a value with a confidence level of at least 0 and 0.5 but there is no value with a confidence level of at least  0.9.
 
-%%% Confidence operator %%% 
+%%%% Confidence operator %%% 
 \begin{operator}
 	\label{op:confidence}
 	The \textbf{confidence operator} computes the most confident value $D$ with a minimal confidence level $t \in C$ of a given uncertain data point $u \in U_D$: $U_D \times C \xrightarrow{~confidence~ }  D$.
@@ -113,15 +112,15 @@ $$confidence((v, B(p)), t) := \begin{cases}
 											\end{cases}$$
 												
 If we apply this operator on $u_{b1}$ with the same base as the previous example, then it returns:
-\begin{itemize*}
-	\item[] $confidence(u_{b1}, 0) := \false{}$,
-	\item[] $confidence(u_{b1}, 0.5) := \false{}$,
-	\item[] $confidence(u_{b1}, 0.9) := ERROR$.
-\end{itemize*}
+\begin{itemize}
+	\item $confidence(u_{b1}, 0) := \false{}$,
+	\item $confidence(u_{b1}, 0.5) := \false{}$,
+	\item $confidence(u_{b1}, 0.9) := ERROR$.
+\end{itemize}
 With a confidence level of at least 0 or 0.5, $u_{b1}$ is more likely to be equal to \false{}.
 Otherwise, we cannot know its value with a minimal confidence level of 0.9.
 
-%%% Cast operator %%% 
+%%%% Cast operator %%% 
 \begin{operator}
 	\label{op:cast}
 	The \textbf{cast operator} casts an uncertain data point to a certain one and vice-versa. 
@@ -143,14 +142,14 @@ $$cast(b) := \begin{cases}
                     \end{cases}$$
   
 Performing this operator on our example results in:
-\begin{itemize*}
-    \item[] $cast$($u_{b1}$) := $confidence$($u_{b1}$, 0) := \false{},
-    \item[] $cast$($u_{b2}$) := $confidence$($u_{b2}$, 0) := \true{},
-    \item[] $cast$(\true{}) := (\true{}, $B$(1)),
-    \item[] $cast$(\false{}) := (\false{}, $B$(0)),
-\end{itemize*}            			
+\begin{itemize}
+    \item $cast$($u_{b1}$) := $confidence$($u_{b1}$, 0) := \false{},
+    \item $cast$($u_{b2}$) := $confidence$($u_{b2}$, 0) := \true{},
+    \item $cast$(\true{}) := (\true{}, $B$(1)),
+    \item $cast$(\false{}) := (\false{}, $B$(0)),
+\end{itemize}            			
 		
-%%% Dot operator %%%
+%%%% Dot operator %%%
 \begin{operator}
     \label{op:dot}
     The \textbf{dot operator} allows accessing both elements of uncertain data: the value $d \in D$ or the probability distribution $p_d \in P_D$: $U_D \xrightarrow{~dot~} D \cup P_D$.
@@ -163,14 +162,14 @@ For the confidence, it gives access to the confidence in order to reason over th
 $$(v, B(p)).confidence := B(p)$$
 
 Used on $u_{b1}$ and $u_{b3}$, this operator will return:
-\begin{itemize*}
-    \item[] $u_{b1}$.$value$ := \true{},
-    \item[]  $u_{b1}$.$confidence$ := $B$(0.3),
-    \item[] $u_{b3}$.$value$ := $\false{}$,
-    \item[] $u_{b3}$.$confidence$ := $B$(0.45),
-\end{itemize*}
+\begin{itemize}
+    \item $u_{b1}$.$value$ := \true{},
+    \item  $u_{b1}$.$confidence$ := $B$(0.3),
+    \item $u_{b3}$.$value$ := $\false{}$,
+    \item $u_{b3}$.$confidence$ := $B$(0.45),
+\end{itemize}
 
-%%% Uncertain equality operator %%%
+%%%% Uncertain equality operator %%%
 \begin{operator}
 	\label{op:u-equality}
 	When applied between two uncertain data, \textbf{uncertain equality operators} ($=$, $\neq$) compute the probability that both uncertain values are equal or not: $U_D^2 \xrightarrow{~u-equality~} U_B$, where $U_B$ is the set of uncertain booleans.
@@ -239,7 +238,7 @@ Applying the equality operators on them will result in:
 \end{itemize}
 In plain English, $u_{b1}$ and $u_{b3}$ have a probability of 52\% of having the same value, \ie 48\% of having different values.
 
-%%% Identity operator %%%
+%%%% Identity operator %%%
 \begin{operator}
 	\label{op:s-equality}
 	\textbf{Identity operators} ($==$, $\neq\neq$) return true if two uncertain data are identical: same value and same probability distribution. Formally, $U_D^2 \xrightarrow{~identity~} B$
@@ -253,12 +252,12 @@ It compares the probability parameter of the Bernoulli distribution and the valu
 \end{align*}
 
 For example, the comparison of $u_{b1}$ and $u_{b2}$ returns:
-\begin{itemize*}
-	\item[] $u_{b1}$==$u_{b2}$:= (0.65=0.3) $\land$ (\true{}=\true{}) := \false{},
-	\item[] $u_{b1}$$\ne\ne$$u_{b2}$ := (0.65$\ne$0.3) $\lor$ (\true{}$\ne$\true{}) := \true{}.
-\end{itemize*}
+\begin{itemize}
+	\item $u_{b1}$==$u_{b2}$:= (0.65=0.3) $\land$ (\true{}=\true{}) := \false{},
+	\item $u_{b1}$$\ne\ne$$u_{b2}$ := (0.65$\ne$0.3) $\lor$ (\true{}$\ne$\true{}) := \true{}.
+\end{itemize}
 
-%%% Boolean operators %%%
+%%%% Boolean operators %%%
 \begin{operator}
 	\label{op:boolean}
 	\textbf{Uncertain boolean operators} ($\land$, $\lor$, $\lnot$) compute the result of the boolean operation and its confidence: $U_B^2 \xrightarrow{~u-booleans~} U_B$
@@ -273,18 +272,18 @@ The second part of the computation combines (union and intersection) their proba
 \end{align*}
 
 If we assume $u_{b1}$ and $u_{b3}$ independent and non-disjoint variables, applying these operators return:
-\begin{itemize*}
-	\item[] $u_{b1}$ $\&\&$ $u_{b3}$ := (\true{} $\&\&$ \false{}, $B$(0.65*0.45)) := (\false{}, B(0.2925)),
-	\item[] $u_{b1}$ $\|$ $u_{b3}$ := (\true{} $\|$ \true{}, $B$(0.65 + 0.45 - 0.65*0.45)) := (\true{}, $B$(0.8075)),
-	\item[] $\lnot u_{b1}$ := $\lnot ($ $\lnot \true{}$, $B$(1 - 0.65)) := (\false{}, $B$(0.35)).
-\end{itemize*}
+\begin{itemize}
+	\item $u_{b1}$ $\&\&$ $u_{b3}$ := (\true{} $\&\&$ \false{}, $B$(0.65*0.45)) := (\false{}, B(0.2925)),
+	\item $u_{b1}$ $\|$ $u_{b3}$ := (\true{} $\|$ \true{}, $B$(0.65 + 0.45 - 0.65*0.45)) := (\true{}, $B$(0.8075)),
+	\item $\lnot u_{b1}$ := $\lnot ($ $\lnot \true{}$, $B$(1 - 0.65)) := (\false{}, $B$(0.35)).
+\end{itemize}
 
 \subsection{Uncertain number}
 \subsubsection{What is an uncertain number?}
 Numerical variables can theoretically take an infinite number of values. 
 They can be either on a continuous domain, simulated by floating-point values, or on a discrete one, simulated by integer values.
 The confidence level of such data is either \textbf{precisely linked to the value} (observed, measured, ...) or \textbf{is distributed over the range of possible values}.
-For example, values get from sensors are always given with a certain accuracy, \eg 18.4\textdegree C $\pm$ 0.1\textdegree C.
+For example, values get from sensors are always given with a certain accuracy, \eg 18.4\degree C $\pm$ 0.1\degree C.
 The confidence level of the measured values is thus distributed over a range.
 Values set by humans are also uncertain due to possible human errors.
 However, there might be no information concerning the distribution of this uncertainty.
@@ -296,17 +295,17 @@ The confidence level is thus attached to the precise value.
 \begin{figure*}
     \centering
     \subfloat[Gaussian and Rayleigh] {
-        \includegraphics[width=.31\linewidth]{img/sec4/GaussRayleigh}
+        \includegraphics[width=.31\linewidth]{img/chapt-aintea/duc/GaussRayleigh}
         \label{fig:gauss-ray}
     }
     \hfill
   \subfloat[binomial] {
-        \includegraphics[width=.31\linewidth]{img/sec4/binomial}
+        \includegraphics[width=.31\linewidth]{img/chapt-aintea/duc/binomial}
         \label{fig:binom}
     }
     \hfill
     \subfloat[Dirac delta function] {
-        \includegraphics[width=.31\linewidth]{img/sec4/dirac}
+        \includegraphics[width=.31\linewidth]{img/chapt-aintea/duc/dirac}
         \label{fig:dirac}
     }
     \hfill
@@ -323,7 +322,7 @@ The confidence level is thus attached to the precise value.
          \end{tabular}}
          \label{table:mapping-types-proba}
     }
-    \caption{Probability distributions defined in \languageName{}}
+    \caption{Probability distributions defined in \langName{}}
     \label{fig:example-proba-dist}
 \end{figure*}
 
@@ -383,12 +382,12 @@ The semantics of these operators are formalized in the next section.\looseness-1
 \subsubsection{Operational semantics}
 We denote by $(v, p_d)$ an uncertain number with a numerical value $v$ and a probability distribution $p_d \in P_D$.
 The following uncertain numbers are defined to be used as examples for the description of the operators:\looseness-1
-\begin{itemize*}
-    \item[] $u_{n1}$ := (7, $binomial$(20, 0.37)),
-    \item[] $u_{n2}$ := (10, $binomial$(30, 0.33)),
-    \item[] $u_{n3}$ := (12, $Gaussian$(12, 9)),
-    \item[] $u_{n4}$ := (23, $Gaussian$(23, 5)).
-\end{itemize*}
+\begin{itemize}
+    \item $u_{n1}$ := (7, $binomial$(20, 0.37)),
+    \item $u_{n2}$ := (10, $binomial$(30, 0.33)),
+    \item $u_{n3}$ := (12, $Gaussian$(12, 9)),
+    \item $u_{n4}$ := (23, $Gaussian$(23, 5)).
+\end{itemize}
 
 \bigskip
 
@@ -401,11 +400,11 @@ For discrete uncertain numbers, the operator, defined in Operator~\ref{op:existe
 $$exists((v, p), t) := P(x=m)\geqslant t \text{, where $P(x=m)$ is the probability of $m$}$$
 
 Based on $u_{n1}$, we thus get:
-\begin{itemize*}
-    \item[] $exists$($u_{n1}$, 0) := $P$($x$=7) $\geqslant$ 0 := 0.1542985 $>$ 0 := \true{},
-    \item[] $exists$($u_{n1}$, 0.5) := $P$($x$=7) $\geqslant$ 0.5 := 0.1542985 $>$ 0.5 := \false{},
-    \item[] $exists$($u_{n1}$, 0.9) := $P$($x$=7) $\geqslant$ 0.9 := 0.1542985 $>$ 0.9 := \false{}.
-\end{itemize*}
+\begin{itemize}
+    \item $exists$($u_{n1}$, 0) := $P$($x$=7) $\geqslant$ 0 := 0.1542985 $>$ 0 := \true{},
+    \item $exists$($u_{n1}$, 0.5) := $P$($x$=7) $\geqslant$ 0.5 := 0.1542985 $>$ 0.5 := \false{},
+    \item $exists$($u_{n1}$, 0.9) := $P$($x$=7) $\geqslant$ 0.9 := 0.1542985 $>$ 0.9 := \false{}.
+\end{itemize}
 This operator allows verifying that there is no value with a confidence level of at least 50 or 90\% for $u_{n1}$, but there is at least one value with a non-null confidence level.
 
 For uncertain continuous numbers, no semantic exists for a continuous domain since the probability of the mode cannot be computed for continuous probability distributions, $\int_{m}^{m} P(u_n)\,\mathrm{d}x = 0$: 
@@ -425,11 +424,11 @@ $$confidence((v, p), t) :=  \begin{cases}
                                          \end{cases}$$
                                       
 Applying this operator on the $u_{n1}$ using the same base as in the previous example, the operator returns the mode value, 7, only for the first case:
- \begin{itemize*}
-    \item[] $confidence(u_{n1}, 0) := 7$,
-    \item[] $confidence(u_{n1}, 0.5) := \perp$,
-    \item[] $confidence(u_{n1}, 0.9) := \perp$.
-\end{itemize*}
+ \begin{itemize}
+    \item $confidence(u_{n1}, 0) := 7$,
+    \item $confidence(u_{n1}, 0.5) := \perp$,
+    \item $confidence(u_{n1}, 0.9) := \perp$.
+\end{itemize}
 
 This means that the most probable value which has at least zero as confidence level is 7 for $u_{n1}$. 
 
@@ -447,10 +446,10 @@ When casting an uncertain number (discrete or continuous) to a certain one, we r
 $$cast((v, p) := m$$
 
 For example, casting $u_{n1}$ and $u_{n3}$ to certain numbers will result in:
-\begin{itemize*}
-	\item[] $cast(u_{n1}) := 7$,
-	\item[] $cast(u_{n3}) := 12$.
-\end{itemize*}
+\begin{itemize}
+	\item $cast(u_{n1}) := 7$,
+	\item $cast(u_{n3}) := 12$.
+\end{itemize}
 
 When casting a certain to an uncertain number, we should be able to specify a distribution that represents a confidence level of 100\% on a precise value.
 This is not always possible with all distributions.
@@ -472,11 +471,11 @@ $$cast(v) := \begin{cases}
 					\end{cases}$$
 
 For example, casting 30 and 6.7 would result in:
-\begin{itemize*}
-	\item[] $cast(30) := (v, Dirac(1, 30))$
-	\item[] $cast(30) := (v, binomial(30, 1))$
-	\item[] $cast(6.7) := (v, Dirac(1, 6.7))$
-\end{itemize*}
+\begin{itemize}
+	\item $cast(30) := (v, Dirac(1, 30))$
+	\item $cast(30) := (v, binomial(30, 1))$
+	\item $cast(6.7) := (v, Dirac(1, 6.7))$
+\end{itemize}
 
 Finally, the operator can be applied between two uncertain numbers if and only if a mapping or an approximation  between the source and target probability distributions exists in probability theory:
 
@@ -486,25 +485,25 @@ $$cast(v, p_1) := \begin{cases}
  							\end{cases}$$
 
 Following the casting rules described in Table~\ref{table:allowed-cast-op},  $u_{n1}$ can be cast into an uncertain number with a Gaussian distribution and $u_{n3}$ can be cast into an uncertain number with a binomial distribution:
-\begin{itemize*}
-	\item[] $cast(u_{n1}) = (7, Gaussian(7.4, 4.662))$,
-	\item[] $cast(u_{n3}) = (12, binomial(48, 0.25))$.
-\end{itemize*}
+\begin{itemize}
+	\item $cast(u_{n1}) = (7, Gaussian(7.4, 4.662))$,
+	\item $cast(u_{n3}) = (12, binomial(48, 0.25))$.
+\end{itemize}
 
 \begin{table}
 	\begin{center}
-		\resizebox{0.75\textwidth}{!}{%
+%		\resizebox{0.75\textwidth}{!}{
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}
 			\hline	
 			\diagbox{To}{From} & Gaussian & Rayleigh & binomial & Dirac & certain number\\
 			\hline
-			Gaussian & \cellcolor{lightgray} & & \cmark & & \\
-			Rayleigh & &  \cellcolor{lightgray} &  & & \\
-			binomial & \cmark &   & \cellcolor{lightgray} & \cmark & \cmark \\
-			Dirac. & & &  & \cellcolor{lightgray} &\cmark \\
-			certain nb. & \cmark&\cmark & \cmark  & \cmark & \cellcolor{lightgray}\\
+%			Gaussian & \cellcolor{lightgray} & & \cmark & & \\
+%			Rayleigh & &  \cellcolor{lightgray} &  & & \\
+%			binomial & \cmark &   & \cellcolor{lightgray} & \cmark & \cmark \\
+%			Dirac. & & &  & \cellcolor{lightgray} &\cmark \\
+%			certain nb. & \cmark&\cmark & \cmark  & \cmark & \cellcolor{lightgray}\\
 			\hline
-		\end{tabular}}
+		\end{tabular}%}
 	\end{center}
 	{\small
 	\textit{From: source type of uncertain number; To: targetted type. For readability purpose, we put the distribution names to represent the different types of uncertain numbers}
@@ -522,12 +521,12 @@ $$(v, p_d).value := v$$
 $$(v, p_d).confidence := p_d$$
 
 When used on $u_{n1}$ and $u_{n3}$, this operator returns:
-\begin{itemize*}
-	\item[] $u_{n1}.value := 7$,
-	\item[] \linebreak $u_{n1}.confidence := binomial(20, 0.37)$,
-	\item[] $u_{n3}.value := 12$,
-	\item[] \linebreak $u_{n3}.confidence := Gaussian(12, 9)$.
-\end{itemize*}
+\begin{itemize}
+	\item $u_{n1}.value := 7$,
+	\item $u_{n1}.confidence := binomial(20, 0.37)$,
+	\item $u_{n3}.value := 12$,
+	\item $u_{n3}.confidence := Gaussian(12, 9)$.
+\end{itemize}
 
 \bigskip
 
@@ -550,20 +549,12 @@ For example, although the addition of two independent Gaussian is done by adding
 In such cases, the numerical approach is used.
 
 Arithmetic operations are applied on both elements that define an uncertain number, the value and the probability distribution:
-%\begin{align*}
-%	(v_1,p_1) + (v_2,p_2) = (v_1 + v_2, p_1 + p_2)\\
-%	(v_1,p_1) - (v_2,p_2) = (v_1 - v_2, p_1 - p_2)\\
-%	(v_1,p_1) * (v_2,p_2) = (v_1 * v_2, p_1 * p_2)\\
-%	(v_1,p_1) / (v_2,p_2) = (v_1 / v2_2, p_1 / p_2)
-%\end{align*}
-
-\begin{tasks}[label={\ }, after-item-skip=-1mm, before-skip={0mm}](2)
-	\task $(v_1,p_1) + (v_2,p_2) = (v_1 + v_2, p_1 + p_2)$	
-	\task $(v_1,p_1) - (v_2,p_2) = (v_1 - v_2, p_1 - p_2)$
-	\task $(v_1,p_1) * (v_2,p_2) = (v_1 * v_2, p_1 * p_2)$
-	\task $(v_1,p_1) / (v_2,p_2) = (v_1 / v2_2, p_1 / p_2)$
-\end{tasks}
-
+\begin{align*}
+	(v_1,p_1) + (v_2,p_2) = (v_1 + v_2, p_1 + p_2)\\
+	(v_1,p_1) - (v_2,p_2) = (v_1 - v_2, p_1 - p_2)\\
+	(v_1,p_1) * (v_2,p_2) = (v_1 * v_2, p_1 * p_2)\\
+	(v_1,p_1) / (v_2,p_2) = (v_1 / v2_2, p_1 / p_2)
+\end{align*}
 
 For example, adding $u_{n3}$ and $u_{n4}$ will result in: $u_{n3} + u_{n4} := (12+23, Gaussian(12+23, 5+9)) := (35, Gaussian(35, 14))$.
 
@@ -582,10 +573,10 @@ When the inequality operator is used between an uncertain and a certain number, 
 \end{align*}
 
 For example, comparing $u_{n1}$ and $u_{n3}$ will return:
-\begin{itemize*}
-	\item[] $u_{n1}$ $>$ 10 := (0.17 $>$ 0 , $B$(0.17)) := (\true{} , $B$(0.17)),
-	\item[] $u_{n3}$ $\leqslant$ 10 := (0.25 $>$ 0, $B$(0.25)) := (\true{}, $B$(0.25)).
-\end{itemize*}
+\begin{itemize}
+	\item $u_{n1}$ $>$ 10 := (0.17 $>$ 0 , $B$(0.17)) := (\true{} , $B$(0.17)),
+	\item $u_{n3}$ $\leqslant$ 10 := (0.25 $>$ 0, $B$(0.25)) := (\true{}, $B$(0.25)).
+\end{itemize}
 
 When the inequality operator is used between two uncertain numbers, the probability variable is substituted by $ u_{n1} \prec u_{n2} \Leftrightarrow u_{n1} - u_{n2}$. 
 From there, we can apply the operator, $\prec$, between the result and 0.
@@ -596,17 +587,17 @@ For example, comparing $u_{n3}$ and $u_{n4}$ will result in: $u_{n3} \geqslant u
 
 \bigskip
 
-%%% Uncertain equality operators %%%
+%% Uncertain equality operators %%%
 \noindent\textbf{Operator~\ref{op:u-equality} - Uncertain equality operator.~}
 
 When the equality operator is applied to a discrete uncertain and a certain number, it returns the probability that the uncertain number equals (or not) the certain one:
 $$(v_1, p_1) \prec a := (c > 0 ,~B(c));~c := P(u_n \prec a);~\prec \in \{=, \ne\}$$
 
 For example, applying these operators on $u_{n1}$ or $u_{n2}$ will result in:
-\begin{itemize*}
-	\item[] $u_{n1}$ = 2 := (0.00 $>$ 0, $B$(0.00)) := (\false{}, $B$(0.00)),
-	\item[] $u_{n2}$ $\ne$ 13 :=  (0.89 $>$ 0, $B$(0.89)) := (\true{}, $B$(0.89)).
-\end{itemize*}
+\begin{itemize}
+	\item $u_{n1}$ = 2 := (0.00 $>$ 0, $B$(0.00)) := (\false{}, $B$(0.00)),
+	\item $u_{n2}$ $\ne$ 13 :=  (0.89 $>$ 0, $B$(0.89)) := (\true{}, $B$(0.89)).
+\end{itemize}
 
 As it is impossible to compute the confidence of a precise number, this operation cannot be performed for continuous uncertain numbers:
 $$(v_1, p_1) \prec a := \perp$$
@@ -647,10 +638,10 @@ The semantics of the existence, confidence, cast, and dot operator are extended 
 \subsubsection{Operational semantics}
 We denote by $(r, u_b)$ an uncertain reference with a value $r$ and an uncertain boolean $u_b$, which represents its uncertainty.
 The following two uncertain references exemplify this:
-\begin{itemize*}
-    \item[] $u_{r1}$:=($r_1$, $u_{b1}$), $u_{b1}$:=(\true{}, $B$(0.88)),
-    \item[] $u_{r2}$:=($r_2$, $u_{b2}$), $u_{b2}$:=(\true{}, $B$(0.34)).
-\end{itemize*}
+\begin{itemize}
+    \item $u_{r1}$:=($r_1$, $u_{b1}$), $u_{b1}$:=(\true{}, $B$(0.88)),
+    \item $u_{r2}$:=($r_2$, $u_{b2}$), $u_{b2}$:=(\true{}, $B$(0.34)).
+\end{itemize}
 
 \bigskip
 
@@ -660,10 +651,10 @@ The semantics of this operator is defined upon the existence operator of the unc
 $$exists((r, u_b), t) := exists(u_b, t)$$
 
 When applied on the two examples from above, this operator would return:
-\begin{itemize*}
-    \item[] $exists$($u_{r1}$, 0.8) := $exists$($u_{b1}$, 0.8) := \true{},
-    \item[] $exists$($u_{r2}$, 0.8) := $exists$($u_{b2}$, 0.8) := \false{}.
-\end{itemize*}
+\begin{itemize}
+    \item $exists$($u_{r1}$, 0.8) := $exists$($u_{b1}$, 0.8) := \true{},
+    \item $exists$($u_{r2}$, 0.8) := $exists$($u_{b2}$, 0.8) := \false{}.
+\end{itemize}
 
 %%% Confidence operator %%%
 \noindent\textbf{Operator~\ref{op:confidence} - Confidence operator.~}
@@ -676,10 +667,10 @@ $$confidence((r,u_b), t) := \begin{cases}
                                             \end{cases}$$
                                            
 If applied to the two examples, it will return:
-\begin{itemize*}
-    \item[] $confidence$($u_{r1}$, 0.8) := $r_1$,
-    \item[] $confidence$($u_{r2}$, 0.8) := $\perp$.
-\end{itemize*}
+\begin{itemize}
+    \item $confidence$($u_{r1}$, 0.8) := $r_1$,
+    \item $confidence$($u_{r2}$, 0.8) := $\perp$.
+\end{itemize}
 
 \bigskip
 
@@ -690,10 +681,10 @@ When casting an uncertain reference to a certain one, it will return the referen
 $$cast(r, u_b) := confidence((r, u_b), 0)$$
 
 Casting both of our results into certain references will thus return in:
-\begin{itemize*}
-    \item[] $cast$($u_{r1}$) := $confidence$($u_{r1}$, 0) := $r_1$,
-    \item[] $cast$($u_{r2}$) := $confidence$($u_{r2}$, 0) := $r_2$.
-\end{itemize*}
+\begin{itemize}
+    \item $cast$($u_{r1}$) := $confidence$($u_{r1}$, 0) := $r_1$,
+    \item $cast$($u_{r2}$) := $confidence$($u_{r2}$, 0) := $r_2$.
+\end{itemize}
 
 When casting a reference to an uncertain one, the confidence level of its existence is set at the maximum, 1:
 $$cast(r) := (r, (\true{},~1))$$
@@ -712,10 +703,10 @@ The dot operator allows accessing the different elements of the uncertain refere
 \end{align*}
 
 Applying this operator on $u_{r1}$ thus returns:
-\begin{itemize*}
-	\item[] $u_{r1}$.$value$($u_{r1}$) := $r_1$,
-	\item[] $u_{r1}$.$confidence$($u_{r1}$) := $u_{b1}$.
-\end{itemize*}
+\begin{itemize}
+	\item $u_{r1}$.$value$($u_{r1}$) := $r_1$,
+	\item $u_{r1}$.$confidence$($u_{r1}$) := $u_{b1}$.
+\end{itemize}
 
 \subsection{Static semantic: typing rules}
 \label{subsec:type-system}
