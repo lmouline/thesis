@@ -1,0 +1,68 @@
+\section{Summary}
+
+Software systems are more and more pervasive and evolve in more and more complex \gls{env}.
+This complexity comes with q price: the \gls{env} is less and less known with high confidence.
+To face this challenge, systems became adaptive: their \gls{structure} and their \gls{behaviour} can be adjusted at runtime in response to changes in the \gls{env}, \gls{behaviour}, or even their specification.
+One example of such system is \gls{sg}: a power grid which includes \gls{ict} to optimise energy delivery and service quality.
+They continuously monitor cable load to detect any overloads or outages.
+If one is detected, the system, triggers a modification of power flow to heal the system.
+
+One way to implement an \gls{adptSyst}, like a \gls{sg}, is to apply the \gls{m@rt} paradigm.
+This paradigm is part of the \gls{mde} methodology, which advocates for the use of \glspl{model} in software engineering.
+As mentioned in the name, \gls{m@rt} defines runtime \gls{model} with a causal link to the system.
+A runtime \gls{model} reflects the state of a system, during its execution.
+Any modification of the system triggers an update of the \gls{model}, and vice-versa (causal link).
+
+However, we have identified five problems that can reduce the usability of this approach (\cf \Cref{chapt:intro}).
+First, data collected are, for the most part, uncertain, which can mislead the understanding of a system's \gls{behaviour}, \gls{structure}, or \gls{env}.
+Second, adaptation \glspl{action} are never immediate, take time to be executed, and have long-term effects.
+We refer to these \glspl{action} as \gls{longTermAct}.
+Third, these systems can have an emergent \gls{behaviour}.
+Four, the different components of a system can evolve at different paces.
+Last, evolution of the time is linked with time.
+
+Within this dissertation, we argue towards a novel modelling framework that efficiently encapsulates time and uncertainty as first-class concepts.
+ Therefore, in this thesis we focus on three challenges:
+\begin{enumerate}
+	\vspace{-0.5em}
+	\setlength\itemsep{-0.3em}
+	\item How to ease the manipulation of data uncertainty?
+	\item How to enable reasoning over unfinished actions and their expected effects?
+	\item How to diagnose the self-adaptation process?
+\end{enumerate}
+
+In order to solve them, in this dissertation we propose two contributions.
+First, to answer the first challenge, we defined a language that integrates concepts related to \gls{duc} as first-class citizen named \langName{} (\cf \Cref{chapt:aintea}).
+In addition to traditional object-oriented language type (boolean, numeric, reference), the language has uncertain boolean, uncertain numeric, and uncertain reference.
+These types encapsulate two elements: one element to represent the value, and one to represent the uncertainty.
+Following what have been done in probabilistic programming, the uncertainty is abstracted by a probability distribution.
+\langName{} manages five distributions.
+One distribution is used for uncertain boolean and reference: Bernoulli.
+The four others distributions are employed for uncertain numbers: Gaussian, Rayleigh, binomial, and Dirac delta function.
+
+As we add new data types, we also modify the language operators and the type system in consequence.
+Following what is done in the literature, we map the different operators (arithmetic, boolean, comparison) to a process to propagate uncertainty.
+Therefore, a developer can combine uncertain data as she is used to do with certain data.
+Additionally, we define specific operators to reason over uncertainty, such as the \textit{confidence} and \textit{exist} operator.
+The type system natively considers these new data types.
+Statically, it checks is the combination of uncertain data follows the constraint of uncertainty propagation, that is the probability theory.
+If not, error messages are thrown during the development time to guide developers in their choices.
+
+In our validation, we show that our language is as concise as state-of-the-art solutions.
+Contrary to these solutions, we also show that our solution can detect errors earlier.
+Thanks to the semantics, which supports uncertainty, errors message help developers in their development of algorithms that use uncertain data.
+
+Our second contribution, which tackles the two others challenges, is a temporal knowledge \gls{metamodel} (\cf \Cref{chapt:tkm}).
+Contrary to state-of-the-art solutions, this \gls{metamodel} adds the concept of \gls{longTermAct}.
+Thanks to this structure, a stakeholder can abstract and store decisions made by the adaptation process and link them to their circumstances --targeted requirements and used context-- as well as their effects. 
+Moreover, the \gls{metamodel} is also supported by a graph-based formalism.
+We formalise the different elements of the knowledge of an \gls{adptSyst}: \glspl{requirement}, \glspl{action} (design time and runtime), and \gls{context}.
+
+When a designer defines a \gls{model} conforms to our \gls{metamodel}, she will benefit from an \gls{api}.
+An engineer can use this \gls{api} to interact with the \gls{model} at runtime.
+In our evaluation, we showed that our solution can efficiently handle up to 100\,000 elements, in a single machine. 
+This size is comparable to 5 days history of the Luxembourg \gls{sg}.
+
+These contributions do not answer all questions related to the identified problems.
+Besides, they suffer from limitations that can lead to further research effort.
+In the next section, we detailed these limitations with the perspectives.
