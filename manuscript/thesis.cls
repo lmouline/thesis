@@ -169,9 +169,19 @@
 	
 	\pagenumbering{roman}
 	
+	\renewcommand{\listfigurename}{List of figures}
 	\phantomsection
 	\addcontentsline{toc}{chapter}{List of publications and tools}
 	\input{publications}
+	
+	\phantomsection
+	\addcontentsline{toc}{chapter}{List of figures}
+    \listoffigures
+    
+    \renewcommand{\listtablename}{List of tables}
+    \phantomsection
+    \addcontentsline{toc}{chapter}{List of tables}
+    \listoftables
 	
 	\ifIFglossary
 		\printglossary[type=\acronymtype, title={Abbreviations}]
