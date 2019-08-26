@@ -292,26 +292,37 @@ The confidence level is thus attached to the precise value.
 \subsubsection{Representation of uncertain numbers}
 \label{subsubsec:d-u-repr-unum}
 
-\begin{figure*}
-    \centering
-    \subfloat[Gaussian and Rayleigh] {
-        \includegraphics[width=.31\linewidth]{img/chapt-aintea/duc/GaussRayleigh}
-        \label{fig:gauss-ray}
-    }
-    \hfill
-  \subfloat[binomial] {
-        \includegraphics[width=.31\linewidth]{img/chapt-aintea/duc/binomial}
-        \label{fig:binom}
-    }
-    \hfill
-    \subfloat[Dirac delta function] {
-        \includegraphics[width=.31\linewidth]{img/chapt-aintea/duc/dirac}
-        \label{fig:dirac}
-    }
-    \hfill
-    \subfloat[Which distribution can be used to represent the uncertainty of which data type] {
-    	{\small
-        \begin{tabular}{ |c|c|c|c|c|c| }
+%\begin{figure*}
+%    \centering
+%    \subfloat[Gaussian and Rayleigh] {
+%        \includegraphics[width=.31\linewidth]{img/chapt-aintea/duc/GaussRayleigh}
+%        \label{fig:gauss-ray}
+%    }
+%    \hfill
+%  \subfloat[binomial] {
+%        \includegraphics[width=.31\linewidth]{img/chapt-aintea/duc/binomial}
+%        \label{fig:binom}
+%    }
+%    \hfill
+%    \subfloat[Dirac delta function] {
+%        \includegraphics[width=.31\linewidth]{img/chapt-aintea/duc/dirac}
+%        \label{fig:dirac}
+%    }
+%    \hfill
+%    \subfloat[Which distribution can be used to represent the uncertainty of which data type] {
+%    	{\small
+%        
+%         \label{table:mapping-types-proba}
+%    }
+%    \caption{Probability distributions defined in \langName{}}
+%    \label{fig:example-proba-dist}
+%\end{figure*}
+
+
+
+\begin{table}
+	\begin{center}
+    	\begin{tabular}{ |c|c|c|c|c|c| }
               \hline
                Type & Data type & Gaussian & Rayleigh & binomial & Dirac \\
                \hline
@@ -319,12 +330,11 @@ The confidence level is thus attached to the precise value.
                \hline
 			   Discret & byte, short, integer, long & &  &  \cmark & \cmark \\
                \hline
-         \end{tabular}}
-         \label{table:mapping-types-proba}
-    }
-    \caption{Probability distributions defined in \langName{}}
-    \label{fig:example-proba-dist}
-\end{figure*}
+        \end{tabular}
+    	\caption{Which distribution can be used to represent the uncertainty of which data type}
+    	\label{table:mapping-types-proba}
+    \end{center}
+\end{table}
 
 Like uncertain booleans, uncertain numbers are composed of two elements: a numerical value and a probability distribution that represents its uncertainty.
 According to the nature of the numerical value, developers have to decide which distribution fits the uncertainty of their variable. 
@@ -333,51 +343,52 @@ The former defines the distribution of the probability density over a continuous
 The latter instead apply to a discrete domain.
 In our proposed language, we support the following distributions: two continuous probability distributions, Gaussian~\cite{walck1996hand} and Rayleigh~\cite{walck1996hand}, and one discrete distribution, the binomial distribution~\cite{walck1996hand}.
 In addition, we support the Dirac delta function~\cite{gelfand1964}, which can be used on a continuous or a discrete domain.
-Figures~\ref{fig:gauss-ray}-\ref{fig:dirac} depict these distributions and Table~\ref{table:mapping-types-proba} summarizes the selected distributions and describes which distribution can be used to represent the uncertainty of which primitive, numerical data type.
-
-%\paragraph{Gaussian and Rayleigh distributions}
-The Gaussian distribution, commonly referred to as normal distribution, is the most general probability distribution.
-Moreover, the International Bureau of Weights and Measures encourages the use of this distribution to quantify the uncertainty of measured values~\cite{metrology2008evaluation}.
-It is defined by two parameters: a mean and a variance.
-Another distribution is Rayleigh distribution.
-It is often used for GPS positions~\cite{bornholt2013abstractions}.
-This distribution is defined using a unique parameter: a variance.
-%Both distributions are defined on a continuous domain: $]-\infty; +\infty[$ for Gaussian and $[0; +\infty[$ for the Rayleigh distribution.
-Additionally, \textbf{confidence is mapped  to the area under the function which defines the probability distribution, \ie the integral of the function}.
-For example, the confidence that a given uncertain value is greater than zero is the surface under the function $f(x)$ for any $f(x) \mid f(x) > 0$. 
-By definition, the integral of the Gaussian and the Rayleigh distributions over their domains is always equal to 1.
-An example of these two distributions is illustrated in Figure~\ref{fig:gauss-ray}.
-While these distributions are commonly used to represent uncertainty on continuous domains, they are not suitable to represent uncertainty on discrete ones, \eg Integer and Long.
-
-%\paragraph{Binomial distribution}
-The binomial distribution is defined on a discrete domain, more specifically on the set of natural number $\mathds{N}$.
-%Theoretically, it gives the probability of \textit{x} successes out of \textit{n} trials, each trial with a probability \textit{c}.
-In this case, \textbf{confidence corresponds to the values of the function}.
-It has been proven that this distribution is similar to a Gaussian distribution in certain cases~\cite{box2005}.
-If the domain definition can be changed from discrete to continuous, a binomial distribution can be approximated by a Gaussian distribution. 
-We use this relationship for type conversion operations, for example casting an uncertain integer variable to an uncertain double.
-Figure~\ref{fig:binom} illustrates an example of a Binomial distribution.
-This distribution can be used for Integer, Short and Long values as they are discrete numbers.
-
-%\paragraph{Dirac delta function}
-The Dirac delta function is defined as a probability function with $f(x) = +\infty$ for $x=0$ and $f(x) = 0$ for all the other points.
-To represent other values than zero, the following variable substitution can be used $x = x - a$,  where.
-We call $a$ the shifting value.
-By definition, the integral of this function on the whole domain definition is equal to 1.
-\textbf{As it is considered as a continuous distribution, confidence is mapped to the integral of the function}.
-By applying a coefficient, we can modify the value of this integral, \eg to have 0.8 as the integral.
-We define this probability distribution using two parameters a coefficient and a shifting value.
-An example of this probability distribution is shown in Figure~\ref{fig:dirac}.
-Conventionally, the Dirac function is represented as a vertical line that stops at the coefficient.
-The figure shows a Dirac function with a coefficient of 0.8 and a shifting value of 3.
-As it is defined on a single value, this distribution can be used for any numbers.
-This distribution can be used to represent uncertainty that is due to human errors.
+We refer to \Cref{chapt:background} for a detailed description of these distributions.
+%Figures~\ref{fig:gauss-ray}-\ref{fig:dirac} depict these distributions and Table~\ref{table:mapping-types-proba} summarizes the selected distributions and describes which distribution can be used to represent the uncertainty of which primitive, numerical data type.
+%
+%%\paragraph{Gaussian and Rayleigh distributions}
+%The Gaussian distribution, commonly referred to as normal distribution, is the most general probability distribution.
+%Moreover, the International Bureau of Weights and Measures encourages the use of this distribution to quantify the uncertainty of measured values~\cite{metrology2008evaluation}.
+%It is defined by two parameters: a mean and a variance.
+%Another distribution is Rayleigh distribution.
+%It is often used for GPS positions~\cite{bornholt2013abstractions}.
+%This distribution is defined using a unique parameter: a variance.
+%%Both distributions are defined on a continuous domain: $]-\infty; +\infty[$ for Gaussian and $[0; +\infty[$ for the Rayleigh distribution.
+%Additionally, \textbf{confidence is mapped  to the area under the function which defines the probability distribution, \ie the integral of the function}.
+%For example, the confidence that a given uncertain value is greater than zero is the surface under the function $f(x)$ for any $f(x) \mid f(x) > 0$. 
+%By definition, the integral of the Gaussian and the Rayleigh distributions over their domains is always equal to 1.
+%An example of these two distributions is illustrated in Figure~\ref{fig:gauss-ray}.
+%While these distributions are commonly used to represent uncertainty on continuous domains, they are not suitable to represent uncertainty on discrete ones, \eg Integer and Long.
+%
+%%\paragraph{Binomial distribution}
+%The binomial distribution is defined on a discrete domain, more specifically on the set of natural number $\mathds{N}$.
+%%Theoretically, it gives the probability of \textit{x} successes out of \textit{n} trials, each trial with a probability \textit{c}.
+%In this case, \textbf{confidence corresponds to the values of the function}.
+%It has been proven that this distribution is similar to a Gaussian distribution in certain cases~\cite{box2005}.
+%If the domain definition can be changed from discrete to continuous, a binomial distribution can be approximated by a Gaussian distribution. 
+%We use this relationship for type conversion operations, for example casting an uncertain integer variable to an uncertain double.
+%Figure~\ref{fig:binom} illustrates an example of a Binomial distribution.
+%This distribution can be used for Integer, Short and Long values as they are discrete numbers.
+%
+%%\paragraph{Dirac delta function}
+%The Dirac delta function is defined as a probability function with $f(x) = +\infty$ for $x=0$ and $f(x) = 0$ for all the other points.
+%To represent other values than zero, the following variable substitution can be used $x = x - a$,  where.
+%We call $a$ the shifting value.
+%By definition, the integral of this function on the whole domain definition is equal to 1.
+%\textbf{As it is considered as a continuous distribution, confidence is mapped to the integral of the function}.
+%By applying a coefficient, we can modify the value of this integral, \eg to have 0.8 as the integral.
+%We define this probability distribution using two parameters a coefficient and a shifting value.
+%An example of this probability distribution is shown in Figure~\ref{fig:dirac}.
+%Conventionally, the Dirac function is represented as a vertical line that stops at the coefficient.
+%The figure shows a Dirac function with a coefficient of 0.8 and a shifting value of 3.
+%As it is defined on a single value, this distribution can be used for any numbers.
+%This distribution can be used to represent uncertainty that is due to human errors.
 
 In our language, we add new data types that represent each distribution.
 In addition, we add a new type for all possible combinations, described in Table~\ref{table:mapping-types-proba}.
 Existence, confidence, dot, cast and uncertain equality operators are also defined for these data types.
 We add operators specific to numerical values: arithmetic and comparison operators.
-The semantics of these operators are formalized in the next section.\looseness-1	
+The semantics of these operators are formalised in the next section.\looseness-1	
 
 \subsubsection{Operational semantics}
 We denote by $(v, p_d)$ an uncertain number with a numerical value $v$ and a probability distribution $p_d \in P_D$.
