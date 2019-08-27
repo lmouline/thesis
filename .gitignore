@@ -5,11 +5,3 @@ manuscript/build
 
 # MacOS files
 .DS_Store
-
-# Others
-phdthesis.cls
-
-# Excel files
-*.xlsx
-
-feedback
