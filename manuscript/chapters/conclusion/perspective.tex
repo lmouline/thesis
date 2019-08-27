@@ -1,41 +1,43 @@
 \section{Perspectives}
-B oth our contributions suffer from limitations that call for further research.
-First, our language \langName{} do not include all the different kinds of uncertainty representations, uncertainty is only applied on simple data type, and the propagation is limited to some of the language operators (arithmetic, boolean, and comparison).
-Second; when we define our temporal knowledge model, we assume that designers are able to link actions with their expected impacts at design time and the final \gls{metamodel} remains large.
-In this section, we describe research directions that could remove these limitations and other perspectives let by our work.
+Both our contributions suffer from limitations that call for further research.
+First, our language \langName{} do not include all the different kinds of uncertainty representations.
+Moreover, uncertainty is only applied to simple data type, and the propagation is limited to some of the language operators (arithmetic, boolean, and comparison).
+Second, when we define our temporal knowledge model, we assumed that designers can link actions with their expected impacts at design time.
+Then, the final \gls{metamodel} remains large.
+In this section, we describe research directions that could remove these limitations, and other perspectives let by our work.
 
 
 \subsection{Other uncertainty representation}
 Our current work addresses only uncertainty on values and with a limited number of probability distributions.
-However, other kinds of uncertainties exist such as uncertainty of existence or temporal uncertainty.
+However, other kinds of uncertainties exist, such as uncertainty of existence or temporal uncertainty.
 The first one corresponds to the confidence that a value exists or not.
 It can result from faulty data sources that send wrong data.
 The second one can be used to represent the loss of confidence in value over time.
-Moreover, researchers defined other strategies to represent uncertain data such as keeping multiple possibilities.
+Moreover, researchers defined other strategies to represent uncertain data, like keeping multiple possibilities.
 
-A first future work would be to investigate how to introduce such techniques inside a programming language.
-A first research effort can be to define a language that uses different strategies to handle uncertainty.
+First future work would be to investigate how to introduce such techniques inside a programming language.
+Then, research efforts can focus on the definition of a language that uses different strategies to handle uncertainty.
 It will open new challenges regarding the type system, the semantics, and the syntax of the language.
 
-Second, introducing new probability distributions lead to complex combination of probability distributions.
+Second, introducing new probability distributions lead to complex combinations of probability distributions.
 In the current approach, we use an analytical approach (we compute the exact solution).
 However, this cannot be performed between some probability distributions.
-In such situation, a numerical method should be applied.
-This lead to challenges regarding the threshold between the performance of the language and the accuracy of the method.
+In such a situation, a numerical method should be applied.
+This leads to challenges regarding the threshold between the performance of the language and the accuracy of the method.
 
 \subsection{More complex data structure}
 In our language, we focus our studies on the primitive data types (numeric and boolean) and references (1:1 relation).
 However, it exists several other data structures, from the simplest ones like arrays to complex ones like graphs or trees.
-In the \gls{uml} specification, different kind of relations have been defined (1:1, 1:n, n:n, \etc).
+In the \gls{uml} specification, different kinds of relations have been defined (1:1, 1:n, n:n, \etc).
 
 While these data structure and relations are useful to build algorithms to reason over data, they come with new challenges.
-First, it opens new question concerning the meaning of an uncertain data structure: what an uncertain array? what an uncertain tree, graph?
+First, it opens new questions concerning the meaning of an uncertain data structure: what an uncertain array? What an uncertain tree, graph?
 Let us take an uncertain array.
-The uncertainty can be related to the full collection, or on each element, or on both.
-Plus, research efforts has to be done to specify the semantics of operators on these uncertain structure.
+The uncertainty can be related to the full collection, or on each element, or both.
+Additionally, research efforts have to be done to specify the semantics of operators on these uncertain structures.
 For example, one may focus on how the uncertainty of the array will be impacted by an \textit{add} or \textit{remove} operation.
 Lastly, one may investigate the impact of introducing uncertain data structure in common algorithms.
-For example: how to sort an uncertain collection? how to balance an uncertain tree? how to compute the shortest path?
+For example: how to sort an uncertain collection? How to balance an uncertain tree? How to compute the shortest path?
 
 \subsection{Impact of uncertainty to control flow}
 In our language, we map the uncertainty propagation to operators.
@@ -43,18 +45,18 @@ We did not study the impact of control flow statements on the uncertainty propag
 Introducing uncertainty as a first-class citizen will inevitably modify current behaviour of control flow statements such as \textit{IF}-conditions.
 We strongly think that this new data type in the type system will lead to further research directions.
 We identified two other situations that should be considered, with their challenges.
-First, the propagation through control flow statements: how the uncertainty is propagated after an \textit{IF}-condition, a \textit{FOR}-loop and a \textit{WHILE}-loop.
-Second, the propagation from one kind of uncertainty to another one.
+The first one is the propagation through control flow statements: how the uncertainty is propagated after an \textit{IF}-condition, a \textit{FOR}-loop and a \textit{WHILE}-loop.
+The second one is the propagation from one kind of uncertainty to another one.
 For example, how the uncertainty of presence should be propagated to the uncertainty of a sum, average or variance computation?
 
-Conditional expressions, which have boolean type, modify the control flow by forking it.
-With certain boolean, the expression is evaluated at runtime and one branch is selected according to the result.
+Conditional expressions, which have a boolean type, modify the control flow by forking it.
+With certain boolean, the expression is evaluated at runtime, and one branch is selected according to the result.
 With uncertain ones, the executor cannot decide which branch to execute.
 We thus identified two possible controls flows: the classical and the uncertain execution.
 
 For the classical one, a cast operation should be performed to get a certain one.
 It can be done using at least two strategies.
-First, a random selection from the probability distribution can be done.
+First, a random selection from the probability distribution can be made.
 Second, a cast can be done using the \textit{cast} or \textit{confidence} operator of our language (\cf \Cref{chapt:aintea}).
 
 For the uncertain execution, as the executor cannot decide which branch should be executed, it should execute all of them and propagate the uncertainty.
@@ -71,37 +73,36 @@ else
 As \textit{b} is true with a confidence of 40\%, \textit{n} should be equal to 5 with a confidence of (40\% * 80\% = 32\%) and to -5 with a confidence of (60\% * 80\% = 48\%) (considering \textit{b} and \textit{n} independent).
 
 These two execution semantics come with several open questions.
-For the classical one: what are the impact on performances?
-For the other one: should the execution be parallel or not? how to ensure that the execution do not have side effect(s)? what are the impact on the performance?
+One is related to the impact of such techniques to performances (\gls{cpu}, memory, \etc).
+For the uncertain execution, additional question persists such as: should the execution be parallel or not? How to ensure that the execution does not have side effect(s)?
 And a final one: can other semantics be defined?
 
 \subsection{Unknown effects of actions}
-When we defined our temporal knowledge model (\cf \Cref{chapt:tkm}), we assumed that designers are able to link \glspl{action} with their expected effects at design time with the most thorough confidence. 
+When we defined our temporal knowledge model (\cf \Cref{chapt:tkm}), we assumed that designers can link \glspl{action} with their expected effects at design time with the most thorough confidence. 
 However, as systems are more and more complex, we think that they do not know all the impacts in advance.
 As done by Donald Rumsfeld in a famous US Department of Defense press briefing, we can identify two levels of unknowns: unknown knowns, and unknown unknowns.
 Moreover, these relations are uncertain.
-All traceability links that we model in this paper should not be considered as strongly accurate.
+All traceability links that we model in this paper should not be considered as entirely accurate.
 
-Research efforts is, therefore, needed to define techniques to discover these unknowns relations.
+Research efforts are, therefore, needed to define techniques to discover these unknown relations.
 One approach could be to use a learning algorithm to find them.
 Besides, research efforts are still required to combine our two contributions and achieve our vision of an uncertain and time-aware modelling framework.
 
 \subsection{Manipulation and population of the large model}
 We are conscious that the \gls{metamodel} defined in~\Cref{chapt:tkm} remains large.
-It can be difficult to be manually define and manipulate.
-However, we never claim that all the model should be manually manipulate.
+A \gls{model} that conforms this \gls{metamodel} can be challenging to be defined and manipulated manually.
 
 Research efforts are required to define \gls{dsl} to facilitate the manipulation of the \gls{model}.
-Moreover, autonomous process should be defined to automatically populate a \gls{model} conforms to our \gls{metamodel}.
-For example, one can define a process to analyse to code or the model that defines the \glspl{action} to populate the temporal knowledge \gls{model} with the actions, their circumstances, and their effects.
-Other process can de specified to automatically populate the \gls{model} with context information, status of action execution, \etc.
+Moreover, autonomous processes can be defined to populate a \gls{model} conforms to our \gls{metamodel} automatically.
+For example, one can specify a method for analysing the code or the model that describes \glspl{action} to populate the temporal knowledge with \glspl{longTermAct}.
+Another process can be formalised to add \gls{model} elements related to context information, the status of action executions, \etc.
 
 \subsection{Uncertainty evaluation and reduction}
 In our work on uncertainty, we focus on the definition of uncertain data and the propagation.
-However, while talking about uncertainty, there is two other key concepts: evaluation and reduction.
+However, while talking about uncertainty, there are two other key concepts: evaluation and reduction.
 The former is to evaluate the uncertainty at runtime of a received data, \eg to find the appropriated probability distribution with its parameter.
-The latter is to increase the confidence of a receive value.
+The latter is to increase the confidence of received value.
 
 The literature provides techniques to evaluate the uncertainty~\cite{wubbeler2008evaluation, metrology2008evaluation} and to reduce it~\cite{shafer1992dempster}.
 Thus, we think that perspectives for the modelling community are open.
-The community should focus on model that abstract these techniques to help engineers to manipulate and integrate them in their model.
+The community should focus on a \gls{model} that abstracts these techniques to help engineers to manipulate and integrate them in their model.
