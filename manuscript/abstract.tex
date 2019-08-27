@@ -2,22 +2,20 @@
 
 \highlightbox[Vision]
 {
-	%% Context & Problem
 	As state-of-the-art techniques fail to model efficiently the evolution and the uncertainty existing in dynamically adaptive systems, the adaptation process makes suboptimal decisions.
-	%% Vision
 	To tackle this challenge, modern modelling frameworks should efficiently encapsulate time and uncertainty as first-class concepts.
 }
 \bigskip
 
-%% Context
 \paragraphit{Context}
 Smart grid approach introduces information and communication technologies into traditional power grid to cope with new challenges of electricity distribution.
 Among them, one challenge is the resiliency of the grid: how to automatically recover from any incident such as overload?
 These systems therefore need a deep understanding of the ongoing situation which enables reasoning tasks for healing operations.
-\textbf{Abstraction} is a key technique that provided an illuminating description of systems, their behaviours, and/or their environments alleviating their complexity.
-\textbf{Adaptation} is a cornerstone feature that enables reconfiguration at runtime for optimizing software to the current and/or future situation.
+\textbf{Abstraction} is a key technique that provided a description of systems, their behaviours, and/or their environments alleviating their complexity.
+\textbf{Adaptation} is a cornerstone feature that enables reconfiguration at runtime for optimising software to the current and/or future situation.
 
-Abstraction technique is pushed to its paramountcy by the model-driven engineering (MDE) methodology.
+
+The model-driven engineering (MDE) methodology promotes the use of abstraction in software engineering.
 However, information concerning the grid, such as loads, is not always known with absolute confidence.
 Through the thesis, this lack of confidence about data is referred to as \textbf{data uncertainty}.
 They are approximated from the measured consumption and the grid topology.
@@ -35,12 +33,11 @@ For example, when a tree falls on a cable and cuts it during a storm, the grid m
 The reconfiguration of the grid, to reconnect as many people as possible before replacing the cable, is done by technicians who need to use their cars to go on the reconfiguration places.
 In a fully autonomous adaptive system, the reasoning process should consider the ongoing actions to avoid repeating decisions.
 
-%% Problematic 
 \bigskip
 \paragraphit{Problematic}
 \textbf{Data uncertainty and long-term actions are not specific to smart grids.}
 
-First, data are, almost by definition, uncertain and developers always work with estimates.
+First, data are, almost by definition, uncertain and developers work with estimates in most cases.
 Hardware sensors have by construction a precision that can vary according to the current environment in which they are deployed.
 A simple example is the temperature sensor that provides a temperature with precision to the nearest degree.
 Software sensors approximate also values from these physical sensors, which increases the uncertainty.
@@ -56,13 +53,11 @@ To know if the data uncertainty should be considered, stakeholders should wonder
 Regarding long-term actions, they should verify \textbf{if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
 These characteristics are common to smart grids, cloud infrastructure or cyber-physical systems in general.
 
-%% Challenge
 \bigskip
 \paragraphit{Challenge}
 These problematics come with different challenges concerning the representation of the knowledge for DAS.
 The global challenge address by this thesis is: \textbf{how to represent the uncertain knowledge allowing to efficiently query it and to represent ongoing actions in order to improve adaptation processes?}
 
-%% Vision 
 \bigskip
 \paragraphit{Vision}
 \textbf{This thesis defends the need for a unified modelling framework which includes, despite all traditional elements, temporal and uncertainty as first-class concepts.}
@@ -73,12 +68,10 @@ It should also enable the abstraction of the system environment and its behaviou
 Finally, the framework should represent the structure, behaviour and specification of the system itself as well as the actuators and sensors.
 All these representations should integrate the data uncertainty existing.
 
-%% Contributions which support the vision
 \bigskip
 \paragraphit{Contributions}
-Towards this vision, this document presents two approaches: a temporal context model and a language for uncertain data.The temporal context model allows abstracting past, ongoing and future actions with their impacts and context.First, a developer can use this model to know what the ongoing actions, with their expect future impacts on the system, are.Second, she/he can navigate through past decisions to understand why they have been made when they have led to a sub-optimal state.The language, named \langName, integrates data uncertainty as a first-class citizen.It allows developers to attach data with a probability distribution which represents their uncertainty.Plus, it mapped all arithmetic and boolean operators to uncertainty propagation operations. And so, developers will automatically propagate the uncertainty of data without additional effort, compared to an algorithm which manipulates certain data.
+Towards this vision, this document presents two contributions: a temporal context model and a language for uncertain data.The temporal context model allows abstracting past, ongoing and future actions with their impacts and context.First, a developer can use this model to know what the ongoing actions, with their expect future impacts on the system, are.Second, she/he can navigate through past decisions to understand why they have been made when they have led to a sub-optimal state.The language, named \langName, integrates data uncertainty as a first-class citizen.It allows developers to attach data with a probability distribution which represents their uncertainty.Plus, it mapped all arithmetic and boolean operators to uncertainty propagation operations. And so, developers will automatically propagate the uncertainty of data without additional effort, compared to an algorithm which manipulates certain data.
 
-%% Validation
 \bigskip
 \paragraphit{Validation}
 Each contribution has been evaluated separately. 
@@ -88,7 +81,7 @@ The model also provides an API which enables the execution of query for diagnosi
 In order to show the feasibility of the solution, it has also been applied to the use case provided by the industrial partner.
 
 The language has been evaluated through two axes: its ability to detect errors at development time and its expressiveness.
-Ain'tea can detect errors in the combination of uncertain data earlier than state-of-the-art approaches.
+\langName{} can detect errors in the combination of uncertain data earlier than state-of-the-art approaches.
 The language is also as expressive as current approaches found in the literature.
 Moreover, we use this language to implement the load approximation of a smart grid furnished by an industrial partner, Creos S.A.\footnote{Creos S.A. is the power grid manager of Luxembourg. \url{https://www.creos-net.lu}}.
 
