@@ -4,7 +4,7 @@ During our study, we have identified several characteristics of \glspl{adptSyst}
 First, information gathered is not always known with absolute confidence.
 Second, reconfigurations may not be immediate, and their effects are not instantaneously measured.
 Third, system behaviour may be emergent~\cite{zio2011uncertainties}, \ie it cannot be entirely known at design time.
-Four, the different sub-parts of the system do not evolve at the same pace.
+Four, the different sub-parts of the system do not evolve at the same rate.
 Five, structure and behaviour of systems have a time dimension.
 
 
@@ -39,7 +39,7 @@ As said before, technicians need to drive physically to fuse locations to modify
 Besides, in the case of the Luxembourg smart grid, meters send energy measurement every 15 min, non-synchronously.
 Between the time a reconfiguration of the smart grid is decided, and the time the effects are measured, a delay of at least 15 min occurs.
 On the other hand, an incident should be detected in the next minutes.
-If the adaptation process does not consider this difference of paces, it can cause repeated decisions.
+If the adaptation process does not consider this difference of rates, it can cause repeated decisions.
 
 \textbf{Actions are never immediate, take time to be executed, and have long-term effects.}
 Through this thesis, we refer to such actions as \glspl{longTermAct}.
@@ -71,23 +71,23 @@ It will help them to optimise the global behaviour or to understand and repair e
 \textbf{Engineers need tooling support to trace back previous behaviours and or replay them.}
 
 
-\subsection{Different part of a system evolve at different paces}
+\subsection{Different part of a system evolve at different rates}
 Every meter sends consumption and production data every 15 min.
 However, this collection is not synchronous.
 That is, all meters do not send their data at the same timestamp.
 The global system, which receives all data, has not thus a global vision with the same freshness for all the part of the grid.
-Electricity data are very volatile: a peak or a drop may happen in less than a minute due to, for instance, the starting or the finishing of a washing machine.
-When analysing the data, the process should consider this difference of paces, and estimate the evolution of data.
+Electricity data are volatile: a peak or a drop may happen in less than a minute due to, for instance, the starting or the finishing of a washing machine.
+When analysing the data, the process should consider this difference of rates, and estimate the evolution of data.
 Otherwise, they will reason over outdated data, which do not reflect the real situation.
 It may lead to suboptimal decisions.
 
-\textbf{Different parts of the same system may evolve at different paces.}
+\textbf{Different parts of the same system may evolve at different rates.}
 Some systems are heterogeneous in terms of hardware and software.
-This diversity results in different evolution or reaction paces.
+This diversity results in different evolution or reaction rates.
 For example, if some components are working on batteries, they will have a sleep cycle to save energy.
 Contrary, if some others are running connected directly to a power source, they can react faster.
 
-Despite this difference of paces, a global vision of a system at a precise time point may be still required.
+Despite this difference of rates, a global vision of a system at a precise time point may be still required.
 The vision should deal with data that have different freshness.
 In the worst case, some data would be outdated and cannot be used.
 \textbf{Solutions to seamlessly predict or estimate what should be the current state of these outdated elements are thus required.}
