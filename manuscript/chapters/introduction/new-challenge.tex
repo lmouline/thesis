@@ -32,12 +32,11 @@ However, the uncertainty of the \gls{gps} may impact the understanding by, for i
 For \glspl{adptSyst}, this lack of confidence may trigger suboptimal adaptations.
 
 Therefore, we argue that \gls{duc} impacts all the development stages of software, from the design to the execution.
-Design techniques should provide mechanisms to help developers abstract and manipulating uncertain data.
-Control flows use data, for example, in the branching conditions.
-This branching should be redesigned to consider the uncertainty in the data.
+Among the different stages, in this thesis we focus on the design one.
+We firmly think that design techniques should provide mechanisms to help developers abstract and manipulating uncertain data.
 
-The literature provides approaches to help engineers reason or manipulate data uncertainty, or at least probability distributions.
-For example, believe functions~\cite{shafer1992dempster} help to reduce this uncertainty by combining several sources of data.
+The literature provides approaches to help engineers reason or manipulate \gls{duc}, or at least probability distributions.
+For example, believe func-\linebreak{}tions~\cite{shafer1992dempster} help to reduce this uncertainty by combining several sources of data.
 The probabilistic programming~\cite{DBLP:conf/icse/GordonHNR14} community provide frameworks and languages~\cite{url:InferNET18, baudin2017openturns} to propagate probabilities through computations.
 
 However, from the best of our knowledge, no global study has been done to evaluate the impact of data uncertainty on the development of software.
@@ -45,84 +44,61 @@ The following challenge still remains an open question for the software engineer
 \vspace{-2em}
 \highlightbox{How to engineer uncertainty-aware software (design, implement, test, and validate)?}
 
+\vfill %todo check if vfill still necessary
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Actions have long-term effects}
-Reconfiguring a smart grid implied to change the power flow.
-It is done by connecting or disconnecting specific cables.
-That is, opening or closing fuses.
+\subsection[Reasoning over long-term actions]{Reasoning over \glspl{longTermAct}}
+Reconfiguring a smart grid implied to change the power flow by opening or closing fuses.
 As said before, technicians need to drive physically to fuse locations to modify their states.
 Besides, in the case of the Luxembourg smart grid, meters send energy measurement every 15 min, non-synchronously.
 Between the time a reconfiguration of the smart grid is decided, and the time the effects are measured, a delay of at least 15 min occurs.
 On the other hand, an incident should be detected in the next minutes.
 If the adaptation process does not consider this difference of rates, it can cause repeated decisions.
 
-\textbf{Actions are never immediate, take time to be executed, and have long-term effects.}
-Through this thesis, we refer to such actions as \glspl{longTermAct}.
-In computer science, the definition of "immediate" is specific to a domain.
-For example, for graphical user interfaces, a response time of less than 200 ms is considered as immediate.
-However, while working at the processor level, the execution time of one instruction is measured at the nanoseconds scale.
+More generally, a difference may exist between the monitoring frequency of the time for action effects to be measured.
+One cause of this is what we call \glspl{longTermAct} in this document.
+A \gls{longTermAct} is defined as an \gls{action} that takes time to be executed or that have long-term effects.
+A second cause is an impossibility to reduce the monitoring frequency since systems must be reactive in some cases.
+This difference in rates may damage the decision process.
 
-Not considering this delay may lead to sub-optimal decisions.
-For example, not considering the delay for the system to handle the migration of a virtual machine may lead to repeat decisions.
-We argue that \textbf{developers should take into account this delay if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
+Therefore, we argue that \textbf{decision-making processes should consider this delay if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
+From the best of our knowledge, none approach allows developers implementing such tools.
+One open challenge for the research community is thus:
+\vspace{-2em}
+\highlightbox{How to model, store, and query long-term actions with their effects?}
 
-\subsection{Systems may have emergent behaviours}
-Smart grid behaviour is affected by several factors that cannot be controlled by the grid manager.
+
+\subsection{Diagnosing adaptation process}
+\Gls{sg} \gls{behaviour} is affected by several factors that cannot be controlled by the grid manager.
 One example is the weather conditions.
-Smart grids rely on an energy production that is distributed over several actors.
-For instance, users, who were mainly consumers before, now produce energy by adding solar panels on the roof of their houses.
+\Glspl{sg} rely on an energy production distributed over several actors.
+For instance, users, who were mainly consumers before, can now produce energy by adding solar panels on the roof of their houses.
 The production of such energy depends on the weather, and even on the season\footnote{The angle of the sun has an impact on the amount of energy produced by solar panels. This angle varies according to the season.}.
-Another example is the increasing adoption of electric vehicles, which de facto drastically increase the consumption of electricity during the night.
-Ignoring this characteristic of \glspl{adptSyst} may result in suboptimal situations that can be understood with difficulties.
+Despite this stochasticity of the \gls{behaviour}, engineers need to implement an adaptation process, that can lead to suboptimal grid configuration.
 
-\textbf{System behaviour may be emergent.}~\cite{zio2011uncertainties}
-Different factors can explain this phenomenon.
-As for \glspl{sg}, systems may evolve in a stochastic and uncertain environment.
-Or, some system, like those name ultra-large systems, are so complex that a few engineers can tame it.
-But, groups of engineers will have an understanding of some part of the system.
+Faced with growingly complex and large-scale software systems (e.g. smart grid systems), we can all agree that the presence of residual defects becomes unavoidable~~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}. 
+Even with a meticulous verification or validation process, it is very likely to run into an unexpected behaviour that was not foreseen at design time. 
+Alone, existing formal modelling and verification approaches may not be sufficient to anticipate these failures~\cite{DBLP:conf/icse/TaharaOH17}. 
+As such, complementary techniques need to be proposed to locate the anomalous behaviour and its origin in order to handle it in a safe way.
 
-Despite the complexity, engineers still need to understand how the system is behaving or behaved.
-It will help them to optimise the global behaviour or to understand and repair errors.
-\textbf{Engineers need tooling support to trace back previous behaviours and or replay them.}
+Bencomo~\etal~\cite{DBLP:conf/iceccs/BencomoWSW12} argue that comprehensive explanation about the system behaviour contributes drastically to the quality of the diagnosis, and eases the task of troubleshooting the system behaviour. 
+To enable this, we believe that adaptive software systems should be equipped with traceability management facilities to link the decisions made to their \textbf{(i) circumstances, that is to say, the history of the system states and the targeted requirements, and (ii) the performed actions with their impact(s) on the system}.
+In particular, an \textbf{adaptive system should keep a trace of the relevant historical events}.
+Additionally, it should be able to \textbf{trace the goals intended to be achieved by the system to the adaptations and the decisions that have been made, and vice versa}. 
+Finally, in order to enable developers to interact with the system in a clear and understandable way, appropriate abstraction to \textbf{enable the navigation of the traces and their history should also be provided}.
+In other words, the research community should answer the following global challenge:
+\vspace{-2em}
+\highlightbox{How to trace back adaptation decision effects to their circumstances?}
 
-
-\subsection{Different part of a system evolve at different rates}
+\subsection{Modelling inconsistent states of system}
 Every meter sends consumption and production data every 15 min.
 However, this collection is not synchronous.
 That is, all meters do not send their data at the same timestamp.
 The global system, which receives all data, has not thus a global vision with the same freshness for all the part of the grid.
 Electricity data are volatile: a peak or a drop may happen in less than a minute due to, for instance, the starting or the finishing of a washing machine.
-When analysing the data, the process should consider this difference of rates, and estimate the evolution of data.
-Otherwise, they will reason over outdated data, which do not reflect the real situation.
-It may lead to suboptimal decisions.
+Reconfiguration of the grid may thus be suboptimal due to outdated information.
 
-\textbf{Different parts of the same system may evolve at different rates.}
+\textbf{Different parts of a system may evolve at different rates.}
 Some systems are heterogeneous in terms of hardware and software.
 This diversity results in different evolution or reaction rates.
 For example, if some components are working on batteries, they will have a sleep cycle to save energy.
@@ -130,11 +106,17 @@ Contrary, if some others are running connected directly to a power source, they 
 
 Despite this difference of rates, a global vision of a system at a precise time point may be still required.
 The vision should deal with data that have different freshness.
+For example, the adaptation process may require a global view of the system.
 In the worst case, some data would be outdated and cannot be used.
-\textbf{Solutions to seamlessly predict or estimate what should be the current state of these outdated elements are thus required.}
+
+When designing the adaptation process, engineers need thus solutions to deal with an inconsistent system state.
+One solution can, for example, seamlessly estimate what should be the current value of outdated data.
+One global challenge for the software engineering community is therefore:
+\vspace{-2em}
+\highlightbox{How to represent, query, and store inconsistent system states and behaviours?}
 
 
-\subsection{Evolution of systems is linked with time}
+\subsection{Modelling temporal and interconnected data}
 Power flow is impacted by consumption and production of users, and by the modifications of the topology.
 Knowing the last status of the grid is as important as knowing how it evolves.
 Based on the evolution, the grid operator can predict any future incidents, like overloads.
@@ -149,4 +131,14 @@ Based on these predictions, they can proact on future incidents in the system.
 
 Decisions are not made upon the last state of the system but how it evolves.
 The analysis process should thus navigate both in the structure of the system and its behaviour over time.
-\textbf{Engineers need efficient tooling to structure, represent, query, and store temporal data on a large scale.}
+\textbf{Engineers need efficient tooling to structure, represent, query, and store temporal and interconnected data on a large scale.}
+
+Time in software engineering is not a new challenge.
+For example, Riviera \etal \cite{DBLP:conf/models/RiveraRV08} have already identified time as a challenge for the \gls{mde} community.
+Different approaches have been defined~\cite{DBLP:conf/sle/BousseCCGB15, DBLP:conf/sle/KansoT12, DBLP:conf/icse/KoegelH10, DBLP:conf/seke/0001FNMKT14}.
+
+However, we notice that modelling, persistence, and processing of data evolution remain understudied.
+Thomas Hartmann started addressing these challenging in his PhD thesis~\cite{DBLP:phd/basesearch/Hartmann16}.
+The final global challenge, not fully addressed, is thus:
+\vspace{-2em}
+\highlightbox{How to structure, represent query, and store efficiently temporal data on a large scale?}

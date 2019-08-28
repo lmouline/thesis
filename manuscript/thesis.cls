@@ -169,6 +169,13 @@
 	
 	\pagenumbering{roman}
 	
+	\ifIFglossary
+		\printglossary[type=main]
+		\cleardoublepage
+		\printglossary[type=\acronymtype, title={Abbreviations}]
+		
+	\fi
+	
 	\renewcommand{\listfigurename}{List of figures}
 	\phantomsection
 	\addcontentsline{toc}{chapter}{List of publications and tools}
@@ -182,12 +189,6 @@
     \phantomsection
     \addcontentsline{toc}{chapter}{List of tables}
     \listoftables
-	
-	\ifIFglossary
-		\printglossary[type=\acronymtype, title={Abbreviations}]
-		\cleardoublepage
-		\printglossary[type=main]
-	\fi
 	
 	\printbibliography[heading=bibintoc]
 }
@@ -256,6 +257,7 @@
 \makeatother
 
 %% Glossary links in black and italic
-\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1$^*$}}
+%\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1$^*$}}
+\renewcommand*{\glstextformat}[1]{\textcolor{black}{#1}}
 
 
