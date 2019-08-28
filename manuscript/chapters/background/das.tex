@@ -14,7 +14,7 @@ Following the autonomic computing vision pushed by IBM engineers~\cite{computing
 This adaptation helps them to achieve their goals based on high-level objectives~\cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}.
 If a system performs itself this adaptation mechanism with minimal interference, the literature refers to it as a \gls{sadapt}~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}.\looseness-1
 
-Danny Weyns	identified two principles for \glspl{adptSyst}~\cite{DBLP:books/sp/19/Weyns19}: the internal and the external principle.
+Danny Weyns	identified two principles for \glspl{adptSyst}~\cite{DBLP:books/sp/19/Weyns19}: the internal and the external principles.
 The former one is based on the \textquote{discipline split} defined by Andersson \etal ~\cite{DBLP:conf/icse/AnderssonLMW09}: each \gls{adptSyst} can be split into two concerns.
 First, the domain concern categorises the part of the system that deals with the purpose for which the system has been built.
 Second, the adaptation concern handles the adaptation mechanism and interacts with the first one without interfering with it~\cite{DBLP:journals/tse/KramerM90}.
@@ -29,7 +29,7 @@ Besides, we can add the self-organisation feature~\cite{dempster1998self}: \glsp
 It is mainly discussed for distributed systems, where local rules are applied to adjust their interactions and act co-operatively for adaptation.
 However, this mechanism can lead to emergent behaviour~\cite{DBLP:conf/atal/WolfH04}.
 
-Furthermore, each \gls{adptSyst} is composed of four elements: the \gls{env}, the managed system, adaptation goals, and the managing systems~\cite{DBLP:books/sp/19/Weyns19}.
+Furthermore, each \gls{adptSyst} is composed of four elements: the \gls{env}, the managed system, adaptation goals, and the managing system~\cite{DBLP:books/sp/19/Weyns19}.
 The \gls{env} includes all external entities, virtual or physical, with which the \gls{adptSyst} interacts on each it effects~\cite{DBLP:journals/ansoft/Jackson97}.
 Only the elements that are monitored are part of the system.
 One may distinguish the environment to the \gls{adptSyst} as, contrary to the element of the \gls{adptSyst}, it cannot be directly impacted by the engineer.
@@ -73,7 +73,6 @@ The causal connection encompasses two features of the \gls{model}.
 First, the model reflects the up-to-date state of the system (structure and behaviour) and its \gls{env}.
 Second, any modification of the model triggers a modification of the system.
 In this way, the \gls{model} can be used as an interface between the system and the adaptation process.
-Moreover, Morin \etal \cite{DBLP:journals/computer/MorinBJFS09} define \gls{m@rt} allow stakeholders to represent a set of configuration points that can be selected at runtime to implement the adaptation mechanism.
 
 Using this approach, we can say that engineers use a model-based architecture.
 Morin \etal described a possible solution that is characterised by three layers, four types of runtime models, and five elements~\cite{DBLP:journals/computer/MorinBJFS09}.
@@ -82,7 +81,7 @@ The business application layer contains the logic of the system.
 It has sensors for monitoring and actuators (here called factories).
 This layer is connected to the online model space, which is platform-independent, through the causal connection layer.
 The online model space contains the four different runtime models: feature, context, reasoning, and architecture model.
-The feature model represents the different configuration point of the system.
+The feature model represents the different configuration points of the system.
 The context model abstracts the relevant part of the system and the \gls{env}.
 The reasoning model links between the first two models by associating the features with a particular context.
 Finally, the architecture model specifies the different entities of the system.
@@ -104,7 +103,7 @@ In the next section, we thus characterise the information that composes the know
 Similar to the definition provided by Kephart~\cite{DBLP:journals/computer/KephartC03}, IBM  defines adaptive systems as ``a computing environment with the ability to manage itself and \textbf{dynamically adapt} to change in accordance with \textbf{business policies and objectives}. [These systems] can perform such activities based on \textbf{situations they observe or sense in the IT environment} [...]"~\cite{computing2006architectural}.
 
 Based on this definition, we can identify three principal concepts involved in adaptation processes.
-The first concept is \textit{actions}. 
+The first concept is \textbf{actions}. 
 They are executed to perform a dynamic adaptation through actuators.
 The second concept is \textbf{business policies and objectives}, which is also referred to as the \textbf{system requirements} in the domain of (self-)adaptive systems.
 The last concept is the observed or sensed \textbf{situation}, also known as the \textbf{context}.
@@ -173,9 +172,9 @@ Actions executions have a start time and a finish time. They can either succeed,
 One common model for implementing them is the well-known \gls{mapek} loop, a feedback control loop based on shared knowledge.
 Applying the \gls{m@rt} paradigm, this knowledge can be structured by a \gls{model}, which is causally connected to the system.
 This \gls{model} should represent the uncertain and time dimension of the knowledge.
-In this thesis, we consider that the knowledge comprises information related to the context, the actions, and the requirement.
+In this thesis, we consider that the knowledge comprises information related to the context, the actions, and the requirements.
 In this thesis, we propose a \gls{metamodel}\footnote{A \gls{metamodel} is a \gls{model} that defines another \gls{model} (\cf \Cref{sec:back:mde}).} to represent the decisions made by the adaptation process over time (\cf \Cref{chapt:tkm}).
-Plus, we define a language, \langName, to propagate uncertainty in the computation made during the adaptation process (\cf \Cref{chapt:aintea}).
+Additionnaly, we define a language, \langName, to propagate uncertainty in the computation made during the adaptation process (\cf \Cref{chapt:aintea}).
 
 
 
