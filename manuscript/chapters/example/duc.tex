@@ -3,27 +3,6 @@
 
 \subsection{Impacts of ignoring data uncertainty} 
 \label{subsec:example-possible-consequences}
-%Although power grids are becoming more and more automated, today human interventions are still the norm.
-%For example, most fuses inside cabinets or substations are manually modified by technicians rather than automatically reconfigured.
-%As a consequence, the states of fuses are manually documented by technicians on the field. 
-%This of course results in mistakes. 
-%One way to address this problem is to take uncertainty into consideration.
-%This means considering fuse states as uncertain.
-%
-%As a consequence, this uncertainty propagates to the load calculation formulas, which depend on the fuse states.
-%We call this type of uncertainty \textit{uncertain discrete number}. 
-%It also propagates to the final load.
-%We refer to these values as \textit{uncertain continuous numbers}. 
-%In other words, if the uncertainty of fuse states is not considered, it exists a non-null probability that the observed phenomenon does not reflect the real situation.
-%Cable load approximations are used to detect cable overloads and to reconfigure the network if necessary.
-%By not considering uncertainty, wrong reconfigurations might be triggered, which could be even worse than if no change would have been applied.
-%
-%In order to model the electricity flow, we can first use a structure or a class to abstract entities (meter, substation, etc.).
-%Then, it can be abstracted by linking different entities.
-%For example, the substation in Figure~\ref{fig:intro-schema-topology1} contains two references to the cabinet.
-%These references are uncertain due to the uncertain nature of fuse states.
-%We refer to these references as \textit{uncertain references}.
-
 Although power grids are becoming more and more automated, today human interventions are still the norm.
 For example, most fuses are manually modified by technicians rather than automatically reconfigured.
 The states of fuses are thus manually documented by technicians on the field. 
@@ -47,30 +26,6 @@ The former contains two fields: an array of Cables named \textit{cables} and a f
 The latter contains one field: an uncertain number which represents the uncertain load.
 
 \paragraph{Manual implementation} 
-%One approach for managing uncertainty is to manually implement all the required features.
-%Listing~\ref{lst:example-from-scratch} illustrates this (in Python).
-%The excerpt contains three classes, UNumber (lines 1--21), SmartGrid (lines 23--31), and Cable (lines 33--35).
-%
-%As we can see, this approach comes with several drawbacks.
-%First, developers are required to have deep knowledge of probability theory.
-%For example, uncertainty can be represented by a normal distribution identified by its mean and variance as shown in the constructor ($\_\_init\_\_$), lines 3 and 4.
-%One needs knowledge on how to represent it, how to add two normal distributions, ...
-%This type is used in the constructor of the class \textit{Cable} to initialize the cable load (line 28).
-%In order to support uncertainty propagation through arithmetic operations, one can think of overloading existing arithmetic operations or defining new ones. 
-%Languages like Python and C\# allow operator overloading.
-%The method definitions $\_\_plus\_\_$ and $\_\_div\_\_$ overload the '+'  and '/' operations respectively. 
-%These operators are later used in the SmartGrid class definition to compute the average load, lines 23 and 25.
-%
-%Second, manual implementation inevitably increases the size of the code base.
-%This will de facto augment the risk of errors in the code.
-%Plus, the code will be more difficult to maintain afterwards.
-%
-%Third, although some languages offer the possibility to overload operators, some typing errors can only be detected at runtime. 
-%For instance, since Python is dynamically typed, performing an addition operation between \textit{UNumber} and an \textit{UBoolean} fails and raises an exception only at runtime.
-%Whilst, statically typed languages such as C\# can detect such typing errors at development time. 
-%Nonetheless, the returned exception message would not be particularly meaningful, as can be seen on the example of  C\#: \textit{Operator `+' cannot be applied to operands of type UNumber and UBoolean}. 
-%Handling uncertainty at the language-level and extending the typing system, would significantly improve developers' experience and make it possible to detect typing errors at early stages.
-
 One approach for managing uncertainty is to manually implement all the required features.
 Listing~\ref{lst:example-from-scratch} illustrates this in Python.
 In addition to the \textit{SmartGrid} and \textit{Cable} class, the excerpt contains an additional one: \textit{UNumber}.
@@ -90,39 +45,6 @@ For instance, since Python is dynamically typed, performing an addition operatio
 Whilst, statically typed languages such as C\# can detect such typing errors at development time. 
 Nonetheless, the returned exception message would not be particularly meaningful, as can be seen on the example of  C\#: \textit{Operator `+' cannot be applied to operands of type UNumber1 and UNumber2}.
 
-%\begin{lstlisting}[style=pythonStyle, caption=Manual management of uncertainty in Python, label=lst:example-from-scratch, linewidth=0.97\textwidth
-%]
-%class UNumber:
-%    def __init__(self, mean=0, variance=0):
-%        [...]
-%
-%    def __add__(self, other):
-%       [...] # typing error management + casting other to UNumber if it is a Number
-%       return UNumber(self.mean + other.mean, self.variance + other.variance)
-%
-%    def __div__(self, other):
-%       [...] # typing error management + casting other to UNumber if it is a Number
-%       value = ((self.mean / other.mean) + 
-%             (self.mean * other.variance)) / pow(other.mean, 3)
-%       variance = (self.variance / other.mean) +
-%             (pow(self.mean, 2) * other.variance) / pow(other.mean, 4)
-%       return UNumber(value, variance)
-%
-%class SmartGrid:
-%    def __init__(self):
-%        self.cables = []
-%
-%    def compute_avg_load(self):
-%        sum_load = 0
-%        for c in self.cables:
-%            sum_load += c.load
-%        return sum_load / len(self.cables)
-%
-%class Cable:
-%    def __init__(self, id, load=UNumber(0, 0)):
-%       [...]
-%\end{lstlisting}
-
 \begin{lstlisting}[style=pythonStyle, caption=Manual management of uncertainty in Python, label=lst:example-from-scratch, linewidth=0.97\textwidth
 ]
 class UNumber:
@@ -135,7 +57,8 @@ class UNumber:
     
   def __div__(self, other):
     [...] # typing error management + casting other to UNumber if it is a Number
-    value = ((self.mean/other.mean) + (self.mean*other.variance)) / pow(other.mean, 3)
+    value = ((self.mean/other.mean)  
+                        + (self.mean*other.variance)) / pow(other.mean, 3)
     variance = (self.variance / other.mean) +
              (pow(self.mean, 2) * other.variance) / pow(other.mean, 4)
     return UNumber(value, variance)
@@ -154,20 +77,7 @@ class Cable:
 \end{lstlisting}
 
 \paragraph{Using existing libraries for probability theory}
-%Since uncertainty management relies on probability theory, another approach is using a library implementing common probability distributions.
-%%\footnote{\url{https://docs.scipy.org/doc/scipy/reference/stats.html}}
-%Staying in Python, there is a widely used library called SciPy library\footnote{\url{https://www.scipy.org/}} and in particular the \textit{stats} module, defining different probability distributions, e.g. the Bernoulli and the Gaussian distributions (cf. Section~\ref{sec:data-uncertainty}).
-%Whereas these libraries are suitable to compute different properties of probability distributions, it remains the responsibility of developers to define how to perform arithmetic operations on distributions.
-%Listing~\ref{lst:limit-lib-proba} shows an example of the definition of the\textit{ add\_gaussian} method, responsible for adding up two uncertain numbers represented as Gaussian distributions. 
-%
-%Using such libraries does not prevent developers to have a deep understanding of the probability theory.
-%They have been designed to help them manipulating probability distributions, but they still required knowledge about them.
-%For example, as shown in Listing~\ref{lst:limit-lib-proba}, one may access the mean and the variance of a normal distribution.
-%However, she or he needs to know how two normal distributions can be added.
-%This also increases the code base and thus is prone to errors.
-%Finally, as it is a library, typing errors will still remain either detected at runtime or not helpful for developers.
 Since uncertainty management relies on probability theory, another approach is using a library implementing common probability distributions.
-%\footnote{\url{https://docs.scipy.org/doc/scipy/reference/stats.html}}
 Staying in Python, there is a widely used library called SciPy\footnote{\url{https://www.scipy.org/}} and in particular the \textit{stats} module, defining different probability distributions.
 Whereas these libraries are suitable to compute different properties of probability distributions, it remains the responsibility of developers to define how to perform arithmetic operations on distributions, as depicted in \autoref{lst:limit-lib-proba}.
 
@@ -178,31 +88,6 @@ However, she or he needs to know how two normal distributions can be added.
 This also increases the code base and thus is prone to errors.
 Finally, as it is a library, typing errors will still remain either detected at runtime or not helpful for developers.
 
-
-%\begin{lstlisting}[style=pythonStyle, caption=Limitation using a probability library (Python), label=lst:limit-lib-proba, linewidth=0.97\textwidth]
-%from scipy.stats import norm
-%
-%def add_gaussian(g1, g2):
-%    [...]
-%    return norm(g1.mean() + g2.mean(), g1.var() + g2.var())
-%
-%def div_gaussian(g1, g2):
-%   [...]
-%
-%class SmartGrid:
-%    def __init__(self):
-%        self.cables = []
-%
-%    def compute_avg_load(self):
-%        sum_load = 0
-%        for c in self.cables:
-%            sum_load = add_gaussian(sum_load, c.load)
-%        return div_gaussian(sum_load, len(self.cables))
-%
-%class Cable:
-%    def __init__(self, id, load=norm(0, 0)):
-%        [...]
-%\end{lstlisting}
 
 \begin{lstlisting}[style=pythonStyle, caption=Limitation using a probability library (Python), label=lst:limit-lib-proba, linewidth=0.97\textwidth]
 from scipy.stats import norm
@@ -228,23 +113,6 @@ class Cable:
 \end{lstlisting}
 
 \paragraph{Using existing libraries for uncertainty}
-%Another commonly used approach is to use existing libraries for data uncertainty.
-%For example, in Python, using the \textit{uncertainties~\cite{url:uncertainties} library}, a developer can manipulate uncertain floats using variables of type \textit{ufloat}.
-%The uncertainty propagation is handled transparently.
-%In Listing~\ref{lst:example-python-uncertainties}, we depict a minimalistic excerpt of the necessary code to compute the mean load using an existing library for data uncertainty.
-%Unlike the previous code snippet, this listing contains only two classes, SmartGrid and Cable.
-%Moreover, the cable load property initialization uses \textit{ufloat} instead of \textit{UNumber}.
-%
-%Using a library can tackle the two first drawbacks existing in the previous approach: required knowledge of probability theory and code complexity.
-%Indeed, the implementation of the probability theory is encapsulated inside the library.
-%Developers will just use it through its API.
-%The complexity of the implementation, with the possible errors, are also pushed to the complexity.
-%We can argue that the library will be well tested and documented.
-%
-%However, similarly to the previous example, this approach does not extend the type system.
-%If the language relies on a dynamic type system (like in Python), then typing errors are raised only at runtime.
-%In any case, raised exceptions are not very meaningful.
-%For example, if two distributions are sum whereas the operator has not been overloaded for the input distributions, then the error message will just state this operation is not implemented, without any more information.
 Another commonly used approach is to use existing libraries for data uncertainty.
 For example, in Python, using the \textit{uncertainties}~\cite{url:uncertainties} library, a developer can manipulate uncertain floats using variables of type \textit{ufloat}.
 The uncertainty propagation is handled transparently.
@@ -255,25 +123,7 @@ Using a library can tackle the two first drawbacks existing in the previous appr
 Indeed, the implementation of the probability theory and its complexity are encapsulated inside the library.
 We can argue that the library will be well tested and documented.
 However, similarly to the previous example, this approach does not extend the type system.\looseness-1
-%If the language relies on a dynamic type system (like in Python), then typing errors are raised only at runtime.
-%In any case, raised exceptions are not very meaningful.
-%For example, if two distributions are sum whereas the operator has not been overloaded for the input distributions, then the error message will just state this operation is not implemented, without any more information.
 
-%\begin{lstlisting}[style=pythonStyle, caption=Managing uncertainty in Python using uncertainties~\cite{url:uncertainties}, label=lst:example-python-uncertainties, linewidth=0.97\textwidth, escapechar=\%]
-%from uncertainties import ufloat
-%
-%class SmartGrid:
-%    def __init__(self):
-%        self.cables = []
-%
-%    def compute_avg_load(self):
-%        [...] # same as in %\autoref{lst:example-from-scratch}%
-%
-%class Cable:
-%    def __init__(self, p_id, p_load=ufloat(0, 0)):
-%        self.id = p_id
-%        self.load = p_load
-%\end{lstlisting}
 \begin{lstlisting}[style=pythonStyle, caption=Managing uncertainty in Python using uncertainties~\cite{url:uncertainties}, label=lst:example-python-uncertainties, linewidth=0.97\textwidth, escapechar=\%]
 from uncertainties import ufloat
 
@@ -328,16 +178,3 @@ public class Cable {
 \paragraph{Sum-up}
 Using state-of-art solutions to manage uncertainty, developers have three possibilities: manual implementation, using existing libraries or using a probability programming framework.
 As detailed in this section, these approaches will cope with at least one of these drawbacks: developers require a deep understanding of the probability theory, code base will increases which augments the risk of errors, and the type systems may detect errors at runtime or do not provide helpful messages.
-
-%By enhancing uncertainty management as a first-class language citizen, we cope with these three disadvantages.
-%In Figure~\ref{fig:motivation-aintea-overview}, we give an overview of our language, \languageName{}.
-%Using our contribution, developers can instantiate uncertain variables (boo-lean, numeric or reference) and combine them using the same operators as they are used to (arithmetic, boolean, comparison).
-%Plus, we also define new operators to reason over the uncertainty, or the confidence level, of manipulated variables.
-%Finally, the type system will be able to detect errors related to probability distribution manipulation, at compilation time as we choose a static type system, with helpful messages.
-
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.6\linewidth]{img/motivation/aintea-overview}
-%	\caption{Overview of the language proposed, \languageName{}}
-%	\label{fig:motivation-aintea-overview}
-%\end{figure}
