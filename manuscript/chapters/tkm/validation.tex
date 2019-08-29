@@ -2,7 +2,7 @@
 \label{sec:tkm:validation}
 
 To validate and evaluate our approach, we implemented a prototype publicly available online\footnote{https://github.com/lmouline/LDAS}.
-This implementation leverages the GreyCat framework\footnote{https://github.com/datathings/greycat}, more precisely the modelling plugin, which allows designing a meta-model using a textual syntax.
+This implementation leverages the GreyCat framework\footnote{https://github.com/datathings/greycat}, more precisely the modelling plugin, which allows designing a \gls{metamodel} using a textual syntax.
 Based on this specification, GreyCat generates a Java and a JavaScript API to create and manipulate models that conform to the predefined metamodel.
 The GreyCat framework handles time as a built-in concept.
 Additionally, it has native support of a lazy loading mechanism and an advanced garbage collection.
@@ -84,7 +84,7 @@ This example is based on our use case (\cf Section~\ref{sec:intro:use-case}).
 
 Let's imagine that the adaptation process detects overloaded cables in the smart grid.
 To fix this situation, it takes several countermeasures, among which there are fuse state modifications.
-As detailed in Section~\ref{sec:tkm:intro:motiv}, this action is considered as delayed action.
+As detailed in Section~\ref{sec:tkm:intro:motiv}, this action is considered as \gls{longTermAct}.
 Later, another incident is detected, for example, a substation is being overloaded.
 Before taking any actions, the adaptation process can, thanks to our solution, verify if the running actions will be sufficient to solve this new incident.
 If not, it can either take additional actions or replan the running one.
@@ -166,7 +166,7 @@ At every execution iteration, we follow these steps: (1) in a graph with size \t
 
 We executed our experimentation on a MacBook Pro with an Intel Core i7 processor (2.6 GHz, 4 cores, 16GB main memory (RAM), macOS High Sierra version 10.13.2). We used the Oracle JDK version 1.8.0\_65.
 
-\paragraph{How performance is influenced by the graph size \textit{N}?}
+\paragraph{How is the performance influenced by the graph size \textit{N}?}
 This experimentation aims at showing the impact of the graph size (\textit{N}) on memory and execution time while performing common diagnosis routines.
 We fix the size of \textit{I} to 10. To assure that the behaviour of our traversals is the same, we use a seed value to select the starting input elements. We stop the algorithm when we reach 10 elements.
 Results are depicted in Figure~\ref{fig:exp1}.
@@ -188,14 +188,14 @@ Thanks to the implementation of a lazy loading and a garbage collection strategy
 	\label{fig:exp1}
 \end{figure}
 
-\paragraph{How performance is influenced by the input size (I)?}
+\paragraph{How is the performance influenced by the input size (I)?}
 The second experiment aims to show the impact of the input size (I) on the execution of diagnosis algorithms. We fix the size of \textit{N} to 500\,000 and we variate \textit{I} from 1\,000 nodes to 100\,000, \ie from 0.2\% to 20\% of the graph size. 
 The results are depicted in Figure~\ref{fig:exp-res} (straight lines).
 
 Unlike to the previous experiment, we notice that the input size (\textit{I}) impacts the performance, both in terms of memory consumption and execution time. This is because our framework keeps in memory all the traversed elements, namely the input elements.
 The increase in memory consumption follows a linear trend with regards to \textit{N}. As it can be noticed, it reaches 2GB for \textit{I}=100\,000. The execution time also shows a similar curve, while the query response time takes around than around 60ms to run for \textit{I}=1\,000, it takes a bit more than 4 seconds to finish for \textit{I}=100\,000. Nonetheless, these results remain very acceptable for diagnosis purposes. 
 
-\paragraph{How performance is influenced by the number of traversed elements (M)?}%
+\paragraph{How is the performance influenced by the number of traversed elements (M)?}%
 For the last experiment, we aim to highlight the impact of the number of traversed elements (\textit{M}). For this, we fix \textit{I} and \textit{O} to 1, and randomly generate a graph with sizes ranging from $1\,000$ to $100\,000$. Our algorithm navigates the whole model (\textit{M}=\textit{N}).
 We depict the results in Figure~\ref{fig:exp-res} (dashed curve).
 As we can notice, the memory consumption increases in a quasi-linear way. The memory footprint to traverse \textit{M} = 100\,000 elements is around 0.9GB. The progress of the execution time curve behaves similarly, in a quasi-linear way. Finally, the execution time of a full traversal over the biggest graph takes less than 2.5 seconds. 

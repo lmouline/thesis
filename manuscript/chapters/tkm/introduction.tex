@@ -5,28 +5,28 @@ To do so, they make adaptation decisions, in the form of actions, based on high-
 For instance, the OpenStack Watcher project~\cite{OpenStack:Watcher:Wiki} implements the MAPE-k loop to assist cloud administrators in their activities to tune and rebalance their cloud resources according to some optimization goals (e.g., CPU and network bandwidth). 
 For readability purpose, we refer to adaptation decision as decision in the remaining part of this document.
 
-Despite the reactivity of adaptation processes, impacts of their decisions can be measurable long after they have been taken.
-We identified two problematics caused by this difference of rates:
+Despite the reactivity of adaptation processes, impacts of their decisions can be measurable long after these have been taken.
+We identified two challenges caused by this difference of rates:
 \begin{itemize}
-	\item How to diagnose the self-adaptation process?
+	\item How to model the decisions of an adaptation process to diagnose it?
 	\item How to enable reasoning over unfinished actions and their expected effects?
 \end{itemize}
 
-To address them, we propose a temporal knowledge model which can trace decisions over time, along with their circumstances and effects.
-By storing them, the adaptation process could consider ongoing actions with their expected effects, also called impacts.
-Plus, in case of faulty decisions, developers may trace back their effects to their circumstances.
+To address them, we propose a temporal knowledge \gls{model} which can trace decisions over time, along with their circumstances and effects.
+By storing the \glspl{decision}, the adaptation process could consider ongoing \glspl{action} with their expected effects, also called impacts.
+Besides, in case of faulty decisions, developers may trace back effects to their \glspl{circumstance}.
 Our current approach is limited to the representation of measurable effects of any decision, and therefore action.
 
-The meta-model allow structuring and storing the state and behaviour of a running adaptive system, together with a high-level API to efficiently perform diagnosis routines. 
+Our approach allows structuring and storing the state and behaviour of a running adaptive system, together with a high-level API to efficiently perform diagnosis routines. 
 Our framework relies on a temporal model-based solution that efficiently abstracts decisions and their corresponding circumstances.
 Specifically, based on existing approaches for modelling and monitoring adaptation processes, we identify a set of properties that characterise context, requirements, and actions in self-adaptive systems.    
-Then, we formalise the common core concepts implied in adaptation processes, also referred to as knowledge, by means of temporal graphs and a set of relations that trace decisions impact to circumstances.
+Then, we formalise the common core concepts implied in adaptation processes, also referred to as knowledge, by means of temporal graphs and a set of relations that trace decisions' impact to circumstances.
 Finally, thanks to exposing common interfaces in adaptive processes, existing approaches in requirements and goal modelling engineering can be easily integrated into our framework. 
 
 The rest of this chapter is structured as follows.
-In the remaining part of this section, we motivate our approach, we summarise core concepts manipulated in adaptation processes, and we present a use case scenario based on the Luxembourg Smart Grid (\cf~Chapter~\todo{add ref}).
+In the remaining part of this section, we motivate our approach, we summarise core concepts manipulated in adaptation processes, and we present a use case scenario based on the Luxembourg Smart Grid (\cf \Cref{chapt:example}).
 Then, we provide a formal definition of these concepts in Section~\ref{sec:tkm:k-formalism}.
-Later, we describe the proposed data model in Section~\ref{sec:tkm:mm}.
+After, we describe the proposed data model in Section~\ref{sec:tkm:mm}.
 In Section~\ref{sec:tkm:validation}, we demonstrate the applicability of our approach by applying it to the smart grid example.
 We conclude this chapter in Section~\ref{sec:tkm:conclusion}.
 

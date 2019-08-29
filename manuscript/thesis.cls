@@ -170,7 +170,7 @@
 	\pagenumbering{roman}
 	
 	\ifIFglossary
-		\printglossary[type=main]
+		\printglossary[type=main, nonumberlist]
 		\cleardoublepage
 		\printglossary[type=\acronymtype, title={Abbreviations}]
 		

@@ -1,12 +1,12 @@
 \section{Knowledge formalization}
 \label{sec:tkm:k-formalism}
  
-As discussed previously, we consider \gls{knowledge} to be the association of \gls{context} information, \glspl{requirement}, and \gls{action} information, all in one global and unified model.
+We consider \gls{knowledge} to be the association of \gls{context} information, \glspl{requirement}, and \gls{action} information, all in one global and unified model.
  While \gls{context} information captures the state of the system environment and its surroundings, the system \glspl{requirement} define the constraints that the system should satisfy along the way. 
  \Glspl{action}, on the other hand, are meant to reach the goals of the system.
   
  In this section, we provide a formalization of the \gls{knowledge} used by adaptation processes based on a temporal graph. 
-Indeed, due to the complexity and interconnectivity of system entities, graph data representation is an appropriate way to represent the \gls{knowledge}. 
+Due to the complexity and interconnectivity of system entities, graph data representation is an appropriate way to represent the \gls{knowledge}. 
 Augmented with a temporal dimension, temporal graphs are then able to symbolize the evolution of system entities and states over time. 
 We benefit from the well-defined graph manipulation operations, namely temporal graph pattern matching and temporal graph relations to represent the traceability links between the \glspl{decision} made and their \glspl{circumstance}.
 
@@ -23,9 +23,9 @@ Then, we exemplify the knowledge formalism using the Luxembourg smart grid use c
 	\label{fig:tkm:formalismeTime}
 \end{figure}
 
-The formalism described below has been made with two goals in mind.
+The formalism described below has been defined with two goals in mind.
 First, the definition of the time space should allow the distinction between past and future. 
-Doing this distinction enable the differentiation between measured data and predicted (or planned data).
+Making this distinction enables the differentiation between measured data and predicted (or planned data).
 Second, it should permit the definition of the life cycle of an element of the \gls{knowledge}, which can be seen as a succession of states with a validity period that should not overlap each other.
 
 Time space $T$ is considered as an ordered discrete set of time points non-uniformly distributed. 
@@ -42,13 +42,13 @@ For any $i \in I$, $start(i)$ denotes its lower bound and $end(i)$ its upper bou
 As detailed in Section~\ref{sec:tkm:k-formalism:formalism}, these intervals are used to define the validity period for each node of the graph (our second goal).
 
 Figure~\ref{fig:tkm:formalismeTime} displays an example of a time space $T_1 = \{t_0, t_1, t_2, t_3, t_4, t_5, t_6, t_7\}$.
-Here, the current time is $t = t_4$.
+In this case, the current time is $t = t_4$.
 According to the definition of the past subset ($T_{past}$) and the future one ($T_{future}$), there is: $T_{past1} =  \{t_0, t_1, t_2, t_3\}$ and $T_{future1} = \{t_5, t_6, t_7\}$.
 Two intervals have been defined on $T_1$, namely $I_1$ and $I_2$.
 The first one starts at $t_2$ and ends at $t_5$ and the last one is defined from $t_6$ to $t_7$.
-As shown with $I_1$, an interval could be defined on different subsets, here it is on all of them ($T_{past}$, $t$, and $T_{future}$).
+As shown with $I_1$, an interval could be defined on different subsets, in this case it is on all of them ($T_{past}$, $t$, and $T_{future}$).
 
-\subsection{Formalism}
+\subsection{Formalism of the knowledge}
 \label{sec:tkm:k-formalism:formalism}
  
 \paragraph{Graph definition}
@@ -63,7 +63,7 @@ First, let $K$ be an adaptive process over a system \gls{knowledge} represented 
 	\label{fig:tkm:validityEx}
 \end{figure}
 
-In order to augment the graph with a temporal dimension, the relation $V^T$ is added.So now the knowledge $K$ is defined as a temporal graph such as $K = (N, E, V^T)$.A node is considered valid either until it is removed or until one of its attributes value changes. In the latter case, a new node with the updated value is created.Whilst, an edge is considered valid until either its source node and target node are valid, or until the edge itself is removed.Otherwise, nodes and edges are considered invalid.The temporal validity relation is defined as $V^T: N \cup E \rightarrow I$.It takes as a parameter a node or an edge ($k \in N \cup E$) and returns a time interval ($i \in I$, \cf Section~\ref{sec:tkm:timeDef}) during which the graph element is valid.Figure~\ref{fig:tkm:validityEx} shows an example of a temporal graph $K_1$ with five nodes ($n_1$, $n_2$,$n_3$, $n_4$, and $n_5$) and three edges ($e_1$, $e_2$, and  $e_3$) over a lifecycle from $t_1$ to $t_3$.In this way, $K_1$ equals $(\{n_1, n_2, n_3, n_4, n_5\}, \{e_1, e_2, e_3\}, V^{T}_1)$.Let's assume that the graph is created at $t_1$.As $n_1$ is modified at $t_2$, its validity period starts at $t_1$ and ends at $t_2$: $V^{T}_1(n_1) = [t_1, t_2)$.$n_2$ and $n_3$ are not modified; their validity period thus starts at $t_1$ and ends at $t_\infty$: $V^{T}_1(n_2) = V^{T}_1(n_3) = [t_1, t_\infty)$.Regarding the edges, the first one, $e_1$, is between $n_1$ and $n_2$ and the second one, $e_2$ from $n_2$ to $n_3$.Both are created at $t_1$.As $n_1$ is being modified at $t_2$, its validity period goes from $t_1$ to $t_2$:  $V^{T}_1(e_1) = [t_1, t_2)$.$e_2$ is deleted at $t_3$.Its validity period is thus equal to: $V^{T}_1(e_2) = [t_1, t_3)$.
+In order to augment the graph with a temporal dimension, the relation $V^T$ is added.So now the knowledge $K$ is defined as a temporal graph such as $K = (N, E, V^T)$.A node is considered valid either until it is removed or until one of its attributes value changes. In the latter case, a new node with the updated value is created.Whilst, an edge is considered valid until either its source node and target node are valid, or until the edge itself is removed.Otherwise, nodes and edges are considered invalid.The temporal validity relation is defined as $V^T: N \cup E \rightarrow I$.It takes as a parameter a node or an edge ($k \in N \cup E$) and returns a time interval ($i \in I$, \cf Section~\ref{sec:tkm:k-formalism:timeAxis}) during which the graph element is valid.Figure~\ref{fig:tkm:validityEx} shows an example of a temporal graph $K_1$ with five nodes ($n_1$, $n_2$,$n_3$, $n_4$, and $n_5$) and three edges ($e_1$, $e_2$, and  $e_3$) over a lifecycle from $t_1$ to $t_3$.In this way, $K_1$ equals $(\{n_1, n_2, n_3, n_4, n_5\}, \{e_1, e_2, e_3\}, V^{T}_1)$.Let's assume that the graph is created at $t_1$.As $n_1$ is modified at $t_2$, its validity period starts at $t_1$ and ends at $t_2$: $V^{T}_1(n_1) = [t_1, t_2)$.$n_2$ and $n_3$ are not modified; their validity period thus starts at $t_1$ and ends at $t_\infty$: $V^{T}_1(n_2) = V^{T}_1(n_3) = [t_1, t_\infty)$.Regarding the edges, the first one, $e_1$, is between $n_1$ and $n_2$ and the second one, $e_2$ from $n_2$ to $n_3$.Both are created at $t_1$.As $n_1$ is being modified at $t_2$, its validity period goes from $t_1$ to $t_2$:  $V^{T}_1(e_1) = [t_1, t_2)$.$e_2$ is deleted at $t_3$.Its validity period is thus equal to: $V^{T}_1(e_2) = [t_1, t_3)$.
 
 \paragraph{Lifecycle of a knowledge element}
 One node represents the state of exactly one knowledge element during a period named the validity period.
@@ -124,7 +124,7 @@ Finally, the knowledge formalism needs to include the last, but not the least, e
 While the source of relations in $D$ represents the state before the execution of an action, the target shows its impact on the \gls{context}. 
 Its intent is \textbf{to trace back impacts of action executions to the decisions they originated from}.  
 
-A decision present in ${D}$ is defined as a set of actions executed, \ie a subset of ${A_E}$, combined with a set of requirement analysis, \ie a subset of ${R_A}$.
+A decision in ${D}$ is defined as a set of executed actions, \ie a subset of ${A_E}$, combined with a set of requirement analysis, \ie a subset of ${R_A}$.
 Formally, ${D} = \{\ {A_D \cup R_D}~|~{A_D}  \subseteq A_E, R_A \subseteq R_P\}$.
 We assume that each action should result from only one decision: $\forall a \in {A}, \forall d1, d2 \in {D}~|~a \in d1 \wedge a \in d2 \rightarrow d1 = d2$.
 
@@ -179,7 +179,7 @@ Therefore, their validity period starts at $t_0$ and never ends: $\forall n \in 
 Considering the consumption values, all the nodes represent the history of the values for the three smart meters.
 In other words, there are three knowledge elements: the consumption measured for each meter.
 Let $C_i$ notes the consumption measured by the smart meter $M_i$.
-As shown in Figure~\ref{fig:tkm:contextFormExample}, there is:
+As shown in Figure~\ref{fig:tkm:k-formalism:application}, there is:
 \begin{itemize}
 	\item $C_1$ of $M_1$ is represented by $\{V_1, V_4, V_7\}$,
 	\item $C_2$ of $M_2$ is represented by $\{V_2, V_5, V_8\}$,

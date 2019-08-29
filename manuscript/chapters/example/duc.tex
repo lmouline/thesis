@@ -160,7 +160,9 @@ public class SmartGit {
   private readonly InferenceEngine inference;
 
   public Gaussian computeAvgLoad() {
-    Variable<double> sum = Variable.GaussianFromMeanAndVariance(0,0).Named("sum");
+    Variable<double> sum = Variable
+                             .GaussianFromMeanAndVariance(0,0)
+                             .Named("sum");
     int i = 0;
     foreach(Cable c in cables)
       sum = (sum + c.load).Named("sum" + i);

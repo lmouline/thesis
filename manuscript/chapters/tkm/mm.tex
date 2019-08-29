@@ -11,14 +11,14 @@ Design time elements are depicted in gray in the Figures~\ref{fig:knowledge-mm}-
 Note that, this thesis does not address how runtime information is collected.
 
 For the sake of modularity, the \gls{metamodel} has been split into four packages: Knowledge, Context, Requirement and Action.
-All the classes of these packages have a common parent class that adds the temporality dimention: \textit{TimedElement} class.
+All the classes of these packages have a common parent class that adds the temporality dimension: \textit{TimedElement} class.
 Before describing the Knowledge (core) package, we detail this element.
 Then, we introduce in more details the other three packages used by the Knowledge package: Context, Requirement, and Action. 
 In below sections, we use "\textit{Package::Class}" notation to refer to the provenance of a class.
 If the package is omitted, then the provenance package is this one described by the figure or text.
 
 \subsection{Parent element: \textit{TimedElement} class}
-we assume that all the classes in the different packages extend a \textit{TimedElement} class. 
+We assume that all the classes in the different packages extend a \textit{TimedElement} class. 
 This class contains three methods: \textit{startTime}, \textit{endTime}, and \textit{modificationsTime}.
 The first two methods allow accessing the validity interval bounds defined by the previously discussed $V^T$ relation.
 The last method resolves all the timestamps at which an element has been modified: its history. 
@@ -51,7 +51,7 @@ In the smart grid example, a decision can be formulated (in plain English) as fo
 
 As all the elements inherit from the \textit{TimedElement}, we can capture the time at which a given decision and its subsequent actions were executed, and when their impact materialized, \ie measured.
 Thanks to this metamodel representation, a developer can apprehend the possible causes behind malicious behaviours by navigating from the context values to the decisions that have impacted its value (\textit{Property.expected.impact}) and the goals it was trying to reach (\textit{Decision.goals}).
-In Section~\ref{sec:tkm:intro:uc}, we present an example of interactive diagnosis queries applied to the smart grid use case.
+An example for such in interactive diagnosis can be found in Section~\ref{sec:tkm:intro:uc}.
 
 \subsection{Context metamodel}
 \begin{figure*}
