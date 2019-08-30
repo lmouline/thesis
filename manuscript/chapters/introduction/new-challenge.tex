@@ -10,6 +10,15 @@ The last one has been published in our vision paper regarding time awareness in 
 In this section, we detailed them.
 
 \subsection{Engineering uncertainty-aware software}
+\label{sec:intro:challenges:duc}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.6\linewidth]{img/chapt-intro/challenges/duc}
+	\caption{Illustration of the problem due to data uncertainty}
+	\label{fig:intro:chal:duc}
+\end{figure}
+
 Most fuses are manually open and close by technicians rather than automatically modified.
 Then, technicians manually report the modifications done on the grid.
 Due to human mistakes, this results in errors.
@@ -25,9 +34,9 @@ Humans are error-prone.
 And computations can either give an approximation or be based on uncertain data.
 This uncertainty is then propagated through all steps until the final result.
 
-For a specific domain, this uncertainty may impact the understanding of the real situation.
+For a specific domain, this uncertainty may impact the understanding of the real situation as depicted in~\Cref{fig:intro:chal:duc}.
 For example, the uncertainty of the \gls{cpu} clock is too low to damage the percentage load of the processor.
-However, the uncertainty of the \gls{gps} may impact the understanding by, for instance, showing the user on the wrong road (compared to the real one).
+However, the uncertainty of the cable load in a smart grid may trigger false detection of an overload, as depicted in~\Cref{fig:intro:chal:duc}.
 \textbf{If the data uncertainty can mislead the understanding of a system behaviour or state, then developers should implement an uncertainty-aware system.}
 For \glspl{adptSyst}, this lack of confidence may trigger suboptimal adaptations.
 
@@ -44,10 +53,16 @@ The following challenge still remains an open question for the software engineer
 \vspace{-2em}
 \highlightbox{How to engineer uncertainty-aware software (design, implement, test, and validate)?}
 
-\vfill %todo check if vfill still necessary
-
-
 \subsection[Reasoning over long-term actions]{Reasoning over \glspl{longTermAct}}
+\label{sec:intro:challenges:longTermAct}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/chapt-intro/challenges/longTermAct}
+	\caption{Illustration of a \gls{longTermAct}}
+	\label{fig:intro:chal:longTermAct}
+\end{figure}
+
 Reconfiguring a smart grid implied to change the power flow by opening or closing fuses.
 As said before, technicians need to drive physically to fuse locations to modify their states.
 Besides, in the case of the Luxembourg smart grid, meters send energy measurement every 15 min, non-synchronously.
@@ -56,8 +71,8 @@ On the other hand, an incident should be detected in the next minutes.
 If the adaptation process does not consider this difference of rates, it can cause repeated decisions.
 
 More generally, a difference may exist between the monitoring frequency of the time for action effects to be measured.
-One cause of this is what we call \glspl{longTermAct} in this document.
-A \gls{longTermAct} is defined as an \gls{action} that takes time to be executed or that have long-term effects.
+One cause of this is what we call \glspl{longTermAct} in this document, illustrated in~\Cref{fig:intro:chal:longTermAct}.
+A \gls{longTermAct} is defined as an \gls{action} that takes time to be executed  (delay to be executed and execution time) or that have long-term effects.
 A second cause is an impossibility to reduce the monitoring frequency since systems must be reactive in some cases.
 This difference in rates may damage the decision process.
 
@@ -68,7 +83,9 @@ One open challenge for the research community is thus:
 \highlightbox{How to model, store, and query long-term actions with their effects?}
 
 
-\subsection{Diagnosing adaptation process}
+\subsection{Diagnosing the adaptation process}
+\label{sec:intro:challenges:diagnosis}
+
 \Gls{sg} \gls{behaviour} is affected by several factors that cannot be controlled by the grid manager.
 One example is the weather conditions.
 \Glspl{sg} rely on an energy production distributed over several actors.
@@ -82,7 +99,7 @@ Alone, existing formal modelling and verification approaches may not be sufficie
 As such, complementary techniques need to be proposed to locate the anomalous behaviour and its origin in order to handle it in a safe way.
 
 Bencomo~\etal~\cite{DBLP:conf/iceccs/BencomoWSW12} argue that comprehensive explanation about the system behaviour contributes drastically to the quality of the diagnosis, and eases the task of troubleshooting the system behaviour. 
-To enable this, we believe that adaptive software systems should be equipped with traceability management facilities to link the decisions made to their \textbf{(i) circumstances, that is to say, the history of the system states and the targeted requirements, and (ii) the performed actions with their impact(s) on the system}.
+To enable this, as shown in~\Cref{fig:intro:chal:longTermAct}, we believe that adaptive software systems should be equipped with traceability management facilities to link the decisions made to their \textbf{(i) circumstances, that is to say, the history of the system states and the targeted requirements, and (ii) the performed actions with their impact(s) on the system}.
 In particular, an \textbf{adaptive system should keep a trace of the relevant historical events}.
 Additionally, it should be able to \textbf{trace the goals intended to be achieved by the system to the adaptations and the decisions that have been made, and vice versa}. 
 Finally, in order to enable developers to interact with the system in a clear and understandable way, appropriate abstraction to \textbf{enable the navigation of the traces and their history should also be provided}.

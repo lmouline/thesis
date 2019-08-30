@@ -40,7 +40,7 @@ In this chapter, we describe the following contributions:
 	\setlength\itemsep{-0.3em}
     \item Description and definition of the main concepts and operators to introduce in a language with uncertainty as a first-class citizen. Doing so, developers will be able to manipulate uncertain and certain data in a similar way, hiding complex concepts behind ones they are used to. 
     \item An uncertainty-aware static type checker enabling the design-time detection of programming errors. This type checker can be used as \textit{implicit documentation}, which helps developers in implementing uncertainty-aware algorithms.
-    \item We implement these two contributions in the \langName{} language, publicly available\footnote{\url{https://github.com/lmouline/aintea/}}. An overview of this language is depicted in \autoref{fig:motivation-aintea-overview}. Then, we use a real-world case study, built with our partner Creos S.A., to answer the two following research questions: 
+    \item We implement these two contributions in the \langName{} language, publicly available\footnote{\url{https://github.com/lmouline/aintea/}}. An overview of this language is depicted in \Cref{fig:intro:contrib:aintea}. Then, we use a real-world case study, built with our partner Creos S.A., to answer the two following research questions: 
     \begin{itemize}
    		\vspace{-0.5em}
 		\setlength\itemsep{-0.3em}
@@ -56,11 +56,3 @@ The remainder of this chapter is as follows.
 In \Cref{sec:aintea:duc}, we present and discuss the main concepts and operators for uncertainty management as a first-class citizen of a language. 
 \Cref{sec:aintea:validation} presents our \langName{} implementation and validates the design time error detection and its impact on language conciseness. 
 \Cref{sec:aintea:conclusion} concludes and presents some open research perspectives. 
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{img/chapt-aintea/intro/aintea-overview}
-	\caption{Overview of the language proposed, \langName{}}
-	\label{fig:motivation-aintea-overview}
-\end{figure}
