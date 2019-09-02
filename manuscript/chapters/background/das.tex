@@ -7,10 +7,19 @@ Before we characterise the information used by an adaptation process, we detail 
 Finally, we highlight the key concepts used in this thesis and link them to the contributions.
 
 \subsection{Principles and vision}
-The complexity of nowadays software systems comes with laborious, error-prone, and redundant tasks (installation, configuration, maintenance, \etc) for developers.
-Moreover, software systems can be executed in uncertain and evolving \glspl{env}~\cite{DBLP:conf/dagstuhl/EsfahaniM10}.
-Following the autonomic computing vision pushed by IBM engineers~\cite{computing2006architectural}, Kephart and Chess have established the basis for \glspl{adptSyst}~\cite{DBLP:journals/computer/KephartC03}.
-\Glspl{adptSyst} are recognised by their ability to have their behaviour or structure adapted automatically in response to changes in their \gls{env} or of the systems themselves.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{img/chapt-background/adptSyst/vision}
+	\caption{Conceptual vision of \gls{adptSyst} (based on \cite{DBLP:books/sp/19/Weyns19})}
+	\label{fig:background:adptSyst:principles}
+\end{figure}
+
+%The complexity of nowadays software systems comes with laborious, error-prone, and redundant tasks (installation, configuration, maintenance, \etc) for developers.
+%Moreover, software systems can be executed in uncertain and evolving \glspl{env}~\cite{DBLP:conf/dagstuhl/EsfahaniM10}.
+%Following the autonomic computing vision pushed by IBM engineers~\cite{computing2006architectural}, Kephart and Chess have established the basis for \glspl{adptSyst}~\cite{DBLP:journals/computer/KephartC03}.
+
+\Glspl{adptSyst} take their origins in the vision paper of Kephart and \linebreak Chess~\cite{DBLP:journals/computer/KephartC03}, which is based on the autonomic computing vision pushed by IBM engineers~\cite{computing2006architectural}.
+These systems are recognised by their ability to have their behaviour or structure adapted automatically in response to changes in their \gls{env} or of the systems themselves.
 This adaptation helps them to achieve their goals based on high-level objectives~\cite{DBLP:conf/dagstuhl/ChengLGIMABBBCSDFGGGKKKLMMMPSTTWW09}.
 If a system performs itself this adaptation mechanism with minimal interference, the literature refers to it as a \gls{sadapt}~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}.\looseness-1
 
@@ -45,58 +54,100 @@ Finally, the managing system will use these goals to drive the adaptation of the
 It thus continuously monitor the \gls{env} and the managing system.
 Researchers use different names to refer to this element: autonomic manager~\cite{DBLP:journals/computer/KephartC03}, architecture layer~\cite{DBLP:journals/computer/GarlanCHSS04}, adaptation engine~\cite{DBLP:journals/taas/SalehieT09}, reflective subsystem~\cite{DBLP:journals/taas/WeynsMA12}, controller~\cite{DBLP:conf/icse/FilieriHM14}.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{img/chapt-background/adptSyst/mapek}
+	\caption{\gls{mapek} loop (based on~\cite{DBLP:journals/computer/KephartC03})}
+	\label{fig:background:adptSyst:principles:mapek}
+\end{figure}
+
 In the literature, we can find different approaches to engineer \glspl{adptSyst}~\cite{DBLP:journals/computer/GarlanCHSS04}.
 Among them, the most used one took its inspiration from control theory~\cite{DBLP:conf/dagstuhl/BrunSGGKLMPS09}: the feedback control loop.
-The common implementation is the \gls{mapek} loop~\cite{DBLP:journals/computer/KephartC03, computing2006architectural}.
+The common implementation is the \gls{mapek} loop~\cite{DBLP:journals/computer/KephartC03, computing2006architectural}, shown in~\Cref{fig:background:adptSyst:principles:mapek}.
 This loop is split into four phases: monitoring, analyse, planning, and executing.
 During the monitoring phase, all information of the managed system and the \gls{env} are put into the knowledge.
 Based on the updated knowledge, the analyse phase detects any need for adaptation using the adaptation goals.
 If any, the planning phase computes the set of actions to adjust the managing system structure or behaviour.
 Finally, the executing phase completes the plan.
+From the \gls{mde} community, one approach to implement such a feedback look is to use the \gls{m@rt} paradigm, explained in the next section. 
 
-Danny Weyns have identified six waves of engineering \glspl{adptSyst}~\cite{DBLP:books/sp/19/Weyns19}.
-First, \textit{automating tasks} that focus on the automation of repetitive and error-prone management tasks of complex systems~\cite{DBLP:journals/computer/KephartC03}.
-Second, \textit{architecture-based adaptation} that defines architecture as the basis of supporting engineering of \glspl{adptSyst}. 
-Third, \textit{\gls{m@rt}}~\cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09} that establishes a technique to link the \gls{adptSyst} with a model with a \textquote{causal connection}.
-Four, \textit{goal-driven adaptation} that emphasised on the specification of the system requirements, exposed to uncertainties, and those for the solutions.
-Five, \textit{guarantees under uncertainties} that consider uncertainty as a cornerstone concern for \glspl{adptSyst} and that define techniques to ensure the adaptation goals and the functional correctness of the adaptation components.
-Six, \textit{control-based adaptation} that stresses the use of the control theory to benefit from a robust mathematical formalism.
-Among these six waves, this thesis is part of the third one, \gls{m@rt}, that we detail in the next section.
-\vfill
+
+
+%Danny Weyns have identified six waves of engineering \glspl{adptSyst}~\cite{DBLP:books/sp/19/Weyns19}.
+%First, \textit{automating tasks} that focus on the automation of repetitive and error-prone management tasks of complex systems~\cite{DBLP:journals/computer/KephartC03}.
+%Second, \textit{architecture-based adaptation} that defines architecture as the basis of supporting engineering of \glspl{adptSyst}. 
+%Third, \textit{\gls{m@rt}}~\cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09} that establishes a technique to link the \gls{adptSyst} with a model with a \textquote{causal connection}.
+%Four, \textit{goal-driven adaptation} that emphasised on the specification of the system requirements, exposed to uncertainties, and those for the solutions.
+%Five, \textit{guarantees under uncertainties} that consider uncertainty as a cornerstone concern for \glspl{adptSyst} and that define techniques to ensure the adaptation goals and the functional correctness of the adaptation components.
+%Six, \textit{control-based adaptation} that stresses the use of the control theory to benefit from a robust mathematical formalism.
+%Among these six waves, this thesis is part of the third one, \gls{m@rt}, that we detail in the next section.
 
 \subsection[Models@run.time]{\Gls{m@rt}}
+\label{sec:background:sas:m@rt}
 The adaptation process needs to have a deep understanding of the system and its \gls{env}.
 Following the \gls{mde} methodology\footnote{\gls{mde} is a methodology that promotes the usage of \glspl{model} for software engineering activities (\cf \Cref{sec:back:mde})}, research efforts have led to the \gls{m@rt} paradigm~\cite{DBLP:journals/computer/MorinBJFS09, DBLP:journals/computer/BlairBF09}.
-The paradigm defines a \gls{model} that is \textquote{causally connected} to the system.
-The \gls{model} abstracts the structure and the behaviour of the system, the \gls{env}, and the adaptation goals.
+It stresses the use of a model layer, causally connected to the system, and used by the adaptation process.
 The causal connection encompasses two features of the \gls{model}.
 First, the model reflects the up-to-date state of the system (structure and behaviour) and its \gls{env}.
 Second, any modification of the model triggers a modification of the system.
-In this way, the \gls{model} can be used as an interface between the system and the adaptation process.
+In this way, the \gls{model} can be used as an interface between the system and the adaptation process, as shown in~\Cref{fig:intro:context:m@rt}.
+The layer can contain several models to represent different aspect of the system at runtime~\cite{DBLP:journals/computer/MorinBJFS09}: structure, \gls{behaviour}, \gls{env}, \etc
+Moreover, it can contains representation that guide the adaptation process~\cite{DBLP:journals/computer/CetinaGFP09, DBLP:journals/computer/HallsteinsenHPS08} such as configurations point.
 
-Using this approach, we can say that engineers use a model-based architecture.
-Morin \etal described a possible solution that is characterised by three layers, four types of runtime models, and five elements~\cite{DBLP:journals/computer/MorinBJFS09}.
-The three layers are: online model space, causal connection, and business application.
-The business application layer contains the logic of the system.
-It has sensors for monitoring and actuators (here called factories).
-This layer is connected to the online model space, which is platform-independent, through the causal connection layer.
-The online model space contains the four different runtime models: feature, context, reasoning, and architecture model.
-The feature model represents the different configuration points of the system.
-The context model abstracts the relevant part of the system and the \gls{env}.
-The reasoning model links between the first two models by associating the features with a particular context.
-Finally, the architecture model specifies the different entities of the system.
-These models are exchanged by the five elements that implement the adaptation mechanism.
-First, the \textit{event processor}, which implements the monitoring stage of the \gls{mapek} loop, updates the context model with information received through the sensors.
-Second, the \textit{goal-based reasoner}, which implements the analyse phase, uses the feature and reasoning model to select the new features for adjusting the system and achieving the goals.
-Third, the \textit{model weaver}, which implements a part of the planning stage, transforms the selected features into a new architecture model, checked by the \textit{configuration checker}.
-Finally, the configuration manager, which implements a part of the planning stage and the executing one, computes and executes the sequence of actions to reach the proposed architecture model.
-
-More generally, this solution stresses the use of a model layer, causally connected to the system, and used by the adaptation process.
 Following the \gls{mapek}, the model layer should structure the knowledge.
 In this thesis, we define a metamodel of this knowledge to enable developers diagnosing, understanding, and reasoning over \gls{longTermAct} (\cf \Cref{chapt:tkm}).
 In the next section, we thus characterise the information that composes the knowledge.
 
+
+%The adaptation process needs to have a deep understanding of the system and its \gls{env}.
+%Following the \gls{mde} methodology\footnote{\gls{mde} is a methodology that promotes the usage of \glspl{model} for software engineering activities (\cf \Cref{sec:back:mde})}, research efforts have led to the \gls{m@rt} paradigm~\cite{DBLP:journals/computer/MorinBJFS09, DBLP:journals/computer/BlairBF09}.
+%The paradigm defines a \gls{model} that is \textquote{causally connected} to the system.
+%The \gls{model} abstracts the structure and the behaviour of the system, the \gls{env}, and the adaptation goals.
+%The causal connection encompasses two features of the \gls{model}.
+%First, the model reflects the up-to-date state of the system (structure and behaviour) and its \gls{env}.
+%Second, any modification of the model triggers a modification of the system.
+%In this way, the \gls{model} can be used as an interface between the system and the adaptation process, as shown in~\Cref{fig:intro:context:m@rt}.
+%
+%Using this approach, we can say that engineers use a model-based architecture.
+%Morin \etal described a possible solution that is characterised by three layers, four types of runtime models, and five elements~\cite{DBLP:journals/computer/MorinBJFS09}.
+%The three layers are: online model space, causal connection, and business application.
+%The business application layer contains the logic of the system.
+%It has sensors for monitoring and actuators (here called factories).
+%This layer is connected to the online model space, which is platform-independent, through the causal connection layer.
+%The online model space contains the four different runtime models: feature, context, reasoning, and architecture model.
+%The feature model represents the different configuration points of the system.
+%The context model abstracts the relevant part of the system and the \gls{env}.
+%The reasoning model links between the first two models by associating the features with a particular context.
+%Finally, the architecture model specifies the different entities of the system.
+%These models are exchanged by the five elements that implement the adaptation mechanism.
+%First, the \textit{event processor}, which implements the monitoring stage of the \gls{mapek} loop, updates the context model with information received through the sensors.
+%Second, the \textit{goal-based reasoner}, which implements the analyse phase, uses the feature and reasoning model to select the new features for adjusting the system and achieving the goals.
+%Third, the \textit{model weaver}, which implements a part of the planning stage, transforms the selected features into a new architecture model, checked by the \textit{configuration checker}.
+%Finally, the configuration manager, which implements a part of the planning stage and the executing one, computes and executes the sequence of actions to reach the proposed architecture model.
+%
+%More generally, this solution stresses the use of a model layer, causally connected to the system, and used by the adaptation process.
+%Following the \gls{mapek}, the model layer should structure the knowledge.
+%In this thesis, we define a metamodel of this knowledge to enable developers diagnosing, understanding, and reasoning over \gls{longTermAct} (\cf \Cref{chapt:tkm}).
+%In the next section, we thus characterise the information that composes the knowledge.
+
 \subsection{Characterisation of information of the knowledge}
+
+\begin{table}
+	\begin{center}
+    	\begin{tabular}{p{0.15\linewidth}p{0.78\linewidth}}
+    		\hline
+    		\textbf{Element} & \textbf{Description} \\
+    		\hline
+    		Context & Context data are characterised by: their volatility, their temporality, their uncertainty, their source, or their connection.\\
+    		Requirement & Three kinds of requirements: performance, specific quality, and constraint. \\
+    		Action & Four pieces of information characterise an action: requirement(s) to achieve, initial context, effects, and execution information (start time, end time, status).\\
+    		\hline
+    	\end{tabular}
+    	\caption{Characterisation of information of the knowledge}
+    	\label{table:background:adptSyst:charc}
+    \end{center}
+\end{table}
+
 
 \subsubsection{General concepts of adaptation processes}
 
@@ -168,7 +219,7 @@ During the life-cycle of an adaptive system, a stakeholder can update, add or re
 In the IEEE Standards~\cite{iso2017systems}, an action is defined as: \textquote{\textbf{process of transformation} that \textbf{operates upon data} or other types of inputs to create data, produce outputs, or \textbf{change the state} or condition of the subject software}.
 
 In the context of adaptive systems, we can define an action as a process that, given the context and requirements as input, adjusts the system behaviour.
-This modification will then create new data that correspond to an output context. In the remainder of this document, we refer to the output context as impacted context, or impact(s).
+This modification will then create new data that correspond to an output context. In the remainder of this document, we refer to the output context as impacted context, or effect(s).
 Whereas requirements are used to add preconditions to the actions, context information is used to drive the modifications.
 Actions executions have a start time and a finish time. They can either succeed, fail, or be cancelled by an internal or external actor.
 

@@ -62,6 +62,13 @@ In the next section, we thus detail the concept of \gls{metamodel} and \gls{mode
 
 \subsection[Metamodel, model]{\Gls{metamodel}, \gls{model}}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{img/chapt-background/mde/metavsmodel}
+	\caption{Difference and relation between \gls{metamodel} and \gls{model}}
+	\label{fig:background:mde:meta-model}
+\end{figure}
+
 \paragraph{\Gls{metamodel}}
 \Glspl{metamodel} the different concepts in a domain and their relationships.
 They represent the knowledge of a domain, for a specific purpose~\cite{DBLP:conf/iceccs/BezivinJT05}.
@@ -83,19 +90,22 @@ France \etal have identified two classes of models~\cite{DBLP:conf/icse/FranceR0
 The former are abstraction above the code level.
 It regroups requirements, architectural, or deployment models.
 The latter abstract runtime behaviour or status of systems. 
-They are the basis of the \gls{m@rt} paradigm, which we detail in the next section.
-
-\subsection[Models@run.time]{\Gls{m@rt}}
-At its origins, \gls{mde} mainly addresses the challenges of designing, validating, and maintaining complex software systems.
-However, these systems were facing a new challenge: the uncertainty of the environment in which they are deployed.
-As we detail in \autoref{sec:back:adapt-syst}, systems have been improved to enable runtime adaptation.
-This process can only be done if the adaptation process has a deep understanding of the structure, the behaviour, and the environment of the system.
-This deep understanding can be provided by a proper abstraction of these runtime elements.
-Extending \gls{mde} principles and visions, the \gls{m@rt} paradigm spans the use of \glspl{model} from design time to runtime.
-The model, as an abstraction of a real system, can be used during runtime to reason about the state of the actual system. 
-A conceptual link between the model and the real system allows modifying the actual system through the model and vice versa.
+%They are the basis of the \gls{m@rt} paradigm, which we detail in the next section.
+They are the basis of the \gls{m@rt} paradigm, explained in~\Cref{sec:background:sas:m@rt}.
 The models@run.time paradigm uses \glspl{metamodel} to define the domain concepts of a real system, together with its surrounding environment. 
 Consequently, the runtime model depicts an abstract and yet rich representation of the system context that conforms to (is an instance of) its \gls{metamodel}.
+
+%\subsection[Models@run.time]{\Gls{m@rt}}
+%At its origins, \gls{mde} mainly addresses the challenges of designing, validating, and maintaining complex software systems.
+%However, these systems were facing a new challenge: the uncertainty of the environment in which they are deployed.
+%As we detail in \autoref{sec:back:adapt-syst}, systems have been improved to enable runtime adaptation.
+%This process can only be done if the adaptation process has a deep understanding of the structure, the behaviour, and the environment of the system.
+%This deep understanding can be provided by a proper abstraction of these runtime elements.
+%Extending \gls{mde} principles and visions, the \gls{m@rt} paradigm spans the use of \glspl{model} from design time to runtime.
+%The model, as an abstraction of a real system, can be used during runtime to reason about the state of the actual system. 
+%A conceptual link between the model and the real system allows modifying the actual system through the model and vice versa.
+%The models@run.time paradigm uses \glspl{metamodel} to define the domain concepts of a real system, together with its surrounding environment. 
+%Consequently, the runtime model depicts an abstract and yet rich representation of the system context that conforms to (is an instance of) its \gls{metamodel}.
 
 \subsection{Tooling}
 Tooling is an essential aspect of every approach to be adopted.
