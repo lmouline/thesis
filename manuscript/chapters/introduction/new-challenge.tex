@@ -7,7 +7,7 @@ Third, system behaviour may be emergent~\cite{zio2011uncertainties}, \ie it cann
 Four, the different sub-parts of the system do not evolve at the same rate.
 Five, structure and behaviour of systems have a time dimension.
 The last one has been published in our vision paper regarding time awareness in \gls{mde}~\cite{DBLP:conf/models/Benelallam0MFBB17}.
-In this section, we detailed them.
+We detailed them in this section, .
 
 \subsection{Engineering uncertainty-aware software}
 \label{sec:intro:challenges:duc}
@@ -19,7 +19,7 @@ In this section, we detailed them.
 	\label{fig:intro:chal:duc}
 \end{figure}
 
-Most fuses are manually open and close by technicians rather than automatically modified.
+Most fuses are manually opened and closed by technicians rather than automatically modified.
 Then, technicians manually report the modifications done on the grid.
 Due to human mistakes, this results in errors.
 The grid topology is thus uncertain.
@@ -31,7 +31,7 @@ The uncertainty may be explained by how data are collected.
 We can distinguish three categories: sensors, humans, and results of computations.
 Sensors (software or hardware) always estimate the value and have a precision value due to the method of measurement~\cite{metrology2008evaluation, DBLP:conf/asplos/BornholtMM14}.
 Humans are error-prone.
-And computations can either give an approximation or be based on uncertain data.
+Computations can either give an approximation or be based on uncertain data.
 This uncertainty is then propagated through all steps until the final result.
 
 For a specific domain, this uncertainty may impact the understanding of the real situation as depicted in~\Cref{fig:intro:chal:duc}.
@@ -48,7 +48,7 @@ The literature provides approaches to help engineers reason or manipulate \gls{d
 For example, believe func-\linebreak{}tions~\cite{shafer1992dempster} help to reduce this uncertainty by combining several sources of data.
 The probabilistic programming~\cite{DBLP:conf/icse/GordonHNR14} community provide frameworks and languages~\cite{url:InferNET18, baudin2017openturns} to propagate probabilities through computations.
 
-However, from the best of our knowledge, no global study has been done to evaluate the impact of data uncertainty on the development of software.
+However, from the best of our knowledge, no study has been done to evaluate the impact of data uncertainty on the development of software.
 The following challenge still remains an open question for the software engineering community:
 \vspace{-2em}
 \highlightbox{How to engineer uncertainty-aware software (design, implement, test, and validate)?}
@@ -63,10 +63,10 @@ The following challenge still remains an open question for the software engineer
 	\label{fig:intro:chal:longTermAct}
 \end{figure}
 
-Reconfiguring a smart grid implied to change the power flow by opening or closing fuses.
+Reconfiguring a smart grid implies to change the power flow by opening or closing fuses.
 As said before, technicians need to drive physically to fuse locations to modify their states.
-Besides, in the case of the Luxembourg smart grid, meters send energy measurement every 15 min, non-synchronously.
-Between the time a reconfiguration of the smart grid is decided, and the time the effects are measured, a delay of at least 15 min occurs.
+In the case of the Luxembourg smart grid, meters send energy measurement every 15 min, non-synchronously.
+Therefore, between the time a reconfiguration of the smart grid is decided, and the time the effects are measured, a delay of at least 15 min occurs.
 On the other hand, an incident should be detected in the next minutes.
 If the adaptation process does not consider this difference of rates, it can cause repeated decisions.
 
@@ -77,7 +77,7 @@ A second cause is an impossibility to reduce the monitoring frequency since syst
 This difference in rates may damage the decision process.
 
 Therefore, we argue that \textbf{decision-making processes should consider this delay if the frequency of the monitoring stage is lower than the time of action effects to be measurable}.
-From the best of our knowledge, none approach allows developers implementing such tools.
+From the best of our knowledge, none of the approaches allows developers implementing such tools.
 One open challenge for the research community is thus:
 \vspace{-2em}
 \highlightbox{How to model, store, and query long-term actions with their effects?}
@@ -87,7 +87,7 @@ One open challenge for the research community is thus:
 \label{sec:intro:challenges:diagnosis}
 
 \Gls{sg} \gls{behaviour} is affected by several factors that cannot be controlled by the grid manager.
-One example is the weather conditions.
+One example is weather conditions.
 \Glspl{sg} rely on an energy production distributed over several actors.
 For instance, users, who were mainly consumers before, can now produce energy by adding solar panels on the roof of their houses.
 The production of such energy depends on the weather, and even on the season\footnote{The angle of the sun has an impact on the amount of energy produced by solar panels. This angle varies according to the season.}.
@@ -107,10 +107,10 @@ In other words, the research community should answer the following global challe
 \vspace{-2em}
 \highlightbox{How to trace back adaptation decision effects to their circumstances?}
 
-\subsection{Modelling inconsistent states of system}
+\subsection{Modelling inconsistent states of systems}
 Every meter sends consumption and production data every 15 min.
 However, this collection is not synchronous.
-That is, all meters do not send their data at the same timestamp.
+That is, not all meters send their data at the same timestamp.
 The global system, which receives all data, has not thus a global vision with the same freshness for all the part of the grid.
 Electricity data are volatile: a peak or a drop may happen in less than a minute due to, for instance, the starting or the finishing of a washing machine.
 Reconfiguration of the grid may thus be suboptimal due to outdated information.
@@ -154,7 +154,7 @@ Time in software engineering is not a new challenge.
 For example, Riviera \etal \cite{DBLP:conf/models/RiveraRV08} have already identified time as a challenge for the \gls{mde} community.
 Different approaches have been defined~\cite{DBLP:conf/sle/BousseCCGB15, DBLP:conf/sle/KansoT12, DBLP:conf/icse/KoegelH10, DBLP:conf/seke/0001FNMKT14}.
 
-However, we notice that modelling, persistence, and processing of data evolution remain understudied.
+However, we notice that research efforts made by the \gls{mde} community did not focus on the modelling, persistence, and processing of evolving data.
 Thomas Hartmann started addressing these challenging in his PhD thesis~\cite{DBLP:phd/basesearch/Hartmann16}.
 The final global challenge, not fully addressed, is thus:
 \vspace{-2em}
