@@ -74,7 +74,7 @@ In the next section, we thus detail the concept of \gls{metamodel} and \gls{mode
 They represent the knowledge of a domain, for a specific purpose~\cite{DBLP:conf/iceccs/BezivinJT05}.
 Also, they define the semantics rules and constraints to apply~\cite{DBLP:journals/computer/Schmidt06}.
 They can be seen as \glspl{model} of \glspl{model}.
-In the \gls{mde} community, they are generally defined using the class diagram of the \gls{uml} specification~\cite{omg2017umlspec}.
+In the \gls{mde} community, they are generally defined using the class diagram of the \gls{uml} specification~\cite{omg2017umlspec}, as shown in~\Cref{fig:background:mde:meta-model}.
 They, therefore, contain classes, named metaclass, and properties (attributes or references).
 In the language engineering domain, \glspl{metamodel} are used to define the concepts that a language can manipulate (\cf \Cref{sec:back:sle}).
 \gls{omg}\footnote{\url{https://www.omg.org/}} define a standard metamodeling architecture: \gls{mof}~\cite{MOF:Spec}.
@@ -82,7 +82,7 @@ It is set aside with \gls{ocl}~\cite{OCL:Spec}, the standard constraint language
 
 \paragraph{\Gls{model}}
 \Glspl{model} capture some of the system characteristics into an abstraction that can be understood, manipulated, or processed by engineers or another system.
-They are linked to their \glspl{metamodel} through the conformance relationship.
+They are linked to their \glspl{metamodel} through the conformance relationship as depicted in~\Cref{fig:background:mde:meta-model}.
 A \gls{model} is conformed to exactly one \gls{metamodel} if and only if it satisfies all the rules of the \gls{metamodel}.
 That is, each element of a \gls{model} should instantiate at least one element of the \gls{metamodel} and respect all the semantics rules and constraints, that can be defined using \gls{ocl}.
 Based on these models, stakeholders can apply verification and validation techniques, such as simulation and model checking, or model transformation.

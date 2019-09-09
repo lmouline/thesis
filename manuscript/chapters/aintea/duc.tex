@@ -319,19 +319,18 @@ The confidence level is thus attached to the precise value.
 
 
 \begin{table}
-	\begin{center}
-    	\begin{tabular}{ |c|c|c|c|c|c| }
-              \hline
-               Type & Data type & Gaussian & Rayleigh & binomial & Dirac \\
-               \hline
-			   Continuous & float, double & \cmark & \cmark & & \cmark \\
-               \hline
-			   Discret & byte, short, integer, long & &  &  \cmark & \cmark \\
-               \hline
-        \end{tabular}
-    	\caption{Which distribution can be used to represent the uncertainty of which data type}
-    	\label{table:mapping-types-proba}
-    \end{center}
+	\centering
+    \begin{tabular}{ |c|c|c|c|c|c| }
+    	\hline
+    	Type & Data type & Gaussian & Rayleigh & binomial & Dirac\\
+    	\hline
+    	Continuous & float, double & \cmark & \cmark & & \cmark \\
+    	\hline
+    	Discret & byte, short, integer, long & &  &  \cmark & \cmark \\
+    	\hline
+    \end{tabular}
+    \caption{Which distribution can be used to represent the uncertainty of which data type}
+    \label{table:mapping-types-proba}
 \end{table}
 
 Like uncertain booleans, uncertain numbers are composed of two elements: a numerical value and a probability distribution that represents its uncertainty.
@@ -500,7 +499,7 @@ Following the casting rules described in Table~\ref{table:allowed-cast-op},  $u_
 \end{itemize}
 
 \begin{table}
-	\begin{center}
+	\centering
 %		\resizebox{0.75\textwidth}{!}{
 		\begin{tabular}{|c|c|c|c|c|c|c|c|}
 			\hline	
@@ -513,7 +512,6 @@ Following the casting rules described in Table~\ref{table:allowed-cast-op},  $u_
 %			certain nb. & \cmark&\cmark & \cmark  & \cmark & \cellcolor{lightgray}\\
 			\hline
 		\end{tabular}%}
-	\end{center}
 	{\small
 	\textit{From: source type of uncertain number; To: targetted type. For readability purpose, we put the distribution names to represent the different types of uncertain numbers}
 	}

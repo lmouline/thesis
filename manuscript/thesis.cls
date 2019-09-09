@@ -254,6 +254,14 @@
     \old@comma%
   \fi%
 }
+
+%% Now refcheck is aware of \cref and \Cref
+\newcommand{\refcheckize}[1]{%
+  \expandafter\let\csname @@\string#1\endcsname#1%
+  \expandafter\DeclareRobustCommand\csname relax\string#1\endcsname[1]{%
+    \csname @@\string#1\endcsname{##1}\wrtusdrf{##1}}%
+  \expandafter\let\expandafter#1\csname relax\string#1\endcsname
+}
 \makeatother
 
 %% Glossary links in black and italic

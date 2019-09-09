@@ -1,5 +1,5 @@
 \section[Adaptive systems]{\Glspl{adptSyst}}
-\label{sec:back:adapt-syst}
+%\label{sec:back:adapt-syst}
 
 This section introduces the background to understand \glspl{adptSyst}.
 First, we describe the principles and vision of \glspl{adptSyst}.
@@ -38,7 +38,7 @@ Besides, we can add the self-organisation feature~\cite{dempster1998self}: \glsp
 It is mainly discussed for distributed systems, where local rules are applied to adjust their interactions and act co-operatively for adaptation.
 However, this mechanism can lead to emergent behaviour~\cite{DBLP:conf/atal/WolfH04}.
 
-Furthermore, each \gls{adptSyst} is composed of four elements: the \gls{env}, the managed system, adaptation goals, and the managing system~\cite{DBLP:books/sp/19/Weyns19}.
+As depicted in~\Cref{fig:background:adptSyst:principles}, each \gls{adptSyst} is composed of four elements: the \gls{env}, the managed system, adaptation goals, and the managing system~\cite{DBLP:books/sp/19/Weyns19}.
 The \gls{env} includes all external entities, virtual or physical, with which the \gls{adptSyst} interacts on each it effects~\cite{DBLP:journals/ansoft/Jackson97}.
 Only the elements that are monitored are part of the system.
 One may distinguish the environment to the \gls{adptSyst} as, contrary to the element of the \gls{adptSyst}, it cannot be directly impacted by the engineer.
@@ -133,7 +133,7 @@ In the next section, we thus characterise the information that composes the know
 \subsection{Characterisation of information of the knowledge}
 
 \begin{table}
-	\begin{center}
+		\centering
     	\begin{tabular}{p{0.15\linewidth}p{0.78\linewidth}}
     		\hline
     		\textbf{Element} & \textbf{Description} \\
@@ -145,7 +145,6 @@ In the next section, we thus characterise the information that composes the know
     	\end{tabular}
     	\caption{Characterisation of information of the knowledge}
     	\label{table:background:adptSyst:charc}
-    \end{center}
 \end{table}
 
 
@@ -159,6 +158,7 @@ They are executed to perform a dynamic adaptation through actuators.
 The second concept is \textbf{business policies and objectives}, which is also referred to as the \textbf{system requirements} in the domain of (self-)adaptive systems.
 The last concept is the observed or sensed \textbf{situation}, also known as the \textbf{context}.
 The following subsections provide more details about these concepts.
+\Cref{table:background:adptSyst:charc} gives an overview of these different elements.
 
 \subsubsection{Context}
 
