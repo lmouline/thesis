@@ -1,21 +1,21 @@
-\section{Introduction}
+%\section{Introduction}
 
-Adaptive systems have proven their suitability to handle the increasing complexity of systems and their ever-changing environment.
-To do so, they make adaptation decisions, in the form of actions, based on high-level policies. 
-For instance, the OpenStack Watcher project~\cite{OpenStack:Watcher:Wiki} implements the MAPE-k loop to assist cloud administrators in their activities to tune and rebalance their cloud resources according to some optimization goals (e.g., CPU and network bandwidth). 
-For readability purpose, we refer to adaptation decision as decision in the remaining part of this document.
+%Adaptive systems have proven their suitability to handle the increasing complexity of systems and their ever-changing environment.
+%To do so, they make adaptation decisions, in the form of actions, based on high-level policies. 
+%For instance, the OpenStack Watcher project~\cite{OpenStack:Watcher:Wiki} implements the MAPE-k loop to assist cloud administrators in their activities to tune and rebalance their cloud resources according to some optimization goals (e.g., CPU and network bandwidth). 
+%For readability purpose, we refer to adaptation decision as decision in the remaining part of this document.
 
-Despite the reactivity of adaptation processes, impacts of their decisions can be measurable long after these have been taken.
-We identified two challenges caused by this difference of rates:
-\begin{itemize}
-	\item How to model the decisions of an adaptation process to diagnose it?
-	\item How to enable reasoning over unfinished actions and their expected effects?
-\end{itemize}
+%Despite the reactivity of adaptation processes, impacts of their decisions can be measurable long after these have been taken.
+%We identified two challenges caused by this difference of rates:
+%\begin{itemize}
+%	\item How to model the decisions of an adaptation process to diagnose it?
+%	\item How to enable reasoning over unfinished actions and their expected effects?
+%\end{itemize}
 
-To address them, we propose a temporal knowledge \gls{model} which can trace decisions over time, along with their circumstances and effects.
+To address Sub-challenge \#2 and Sub-challenge \#3 (\cf \Cref{sec:intro:scope}), we propose a temporal knowledge \gls{model} which can trace decisions over time, along with their circumstances and effects.
 By storing the \glspl{decision}, the adaptation process could consider ongoing \glspl{action} with their expected effects, also called impacts.
 Besides, in case of faulty decisions, developers may trace back effects to their \glspl{circumstance}.
-Our current approach is limited to the representation of measurable effects of any decision, and therefore action.
+%Our current approach is limited to the representation of measurable effects of any decision, and therefore action.
 
 Our approach allows structuring and storing the state and behaviour of a running adaptive system, together with a high-level API to efficiently perform diagnosis routines. 
 Our framework relies on a temporal model-based solution that efficiently abstracts decisions and their corresponding circumstances.
