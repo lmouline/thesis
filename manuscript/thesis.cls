@@ -164,6 +164,8 @@
 \let\OLDbackmatter\backmatter
 \renewcommand{\backmatter}[0]
 {
+	\part*{}
+	
 	\OLDbackmatter
 	\cleardoublepage
 	
