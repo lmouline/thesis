@@ -13,7 +13,7 @@ Adding uncertainty as a first-class language citizen thus implies to enable the 
 We propose to add new data types to represent such pairs and define operators on top of these data types to  manipulate them.
 Uncertainty propagation is done through these operators.
 This impacts the different elements of our language~\cite{DBLP:journals/computer/HarelR04, DBLP:phd/hal/Degueule16}: the syntax (abstract and concrete) and the semantics (static and dynamic).
-This is summarised in \autoref{fig:contrib-summary}.
+This is summarised in \Cref{fig:contrib-summary}.
 
 In the abstract syntax, we define the probability distributions and uncertain data types as primitive types.
 Plus, it contains a definition of the operators to manipulate them.
@@ -46,7 +46,7 @@ More precisely, if $d$ takes the value \true{} with probability $c$ then it take
 That is, $P(b=\true{}) = 1 - P(b=\false{})$, with $P(X)$ a function that computes the probability of $X$.
 
 \subsubsection{Bernoulli distribution for uncertain boolean values}
-\label{subsubsec:d-u-repr-ubool}
+%\label{subsubsec:d-u-repr-ubool}
 We use the Bernoulli probability distribution~\cite{walck1996hand} to represent the confidence level of uncertain boolean values.
 Bernoulli($p$) denotes a random variable that equals 1 with a probability of $p$ and 0 with a probability of $(1 - p)$.
 Without loss of expressiveness, we arbitrarily decide that $p$ represents the probability that the data point takes the \true{} value.
@@ -79,7 +79,7 @@ We define the following uncertain booleans to exemplify the different operators:
 %%% Existence operator %%%
 \begin{operator}
 	\label{op:existence}
-	The \textbf{existence operator} returns true if an uncertain data point $u_d \in U_D$ has a value with at least a given probability $t \in C$, where $C := \{ c \in {\rm I\!R} \mid 0 \leqslant c \leqslant 1 \}$, and false otherwise:  $U_D \times C \xrightarrow{~exists~} B$.
+	The \textbf{existence operator} returns true if an uncertain data point $u_d \in U_D$ has a value with at least a given probability $t \in C$, where $C := \{ c \in \mathds{R} \mid 0 \leqslant c \leqslant 1 \}$, and false otherwise:  $U_D \times C \xrightarrow{~exists~} B$.
 \end{operator}
 
 Using this operator, developers know if it exists at least one value for which its confidence level is greater than a given threshold. For example, using it, one may know if a fuse is open ($isOpen := \true{}$) or closed ($isOpen := \false{}$) with a confidence of at least 80\%.
@@ -257,7 +257,7 @@ For example, the comparison of $u_{b1}$ and $u_{b2}$ returns:
 
 %%%% Boolean operators %%%
 \begin{operator}
-	\label{op:boolean}
+%	\label{op:boolean}
 	\textbf{Uncertain boolean operators} ($\land$, $\lor$, $\lnot$) compute the result of the boolean operation and its confidence: $U_B^2 \xrightarrow{~u-booleans~} U_B$
 \end{operator}
 
@@ -288,7 +288,7 @@ However, there might be no information concerning the distribution of this uncer
 The confidence level is thus attached to the precise value.
 
 \subsubsection{Representation of uncertain numbers}
-\label{subsubsec:d-u-repr-unum}
+%\label{subsubsec:d-u-repr-unum}
 
 %\begin{figure*}
 %    \centering
@@ -539,7 +539,7 @@ When used on $u_{n1}$ and $u_{n3}$, this operator returns:
 
 %%% Arithmetic operator %%%
 \begin{operator}
-    \label{op:arithmetic}
+%    \label{op:arithmetic}
     \textbf{Uncertain arithmetic operators} ($+$, $-$, $*$, $/$) compute the arithmetic operation for uncertain numbers $U_N$: $U_N^2 \xrightarrow{~u-arithmetic~} U_N$
 \end{operator}
 When performing arithmetic operations on uncertain variables, both values and probability distributions are considered.
@@ -569,7 +569,7 @@ For example, adding $u_{n3}$ and $u_{n4}$ will result in: $u_{n3} + u_{n4} := (1
 
 %%% Uncertain inequality operator %%%
 \begin{operator}
-	\label{op:inequality}
+%	\label{op:inequality}
 	\textbf{Inequality operators} ($<$, $\leqslant$, $>$, $\geqslant$) computes the confidence that the left side value is (strictly) less or greater than the right one : $(U_N \times N)^2 \xrightarrow{inequality} U_B$
 \end{operator}
 
@@ -729,10 +729,11 @@ In addition to the casting operations shown in Table~\ref{table:allowed-cast-op}
 \paragraph{Typing rules for arithmetic operations}
 Probability theory defines how two probability distributions can be combined and what the result should be, when possible.
 We follow these rules to define the result of the arithmetic operations between uncertain numbers.
-Below, we depict the results of each operation between two uncertain numbers.
+Below, \Cref{table:typing-rules-arth-op} depicts the results of each operation between two uncertain numbers.
 
 \begin{table}
-	\begin{center}
+%	\begin{center}
+	\centering
 		\resizebox{0.75\textwidth}{!}{%
 		\begin{tabular}{ |c|c|c|c|c|c| }
    			\hline
@@ -745,7 +746,7 @@ Below, we depict the results of each operation between two uncertain numbers.
    			certain nb. & Gaussian & Rayleigh & binomial & Dirac & certain nb. \\
    			\hline
 		\end{tabular}}
-	\end{center}
+%	\end{center}
 	\caption{Typing rules for arithmetic operations}
 	\label{table:typing-rules-arth-op}
 \end{table}

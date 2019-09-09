@@ -62,7 +62,7 @@ Second, a cast can be done using the \textit{cast} or \textit{confidence} operat
 For the uncertain execution, as the executor cannot decide which branch should be executed, it should execute all of them and propagate the uncertainty.
 For example, let us imagine the following code:
 
-\begin{lstlisting}[style=javaStyle, caption=Example for uncertain control flow, label=lst:ucf-bool-example]
+\begin{lstlisting}[style=javaStyle, caption=Example for uncertain control flow]
 uncertain_bool b = (TRUE, 0.4)
 uncertain_int n;
 if(uncertain_bool)

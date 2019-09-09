@@ -19,7 +19,7 @@
 \RequirePackage[final]{microtype}
 \RequirePackage{lmodern}
 \RequirePackage{bibentry}
-\nobibliography*
+%\nobibliography*
 \RequirePackage{pdfpages}
 \RequirePackage{gensymb}
 \RequirePackage{graphicx}
