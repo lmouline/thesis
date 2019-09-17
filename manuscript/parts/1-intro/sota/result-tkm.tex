@@ -256,13 +256,13 @@ No model can allow automatic navigation over this time-related information.
 
 \begin{table}
 		\centering
-    	\begin{tabular}{p{0.2\textwidth}p{0.29\textwidth}p{0.22\textwidth}}
+    	\begin{tabular}{p{0.2\textwidth}p{0.29\textwidth}p{0.4\textwidth}}
     		\hline
     		\textbf{Approach} & \textbf{Reference} & Reasoning over \gls{longTermAct}\\
     		\hline
     		Model-based & \cite{DBLP:journals/computer/BlairBF09, DBLP:journals/computer/MorinBJFS09, DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14, DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/ChenPYNZ14} & None\\
     		Rule-based & \cite{DBLP:conf/icse/ArcainiRS15, DBLP:conf/icse/TaharaOH17, DBLP:conf/eurosys/GraceHPBCT08} & None \\
-    		Architecture-based & \cite{DBLP:journals/jss/ChengG12, DBLP:journals/computer/GarlanCHSS04, DBLP:journals/computer/GeorgasHT09, DBLP:conf/cbse/FouquetMFBPJ12} & None \\
+    		Architecture-based & \cite{DBLP:journals/jss/ChengG12, DBLP:journals/computer/GarlanCHSS04, DBLP:journals/computer/GeorgasHT09, DBLP:conf/cbse/FouquetMFBPJ12} & \cite{DBLP:journals/jss/ChengG12} represents action effects at design time, used as conditions for the execution of the next action.\\
     		Simulation-based & \cite{DBLP:conf/smartgridsec/0001FKNT14} & Consider effects of \glspl{action} to select those to execute. Do not consider running \glspl{action}\\
     		Formal model & \cite{DBLP:journals/taas/WeynsMA12, DBLP:conf/icse/IftikharW14a, DBLP:journals/taas/WeynsHH10, DBLP:conf/icse/BartelsK11} & None \\
     		Complex event processing &\cite{DBLP:conf/rr/AnicicFRSSS10} & None\\
@@ -298,7 +298,10 @@ Architecture-based adaptations adjust the architecture of a system to achieve re
 In our review, different approaches use this mechanism~\cite{DBLP:journals/jss/ChengG12, DBLP:journals/computer/GarlanCHSS04, DBLP:journals/computer/GeorgasHT09, DBLP:conf/cbse/FouquetMFBPJ12}.
 For example, Cheng \etal define a language to design \glspl{action} for architecture-based adaptation.
 Also, the adaptive mechanism can compute a reconfiguration script by comparing the current component model with the expected one~\cite{DBLP:conf/cbse/FouquetMFBPJ12}.
-However, none of these solutions considers running \gls{action} and their future effects.
+The only solution to consider running \glspl{action} and their future effects is~\cite{DBLP:journals/jss/ChengG12}.
+In this solution, designers can add effects to \glspl{action}.
+The execution of the next action can be triggered by the measurement of these effects.
+But, a reasoning process cannot automatically navigate the action model to reason over effects before they occur.
 
 \paragraph{Simulation-based adaptation}
 In our review, one approach applies a simulation-based approach~\cite{DBLP:conf/smartgridsec/0001FKNT14}.

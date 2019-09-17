@@ -1,79 +1,97 @@
-%% Summary context / challenges
-- adaptive systems
-- need for abstraction
-- MDE is great for that
-- but uncertain data, time, \gls{longTermAct}
+In this document, we claim that \glspl{adptSyst} need abstraction to help the reasoning process (\cf \Cref{chapt:intro}).
+One way to specify this abstraction is to use the \gls{mde} methodology.
+However, as we detailed in~\Cref{chapt:intro}, the research community should address different challenges to use state-of-the art solutions for such systems.
+This thesis tackles three of the challenges identified (\cf \Cref{sec:intro:scope}):
+\begin{itemize}
+	\item \textit{[Sub-challenge \#1]}: How to ease the manipulation of data uncertainty for software engineer?
+	\item\textit{ [Sub-challenge \#2]}: How to enable reasoning over unfinished actions and their expected effects? (\glspl{longTermAct})
+	\item \textit{[Sub-challenge \#3]}: How to model the decisions of an adaptation process to diagnose it?
+\end{itemize}
 
-- challenges addressed (\Cref{chapt:intro})
-	- Sub-challenge \#1: How to ease the manipulation of data uncertainty for software engineer?
-	- Sub-challenge \#2: How to enable reasoning over unfinished actions and their expected effects?
-	- Sub-challenge \#3: How to model the decisions of an adaptation process to diagnose it?
-	
-%In this document, we claim that \glspl{adptSyst} need 
+We show in~\Cref{chapt:sota} that it exists no solution to model \gls{longTermAct} or to reason over them.
+Besides, we establish that research efforts are still required to handle \gls{duc} at language level.
+To come with this conclusion, we perform a review driven by two research questions (\cf \Cref{sec:sota:methodo}):
+\begin{itemize}
+	\item \textit{[RQ1]}: Do state-of-the-art solutions that model adaptive system allow representing and reasoning over long-term actions?
+	\item \textit{[RQ2]}: Do state-of-the-art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)?
+\end{itemize}
 
-%% Summary SOTA
-- RQ
-	- rq1: do state-of-the-art solutions that model adaptive system allow representing and reasoning over long-term actions
-(design time and runtime)?
-	- rq2: do state-of-the-art solutions allow modelling uncertainty of data and its manipulation (propagation, reasoning over)?
-- No solution that models or reasons over \gls{longTermAct}
-- Research efforts are still required to handle \gls{duc} at language level
-%%% RQ1: long-term actions
-- todo: summarize....
-%%% RQ2: data uncertainty
-- todo: summarize....
+In~\Cref{sec:sota:results:actions}, we answer the first research question.
+We first show that the literature provides a few solutions to keep history of the \gls{structure}, \gls{context}, or \gls{behaviour} of systems~\cite{DBLP:conf/seke/0001FNMKT14, DBLP:conf/models/0001FNMKBT14, 	DBLP:conf/dbpl/MoffittS17, DBLP:conf/icse/TaharaOH17, DBLP:conf/pervasive/HenricksenIR02, DBLP:conf/smartgridsec/0001FKNT14}.
+The other solutions, depicted in~\Cref{table:sota:results:actions:rq1.1},  such as goal models~ \cite{DBLP:conf/icse/CailliauL17, DBLP:conf/icse/IftikharW14a, DBLP:conf/icse/MendoncaAR14, DBLP:conf/icse/ChenPYNZ14, DBLP:conf/re/BaresiPS10} or object-based models~\cite{DBLP:conf/pervasive/HenricksenIR02, DBLP:conf/smartgridsec/0001FKNT14, DBLP:conf/icse/TaharaOH17} do not support natively the time dimension.
+However, this feature remains important to enable the modelling of \glspl{longTermAct} with their effects on the context and their \glspl{circumstance}.
+Then, we show that none of the state-of-the-art approaches allow stakeholders to model \glspl{longTermAct}.
+Indeed, they do not incorporate a time dimension in their models.
+We give an overview of the different solutions in~\Cref{table:sota:results:actions:rq1.2}.
+Finally, we show that, using one of the current solution, one cannot  allow to reason over running actions with their expected effects.
+Some solution exists to represent action effects at design time.
+First, those that employ a state machine~\cite{DBLP:conf/sigsoft/MorenoCGS15, DBLP:conf/kbse/FilieriGLM11,DBLP:conf/wetice/DjoudiBZ14, DBLP:conf/aosd/ZhangGC09, DBLP:conf/icse/GhezziPST13, DBLP:conf/kbse/TajalliGEM10} represent actions as state transitions.
+Effects are thus modelled as the target state.
+In~\cite{DBLP:conf/smartgridsec/0001FKNT14}, the authors model and use the effects of actions to simulate different sequences of actions.
+Finally, researchers defined the Stitch language~\cite{DBLP:journals/jss/ChengG12} that can abstract action effects.
+They are used as conditions for the execution of the next action.
+However, none of them model runtime information, useful, for instance, during a diagnosis task.
 
-%% Description of the vision
-- Modeling frameworks should encapsulate time and uncertainty time and uncertainty as first-class concern
-%%% Pros
-%%%% <!-- why a modeling framework? -->
-- benefits of abstraction
-    - remove unecessary details which may complexify the reasoning
-    - bring specific view for stakeholders, view that use domain vocabulary / syntax / concepts
-%%%% <!-- why time and uncertainty as first-class concepts? -->
-- time and uncertainty appears in most of DAS
-- improve performances
-    - structure defined with time and uncertainty in mind
-        - enable default index on the temporal aspect
-- improve efforts in usage
-    - temporal and/or uncertain data directly 
-%%%% <!-- why combining time and uncertainty in the same structure? -->
-- Concern linked: each data as a validity period (more or less long) [not a binary concept]
-    - temporal data come with uncertainty
-    - uncertainty may come with time
-%%% Cons
-%%%% <!-- why a modeling framework? -->
-- limitation of abstraction mechanism
-    - can introduce overhead that can impact the performances (CPU, memory)
-    - lose of control of the full technology stack
-    - abstraction may not consider 10% exceptionals cases
-%%%%<!-- why time and uncertainty as first-class concepts? -->
-- uncertainty and time can be defined as normal attributes in existing structures -> reuse of known tools by developers
-    - indexes mechanism can also be added on them
-%%%% <!-- why combining time and uncertainty in the same structure? -->
-- Separation of concerns
-    - reduce complexity for developers
-    - improve their productivity
+In~\Cref{sec:sota:results:duc}, we address the second research question.
+We first explain that the literature addressed nine kinds of uncertainty, depicted in~\Cref{table:sota:results:duc:rq2.1}.
+Among them, the most studied one is the uncertainty relative to data~\cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/asplos/BornholtMM14, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:journals/sosym/Zhang00NO19, DBLP:journals/csi/Hall06, DBLP:journals/infsof/Jimenez-RamirezW0V15, DBLP:conf/ecmdafa/ZhangSAYON16, DBLP:journals/tkde/BarbaraGP92, DBLP:conf/vldb/BenjellounSHW06, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/uist/SchwarzMH11, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}.
+In this thesis, we also concentrated on this kind of uncertainty.
+Then, we detail how researchers model \gls{duc} (\cf \Cref{table:sota:results:duc:rq2.2}).
+In our findings, the most used one is the probabilistic programming~\cite{baudin2017openturns, DBLP:conf/asplos/BornholtMM14, DBLP:journals/corr/BorgstromGGMG13, osti_1430202, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}.
+Using this programming paradigms, developers can manipulate probability distribution as variables.
+They can define complex probability distributions that result from a sequence of operations.
+Another approach is to consider variable as a pair of a standard deviation and a value~\cite{DBLP:conf/models/BurguenoBMV18, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/sle/MayerhoferWV16, DBLP:conf/quatic/VallecilloMO16, DBLP:journals/tkde/BarbaraGP92, DBLP:conf/uist/SchwarzMH11}.
+Finally, we look for studies that propose a solution to propagate or reason over uncertainty (\cf \Cref{table:sota:results:duc:rq2.3.1}).
+The main approach found to propagate the uncertainty is to map this operation to language operators~\cite{DBLP:conf/models/BurguenoBMV18, baudin2017openturns, DBLP:journals/corr/BorgstromGGMG13, DBLP:conf/ecmdafa/BertoaMBBTV18, osti_1430202, DBLP:conf/sle/MayerhoferWV16, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/quatic/VallecilloMO16, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}.
+Concerning reasoning approaches, we find only two ways, as shown in~\Cref{table:sota:results:duc:rq2.3.2}.
+The first one consists in giving access to the confidence parameter~\cite{DBLP:conf/models/BurguenoBMV18, DBLP:conf/ecmdafa/BertoaMBBTV18, DBLP:conf/sle/MayerhoferWV16, DBLP:conf/quatic/VallecilloMO16, DBLP:journals/tkde/BarbaraGP92, DBLP:conf/uist/SchwarzMH11}.
+The second one is to allow developers to read and manipulate features of the probability distribution~\cite{baudin2017openturns, DBLP:conf/asplos/BornholtMM14, DBLP:journals/corr/BorgstromGGMG13, osti_1430202, DBLP:journals/peerj-cs/SalvatierWF16, DBLP:conf/popl/BhatAVG12, DBLP:conf/aistats/ChagantyNR13, DBLP:journals/siamsc/JaroszewiczK12, DBLP:journals/toplas/ParkPT08, DBLP:conf/ijcai/Pfeffer01, DBLP:conf/popl/RamseyP02, DBLP:conf/pldi/SankaranarayananCG13, DBLP:conf/icra/Thrun00, DBLP:journals/sac/LunnTBS00, plummer2003jags}.
+
+To summarize, our review of the state-of-the-art shows first that research efforts are still necessary to specify a model-based approach for \glspl{longTermAct}.
+Besides, it demonstrates that, despite that it has been heavily studied, the research community should focus on defining solution to manipulate uncertain data at a higher level than the manipulation of probability distributions.
+We think that both challenges can be addressed by the definition of a modeling framework that includes, despite all traditional elements, temporal and uncertainty as first-class concepts.
+
+%% todo describes the vision
 
 
+We present, in this thesis, two contributions towards this vision.
+First, in~\Cref{chapt:aintea} we detail our language named \langName{}, which permit designers managing uncertainty at language level.
+This solution addressed the challenge of the manipulation of uncertain data (cf. Sub-Challenge \#1). 
+Second, we describe a temporal knowledge model in~\Cref{chapt:tkm} to structure and store the state and behaviour of a running \gls{adptSyst}, with running \glspl{longTermAct}.
+This model addresses the challenge of reasoning over unfinished actions, and understanding of \gls{adptSyst} \gls{behaviour} (cf. Sub-Challenge \#2 and \#3).
 
-%% Introduction to the two new contributions
-- \langName{}, a language to manage uncertain data (\cf \Cref{chapt:aintea})
-%	This contribution addresses the challenge of the manipulation of uncertain data (cf. Sub-Challenge \#1). 
-%	We propose \langName{}, a language able to represent uncertain data as built-in language types along with their supported operations.
-%	An overview of the language is depicted in~\Cref{fig:intro:contrib:aintea}.
-% 	It contains a sampling of distributions (Gaussian, Bernoulli, binomial, Dirac delta function, and Rayleigh) that covers the different data types (booleans, numbers, and references).
-% 	We implement a prototype of the language, publicly available on GitHub\footnote{\url{https://github.com/lmouline/aintea/}}.
-% 	We use a real-world case study based on \gls{sg}, built with our partner Creos S.A..
-%	It shows first that our approach does not impact the conciseness of the language.
-%	Second, it highlights the feasibility and the advantages of uncertainty-aware type checking systems on the language level.
 
-- A temporal knowledge model (\cf \Cref{chapt:tkm})
-%This contribution addresses the challenge of reasoning over unfinished actions, and understanding of \gls{adptSyst} \gls{behaviour} (cf. Sub-Challenge \#2 and \#3).
-%First, we formalise the common core concepts implied in adaptation processes, also referred to as \gls{knowledge}.
-%The formalisation is based on temporal graphs and a set of relations that trace decision impacts to circumstances.
-%Second, we propose a framework to structure and store the state and behaviour of a running \gls{adptSyst}, together with a high-level \gls{api} to efficiently perform diagnosis routines.
-%Our framework relies on a temporal model-based solution that efficiently abstracts decisions, their corresponding circumstances, and their effects.
-%We give an overview of the \gls{metamodel} in~\Cref{fig:intro:contrib:tkm}.
-%We demonstrate the applicability of our approach by applying it to a \gls{sg} based example.
-%We also show that our approach can be used to diagnose the behaviour of at most the last five days of a district in the Luxembourg \gls{sg} in $\sim$2.4 seconds.
+
+
+
+%%% Description of the vision
+%- Modeling frameworks should encapsulate time and uncertainty time and uncertainty as first-class concern
+%%%% Pros
+%%%%% <!-- why a modeling framework? -->
+%- benefits of abstraction
+%    - remove unecessary details which may complexify the reasoning
+%    - bring specific view for stakeholders, view that use domain vocabulary / syntax / concepts
+%%%%% <!-- why time and uncertainty as first-class concepts? -->
+%- time and uncertainty appears in most of DAS
+%- improve performances
+%    - structure defined with time and uncertainty in mind
+%        - enable default index on the temporal aspect
+%- improve efforts in usage
+%    - temporal and/or uncertain data directly 
+%%%%% <!-- why combining time and uncertainty in the same structure? -->
+%- Concern linked: each data as a validity period (more or less long) [not a binary concept]
+%    - temporal data come with uncertainty
+%    - uncertainty may come with time
+%%%% Cons
+%%%%% <!-- why a modeling framework? -->
+%- limitation of abstraction mechanism
+%    - can introduce overhead that can impact the performances (CPU, memory)
+%    - lose of control of the full technology stack
+%    - abstraction may not consider 10% exceptionals cases
+%%%%%<!-- why time and uncertainty as first-class concepts? -->
+%- uncertainty and time can be defined as normal attributes in existing structures -> reuse of known tools by developers
+%    - indexes mechanism can also be added on them
+%%%%% <!-- why combining time and uncertainty in the same structure? -->
+%- Separation of concerns
+%    - reduce complexity for developers
+%    - improve their productivity
