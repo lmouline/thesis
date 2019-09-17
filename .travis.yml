@@ -18,7 +18,7 @@ script:
   - ./build.sh
   - cd build
   - shopt -s extglob #used to allow the ! expression/command
-  - rm !(main.pdf)
+  - rm !(Main.pdf)
 
 deploy:
   provider: pages
