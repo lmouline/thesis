@@ -1,6 +1,33 @@
 Changelog
 ---
 
+# 13.09.2019
+
+**Source:**
+- réunion
+
+**Commentaires:**
+- "Paragraphe de validation dans l'Abstract bizarre"
+    - ajout de "First, ...." "Second, ...."
+- "Check références"
+    - done
+- "Chapitre de Glue entre SOTA et contributions"
+    - TBD
+    - séparation du document en parties en préparation de ce chapitre
+- "Remove future works des conclusions des chapitre de contribution"
+    - done
+- "Remove outlook"
+    - done
+- "Conclusion SOTA plus longue"
+    - ignorer, je pense le faire dans le chapitre de glue
+- "Future works: réduire le nombre mais en faire des plus longue"
+    - restructuration des sections sur 2 directions
+- "Raccourcir les introductions des chapitres de contributions / faire plus de glue avec ce qui a avant"
+    - rappel du sous-challenge addressé par le chapitre
+    - glue avec SOTA se fera dans le chapitre de glue
+- Ajout correction typos vu par Niklas (Introduction)
+
+
 # 06.09.2019
 
 ## Johann
