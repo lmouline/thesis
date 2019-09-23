@@ -41,6 +41,10 @@ For the classical one, a cast operation should be performed to get a certain one
 It can be done using at least two strategies.
 First, a random selection from the probability distribution can be made.
 Second, a cast can be done using the \textit{cast} or \textit{confidence} operator of our language (\cf \Cref{chapt:aintea}).
+This operation gives the most confident value.
+Let us take an example, an uncertain boolean that equals \false{} with a confidence of 40\%.
+Following the first strategy, there is a 40\% chance of getting \false{}, and so 60\% for	 \true{}.
+Using the second one, it always results in a \true{} value, as it's the most confident value.
 
 For the uncertain execution, as the executor cannot decide which branch should be executed, it should execute all of them and propagate the uncertainty.
 For example, let us imagine the following code:
@@ -72,21 +76,23 @@ For example, one may focus on how the uncertainty of the array will be impacted 
 Lastly, one may investigate the impact of introducing uncertain data structures in common algorithms.
 For example: how to sort an uncertain collection? How to balance an uncertain tree? How to compute the shortest path?
 
-\paragraph{Evaluation and reduction of uncertainty}
+\paragraph{Quantification and reduction of uncertainty}
 In our work on uncertainty, we focus on the definition of uncertain data and the propagation of uncertainty.
-However, while talking about uncertainty, there are two other key concepts: evaluation and reduction.
-The former is to evaluate the uncertainty at runtime of a received data, \eg to find the appropriated probability distribution with its parameter.
+However, while talking about uncertainty, there are two other key concepts: quantification and reduction.
+The former is to quantify the uncertainty at runtime of a received data, \eg to find the appropriated probability distribution with its parameter.
+For example, when a \gls{sg} system receives a consumption value, the quantification consists in adding the probability distribution that represents the uncertainty.
 The latter is to increase the confidence of received values.
+For instance, by comparing the consumption value with past ones, one may increase its confidence in the value.
 The literature provides techniques to evaluate the uncertainty~\cite{wubbeler2008evaluation, metrology2008evaluation} and to reduce it~\cite{shafer1992dempster}.
 Thus, we think that future works for the modelling community are open.
 The community should focus on a \gls{model} that abstracts these techniques to help engineers to manipulate and integrate them into their models.
 
 \paragraph{Data uncertainty representation}
-Different kinds of uncertainties exist, such as uncertainty of existence or temporal uncertainty.
+Researchers defined different strategies, like keeping multiple possibilities, to represent several kinds of uncertainties.
+As examples, we identified the uncertainty of existence and the temporal uncertainty.
 The first one corresponds to the confidence that a value exists or not.
 It can result from faulty data sources that send wrong data.
 The second one can be used to represent the loss of confidence in value over time.
-Moreover, researchers defined other strategies to represent uncertain data, like keeping multiple possibilities.
 
 First future work would be to investigate how to introduce such techniques inside a programming language.
 Then, research efforts can focus on the definition of a language that uses different strategies to handle uncertainty.
@@ -101,7 +107,7 @@ This leads to challenges regarding the threshold between the performance of the 
 \subsection{(Self-)Explanation of adaptive systems}
 
 The complexity of adaptive system behaviour makes it hard to understand system behaviour and adaptation decisions made.
-If the system becomes in a suboptimal state, engineers may have difficulties to figure out the reasons.
+If the system enters in a suboptimal state, engineers may have difficulties to figure out the reasons.
 In this thesis, we define a  temporal knowledge model to help them to perform diagnosis routines (\cf \Cref{chapt:tkm}).
 
 However, this work is just one step towards fully explainable \glspl{adptSyst}.
@@ -119,7 +125,7 @@ However, as systems are more and more complex, we think that they do not know al
 There is an unknown part.
 As done by Donald Rumsfeld in a famous US Department of Defense press briefing, we can identify two levels of unknowns: unknown knowns, and unknown unknowns.
 Moreover, these relations are uncertain.
-All traceability links that we model in this paper should not be considered as entirely accurate.
+All traceability links that we model in this thesis should not be considered as entirely accurate.
 Lastly, decision effects will be combined with the evolution of the system context and behaviour.
 
 Research efforts are, therefore, needed to define techniques to discover these unknown relations and to separate decisions effects from the evolution of the system.

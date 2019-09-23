@@ -1,6 +1,41 @@
 Changelog
 ---
 
+# 23.09.2019
+
+**Source:**
+- call Johann
+
+**Commentaires:**
+- "séparer le chapitre glue en 2 sections: 1 pour la synthèse des chapt. précédents, 1 pour la vision"
+    - done
+    - ajout 3 phrases d'intro en début de chapitre
+- "réduire 2/3 premieres phrases du chapt. glue"
+    - done: reformulation pour être plus concis
+- changer les "on démontre que la communauté de recherche doit se focaliser sur XXX", suggestion: "on montre que XXX n'a pas été le focus de ...."
+    - done: reformulation des phrases
+- début de section 8.2.2: "If the system becomes in a suboptimal state.", le système de devient pas un état sous-optimal, remplacer par "If the system enters in a suboptimal state."
+- fin 1er paragraphe de la section 8.2, remplacer 1st one....2nd one par des bullet point
+    - ignore, description des sous sections, je prefere laisser comme ça, consistence avec les autres descriptions de sections
+- "Paragraphe 'Evaluation/Réduction', définir les termes"
+    - déjà fait
+    - ajout exemple
+    - renomme evaluation par quantification (plus clair je pense)
+- "paragraphe du control flow, sur la stratégie 'classicla one', ajout d'example"
+    - done
+- "paragraphe 'Data uncertainty representation', bien spécifier qu'au début ce sont des examples"
+    - done, reformulation du début
+
+# 20.09.2019
+
+**Source:**
+- message privé Johann
+
+**Commentaires:**
+- "une vrai figure qui résume de manière synthétique ton approche dans le chapitre de glue. Ce n'est pas le cas de la figure actuelle ou l'on ne comprend pas vraiment grand chose."
+    - nouvelle figure, from stracth 
+
+
 # 13.09.2019
 
 **Source:**
