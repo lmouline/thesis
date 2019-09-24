@@ -49,7 +49,7 @@ Using the second one, it always results in a \true{} value, as it's the most con
 For the uncertain execution, as the executor cannot decide which branch should be executed, it should execute all of them and propagate the uncertainty.
 For example, let us imagine the following code:
 
-\begin{lstlisting}[style=javaStyle, caption=Example for uncertain control flow]
+\begin{lstlisting}[style=pouetpouet2, caption=Example for uncertain control flow]
 uncertain_bool b = (TRUE, 0.4)
 uncertain_int n;
 if(uncertain_bool)
@@ -71,11 +71,11 @@ While these data structure and relations are useful to build algorithms to reaso
 First, it opens new questions concerning the meaning of an uncertain data structure: what an uncertain array? What an uncertain tree, graph?
 
 Let us develop here the challenges brought by an uncertain array.
-We think that there is three possibles definition of an uncertain array, the last one being the combination of the first two:
+We think that there are three possible definitions of an uncertain array, the last one being the combination of the first two:
 \begin{itemize}
 	\item an uncertain array is a collection when the collection itself is uncertain,
-	\item an uncertain array is a collection that contains uncertain element,
-	\item an uncertain array is a collection that contains uncertain element and when the collection itself is uncertain.
+	\item an uncertain array is a collection that contains uncertain elements,
+	\item an uncertain array is a collection that contains uncertain elements and when the collection itself is uncertain.
 \end{itemize}
 Let us consider the following array of integers: [54, 10, 3, 24]. 
 Following the first definition, the array is uncertain if this collection is not known with the most thorough confidence.
@@ -86,18 +86,18 @@ Using the second definition, 54, 10, 3, and 24 are all uncertain integers.
 
 Additionally, research efforts have to be done to specify the semantics of operators on these uncertain structures.
 For example, one may focus on how the uncertainty of the array will be impacted by an \textit{add} or \textit{remove} operation.
-These operations have no effect on the uncertainty of uncertain arrays that respect the second definition, if we consider the operation as certain.
-But, it brings open questions for the two other definitions.
+These operations do no affect the uncertainty of uncertain arrays that respect the second definition, if we consider the operation as certain.
+But it brings open questions for the two other definitions.
 As they will modify the size of the collection, the size will be, in the best cases, as uncertain it was or more uncertain.
 
 Lastly, one may investigate the impact of introducing uncertain data structures in common algorithms.
 For example: how to sort an uncertain collection? How to balance an uncertain tree? How to compute the shortest path?
-Let us detail the sorting of an array.
-If the full collection is uncertain, common sorting algorithm can be applied without impacting the uncertainty.
+Let us details the sorting of an array.
+If the full collection is uncertain, a common sorting algorithm can be applied without impacting the uncertainty.
 In the other cases, algorithms should be redesigned.
-Indeed, as uncertainty propagation is mapped to operators and each algorithm will use differently the comparison operators, the result can differ.
-Sorting the first integer array ([54, 10, 3, 24]), a MergeSort makes 5 comparison while a QuickSort makes 4. 
-These algorithms should consider uncertainty at a higher level than language operator.
+Indeed, as uncertainty propagation is mapped to operators, and each algorithm will use the comparison operators differently, the result can differ.
+Sorting the first integer array ([54, 10, 3, 24]), merge sort makes five comparisons while quick sort makes 4. 
+These algorithms should consider uncertainty at a higher level than language operators.
 
 \paragraph{Quantification and reduction of uncertainty}
 In our work on uncertainty, we focus on the definition of uncertain data and the propagation of uncertainty.
@@ -109,7 +109,7 @@ For instance, by comparing the consumption value with past ones, one may increas
 The literature provides techniques to evaluate the uncertainty~\cite{wubbeler2008evaluation, metrology2008evaluation} and to reduce it~\cite{shafer1992dempster}.
 Thus, we think that future works for the modelling community are open.
 A direction could focus on a \gls{model} that abstracts these techniques to help engineers to manipulate and integrate them into their models.
-For example, using a descriptive language that add meta-information to uncertain values.
+For example, using a descriptive language that adds meta-information to uncertain values.
 Below, we show a possible language for that.
 
 \begin{lstlisting}[style=pouetPouetStyle, caption=Example of a descriptive language to define meta-information uncertainty]
@@ -122,8 +122,8 @@ uatt att1: double {
 }
 \end{lstlisting}
 
-This language can define some information that can be used to quantity or reduce the uncertainty.
-For example, minimal and maximal values can be used to check if the receive value is in this range or not.
+This language can define some information that can be used to quantify or reduce uncertainty.
+For example, minimal and maximal values can be used to check if the received value is in this range or not.
 If not, the uncertainty will increase.
 The \textit{past} attribute can be used to define how it should be represented.
 The model will then be used to compare the received values with past ones.
@@ -131,7 +131,7 @@ The model will then be used to compare the received values with past ones.
 More the value reaches the given validity, more it is uncertain.
 Finally, \textit{consistentWith} can be used to compare the value with another one, here \textit{att2}.
 Plus, the function given into square brackets can be used to formalise the relation between the two attributes.
-In the listing, \textit{att1} is approximatively equal to the double of \textit{att2}.
+In the listing, \textit{att1} is approximately equal to the double of \textit{att2}.
 This language results from a first brainstorming, but research efforts are still required to design and validate it.
 
 \paragraph{Data uncertainty representation}

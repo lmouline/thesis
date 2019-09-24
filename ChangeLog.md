@@ -28,7 +28,7 @@ Changelog
 - "ajouter le texte qui décrit la figure de vision"
     - done
 - "Data uncertainty representation: se mouiller un peu plus sur le plan" / "rajouter un peu plus de détails sur les axes d'incertitudes"
-    - 
+    - exentension des parties
 
 # 20.09.2019
 
