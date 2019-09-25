@@ -7,7 +7,7 @@
 \RequirePackage[table]{xcolor}
 \RequirePackage{xifthen}
 \RequirePackage[backref=true, style=trad-alpha, backend=biber, bibencoding=utf8]{biblatex}
-\RequirePackage[]{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage{indentfirst}
 \RequirePackage{doi}
 \RequirePackage{graphicx}
@@ -174,7 +174,7 @@
 	\ifIFglossary
 		\printglossary[type=main, nonumberlist]
 		\cleardoublepage
-		\printglossary[type=\acronymtype, title={Abbreviations}]
+		\printglossary[type=\acronymtype, title={Abbreviations}, nonumberlist]
 		
 	\fi
 	
