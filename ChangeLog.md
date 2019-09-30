@@ -1,6 +1,34 @@
 Changelog
 ---
 
+# 30.09.19
+
+**Source:**
+- https://www.xodo.com/app/%23/collab/b3ed5e63-00b3-4313-9056-13121c5e4de8
+
+**Commentaires:**
+- p.5 "j'aime pas depite"
+    - remplace par "besides"
+- p.25 "Non c'est pas tous du background and SE"
+    - reformule la phrase: split en 2, une partie SE, une partie non SE
+- p.29 "Pas clair, structure and behavior"
+    - ajout définition au début du document
+- p.29 "manque un espace, fait un check global à coup de grep"
+    - done
+- p.29 "iL TE MANQUE DES GUILLEMENTS"
+    - check
+- p.72 "Ce serait cool d'avoir un tableau pour cela"
+    - done
+- p.74 "Il y a des comparaison qui ne sont pas de même niveau. Par conséquent, suis pas fan des titres de cette section"
+    - renommage des paragraphes
+- p.84 "lesquels ?" / "Trop violent comme paraphraphe"
+    - essaye de reformuler un peu
+- p.85 "Pareil il te faut un discours plus fort ici"
+    - déplacement de la synthèse du SOTA du chapitre glue vers la conclusion du chapitre SOTA
+- p.96 "Problème d'espace"
+    - checked
+
+
 # 23.09.2019
 
 **Source:**

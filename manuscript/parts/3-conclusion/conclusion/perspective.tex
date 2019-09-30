@@ -60,13 +60,13 @@ else
 As \textit{b} is true with a confidence of 40\%, \textit{n} should be equal to 5 with a confidence of (40\% * 80\% = 32\%) and to -5 with a confidence of (60\% * 80\% = 48\%) (considering \textit{b} and \textit{n} independent).
 
 These two execution semantics come with several open questions.
-One is related to the impact of such techniques to performances (\gls{cpu}, memory, \etc).
+One is related to the impact of such techniques to performances (\gls{cpu}, memory, \etc{}).
 For the uncertain execution, additional problems persist such as: should the execution be parallel or not? How to ensure that the execution does not have a side effect(s)?
 And a final one: can other semantics be defined?
 
 \paragraph{Data structures and data uncertainty}
 In a software language, it exists several data structures, from the simplest ones like arrays to complex ones like graphs or trees.
-Additionally, the \gls{uml} specification contains different kinds of relations (1:1, 1:n, n:n, \etc).
+Additionally, the \gls{uml} specification contains different kinds of relations (1:1, 1:n, n:n, \etc{}).
 While these data structure and relations are useful to build algorithms to reason over data, they come with new challenges.
 First, it opens new questions concerning the meaning of an uncertain data structure: what an uncertain array? What an uncertain tree, graph?
 
@@ -188,7 +188,7 @@ A \gls{model} that conforms this \gls{metamodel} can be challenging to be define
 Research efforts are required to define \gls{dsl} to facilitate the manipulation of the \gls{model}.
 Moreover, autonomous processes can be defined to populate a \gls{model} conforms to our \gls{metamodel} automatically.
 For example, one can specify a method for analysing the code or the model that describes \glspl{action} to populate the temporal knowledge with \glspl{longTermAct}.
-Another process can be formalised to add \gls{model} elements related to context information, the status of action executions, \etc.
+Another process can be formalised to add \gls{model} elements related to context information, the status of action executions, \etc{}.
 
 \paragraph{Automatic extraction of explanation}
 In the contribution presented in~\Cref{chapt:tkm}, we defined a data model.

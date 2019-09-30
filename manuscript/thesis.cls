@@ -25,6 +25,9 @@
 \RequirePackage{graphicx}
 \RequirePackage{dsfont}
 \RequirePackage{pifont}
+%\RequirePackage{rotating}
+\RequirePackage{pdflscape}
+\RequirePackage{afterpage}
 
 %%% Class options %%%%%
 %
