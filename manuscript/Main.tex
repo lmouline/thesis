@@ -2,12 +2,12 @@
 
 \documentclass[review, glossary, writing]{thesis}
 
+\usepackage[capitalise, noabbrev]{cleveref}
+
 \def\UrlBreaks{\do\/\do-}
 
 \usepackage{array}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
-
-%\usepackage{adjustbox}
 
 \newtheorem{operator}{Operator}
 
@@ -25,7 +25,7 @@
 	\frontmatter
 	\pagenumbering{gobble}
 	\includepdf{cover/Cover.pdf}
-%	\linenumbers
+	\linenumbers
 	\input{abstract}	
 %	\input{publications}
 	

@@ -28,6 +28,7 @@
 %\RequirePackage{rotating}
 \RequirePackage{pdflscape}
 \RequirePackage{afterpage}
+%\RequirePackage[capitalise, noabbrev]{cleveref}
 
 %%% Class options %%%%%
 %
@@ -96,10 +97,10 @@
 \fi
 
 \ifIFwriting
-	\RequirePackage{warning}
-	\RequirePackage{refcheck}
-	\RequirePackage{todonotes}
-	\overfullrule=2cm
+%	\RequirePackage{warning}
+%	\RequirePackage{refcheck}
+%	\RequirePackage{todonotes}
+%	\overfullrule=2cm
 \fi
 
 %%% Package dependencies 2 %%%%%
@@ -136,7 +137,7 @@
 	  \titlerule]
 
 
-\RequirePackage{cleveref}
+
 	  
 %%% Remove spaces for item list %%%%%
 \setlist[itemize]{noitemsep, nolistsep}
