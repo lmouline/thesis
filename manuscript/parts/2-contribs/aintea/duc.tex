@@ -83,7 +83,7 @@ We define the following uncertain booleans to exemplify the different operators:
 \end{operator}
 
 Using this operator, developers know if it exists at least one value for which its confidence level is greater than a given threshold. For example, using it, one may know if a fuse is open ($isOpen := \true{}$) or closed ($isOpen := \false{}$) with a confidence of at least 80\%.
-The operational semantics of this operator is specified by the following function:\looseness-1 $$exists((v, B(p)), t) := (p \geqslant t) \| (1-p \geqslant t)$$
+The operational semantics of this operator is specified by the following function:\looseness-1 \[exists((v, B(p)), t) := (p \geqslant t) \| (1-p \geqslant t)\]
 
 Applying the operator on $u_{b1}$, we thus get:
 \begin{itemize}
@@ -103,11 +103,11 @@ Taking an example from the smart grid domain, one may use this operator to get t
 
 This operator raises an error in two cases: when (i) no value exists with at least the given confidence level or (ii) the confidence level of both values, true or false, are equal.
 Its semantics is thus:
-$$confidence((v, B(p)), t) := \begin{cases}
+\[confidence((v, B(p)), t) := \begin{cases}
 												\text{\textit{true}, when } exists((v, B(p)), t) \land p >  1-p \\
 												\text{\textit{false}, when } exists((v, B(p)), t) \land p < 1-p \\
 												\perp \text{, when } p = 0.5
-											\end{cases}$$
+											\end{cases}\]
 												
 If we apply this operator on $u_{b1}$ with the same base as the previous example, then it returns:
 \begin{itemize}
@@ -129,15 +129,15 @@ Otherwise, we cannot know its value with a minimal confidence level of 0.9.
 The cast operation from an uncertain to a certain one can be used to get the most confident value, without any constraint on the confidence (which is done by the confidence operator).
 This helps developers to reason or to make decisions upon the most probable situation.
 It can be performed by using the confidence operator with 0 as given confidence level:
-$$cast(u_b) := confidence(u_b, 0)$$
+\[cast(u_b) := confidence(u_b, 0)\]
 
 The opposite operation, from certain to uncertain, is mainly a syntactic manipulation.
 Indeed, certain data is always considered as uncertain data with the maximum confidence level.
 In the case of uncertain boolean, it's 1:
-$$cast(b) := \begin{cases}
+\[cast(b) := \begin{cases}
                         (b, B(1)) \text{, when } b = \true{}\\
                         (b, B(0)) \text{, when } b = \false{}
-                    \end{cases}$$
+                    \end{cases}\]
   
 Performing this operator on our example results in:
 \begin{itemize}
@@ -155,9 +155,9 @@ Performing this operator on our example results in:
 
 This operator allows accessing the elements that compose uncertain data.
 For the value, it permits to resolve what is the value measured, observed, computed or given, without uncertainty consideration using the \textit{value} keyword:
-$$(v, B(p)).value := v$$
+\[(v, B(p)).value := v\]
 For the confidence, it gives access to the confidence in order to reason over the probability distribution using the \textit{confidence} keyword:
-$$(v, B(p)).confidence := B(p)$$
+\[(v, B(p)).confidence := B(p)\]
 
 Used on $u_{b1}$ and $u_{b3}$, this operator will return:
 \begin{itemize}
@@ -251,8 +251,8 @@ It compares the probability parameter of the Bernoulli distribution and the valu
 
 For example, the comparison of $u_{b1}$ and $u_{b2}$ returns:
 \begin{itemize}
-	\item $u_{b1}$==$u_{b2}$:= (0.65=0.3) $\land$ (\true{}=\true{}) := \false{},
-	\item $u_{b1}$$\ne\ne$$u_{b2}$ := (0.65$\ne$0.3) $\lor$ (\true{}$\ne$\true{}) := \true{}.
+	\item $u_{b1}$ == $u_{b2}$:= (0.65=0.3) $\land$ (\true{}=\true{}) := \false{},
+	\item $u_{b1} \ne\ne u_{b2}$ := (0.65$\ne$0.3) $\lor$ (\true{}$\ne$\true{}) := \true{}.
 \end{itemize}
 
 %%%% Boolean operators %%%
@@ -405,7 +405,7 @@ The following uncertain numbers are defined to be used as examples for the descr
 In probability distributions, the value with the highest probability is called the mode~\cite{mood1963introduction}.
 We denote it by $m$.
 For discrete uncertain numbers, the operator, defined in Operator~\ref{op:existence}, returns \true{} if the probability of the mode value is greater or equal to a given base:
-$$exists((v, p), t) := P(x=m)\geqslant t \text{, where $P(x=m)$ is the probability of $m$}$$
+\[exists((v, p), t) := P(x=m)\geqslant t \text{, where $P(x=m)$ is the probability of $m$}\]
 
 Based on $u_{n1}$, we thus get:
 \begin{itemize}
@@ -416,7 +416,7 @@ Based on $u_{n1}$, we thus get:
 This operator allows verifying that there is no value with a confidence level of at least 50 or 90\% for $u_{n1}$, but there is at least one value with a non-null confidence level.
 
 For uncertain continuous numbers, no semantic exists for a continuous domain since the probability of the mode cannot be computed for continuous probability distributions, $\int_{m}^{m} P(u_n)\,\mathrm{d}x = 0$: 
-$$exists((v, p), t) := \perp$$
+\[exists((v, p), t) := \perp\]
 
 \bigskip
 
@@ -426,10 +426,10 @@ $$exists((v, p), t) := \perp$$
 The semantics of the confidence operator relies on the existence operator.
 For uncertain discrete numbers, it returns the mode if the existence operator returns true:\looseness-1
 
-$$confidence((v, p), t) :=  \begin{cases}
+\[confidence((v, p), t) :=  \begin{cases}
                                             m \text{, if } exists((v, p), t)\\
                                             \perp \text{, otherwise}
-                                         \end{cases}$$
+                                         \end{cases}\]
                                       
 Applying this operator on the $u_{n1}$ using the same base as in the previous example, the operator returns the mode value, 7, only for the first case:
  \begin{itemize}
@@ -441,7 +441,7 @@ Applying this operator on the $u_{n1}$ using the same base as in the previous ex
 This means that the most probable value which has at least zero as confidence level is 7 for $u_{n1}$. 
 
 For continuous numbers, as this operator is based on the existence operator, which is not defined, it is also not defined:
-$$confidence((v, p), t) :=  \perp$$
+\[confidence((v, p), t) :=  \perp\]
 
 \bigskip
 
@@ -451,7 +451,7 @@ In addition to the cast operator between uncertain and certain data, this operat
 In Table~\ref{table:allowed-cast-op}, we summarize the permitted casts in our language.
 
 When casting an uncertain number (discrete or continuous) to a certain one, we return the value with the highest confidence, \ie the mode $m$.
-$$cast((v, p) := m$$
+\[cast((v, p) := m\]
 
 For example, casting $u_{n1}$ and $u_{n3}$ to certain numbers will result in:
 \begin{itemize}
@@ -470,13 +470,13 @@ Nonetheless, this accuracy is not sufficient for other fields such as meteorolog
 As no global value could be selected, we decided to forbid such casting operations when it is not possible without heuristics.
 We, therefore, define the following semantics:
 
-$$cast(v) := \begin{cases}
+\[cast(v) := \begin{cases}
 						(v, Dirac(coeff=1, shift=v) \text{, when the expected distribution} \\
 						\text{~~ is a Dirac delta function}\\
 						(v, binomial(n=v, p=1)) \text{, when the expected distribution}\\
 						\text{~~ is a binomial distribution delta function and $v \in \mathds{N}$}\\
 						\perp \text{, otherwise}
-					\end{cases}$$
+					\end{cases}\]
 
 For example, casting 30 and 6.7 would result in:
 \begin{itemize}
@@ -487,10 +487,10 @@ For example, casting 30 and 6.7 would result in:
 
 Finally, the operator can be applied between two uncertain numbers if and only if a mapping or an approximation  between the source and target probability distributions exists in probability theory:
 
-$$cast(v, p_1) := \begin{cases}
+\[cast(v, p_1) := \begin{cases}
  								(v, approximation(p_1)) \text{, if the approximation exists}\\
  								\perp \text{, otherwise}
- 							\end{cases}$$
+ 							\end{cases}\]
 
 Following the casting rules described in Table~\ref{table:allowed-cast-op},  $u_{n1}$ can be cast into an uncertain number with a Gaussian distribution and $u_{n3}$ can be cast into an uncertain number with a binomial distribution:
 \begin{itemize}
@@ -505,14 +505,14 @@ Following the casting rules described in Table~\ref{table:allowed-cast-op},  $u_
 			\hline	
 			\diagbox{To}{From} & Gaussian & Rayleigh & binomial & Dirac & certain number\\
 			\hline
-%			Gaussian & \cellcolor{lightgray} & & \cmark & & \\
-%			Rayleigh & &  \cellcolor{lightgray} &  & & \\
-%			binomial & \cmark &   & \cellcolor{lightgray} & \cmark & \cmark \\
-%			Dirac. & & &  & \cellcolor{lightgray} &\cmark \\
-%			certain nb. & \cmark&\cmark & \cmark  & \cmark & \cellcolor{lightgray}\\
+			Gaussian & \cellcolor{lightgray} & & \cmark & & \\
+			Rayleigh & &  \cellcolor{lightgray} &  & & \\
+			binomial & \cmark &   & \cellcolor{lightgray} & \cmark & \cmark \\
+			Dirac. & & &  & \cellcolor{lightgray} &\cmark \\
+			certain nb. & \cmark&\cmark & \cmark  & \cmark & \cellcolor{lightgray}\\
 			\hline
 		\end{tabular}%}
-	{\small
+	{\newline \small
 	\textit{From: source type of uncertain number; To: targetted type. For readability purpose, we put the distribution names to represent the different types of uncertain numbers}
 	}
 	\caption{Cast operations allowed in our language}
@@ -524,8 +524,8 @@ Following the casting rules described in Table~\ref{table:allowed-cast-op},  $u_
 %%% Dot %%%
 \noindent\textbf{Operator~\ref{op:dot} - Dot operator.~}
 For uncertain numbers, this operator has the same semantics as described in Operator~\ref{op:dot}:
-$$(v, p_d).value := v$$
-$$(v, p_d).confidence := p_d$$
+\[(v, p_d).value := v\]
+\[(v, p_d).confidence := p_d\]
 
 When used on $u_{n1}$ and $u_{n3}$, this operator returns:
 \begin{itemize}
@@ -588,7 +588,7 @@ For example, comparing $u_{n1}$ and $u_{n3}$ will return:
 When the inequality operator is used between two uncertain numbers, the probability variable is substituted by $ u_{n1} \prec u_{n2} \Leftrightarrow u_{n1} - u_{n2}$. 
 From there, we can apply the operator, $\prec$, between the result and 0.
 An operation can be executed, if and only if the subtraction is defined between the two operands.
-$$(v_1, p_1) \prec (v_2, p_2) := [(v_1, p_1) - (v_2, p_2)] \prec 0;~\prec \in \{<,>,\leqslant, \geqslant\}$$
+\[(v_1, p_1) \prec (v_2, p_2) := [(v_1, p_1) - (v_2, p_2)] \prec 0;~\prec \in \{<,>,\leqslant, \geqslant\}\]
 
 For example, comparing $u_{n3}$ and $u_{n4}$ will result in: $u_{n3} \geqslant u_{n4} := u_{n3} - u_{n4} \geqslant 0 := (-11, Gaussian(-11, 4)) \geqslant 0 := (\false{}, B(0.00))$.
 
@@ -598,7 +598,7 @@ For example, comparing $u_{n3}$ and $u_{n4}$ will result in: $u_{n3} \geqslant u
 \noindent\textbf{Operator~\ref{op:u-equality} - Uncertain equality operator.~}
 
 When the equality operator is applied to a discrete uncertain and a certain number, it returns the probability that the uncertain number equals (or not) the certain one:
-$$(v_1, p_1) \prec a := (c > 0 ,~B(c));~c := P(u_n \prec a);~\prec \in \{=, \ne\}$$
+\[(v_1, p_1) \prec a := (c > 0 ,~B(c));~c := P(u_n \prec a);~\prec \in \{=, \ne\}\]
 
 For example, applying these operators on $u_{n1}$ or $u_{n2}$ will result in:
 \begin{itemize}
@@ -607,21 +607,21 @@ For example, applying these operators on $u_{n1}$ or $u_{n2}$ will result in:
 \end{itemize}
 
 As it is impossible to compute the confidence of a precise number, this operation cannot be performed for continuous uncertain numbers:
-$$(v_1, p_1) \prec a := \perp$$
+\[(v_1, p_1) \prec a := \perp\]
 
 To compare two discrete uncertain numbers, we use the same strategy as for the inequality operator: we subtract both and compare it with zero.
-$$(v_1,p_1) \prec (v_2,p_2) := (v_1,p_1) - (v_2,p_2) \prec 0;~\prec \in \{=, \ne\}$$
+\[(v_1,p_1) \prec (v_2,p_2) := (v_1,p_1) - (v_2,p_2) \prec 0;~\prec \in \{=, \ne\}\]
 
 As this comparison is impossible with continuous uncertain numbers, this operator is undefined for such:
-$$(v_1,p_1) \prec (v_2,p_2) := \perp$$
+\[(v_1,p_1) \prec (v_2,p_2) := \perp\]
 
 %%% Identity operator %%%
 \noindent\textbf{Operator~\ref{op:s-equality} - Identity operator.~}
 Similarly to uncertain booleans, the identity operator ($==$) applied to uncertain numbers returns true only if both values and both probability distributions are equal:
-$$(v_1,p_1) = (v_2,p_2) := v_1 = v_2 \&\& p_1 = p_2$$
+\[(v_1,p_1) = (v_2,p_2) := v_1 = v_2 \&\& p_1 = p_2\]
 
 The unequal operator ($\ne\ne$) returns true if both values or distributions are unequal:
-$$(v_1,p_1) \ne (v_2,p_2) := v_1 \ne v_2 \| p_{1} \ne p_{2}$$
+\[(v_1,p_1) \ne (v_2,p_2) := v_1 \ne v_2 \| p_{1} \ne p_{2}\]
 
 \subsection{Uncertain references}
 \subsubsection{What is an uncertain reference?}
@@ -637,7 +637,7 @@ Like for uncertain booleans, uncertain references have two states: either the re
 The confidence level on the existence can thus be represented by an uncertain boolean.
 We map the \true{} value to the existence of the reference and the \false{} one to its non-existence.
 Internally, uncertain references are represented by two components: a reference value and an uncertain boolean.
-$$(Reference, c) \mapsto (Reference, (v, B(p=c))),\ v \in \{\true{}, \false{}\}$$
+\[(Reference, c) \mapsto (Reference, (v, B(p=c))),\ v \in \{\true{}, \false{}\}\]
 
 The abstract syntax of our language is thus extended to add a new data type: uncertain reference.
 The semantics of the existence, confidence, cast, and dot operator are extended to consider this new type.
@@ -655,7 +655,7 @@ The following two uncertain references exemplify this:
 %%% Existence operator %%%
 \noindent\textbf{Operator~\ref{op:existence} - Existence operator.~}
 The semantics of this operator is defined upon the existence operator of the uncertain boolean that represents the uncertainty:
-$$exists((r, u_b), t) := exists(u_b, t)$$
+\[exists((r, u_b), t) := exists(u_b, t)\]
 
 When applied on the two examples from above, this operator would return:
 \begin{itemize}
@@ -668,10 +668,10 @@ When applied on the two examples from above, this operator would return:
 This operator relies on the confidence operator of the uncertain boolean.
 If this operation tells that the most confident value given a base is \true{}, then the existence operator returns the reference when applied on an uncertain reference:
  
-$$confidence((r,u_b), t) := \begin{cases}
+\[confidence((r,u_b), t) := \begin{cases}
                                                 r \text{, when } confidence((u_b), t) = \true{}, \\
                                                 \perp \text{, otherwise}
-                                            \end{cases}$$
+                                            \end{cases}\]
                                            
 If applied to the two examples, it will return:
 \begin{itemize}
@@ -685,7 +685,7 @@ If applied to the two examples, it will return:
 \noindent\textbf{Operator~\ref{op:cast} - Cast operator.~}
 
 When casting an uncertain reference to a certain one, it will return the reference value only if its  confidence level is strictly superior to zero:
-$$cast(r, u_b) := confidence((r, u_b), 0)$$
+\[cast(r, u_b) := confidence((r, u_b), 0)\]
 
 Casting both of our results into certain references will thus return in:
 \begin{itemize}
@@ -694,7 +694,7 @@ Casting both of our results into certain references will thus return in:
 \end{itemize}
 
 When casting a reference to an uncertain one, the confidence level of its existence is set at the maximum, 1:
-$$cast(r) := (r, (\true{},~1))$$
+\[cast(r) := (r, (\true{},~1))\]
 
 For example, casting a reference $r_3$ to an uncertain one returns: $cast(r_3) := (r_3, (\true{}, 1))$.
 

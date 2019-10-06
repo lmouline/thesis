@@ -25,10 +25,10 @@
 \RequirePackage{graphicx}
 \RequirePackage{dsfont}
 \RequirePackage{pifont}
-%\RequirePackage{rotating}
 \RequirePackage{pdflscape}
 \RequirePackage{afterpage}
-%\RequirePackage[capitalise, noabbrev]{cleveref}
+\RequirePackage{amsmath}
+\RequirePackage[capitalise, noabbrev]{cleveref}
 
 %%% Class options %%%%%
 %
@@ -97,10 +97,13 @@
 \fi
 
 \ifIFwriting
-%	\RequirePackage{warning}
-%	\RequirePackage{refcheck}
-%	\RequirePackage{todonotes}
-%	\overfullrule=2cm
+	\RequirePackage{warning}
+	\RequirePackage{refcheck}
+	\RequirePackage{todonotes}
+	\overfullrule=2cm
+	
+	\refcheckize{\cref}
+	\refcheckize{\Cref}
 \fi
 
 %%% Package dependencies 2 %%%%%
