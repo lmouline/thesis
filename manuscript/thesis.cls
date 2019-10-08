@@ -198,6 +198,10 @@
     \phantomsection
     \addcontentsline{toc}{chapter}{List of tables}
     \listoftables
+   
+    \input{parts/appendices/frenchSummary/main.tex}
+
+
 	
 	\printbibliography[heading=bibintoc]
 }

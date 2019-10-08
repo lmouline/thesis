@@ -1,0 +1,30 @@
+\section{Scope of the thesis}
+\label{sec:intro:scope}
+
+Among all the challenges described in the previous section, this thesis focuses on three of them: \gls{duc} (\Cref{sec:intro:challenges:duc}), \glspl{longTermAct} (\Cref{sec:intro:challenges:longTermAct}), and error-prone adaptation process (\Cref{sec:intro:challenges:diagnosis}).
+More precisely, we address three sub-problems of these challenges.
+
+Managing uncertainty requires significant expertise in probability and statistics theory.
+The literature provides different solutions to manage uncertainty~\cite{zadeh1996fuzzy,metrology2008evaluation,shafer1992dempster}.
+The application of these techniques requires a deep understanding of the underlying theories and is a time-consuming task~\cite{DBLP:conf/quatic/VallecilloMO16}.
+Moreover, it is hard to test and perhaps most importantly, very error-prone.
+In this thesis, we address thus the following problem:
+\vspace{-2em}
+\highlightbox[Sub-challenge \#1]{How to ease the manipulation of data uncertainty for software engineers?}
+
+Adaptation processes may rely on \gls{longTermAct} like resource migration in cloud infrastructure.
+The lack of information about unfinished actions and their expected effects on the system, the reasoning component may take repeated or sub-optimal decisions.
+One step for enabling this reasoning mechanism is to have an abstraction layer which can represent these \glspl{longTermAct} efficiently.
+In this thesis, we, therefore, cope with the following challenge:
+\vspace{-2em}
+\highlightbox[Sub-challenge \#2]{How to enable reasoning over unfinished actions and their expected effects?}
+
+Due to the increasing complexity of systems, developers have difficulties in delivering error-free software~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}.
+Moreover, complex systems or large-scale systems may have emergent behaviours.
+Systems very likely have an abnormal behaviour that was not foreseen at design time.
+Existing formal modelling and verification approaches may not be sufficient to verify and validate such processes~\cite{DBLP:conf/icse/TaharaOH17}.
+In such situations, developers usually apply diagnosis routines to identify the causes of the failures.
+During our studies, we tackle the following challenge:
+\vspace{-2em}
+\highlightbox[Sub-challenge \#3]{How to model the decisions of an adaptation process to diagnose it?}
+
