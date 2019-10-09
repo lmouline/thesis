@@ -1,30 +1,48 @@
-\section{Scope of the thesis}
-\label{sec:intro:scope}
+\section{Périmètre de la thèse}
+%\label{sec:intro:scope}
 
-Among all the challenges described in the previous section, this thesis focuses on three of them: \gls{duc} (\Cref{sec:intro:challenges:duc}), \glspl{longTermAct} (\Cref{sec:intro:challenges:longTermAct}), and error-prone adaptation process (\Cref{sec:intro:challenges:diagnosis}).
-More precisely, we address three sub-problems of these challenges.
+%Among all the challenges described in the previous section, this thesis focuses on three of them: \gls{duc} (\Cref{sec:intro:challenges:duc}), \glspl{longTermAct} (\Cref{sec:intro:challenges:longTermAct}), and error-prone adaptation process (\Cref{sec:intro:challenges:diagnosis}).
+%More precisely, we address three sub-problems of these challenges.
+%
+Parmi tous les défis décrits dans la section précédente, cette thèse se concentre sur trois d'entre eux : l'incertitude des données (\Cref{sec:french:challenges:longTermAct}), les actions à long terme (\Cref{sec:french:challenges:diagnosis}) et le processus d'adaptation sujet aux erreurs (\Cref{sec:french:challenges:diagnosis}). 
+Plus précisément, nous abordons trois sous-problèmes de ces défis.
 
-Managing uncertainty requires significant expertise in probability and statistics theory.
-The literature provides different solutions to manage uncertainty~\cite{zadeh1996fuzzy,metrology2008evaluation,shafer1992dempster}.
-The application of these techniques requires a deep understanding of the underlying theories and is a time-consuming task~\cite{DBLP:conf/quatic/VallecilloMO16}.
-Moreover, it is hard to test and perhaps most importantly, very error-prone.
-In this thesis, we address thus the following problem:
+%Managing uncertainty requires significant expertise in probability and statistics theory.
+%The literature provides different solutions to manage uncertainty~\cite{zadeh1996fuzzy,metrology2008evaluation,shafer1992dempster}.
+%The application of these techniques requires a deep understanding of the underlying theories and is a time-consuming task~\cite{DBLP:conf/quatic/VallecilloMO16}.
+%Moreover, it is hard to test and perhaps most importantly, very error-prone.
+%In this thesis, we address thus the following problem:
+%\vspace{-2em}
+%\highlightbox[Sub-challenge \#1]{How to ease the manipulation of data uncertainty for software engineers?}
+%
+La gestion de l'incertitude exige une grande expertise en probabilité et en théorie statistique.
+La littérature propose différentes solutions pour gérer l'incertitude~\cite{zadeh1996fuzzy,metrology2008evaluation,shafer1992dempster}.
+L'application de ces techniques exige une compréhension approfondie des théories sous-jacentes et prend beaucoup de temps~\cite{DBLP:conf/quatic/VallecilloMO16}.
+De plus, il est difficile à tester et peut-être plus important encore, très sujet aux erreurs.
+Dans cette thèse, nous abordons donc le problème suivant :
 \vspace{-2em}
-\highlightbox[Sub-challenge \#1]{How to ease the manipulation of data uncertainty for software engineers?}
+\highlightbox[Sous-défi \#1]{Comment faciliter la manipulation de l'incertitude des données pour les ingénieurs logiciels ?}
 
-Adaptation processes may rely on \gls{longTermAct} like resource migration in cloud infrastructure.
-The lack of information about unfinished actions and their expected effects on the system, the reasoning component may take repeated or sub-optimal decisions.
-One step for enabling this reasoning mechanism is to have an abstraction layer which can represent these \glspl{longTermAct} efficiently.
-In this thesis, we, therefore, cope with the following challenge:
+%Adaptation processes may rely on \gls{longTermAct} like resource migration in cloud infrastructure.
+%The lack of information about unfinished actions and their expected effects on the system, the reasoning component may take repeated or sub-optimal decisions.
+%One step for enabling this reasoning mechanism is to have an abstraction layer which can represent these \glspl{longTermAct} efficiently.
+%In this thesis, we, therefore, cope with the following challenge:
+%\vspace{-2em}
+%\highlightbox[Sub-challenge \#2]{How to enable reasoning over unfinished actions and their expected effects?}
+%
+Les processus d'adaptation peuvent reposer sur des actions à long terme comme la migration des ressources dans l'infrastructure en nuage. Le manque d'information sur les actions inachevées et leurs effets prévus sur le système, la composante raisonnement peut prendre des décisions répétées ou sous-optimales. Une étape pour permettre ce mécanisme de raisonnement est d'avoir une couche d'abstraction qui peut représenter efficacement ces actions à long terme. Dans cette thèse, nous relevons donc le défi suivant :
 \vspace{-2em}
-\highlightbox[Sub-challenge \#2]{How to enable reasoning over unfinished actions and their expected effects?}
+\highlightbox[Sous-défi \#2]{Comment permettre de raisonner sur les actions inachevées et leurs effets attendus ?}
 
-Due to the increasing complexity of systems, developers have difficulties in delivering error-free software~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}.
-Moreover, complex systems or large-scale systems may have emergent behaviours.
-Systems very likely have an abnormal behaviour that was not foreseen at design time.
-Existing formal modelling and verification approaches may not be sufficient to verify and validate such processes~\cite{DBLP:conf/icse/TaharaOH17}.
-In such situations, developers usually apply diagnosis routines to identify the causes of the failures.
-During our studies, we tackle the following challenge:
+
+%Due to the increasing complexity of systems, developers have difficulties in delivering error-free software~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}.
+%Moreover, complex systems or large-scale systems may have emergent behaviours.
+%Systems very likely have an abnormal behaviour that was not foreseen at design time.
+%Existing formal modelling and verification approaches may not be sufficient to verify and validate such processes~\cite{DBLP:conf/icse/TaharaOH17}.
+%In such situations, developers usually apply diagnosis routines to identify the causes of the failures.
+%During our studies, we tackle the following challenge:
+%Sub-challenge \#3]{How to model the decisions of an adaptation process to diagnose it?}
+%
+En raison de la complexité croissante des systèmes, les développeurs ont des difficultés à livrer des logiciels sans erreur[BdMM+17 ; MPS15 ; HBB15]. De plus, les systèmes complexes ou les systèmes à grande échelle peuvent avoir des comportements émergents. Les systèmes ont très probablement un comportement anormal qui n'était pas prévu au moment de la conception. Les approches formelles de modélisation et de vérification existantes peuvent ne pas être suffisantes pour vérifier et valider de tels processus[TOH17]. Dans de telles situations, les développeurs appliquent habituellement des routines de diagnostic pour identifier les causes des défaillances. Au cours de nos études, nous relevons le défi suivant :
 \vspace{-2em}
-\highlightbox[Sub-challenge \#3]{How to model the decisions of an adaptation process to diagnose it?}
-
+\highlightbox[Sous-défi \#3]{Comment modéliser les décisions d'un processus d'adaptation pour le diagnostiquer ?}
