@@ -25,7 +25,6 @@
 \RequirePackage{graphicx}
 \RequirePackage{dsfont}
 \RequirePackage{pifont}
-\RequirePackage[french, english]{babel}
 \RequirePackage{listings}
 \RequirePackage{pdflscape}
 \RequirePackage{afterpage}
