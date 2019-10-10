@@ -2,12 +2,12 @@
 \ProvidesClass{thesis}[2019/03/22 v0.0 PhD Thesis]
 \LoadClass[12pt, twoside]{book}
 
-%%% Package dependencies %%%%%
+%%%% Package dependencies %%%%%
 \RequirePackage[french, english]{babel}
 \RequirePackage{diagbox}
 \RequirePackage[table]{xcolor}
 \RequirePackage{xifthen}
-\RequirePackage[ babel=none, backref=true, style=trad-alpha, bibencoding=utf8]{biblatex}
+\RequirePackage[ autolang=other, backref=true, style=trad-alpha, bibencoding=utf8]{biblatex}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{indentfirst}
 \RequirePackage{doi}
@@ -258,18 +258,18 @@
 %    \fi%
 %]}}
 
-%% Usage????
-\makeatletter
-\def\old@comma{,}
-\catcode`\,=13
-\def,{%
-  \ifmmode%
-    \old@comma\discretionary{}{}{}%
-  \else%
-    \old@comma%
-  \fi%
-}
-
+%%% https://tex.stackexchange.com/questions/1959/allowing-line-break-at-in-inline-math-mode
+%\makeatletter
+%\def\old@comma{,}
+%\catcode`\,=13
+%\def,{%
+%  \ifmmode%
+%    \old@comma\discretionary{}{}{}%
+%  \else%
+%    \old@comma%
+%  \fi%
+%}
+%
 %% Now refcheck is aware of \cref and \Cref
 \newcommand{\refcheckize}[1]{%
   \expandafter\let\csname @@\string#1\endcsname#1%
