@@ -11,9 +11,9 @@
 Dans cette thèse, nous soutenons que les cadres de modélisation modernes devraient considérer l'incertitude et le temps comme des concepts de première classe.
 Dans ce mémoire, je présente deux contributions qui appuient cette vision.
 Tout d'abord, nous définissons une langue avec incertitude chez un citoyen de première classe : \langName. 
-Nous détaillons cette contribution au~\Cref{chapt:aintea}. 
+%Nous détaillons cette contribution au~\Cref{chapt:aintea}. 
 Deuxièmement, nous définissons un métamodèle, et nous le formalisons, de la connaissance des systèmes adaptatifs. 
-Nous présentons cette contribution au~\Cref{chapt:tkm}.
+%Nous présentons cette contribution au~\Cref{chapt:tkm}.
 
 \paragraph{\langName{}: Gérer l'incertitude des données au niveau du language}
 \begin{figure}
@@ -33,19 +33,20 @@ Nous présentons cette contribution au~\Cref{chapt:tkm}.
 %Second, it highlights the feasibility and the advantages of uncertainty-aware type checking systems on the language level.
 %
 Cette contribution aborde le défi de la manipulation des données incertaines (cf. Sous-défi \#1). 
-Nous proposons \langName{}, un langage capable de représenter des données incertaines comme des types de langage intégrés avec leurs opérations supportées. 
-La~\cref{fig:french:contrib:aintea} donne un aperçu du langage utilisé. Il contient un échantillon de distributions (gaussiennes, de Bernoulli, binomiales, de la fonction delta de Dirac et de Rayleigh) qui couvre les différents types de données (booléens, nombres et références). 
-Nous implémentons un prototype du langage, disponible publiquement sur GitHub\footnote{\url{https://github.com/lmouline/aintea/}}. 
-Nous utilisons une étude de cas réelle basée sur un réseau intelligent, réalisée avec notre partenaire Creos S.A.. 
-Cela montre d'abord que notre approche n'a pas d'impact sur la concision de la langue. 
-Deuxièmement, il souligne la faisabilité et les avantages des systèmes de contrôle de type sensibles à l'incertitude au niveau linguistique.
+Nous proposons \langName{}, un langage capable de représenter des données incertaines comme des types de données intégrés au language avec leurs opérations supportées. 
+La~\cref{fig:french:contrib:aintea} donne un aperçu du langage utilisé. 
+Il contient un échantillon des lois de probabilités (Gaussiennes, Bernoulli, binomiales, Rayleigh, et la fonction delta de Dirac) qui couvre les différents types de données (booléens, nombres et références). 
+Nous avons implémenté un prototype du langage, disponible publiquement sur GitHub\footnote{\url{https://github.com/lmouline/aintea/}}. 
+Nous utilisons une étude de cas basée sur un réseau intelligent, réalisée avec notre partenaire Creos S.A.. 
+L'évaluation montre d'abord que notre approche n'a pas d'impact sur la concision de la langue. 
+Deuxièmement, elle souligne la faisabilité et les avantages des systèmes de contrôle de type sensibles à l'incertitude au niveau linguistique.
 
 %This contribution is under submission at the JOT Journal\footnote{\url{http://www.jot.fm/}}:
 %\begin{itemize}
 %	\item \citetitle{insubmission:2019:comlan:datauncertainty}, \citeauthor{insubmission:2019:comlan:datauncertainty}
 %\end{itemize}
 %
-Cette contribution est en cours de soumission au JOT Journal\footnote{\url{http://www.jot.fm/}} :
+Cette contribution a été soumise au journal JOT\footnote{\url{http://www.jot.fm/}} :
 \begin{itemize}
 	\item \citetitle{insubmission:2019:comlan:datauncertainty}, \citeauthor{insubmission:2019:comlan:datauncertainty}
 \end{itemize}
@@ -69,10 +70,10 @@ Cette contribution est en cours de soumission au JOT Journal\footnote{\url{http:
 %
 Cette contribution aborde le défi du raisonnement sur les actions inachevées et de la compréhension du comportement des systèmes adaptatifs (cf. Sous-défi \#2 et \#3). 
 Tout d'abord, nous formalisons les concepts de base communs impliqués dans les processus d'adaptation, également appelés connaissances. 
-La formalisation est basée sur des graphiques temporels et un ensemble de relations qui retracent l'impact des décisions sur les circonstances. 
-Deuxièmement, nous proposons un cadre pour structurer et stocker l'état et le comportement d'un système adaptatif en fonctionnement, ainsi qu'une API de haut niveau pour effectuer efficacement des routines de diagnostic. 
-Notre cadre s'appuie sur une solution basée sur un modèle temporel qui résume efficacement les décisions, leurs circonstances correspondantes et leurs effets. 
-Nous donnons un aperçu du métamodèle à la~\cref{fig:french:contrib:tkm}. 
+La formalisation est basée sur des graphes temporels et un ensemble de relations qui retracent l'impact des décisions sur les circonstances. 
+Deuxièmement, nous proposons un \textit{framework} pour structurer et stocker l'état et le comportement d'un système adaptatif en fonctionnement, ainsi qu'une API de haut niveau pour effectuer efficacement des routines de diagnostic. 
+Notre \textit{framework} s'appuie sur une solution basée sur un modèle temporel qui résume efficacement les décisions, leurs circonstances correspondantes et leurs effets. 
+Nous donnons un aperçu du métamodèle dans la~\cref{fig:french:contrib:tkm}. 
 Nous démontrons l'applicabilité de notre approche en l'appliquant à un exemple basé sur un réseau intelligent. 
 Nous montrons également que notre approche peut être utilisée pour diagnostiquer le comportement d'au plus les cinq derniers jours d'une période de sur le réseau intelligent luxembourgeois en $\sim$2.4 secondes.
 

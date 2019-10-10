@@ -3,10 +3,11 @@
 \LoadClass[12pt, twoside]{book}
 
 %%% Package dependencies %%%%%
+\RequirePackage[french, english]{babel}
 \RequirePackage{diagbox}
 \RequirePackage[table]{xcolor}
 \RequirePackage{xifthen}
-\RequirePackage[backref=true, style=trad-alpha, backend=biber, bibencoding=utf8]{biblatex}
+\RequirePackage[ babel=none, backref=true, style=trad-alpha, bibencoding=utf8]{biblatex}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{indentfirst}
 \RequirePackage{doi}
@@ -14,7 +15,6 @@
 \RequirePackage{amssymb}
 \RequirePackage[caption=false,font=footnotesize]{subfig}
 \RequirePackage{enumitem}
-\RequirePackage{listings}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[final]{microtype}
 \RequirePackage{lmodern}
@@ -25,10 +25,13 @@
 \RequirePackage{graphicx}
 \RequirePackage{dsfont}
 \RequirePackage{pifont}
+\RequirePackage[french, english]{babel}
+\RequirePackage{listings}
 \RequirePackage{pdflscape}
 \RequirePackage{afterpage}
 \RequirePackage{amsmath}
-\RequirePackage[capitalise, noabbrev]{cleveref}
+\RequirePackage[capitalise, noabbrev, english]{cleveref}
+
 
 %%% Class options %%%%%
 %
@@ -199,10 +202,10 @@
     \addcontentsline{toc}{chapter}{List of tables}
     \listoftables
    
-    \input{parts/appendices/frenchSummary/main.tex}
+%   \begin{french}
+   		\input{parts/appendices/frenchSummary/main.tex}
+%   \end{french}
 
-
-	
 	\printbibliography[heading=bibintoc]
 }
 

@@ -9,15 +9,16 @@
 %The last one has been published in our vision paper regarding time awareness in \gls{mde}~\cite{DBLP:conf/models/Benelallam0MFBB17}.
 %We detailed them in this section.
 %
-Au cours de notre étude, nous avons cerné cinq caractéristiques des systèmes adaptatifs qui posent des défis au milieu de la recherche en génie logiciel. 
+Au cours de notre étude, nous avons identifié cinq caractéristiques des systèmes adaptatifs qui posent des défis pour la recherche en génie logiciel. 
 Premièrement, l'information recueillie n'est pas toujours connue avec une confiance absolue. 
-Deuxièmement, les reconfigurations peuvent ne pas être immédiates et leurs effets ne sont pas instantanément mesurés. Troisièmement, le comportement du système peut être émergent~\cite{zio2011uncertainties}, c'est-à-dire qu'il ne peut être entièrement connu au moment de la conception. 
+Deuxièmement, les reconfigurations peuvent ne pas être immédiates et leurs effets ne sont pas instantanément mesurés. 
+Troisièmement, le comportement du système peut être émergent~\cite{zio2011uncertainties}, c'est-à-dire qu'il ne peut être entièrement connu au moment de la conception. 
 Quatrièmement, les différentes sous-parties du système n'évoluent pas au même rythme. 
 Cinquièmement, la structure et le comportement des systèmes ont une dimension temporelle. 
-La dernière a été publiée dans notre document de vision concernant la prise de conscience du temps dans ~\cite{DBLP:conf/models/Benelallam0MFBB17}. 
+La dernière a été publiée dans notre document de vision concernant la prise de conscience du temps dans l'IDM~\cite{DBLP:conf/models/Benelallam0MFBB17}. 
 Nous les avons détaillés dans cette section.
 
-\subsection{Engineering uncertainty-aware software}
+\subsection{Ingénierie de logiciels sensibles à l'incertitude}
 \label{sec:french:challenges:duc}
 
 \begin{figure}
@@ -63,9 +64,9 @@ Cette incertitude se propage ensuite à travers toutes les étapes jusqu'au rés
 %\textbf{If the data uncertainty can mislead the understanding of a system behaviour or state, then developers should implement an uncertainty-aware system.}
 %For \glspl{adptSyst}, this lack of confidence may trigger suboptimal adaptations.
 %
-Pour un domaine spécifique, cette incertitude peut avoir une incidence sur la compréhension de la situation réelle, comme le montre la~\Cref{fig:french:chal:duc}. 
+Pour un domaine spécifique, cette incertitude peut avoir une incidence sur la compréhension de la situation réelle, comme le montre la~\cref{fig:french:chal:duc}. 
 Par exemple, l'incertitude de l'horloge CPU est trop faible pour endommager le pourcentage de charge du processeur. 
-Cependant, l'incertitude de la charge du câble dans un réseau intelligent peut déclencher une fausse détection d'une surcharge, comme le montre la ~\Cref{fig:french:chal:duc}. 
+Cependant, l'incertitude de la charge du câble dans un réseau intelligent peut déclencher une fausse détection d'une surcharge, comme le montre la~\cref{fig:french:chal:duc}. 
 Si l'incertitude des données peut induire en erreur la compréhension du comportement ou de l'état d'un système, les développeurs doivent mettre en œuvre un système conscient de l'incertitude. 
 Pour les systèmes adaptatifs, ce manque de confiance peut entraîner des adaptations sous-optimales.
 
@@ -82,8 +83,8 @@ Nous croyons fermement que les techniques de conception devraient fournir des m�
 %The probabilistic programming~\cite{DBLP:conf/icse/GordonHNR14} community provide frameworks and languages~\cite{url:InferNET18, baudin2017openturns} to propagate probabilities through computations.
 %
 La littérature fournit des approches pour aider les ingénieurs à raisonner ou à manipuler les données sans certitude, ou du moins les distributions de probabilité.
-Par exemple, croyez que les fonctions~\cite{shafer1992dempster} aident à réduire cette incertitude en combinant plusieurs sources de données.
-La communauté de programmation probabiliste~\cite{DBLP:conf/icse/GordonHNR14} fournit des cadres et des langages~\cite{url:InferNET18, baudin2017openturns} pour propager les probabilités par des calculs.
+Par exemple, les fonctions de croyances~\cite{shafer1992dempster} aident à réduire cette incertitude en combinant plusieurs sources de données.
+La communauté de programmation probabilistic~\cite{DBLP:conf/icse/GordonHNR14} fournit des \textit{frameworks} et des langages de programmation~\cite{url:InferNET18, baudin2017openturns} pour propager les probabilités lors des calculs.
 
 %However, from the best of our knowledge, no study has been done to evaluate the impact of data uncertainty on the development of software.
 %The following challenge still remains an open question for the software engineering community:
@@ -113,11 +114,11 @@ Le défi suivant demeure une question ouverte pour la communauté du génie logi
 %If the adaptation process does not consider this difference of rates, it can cause repeated decisions.
 %
 La reconfiguration d'un réseau intelligent implique de modifier le flux de puissance en ouvrant ou en fermant les fusibles. 
-Comme nous l'avons déjà dit, les techniciens doivent se rendre physiquement sur les lieux des fusées pour modifier leur état. 
+Comme nous l'avons déjà dit, les techniciens doivent se rendre physiquement sur les lieux des fusibles pour modifier leur états. 
 Dans le cas du réseau intelligent luxembourgeois, les compteurs envoient des mesures d'énergie toutes les 15 minutes, de manière non synchrone. 
 Par conséquent, entre le moment où une reconfiguration du réseau intelligent est décidée et le moment où les effets sont mesurés, un retard d'au moins 15 minutes se produit. 
 D'autre part, un incident devrait être détecté dans les minutes qui suivent. 
-Si le processus d'adaptation ne tient pas compte de cette différence de taux, il peut entraîner des décisions répétées.
+Si le processus d'adaptation ne tient pas compte de cette différence de rythme, il peut entraîner des décisions répétées.
 
 %More generally, a difference may exist between the monitoring frequency of the time for action effects to be measured.
 %One cause of this is what we call \glspl{longTermAct} in this document, illustrated in~\Cref{fig:intro:chal:longTermAct}.
@@ -125,8 +126,8 @@ Si le processus d'adaptation ne tient pas compte de cette différence de taux, i
 %A second cause is an impossibility to reduce the monitoring frequency since systems must be reactive in some cases.
 %This difference in rates may damage the decision process.
 %
-De façon plus générale, il peut exister une différence entre la fréquence de surveillance du temps nécessaire pour mesurer les effets de l'action. 
-L'une des causes en est ce que nous appelons les actions à long terme dans ce document, illustrées à la ~\Cref{fig:french:chal:longTermAct}. 
+De façon plus générale, il peut exister une différence entre la fréquence de surveillance et le temps nécessaire pour mesurer les effets de l'action. 
+L'une des causes de cette différence est ce que nous appelons les actions à long terme dans ce document, illustrées à la~\cref{fig:french:chal:longTermAct}. 
 Une action à long terme est définie comme une action qui prend du temps à être exécutée (retard à exécuter et temps d'exécution) ou qui a des effets à long terme.
 Une deuxième cause est l'impossibilité de réduire la fréquence de surveillance puisque les systèmes doivent être réactifs dans certains cas.
 Cette différence de taux peut nuire au processus décisionnel.
@@ -155,7 +156,7 @@ L'un des défis ouverts pour la communauté des chercheurs est donc le suivant :
 Le comportement du réseau intelligent est affecté par plusieurs facteurs qui ne peuvent pas être contrôlés par le gestionnaire de réseau. 
 Les conditions météorologiques en sont un exemple. Les réseaux intelligents reposent sur une production d'énergie répartie entre plusieurs acteurs. 
 Par exemple, les utilisateurs, qui étaient auparavant principalement des consommateurs, peuvent maintenant produire de l'énergie en ajoutant des panneaux solaires sur le toit de leur maison. 
-La production de cette énergie dépend de la météo, et même de la saison4\footnote{L'angle du soleil a un impact sur la quantité d'énergie produite par les panneaux solaires. Cet angle varie selon la saison.}. 
+La production de cette énergie dépend de la météo, et même de la saison\footnote{L'angle du soleil a un impact sur la quantité d'énergie produite par les panneaux solaires. Cet angle varie selon la saison.}. 
 Malgré cette stochasticité du comportement, les ingénieurs doivent mettre en œuvre un processus d'adaptation qui peut conduire à une configuration de grille sous-optimale.
 
 %Faced with growingly complex and large-scale software systems (e.g. smart grid systems), we can all agree that the presence of residual defects becomes unavoidable~~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}. 
@@ -164,7 +165,7 @@ Malgré cette stochasticité du comportement, les ingénieurs doivent mettre en 
 %As such, complementary techniques need to be proposed to locate the anomalous behaviour and its origin in order to handle it in a safe way.
 %
 Face à des systèmes logiciels de plus en plus complexes et à grande échelle (par exemple les systèmes de réseaux intelligents), nous pouvons tous convenir que la présence de défauts résiduels devient inévitable~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}.
-Même avec un processus méticuleux de vérification ou de validation, il est très probable qu'il se heurte à un comportement inattendu qui n'était pas prévu au moment de la conception.
+Même avec un processus méticuleux de vérification ou de validation, il est très probable de se heurter à un comportement inattendu qui n'était pas prévu au moment de la conception.
 À elles seules, les approches formelles de modélisation et de vérification existantes peuvent ne pas être suffisantes pour anticiper ces défaillances~\cite{DBLP:conf/icse/TaharaOH17}.
 A ce titre, des techniques complémentaires doivent être proposées pour localiser le comportement anormal et son origine afin de le manipuler en toute sécurité.
 
@@ -176,11 +177,12 @@ A ce titre, des techniques complémentaires doivent être proposées pour locali
 %In other words, one global challenge that remains unaddressed is:
 %\vspace{-2em}
 %\highlightbox{How to trace back adaptation decision effects to their circumstances?}
-Bencomo~\etal~\cite{DBLP:conf/iceccs/BencomoWSW12} soutiennent qu'une explication complète du comportement du système contribue de manière drastique à la qualité du diagnostic et facilite la tâche de dépannage du comportement du système. Pour ce faire, comme le montre la~\Cref{fig:french:chal:longTermAct}, nous croyons que les systèmes logiciels adaptatifs devraient être dotés d'installations de gestion de la traçabilité pour relier les décisions prises à leur (i) situation, c'est-à-dire l'historique des états du système et les exigences visées, et (ii) les actions réalisées et leur(s) impact(s) sur le système. 
+Bencomo~\etal~\cite{DBLP:conf/iceccs/BencomoWSW12} soutiennent qu'une explication complète du comportement du système contribue de manière drastique à la qualité du diagnostic et facilite la tâche de dépannage du comportement du système. 
+Pour ce faire, comme le montre la~\cref{fig:french:chal:longTermAct}, nous pensons que les systèmes logiciels adaptatifs devraient être dotés d'installations de gestion de la traçabilité pour relier les décisions prises à (i) leur  situation, c'est-à-dire l'historique des états du système et les exigences visées, et (ii) les actions réalisées et leur(s) impact(s) sur le système. 
 En particulier, un système adaptatif devrait conserver une trace des événements historiques pertinents. 
 En outre, il devrait être en mesure de lier les objectifs que le système entend atteindre aux adaptations et aux décisions qui ont été prises, et vice versa. 
 Enfin, afin de permettre aux développeurs d'interagir avec le système d'une manière claire et compréhensible, une abstraction appropriée pour permettre la navigation des traces et leur historique devrait également être fournie. 
-En d'autres termes, un défi mondial qui n'a pas encore été relevé est le suivant :
+En d'autres termes, un défi qui n'a pas encore été relevé est le suivant :
 \vspace{-2em}
 \highlightbox{Comment faire remonter les effets des décisions d'adaptation à leur situation ?}
 
@@ -194,7 +196,7 @@ En d'autres termes, un défi mondial qui n'a pas encore été relevé est le sui
 %
 Chaque compteur envoie des données de consommation et de production toutes les 15 minutes. 
 Cependant, cette collection n'est pas synchrone. 
-Autrement dit, tous les compteurs n'envoient pas leurs données au même horodatage. 
+Autrement dit, tous les compteurs n'envoient pas leurs données au même moment. 
 Le système global, qui reçoit toutes les données, n'a donc pas une vision globale avec la même fraîcheur pour toute la partie de la grille. 
 Les données électriques sont volatiles : un pic ou une baisse peut survenir en moins d'une minute en raison, par exemple, du démarrage ou de la finition d'une machine à laver. 
 La reconfiguration de la grille peut donc être sous-optimale en raison d'informations périmées.
@@ -216,7 +218,7 @@ A l'inverse, si d'autres sont connectés directement à une source d'énergie, i
 %For example, the adaptation process may require a global view of the system.
 %In the worst case, some data would be outdated and cannot be used.
 %
-Malgré cette différence de taux, une vision globale d'un système à un moment précis peut encore être nécessaire. 
+Malgré cette différence de rythmes, une vision globale d'un système à un moment précis peut encore être nécessaire. 
 La vision devrait porter sur des données qui ont une fraîcheur différente. 
 Par exemple, le processus d'adaptation peut nécessiter une vision globale du système. 
 Dans le pire des cas, certaines données seraient périmées et ne pourraient être utilisées.
@@ -226,7 +228,9 @@ Dans le pire des cas, certaines données seraient périmées et ne pourraient ê
 %One global challenge for the software engineering community is therefore:
 %\vspace{-2em}
 %\highlightbox{How to represent, query, and store inconsistent system states and behaviours?}
-Lors de la conception du processus d'adaptation, les ingénieurs ont donc besoin de solutions pour faire face à un état incohérent du système. Une solution peut, par exemple, estimer de façon transparente ce que devrait être la valeur actuelle de données périmées. Un défi mondial pour la communauté du génie logiciel est donc :
+Lors de la conception du processus d'adaptation, les ingénieurs ont donc besoin de solutions pour faire face à un état inconsistant du système. 
+Une solution peut, par exemple, estimer de façon transparente ce que devrait être la valeur actuelle de données périmées. 
+Un défi pour la communauté du génie logiciel est donc :
 \vspace{-2em}
 \highlightbox{Comment représenter, interroger et stocker des états et des comportements système incohérents ?}
 
@@ -266,14 +270,17 @@ Les ingénieurs ont besoin d'outils efficaces pour structurer, représenter, int
 %Time in software engineering is not a new challenge.
 %For example, Riviera \etal \cite{DBLP:conf/models/RiveraRV08} have already identified time as a challenge for the \gls{mde} community.
 %Different approaches have been defined~\cite{DBLP:conf/sle/BousseCCGB15, DBLP:conf/sle/KansoT12, DBLP:conf/icse/KoegelH10, DBLP:conf/seke/0001FNMKT14}.
-Le temps consacré au génie logiciel n'est pas un nouveau défi. 
-Par exemple, Riviera~\etal \cite{DBLP:conf/models/RiveraRV08} ont déjà identifié le temps comme un défi pour la communauté MDE. Différentes approches ont été définies~\cite{DBLP:conf/sle/BousseCCGB15, DBLP:conf/sle/KansoT12, DBLP:conf/icse/KoegelH10, DBLP:conf/seke/0001FNMKT14}.
+Le temps n'est pas un nouveau défi pour le génie logiciel . 
+Par exemple, Riviera~\etal \cite{DBLP:conf/models/RiveraRV08} ont déjà identifié le temps comme un défi pour la communauté de l'IDM. 
+Différentes approches ont été définies~\cite{DBLP:conf/sle/BousseCCGB15, DBLP:conf/sle/KansoT12, DBLP:conf/icse/KoegelH10, DBLP:conf/seke/0001FNMKT14}.
 
 %However, we notice that research efforts made by the \gls{mde} community did not focus on the modelling, persistence, and processing of evolving data.
 %Thomas Hartmann started addressing these challenging in his PhD thesis~\cite{DBLP:phd/basesearch/Hartmann16}.
 %The final global challenge, not fully addressed, is thus:
 %\vspace{-2em}
-%\highlightbox{How to structure, represent query, and store efficiently temporal data on a large scale?}
-Cependant, nous remarquons que les efforts de recherche déployés par la communauté des EMM n'étaient pas axés sur la modélisation, la persistance et le traitement des données en évolution. Thomas Hartmann a commencé à aborder ces défis dans sa thèse de doctorat[Har16]. Le dernier défi mondial, qui n'est pas entièrement relevé, l'est donc :
+%\highlightbox{How to structure, represent, query, and store efficiently temporal data on a large scale?}
+Cependant, nous remarquons que les efforts de recherche déployés par la communauté des EMM n'étaient pas axés sur la modélisation, la persistance et le traitement des données en évolution. 
+Thomas Hartmann a commencé à aborder ces défis dans sa thèse de doctorat~\cite{DBLP:phd/basesearch/Hartmann16}. 
+Le dernier défi, qui n'est pas entièrement relevé, est donc :
 \vspace{-2em}
-\highlightbox{Comment structurer, représenter une requête et stocker efficacement des données temporelles à grande échelle ?}
+\highlightbox{Comment structurer, représenter, requêter et stocker efficacement des données temporelles à grande échelle ?}

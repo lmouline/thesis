@@ -30,7 +30,8 @@ Dans cette thèse, nous abordons donc le problème suivant :
 %\vspace{-2em}
 %\highlightbox[Sub-challenge \#2]{How to enable reasoning over unfinished actions and their expected effects?}
 %
-Les processus d'adaptation peuvent reposer sur des actions à long terme comme la migration des ressources dans l'infrastructure en nuage. Le manque d'information sur les actions inachevées et leurs effets prévus sur le système, la composante raisonnement peut prendre des décisions répétées ou sous-optimales. Une étape pour permettre ce mécanisme de raisonnement est d'avoir une couche d'abstraction qui peut représenter efficacement ces actions à long terme. Dans cette thèse, nous relevons donc le défi suivant :
+Les processus d'adaptation peuvent reposer sur des actions à long terme comme la migration des ressources dans l'infrastructure \textit{cloud}. 
+A cause du manque d'information sur les actions inachevées et leurs effets prévus sur le système, la composante raisonnement peut prendre des décisions répétées ou sous-optimales. Une étape pour permettre ce mécanisme de raisonnement est d'avoir une couche d'abstraction qui peut représenter efficacement ces actions à long terme. Dans cette thèse, nous relevons donc le défi suivant :
 \vspace{-2em}
 \highlightbox[Sous-défi \#2]{Comment permettre de raisonner sur les actions inachevées et leurs effets attendus ?}
 
@@ -43,6 +44,11 @@ Les processus d'adaptation peuvent reposer sur des actions à long terme comme l
 %During our studies, we tackle the following challenge:
 %Sub-challenge \#3]{How to model the decisions of an adaptation process to diagnose it?}
 %
-En raison de la complexité croissante des systèmes, les développeurs ont des difficultés à livrer des logiciels sans erreur[BdMM+17 ; MPS15 ; HBB15]. De plus, les systèmes complexes ou les systèmes à grande échelle peuvent avoir des comportements émergents. Les systèmes ont très probablement un comportement anormal qui n'était pas prévu au moment de la conception. Les approches formelles de modélisation et de vérification existantes peuvent ne pas être suffisantes pour vérifier et valider de tels processus[TOH17]. Dans de telles situations, les développeurs appliquent habituellement des routines de diagnostic pour identifier les causes des défaillances. Au cours de nos études, nous relevons le défi suivant :
+En raison de la complexité croissante des systèmes, les développeurs ont des difficultés à livrer des logiciels sans erreur~\cite{DBLP:conf/icse/BarbosaLMJ17, DBLP:conf/icse/MongielloPS15, DBLP:conf/icse/HassanBB15}.
+De plus, les systèmes complexes ou les systèmes à grande échelle peuvent avoir des comportements émergents. 
+Les systèmes ont très probablement un comportement anormal qui n'était pas prévu au moment de la conception. 
+Les approches formelles de modélisation et de vérification existantes peuvent ne pas être suffisantes pour vérifier et valider de tels processus~\cite{DBLP:conf/icse/TaharaOH17}. 
+Dans de telles situations, les développeurs appliquent habituellement des routines de diagnostic pour identifier les causes des défaillances.
+Au cours de nos études, nous relevons le défi suivant :
 \vspace{-2em}
 \highlightbox[Sous-défi \#3]{Comment modéliser les décisions d'un processus d'adaptation pour le diagnostiquer ?}
