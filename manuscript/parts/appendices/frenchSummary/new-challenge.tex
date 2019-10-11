@@ -19,13 +19,13 @@ La dernière a été publiée dans notre document de vision concernant la prise 
 Nous les avons détaillés dans cette section.
 
 \subsection{Ingénierie de logiciels sensibles à l'incertitude}
-\label{sec:french:challenges:duc}
+\label{sec_french_challenges_duc}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=.6\linewidth]{img/apdx-french/challenges/duc}
 	\caption{Illustration du problème causé par l'incertitude des données}
-	\label{fig:french:chal:duc}
+	\label{fig_french_chal_duc}
 \end{figure}
 
 %Most fuses are manually opened and closed by technicians rather than automatically modified.
@@ -64,9 +64,9 @@ Cette incertitude se propage ensuite à travers toutes les étapes jusqu'au rés
 %\textbf{If the data uncertainty can mislead the understanding of a system behaviour or state, then developers should implement an uncertainty-aware system.}
 %For \glspl{adptSyst}, this lack of confidence may trigger suboptimal adaptations.
 %
-Pour un domaine spécifique, cette incertitude peut avoir une incidence sur la compréhension de la situation réelle, comme le montre la~\cref{fig:french:chal:duc}. 
+Pour un domaine spécifique, cette incertitude peut avoir une incidence sur la compréhension de la situation réelle, comme le montre la~\cref{fig_french_chal_duc}. 
 Par exemple, l'incertitude de l'horloge CPU est trop faible pour endommager le pourcentage de charge du processeur. 
-Cependant, l'incertitude de la charge du câble dans un réseau intelligent peut déclencher une fausse détection d'une surcharge, comme le montre la~\cref{fig:french:chal:duc}. 
+Cependant, l'incertitude de la charge du câble dans un réseau intelligent peut déclencher une fausse détection d'une surcharge, comme le montre la~\cref{fig_french_chal_duc}. 
 Si l'incertitude des données peut induire en erreur la compréhension du comportement ou de l'état d'un système, les développeurs doivent mettre en œuvre un système conscient de l'incertitude. 
 Pour les systèmes adaptatifs, ce manque de confiance peut entraîner des adaptations sous-optimales.
 
@@ -97,13 +97,13 @@ Le défi suivant demeure une question ouverte pour la communauté du génie logi
 \highlightbox{Comment concevoir des logiciels sensibles à l'incertitude (conception, mise en œuvre, test et validation) ?}
 
 \subsection{Raisonnement sur les actions à long terme}
-\label{sec:french:challenges:longTermAct}
+\label{sec_french_challenges_longTermAct}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{img/apdx-french/challenges/longTermAct}
 	\caption{Illustration d'une action à long terme}
-	\label{fig:french:chal:longTermAct}
+	\label{fig_french_chal_longTermAct}
 \end{figure}
 
 %Reconfiguring a smart grid implies to change the power flow by opening or closing fuses.
@@ -127,7 +127,7 @@ Si le processus d'adaptation ne tient pas compte de cette différence de rythme,
 %This difference in rates may damage the decision process.
 %
 De façon plus générale, il peut exister une différence entre la fréquence de surveillance et le temps nécessaire pour mesurer les effets de l'action. 
-L'une des causes de cette différence est ce que nous appelons les actions à long terme dans ce document, illustrées à la~\cref{fig:french:chal:longTermAct}. 
+L'une des causes de cette différence est ce que nous appelons les actions à long terme dans ce document, illustrées à la~\cref{fig_french_chal_longTermAct}. 
 Une action à long terme est définie comme une action qui prend du temps à être exécutée (retard à exécuter et temps d'exécution) ou qui a des effets à long terme.
 Une deuxième cause est l'impossibilité de réduire la fréquence de surveillance puisque les systèmes doivent être réactifs dans certains cas.
 Cette différence de taux peut nuire au processus décisionnel.
@@ -144,7 +144,7 @@ L'un des défis ouverts pour la communauté des chercheurs est donc le suivant :
 \highlightbox{Comment modéliser, stocker et interroger les actions à long terme avec leurs effets ?}
 
 \subsection{Diagnostic du processus d'adaptation}
-\label{sec:french:challenges:diagnosis}
+\label{sec_french_challenges_diagnosis}
 
 %\Gls{sg} \gls{behaviour} is affected by several factors that cannot be controlled by the grid manager.
 %One example is weather conditions.
@@ -178,7 +178,7 @@ A ce titre, des techniques complémentaires doivent être proposées pour locali
 %\vspace{-2em}
 %\highlightbox{How to trace back adaptation decision effects to their circumstances?}
 Bencomo~\etal~\cite{DBLP:conf/iceccs/BencomoWSW12} soutiennent qu'une explication complète du comportement du système contribue de manière drastique à la qualité du diagnostic et facilite la tâche de dépannage du comportement du système. 
-Pour ce faire, comme le montre la~\cref{fig:french:chal:longTermAct}, nous pensons que les systèmes logiciels adaptatifs devraient être dotés d'installations de gestion de la traçabilité pour relier les décisions prises à (i) leur  situation, c'est-à-dire l'historique des états du système et les exigences visées, et (ii) les actions réalisées et leur(s) impact(s) sur le système. 
+Pour ce faire, comme le montre la~\cref{fig_french_chal_longTermAct}, nous pensons que les systèmes logiciels adaptatifs devraient être dotés d'installations de gestion de la traçabilité pour relier les décisions prises à (i) leur  situation, c'est-à-dire l'historique des états du système et les exigences visées, et (ii) les actions réalisées et leur(s) impact(s) sur le système. 
 En particulier, un système adaptatif devrait conserver une trace des événements historiques pertinents. 
 En outre, il devrait être en mesure de lier les objectifs que le système entend atteindre aux adaptations et aux décisions qui ont été prises, et vice versa. 
 Enfin, afin de permettre aux développeurs d'interagir avec le système d'une manière claire et compréhensible, une abstraction appropriée pour permettre la navigation des traces et leur historique devrait également être fournie. 

@@ -201,9 +201,9 @@
     \addcontentsline{toc}{chapter}{List of tables}
     \listoftables
    
-%   \begin{french}
+   \begin{otherlanguage}{french}
    		\input{parts/appendices/frenchSummary/main.tex}
-%   \end{french}
+   \end{otherlanguage}
 
 	\printbibliography[heading=bibintoc]
 }
@@ -270,6 +270,7 @@
 %  \fi%
 %}
 %
+
 %% Now refcheck is aware of \cref and \Cref
 \newcommand{\refcheckize}[1]{%
   \expandafter\let\csname @@\string#1\endcsname#1%
