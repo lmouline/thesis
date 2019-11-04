@@ -31,3 +31,41 @@
 \newcommand{\outOfOp}{\textit{OUT-OF}}
 
 \newcommand{\confOp}{[ ]}
+
+% Constants
+\newcommand\coverHal{0} 
+\newcommand\coverLux{1} 
+\newcommand\coverRennes{2} 
+
+% Force content on en even page
+\newcommand*\cleartoevenpage{
+  \clearpage
+  \ifodd\value{page}\hbox{}\newpage\fi
+}
+
+% Cover definition
+\newcommand{\prvBackCover}[1]
+{
+	\nolinenumbers
+	\cleartoevenpage
+	\includepdf{#1}
+}
+
+\newcommand{\frontCover}[1]
+{
+	\ifthenelse{\equal{\setCover}{\coverHal}}
+		{\includepdf{cover/Cover.pdf}}
+		{
+			\ifthenelse{\equal{\setCover}{\coverLux}}
+			{\includepdf{cover/CoverLux.pdf}}
+			{\includepdf{cover/CoverRennes.pdf}}
+		
+		}
+}
+
+\newcommand{\backCover}[1]
+{
+	\ifthenelse{\equal{\setCover}{\coverRennes}}
+		{\prvBackCover{cover/BackCoverRennes.pdf}}
+		{\prvBackCover{cover/BackCoverLuxembourg.pdf}}
+}

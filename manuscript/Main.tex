@@ -12,6 +12,10 @@
 \input{command}
 \input{listingColors}
 
+%\newcommand\setCover{\coverHal} % HAL / OrbiLU
+%\newcommand\setCover{\coverLux} % Lux
+\newcommand\setCover{\coverRennes} % Rennes
+
 \input{glossary}
 
 \addbibresource{bib.bib}
@@ -19,12 +23,13 @@
 \begin{document}		
 	\frontmatter
 	\pagenumbering{gobble}
-	\includepdf{cover/Cover.pdf}
-%	\linenumbers
-	\input{abstract}	
-%	\input{publications}
 	
+	\frontCover{\setCover{}}
+	
+	\linenumbers
+	\input{abstract}	
 	\tableofcontents
+	
 	\cleardoublepage
 	
 	\mainmatter	
@@ -33,4 +38,5 @@
 	\input{parts/3-conclusion/main}
 	
 	\backmatter
+	\backCover{\setCover{}}
 \end{document}

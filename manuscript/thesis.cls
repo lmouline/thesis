@@ -112,7 +112,7 @@
 \RequirePackage{csquotes}
 
 %%% Definition of the page layout %%%%%
-\RequirePackage[headheight=15pt]{geometry} %with page borders size
+\RequirePackage[headheight=15pt, a4paper]{geometry} %with page borders size
 \RequirePackage{fancyhdr} 
 \pagestyle{fancy}
 \fancyhf{} %remove all rules
